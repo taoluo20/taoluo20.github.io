@@ -1,0 +1,12 @@
+dist/
+.preview/
+node_modules/
+*.log
+.env
+.env.*
+!.env.example
+*.zip
+*.pem
+*.key
+qa-preview.cjs
+assets/images/contact-sheet.png
