@@ -48,8 +48,17 @@ try {
     if ($LASTEXITCODE -ne 0) { throw 'Initial push failed. No Pages settings were changed.' }
     $pagesProbe = Invoke-Probe 'gh' @('api', "repos/$repo/pages", '--jq', '.html_url')
     if ($pagesProbe.ExitCode -ne 0) {
-        '{"source":{"branch":"main","path":"/"}}' | & gh api "repos/$repo/pages" --method POST --input -
-        if ($LASTEXITCODE -ne 0) { throw 'Files were pushed, but Pages could not be enabled. Open repository Settings > Pages and choose main / (root).' }
+        $savedPreference = $ErrorActionPreference
+        try {
+            $ErrorActionPreference = 'Continue'
+            $createPagesOutput = '{"source":{"branch":"main","path":"/"}}' | & gh api "repos/$repo/pages" --method POST --input - 2>$null
+            $createPagesExit = $LASTEXITCODE
+        } finally { $ErrorActionPreference = $savedPreference }
+        if ($createPagesExit -ne 0) {
+            # A username.github.io repository may enable Pages automatically after its first push.
+            $confirmPages = Invoke-Probe 'gh' @('api', "repos/$repo/pages", '--jq', '.html_url')
+            if ($confirmPages.ExitCode -ne 0) { throw 'Files were pushed, but Pages could not be confirmed. Open repository Settings > Pages and choose main / (root).' }
+        }
     }
     Write-Host "`nSetup complete. Future updates only need the update button." -ForegroundColor Green
     Write-Host 'Website: https://taoluo20.github.io/'
