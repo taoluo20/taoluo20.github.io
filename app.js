@@ -150,24 +150,17 @@
       <div class="scan-list">${scans.map((scan, index) => {
         const details = [
           ['Software', scan.software],
-          ['Captured', scan.capturedLabel, scan.capturedAt],
-          ['Published', scan.publishedLabel, scan.publishedAt],
+          ['Scan type', scan.scanType],
           ['Device', scan.device],
-          ['Capture method', scan.captureMethod],
-          ['Frames', scan.frames?.toLocaleString('en-US')],
+          ['Captured', scan.capturedLabel, scan.capturedAt],
           ['Source images', scan.images?.toLocaleString('en-US')],
-          ['Processing time', scan.processingTime],
-          ['Triangles', scan.triangles],
           ['Vertices', scan.vertices],
-          ['Uploaded size', scan.uploadSize],
-          ['Textures', scan.textures],
-          ['Materials', scan.materials]
+          ['File size', scan.fileSize]
         ].filter(([, value]) => value !== undefined && value !== null && value !== '');
         return `<article class="scan-entry" data-scan="${escape(scan.id)}" aria-labelledby="scan-${escape(scan.id)}-title">
           <div class="scan-viewer"><iframe class="scan-embed" src="${escape(scan.embedUrl)}" title="${escape(scan.title)}${scan.location ? ` at ${escape(scan.location)}` : ''} - interactive 3D scan" loading="${index ? 'lazy' : 'eager'}" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen></iframe></div>
           <div class="scan-copy"><p class="scan-number meta">SCAN ${String(index + 1).padStart(2, '0')}</p><h2 id="scan-${escape(scan.id)}-title">${escape(scan.title)}</h2>
             ${scan.location ? `<p class="scan-location">${escape(scan.location)}${scan.region ? `<span>${escape(scan.region)}</span>` : ''}</p>` : ''}
-            <p class="scan-description">${escape(scan.description)}</p>
             <dl class="scan-details">${details.map(([label, value, dateTime]) => `<div><dt>${escape(label)}</dt><dd>${dateTime ? `<time datetime="${escape(dateTime)}">${escape(value)}</time>` : escape(value)}</dd></div>`).join('')}</dl>
             <a class="text-link scan-source" href="${escape(scan.captureUrl)}" target="_blank" rel="noopener noreferrer">VIEW ON ${escape(scan.sourceLabel.toUpperCase())} ${arrow}</a>
           </div>
