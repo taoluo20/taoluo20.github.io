@@ -99,7 +99,7 @@
 .journal-card-arrow { color: var(--dim); }
 .journal-card-arrow svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.2; }
 .journal-card h2 { font-size: 23px; line-height: 1.25; font-weight: 600; letter-spacing: -.035em; margin: 17px 0 12px; }
-.journal-post-number { display: block; margin-top: 12px; color: var(--dim); font: 400 12px/1.6 'IBM Plex Mono',monospace; letter-spacing: .015em; }
+.journal-post-number { display: inline; margin: 0; color: inherit; font: inherit; letter-spacing: inherit; white-space: nowrap; }
 .journal-post-card h2 { margin-bottom: 0; }
 .journal-project-back { margin-bottom: 34px; }
 .journal-project-heading h1 { font-size: clamp(36px,4.6vw,64px); font-variation-settings: 'wdth' 110; line-height: 1.08; overflow-wrap: anywhere; }
