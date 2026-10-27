@@ -48,7 +48,6 @@
       webInfoDialog.showModal();
       document.body.classList.add('modal-open');
     }
-    webInfoDialog.querySelector('#web-info-status').textContent = data.release === 'wip' ? 'Work in progress' : 'Live';
     try {
       siteInfoPromise ||= fetch('site-info.json', { cache: 'no-store' }).then(response => {
         if (!response.ok) throw new Error('Site information unavailable');
