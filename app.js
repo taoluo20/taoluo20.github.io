@@ -264,7 +264,7 @@
     }
     main.innerHTML = content + returnToTop();
     renderedRoute = route;
-    document.title = section ? `${title ? title + ' — ' : ''}Tao Luo` : 'Tao Luo — Visual Artist';
+    document.title = section ? `${title ? title + ' — ' : ''}Tao Luo` : 'Tao Luo';
     setNavigation(section);
     bindCardHover();
     if (!preserveScroll) window.scrollTo({ top: 0, behavior: 'instant' });
