@@ -238,7 +238,7 @@
     let content;
     if (data.release === 'wip' && section !== 'blog') {
       content = workInProgressPage(section);
-      title = section ? ({ demo: 'Demo', vfx: 'VFX', photography: 'Photography', about: 'About me', contact: 'Contact' }[section] || 'Work in progress') : 'Work in progress';
+      title = { demo: 'Demo', vfx: 'VFX', photography: 'Photography', about: 'About me', contact: 'Contact' }[section] || '';
     } else if (section === 'vfx' && id) {
       const project = getProject(id);
       content = project ? projectPage(project) : null;
