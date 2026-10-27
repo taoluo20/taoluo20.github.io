@@ -9,7 +9,7 @@ const data = context.window.PORTFOLIO;
 assert.equal(data.name, 'Tao Luo');
 assert.ok(['wip', 'full'].includes(data.release), 'release must be wip or full');
 assert.equal(data.socials.length, 5);
-for (const file of ['index.html', 'styles.css', 'blog.css', 'accents.css', 'footer.css', 'app.js', 'site-info.json', '.nojekyll', 'assets/social-icons.svg']) assert.ok(fs.existsSync(path.join(root, file)), `Missing ${file}`);
+for (const file of ['index.html', 'styles.css', 'blog.css', 'accents.css', 'footer.css', 'app.js', 'site-info.json', 'generate-pages.cjs', 'generated-pages.json', '.nojekyll', 'assets/social-icons.svg']) assert.ok(fs.existsSync(path.join(root, file)), `Missing ${file}`);
 const siteInfo = JSON.parse(fs.readFileSync(path.join(root, 'site-info.json'), 'utf8'));
 assert.ok(Number.isFinite(Date.parse(siteInfo.updatedAt)), 'Invalid website update date');
 for (const entry of [...data.projects, ...data.photographs, ...data.posts]) {

@@ -11,11 +11,13 @@ Back to top 位于页脚上方右侧，使用随黑白主题变化的弯折渐�
 网站目标地址：https://taoluo20.github.io/  
 仓库：`taoluo20/taoluo20.github.io`
 
+网站使用普通路径，例如 `/blog/`、`/blog/magic-crystal-overload/`、`/blog/magic-crystal-overload/post-001/`。站内切换使用浏览器 History API；每个路径也有真实的 `index.html` 入口，可直接打开和刷新。旧的 `#/…` 链接会自动替换为新地址，`introduction` 旧文章入口会转到 `post-001`。
+
 ## 以后怎么更新
 
 1. 修改这个文件夹里的网页、图片或 `site-data.js`。
 2. 双击 **一键更新网站.cmd**。
-3. 脚本检查文件、构建、提交并推送 `main`；GitHub Pages 随后自动更新。
+3. 脚本生成各页面入口、检查文件、构建、提交并推送 `main`；GitHub Pages 随后自动更新。
 
 没有改动时不会生成空提交。推送失败不会强制覆盖远端；本地文件和提交都会保留。
 
@@ -39,6 +41,7 @@ npm.cmd run dev
 - `app.js`：页面与交互；`styles.css`：全站字体和布局；`blog.css`：博客布局及黑白主题样式。
 - `accents.css`：全站自上而下的蓝紫—粉色渐变强调色，覆盖圆点、斜纹、强调文字、下划线和悬停状态；SVG 图标及网站图标使用相同配色。
 - `footer.css`：返回顶部箭头、Web info 面板和页脚布局；`update-site-info.cjs`：发布时自动生成网站更新日期。
+- `generate-pages.cjs`：根据根目录 `index.html` 和 `site-data.js` 生成页面入口及 `404.html`，文件清单为 `generated-pages.json`。修改根模板和数据，不直接编辑生成的子目录 `index.html`。新增文章后，一键发布会自动生成对应目录。
 
 ### 添加 Blog 内容
 

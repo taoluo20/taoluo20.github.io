@@ -21,17 +21,39 @@
   let toastTimeout;
   const hoverTimers = new Map();
   let siteInfoPromise;
-  const asset = filename => `assets/images/${filename}`;
+  const asset = filename => `/assets/images/${filename}`;
   const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const tags = project => `<div class="project-tags">${project.tags.map(tag => `<span class="project-tag">${escape(tag)}</span>`).join('')}</div>`;
   const eyebrow = text => `<p class="eyebrow">${eye}${text}</p>`;
-  const getRoute = () => location.hash.replace(/^#/, '') || '/';
+  const siteSections = new Set(['demo', 'vfx', 'photography', 'about', 'blog', 'contact']);
+  const cleanRoute = value => {
+    const url = new URL(value, location.origin);
+    const pathname = url.pathname.replace(/\/index\.html$/, '/').replace(/\/+$/, '') + '/';
+    return pathname + url.search;
+  };
+  const getRoute = () => cleanRoute(location.pathname + location.search);
   const getProject = id => data.projects.find(project => project.id === id);
+
+  function migrateLegacyRoute() {
+    if (location.hash.startsWith('#/')) {
+      history.replaceState(history.state, '', cleanRoute(location.hash.slice(1)));
+    } else {
+      const canonical = getRoute() + location.hash;
+      if (canonical !== location.pathname + location.search + location.hash) history.replaceState(history.state, '', canonical);
+    }
+  }
+
+  function navigate(route) {
+    const target = cleanRoute(route);
+    if (getRoute() !== target) history.pushState(null, '', target);
+    renderRoute(target);
+    main.focus({ preventScroll: true });
+  }
 
   function socialLinks(className = 'social-links') {
     return `<div class="${className}">${data.socials.map(social => {
       const url = social.id === 'gmail' && data.email ? `mailto:${data.email}` : social.url;
-      return `<a class="social-link" href="${escape(url || '#/contact')}" ${url && !url.startsWith('mailto:') ? 'target="_blank" rel="noopener noreferrer"' : ''} ${url ? '' : `data-placeholder="${social.name}"`} aria-label="${social.name}${url ? '' : ' — link coming soon'}" title="${social.name}${url ? '' : ' · Coming soon'}"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/social-icons.svg#${social.id}"/></svg></a>`;
+      return `<a class="social-link" href="${escape(url || '/contact/')}" ${url && !url.startsWith('mailto:') ? 'target="_blank" rel="noopener noreferrer"' : ''} ${url ? '' : `data-placeholder="${social.name}"`} aria-label="${social.name}${url ? '' : ' — link coming soon'}" title="${social.name}${url ? '' : ' · Coming soon'}"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="/assets/social-icons.svg#${social.id}"/></svg></a>`;
     }).join('')}</div>`;
   }
 
@@ -49,7 +71,7 @@
       document.body.classList.add('modal-open');
     }
     try {
-      siteInfoPromise ||= fetch('site-info.json', { cache: 'no-store' }).then(response => {
+      siteInfoPromise ||= fetch('/site-info.json', { cache: 'no-store' }).then(response => {
         if (!response.ok) throw new Error('Site information unavailable');
         return response.json();
       });
@@ -67,7 +89,7 @@
 
   function card(project, index, mode = 'page') {
     return `<article class="work-card" data-card="${project.id}">
-      <a class="card-link" href="#/vfx/${project.id}" data-project="${project.id}" data-mode="${mode}" aria-label="View ${escape(project.title)} project">
+      <a class="card-link" href="/vfx/${project.id}/" data-project="${project.id}" data-mode="${mode}" aria-label="View ${escape(project.title)} project">
         <div class="card-art"><div class="card-surface">
           <img class="card-image" src="${asset(project.image)}" alt="${escape(project.summary)}" loading="lazy" width="1600" height="1067" />
           <span class="card-corner" aria-hidden="true">${arrow}<svg class="hover-progress" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18"/></svg></span>
@@ -90,14 +112,14 @@
     <section class="section-shell" id="selected-work" aria-labelledby="selected-heading">
       <div class="section-header"><div>${eyebrow('A FEW WORLDS IN THE MAKING')}<h2 class="section-heading" id="selected-heading">Selected work</h2></div><p class="section-aside">An ongoing collection of effects,<br>environments, and experiments.</p></div>
       <div class="work-grid">${data.projects.map((project, index) => card(project, index, 'overlay')).join('')}</div>
-      <div class="section-bottom"><a class="text-link" href="#/vfx">ALL VFX PROJECTS ${arrow}</a><span class="preview-caption meta">FIRST LOOK · REFERENCE IMAGERY</span></div>
+      <div class="section-bottom"><a class="text-link" href="/vfx/">ALL VFX PROJECTS ${arrow}</a><span class="preview-caption meta">FIRST LOOK · REFERENCE IMAGERY</span></div>
     </section>
-    <section class="home-contact">${eyebrow('SOMETHING IN MIND?')}<a class="contact-callout" href="#/contact"><span>Let’s talk.</span><span class="callout-arrow">${arrow}</span></a></section>`;
+    <section class="home-contact">${eyebrow('SOMETHING IN MIND?')}<a class="contact-callout" href="/contact/"><span>Let’s talk.</span><span class="callout-arrow">${arrow}</span></a></section>`;
   }
 
   function workInProgressPage(section = '') {
     const label = { demo: 'DEMO', vfx: 'VFX', photography: 'PHOTOGRAPHY', about: 'ABOUT ME', contact: 'CONTACT' }[section] || 'TAO LUO / PORTFOLIO';
-    return `<section class="wip-page" aria-labelledby="wip-title"><div class="wip-copy">${eyebrow(label)}<h1 class="wip-heading" id="wip-title">Work in <span>progress<span class="wip-period">.</span></span></h1><p class="wip-note">A few things are taking shape. Check back soon.</p><a class="text-link wip-blog-link" href="#/blog">VISIT THE BLOG ${arrow}</a></div><span class="wip-bottom meta">TAO LUO — VISUAL EFFECTS & PROCEDURAL ART</span></section>`;
+    return `<section class="wip-page" aria-labelledby="wip-title"><div class="wip-copy">${eyebrow(label)}<h1 class="wip-heading" id="wip-title">Work in <span>progress<span class="wip-period">.</span></span></h1><p class="wip-note">A few things are taking shape. Check back soon.</p><a class="text-link wip-blog-link" href="/blog/">VISIT THE BLOG ${arrow}</a></div><span class="wip-bottom meta">TAO LUO — VISUAL EFFECTS & PROCEDURAL ART</span></section>`;
   }
 
   function vfxPage() {
@@ -106,26 +128,26 @@
     return `<section class="page-shell"><div class="page-intro">${eyebrow('SELECTED PROJECTS')}<div class="page-topline"><h1 class="page-heading">VFX & beyond.</h1><span class="meta preview-caption">${String(data.projects.length).padStart(2, '0')} PROJECTS</span></div><p class="page-subtitle">Effects, environments, and the systems behind them.<br>A closer look at the work, from first idea to final frame.</p></div>
       <div class="filter-bar" aria-label="Filter projects">${filters.map(([value, label]) => `<button class="filter-button" data-filter="${value}" aria-pressed="${activeFilter === value}">${label}</button>`).join('')}<span class="filter-status meta">${filtered.length} PROJECTS</span></div>
       <div class="work-grid" id="vfx-grid">${filtered.map((project, index) => card(project, index)).join('')}</div>
-      <div class="section-bottom"><span class="preview-caption meta">FIRST LOOK · PROJECTS & IMAGERY ARE PLACEHOLDERS</span><a class="text-link" href="#/contact">GET IN TOUCH ${arrow}</a></div>
+      <div class="section-bottom"><span class="preview-caption meta">FIRST LOOK · PROJECTS & IMAGERY ARE PLACEHOLDERS</span><a class="text-link" href="/contact/">GET IN TOUCH ${arrow}</a></div>
     </section>`;
   }
 
   function projectPage(project, isOverlay = false) {
     const next = data.projects[(data.projects.indexOf(project) + 1) % data.projects.length];
     return `<article class="project-page" data-project-content="${project.id}">
-      ${isOverlay ? '' : `<a class="project-back meta" href="#/vfx">${backArrow} ALL VFX PROJECTS</a>`}
+      ${isOverlay ? '' : `<a class="project-back meta" href="/vfx/">${backArrow} ALL VFX PROJECTS</a>`}
       <div class="project-cover"><img src="${asset(project.image)}" alt="${escape(project.summary)}" width="1600" height="1067" /><div class="project-cover-copy">${eyebrow(escape(project.type))}<h1 class="${project.title.length > 8 ? 'long-title' : project.title.length > 6 ? 'medium-title' : ''}">${escape(project.title)}</h1><p class="project-cover-type meta">A VISUAL STUDY · FIRST-LOOK PROJECT</p></div></div>
       <div class="project-content"><div class="project-overview"><div class="project-introduction"><h2>${escape(project.summary)}</h2><p>${escape(project.description)}</p></div><dl class="project-info"><div><dt class="meta">DISCIPLINE</dt><dd>${escape(project.type)}</dd></div><div><dt class="meta">FOCUS</dt><dd>${escape(project.focus)}</dd></div><div><dt class="meta">STATUS</dt><dd>Layout study</dd></div><div><dt class="meta">TOOLKIT</dt><dd>${tags(project)}</dd></div></dl></div>
       <figure class="project-process-image"><img src="${asset(project.secondary)}" alt="Reference image for ${escape(project.title)}" loading="lazy" /><figcaption class="meta"><span>VISUAL REFERENCES / PROCESS</span><span>PLACEHOLDER IMAGERY</span></figcaption></figure>
       <div class="breakdown-grid"><div>${eyebrow('THE IDEA')}<h3>Finding the feeling.</h3><p>A space for the references and creative decisions behind the shot. The final project can bring together composition studies, motion tests, and the overall visual direction.</p></div><div>${eyebrow('THE PROCESS')}<h3>From a system to a scene.</h3><p>Breakdown videos, working passes, and close-up details will live here. This layout keeps the finished image in focus while leaving room for the thinking behind it.</p></div></div>
-      <div class="project-next"><a href="#/vfx/${next.id}" ${isOverlay ? `data-overlay-next="${next.id}"` : ''}><span class="meta">NEXT PROJECT</span><div class="next-project-title">${escape(next.title)} ↗</div></a><a class="text-link" href="#/vfx" ${isOverlay ? 'data-overlay-all' : ''}>ALL PROJECTS ${arrow}</a></div></div>
+      <div class="project-next"><a href="/vfx/${next.id}/" ${isOverlay ? `data-overlay-next="${next.id}"` : ''}><span class="meta">NEXT PROJECT</span><div class="next-project-title">${escape(next.title)} ↗</div></a><a class="text-link" href="/vfx/" ${isOverlay ? 'data-overlay-all' : ''}>ALL PROJECTS ${arrow}</a></div></div>
     </article>`;
   }
 
   function demoPage() {
     const reelContent = data.reel
       ? `<iframe src="${escape(data.reel)}" title="Tao Luo demo reel" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`
-      : `<img src="${asset('ocean.jpg')}" alt="Ocean reference photograph" /><div class="demo-center"><span class="reel-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m8 4 13 8-13 8Z"/></svg></span><span class="meta">TAO LUO / DEMO REEL</span><h2>Moving worlds.</h2><p>The reel is on its way.</p><a class="text-link" href="#/vfx">EXPLORE THE PROJECTS ${arrow}</a></div>`;
+      : `<img src="${asset('ocean.jpg')}" alt="Ocean reference photograph" /><div class="demo-center"><span class="reel-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m8 4 13 8-13 8Z"/></svg></span><span class="meta">TAO LUO / DEMO REEL</span><h2>Moving worlds.</h2><p>The reel is on its way.</p><a class="text-link" href="/vfx/">EXPLORE THE PROJECTS ${arrow}</a></div>`;
     return `<section class="page-shell" style="padding-bottom:0"><div class="page-intro">${eyebrow('A COLLECTION IN MOTION')}<h1 class="page-heading">Demo reel.</h1><p class="page-subtitle">A little of everything, in motion.</p></div></section><section class="demo-layout"><div class="demo-frame">${reelContent}</div><div class="demo-meta"><span class="meta">VISUAL EFFECTS / PROCEDURAL ART</span><span class="meta">${data.reel ? 'TAO LUO' : 'REEL PLACEHOLDER · VIDEO TO FOLLOW'}</span></div></section>`;
   }
 
@@ -135,7 +157,7 @@
   }
 
   function aboutPage() {
-    return `<section class="page-shell"><div class="page-intro">${eyebrow('THE PERSON BEHIND THE PIXELS')}<h1 class="page-heading">A little about me.</h1></div><div class="about-layout"><div class="about-image"><img src="${asset('forest.jpg')}" alt="Light in a forest — temporary image" /><span class="meta">A PLACE FOR A PORTRAIT, OR A PLACE THAT FEELS LIKE YOU.</span></div><div class="about-copy"><h2>Hi, I’m Tao.<br>I like making worlds.</h2><p>Visual effects, procedural art, and photography — different ways of looking a little closer.</p><p>This space will hold my story: the work I care about, the ideas I keep coming back to, and what I’m looking to create next.</p><div class="about-disciplines"><div class="discipline"><span>Visual effects</span><span class="meta">MOTION & SIMULATION</span></div><div class="discipline"><span>Procedural art</span><span class="meta">SYSTEMS & ENVIRONMENTS</span></div><div class="discipline"><span>Photography</span><span class="meta">LIGHT & OBSERVATION</span></div></div><a class="text-link" href="#/contact">LET’S MAKE SOMETHING ${arrow}</a><p class="about-note">First-look biography · more to come.</p></div></div></section>`;
+    return `<section class="page-shell"><div class="page-intro">${eyebrow('THE PERSON BEHIND THE PIXELS')}<h1 class="page-heading">A little about me.</h1></div><div class="about-layout"><div class="about-image"><img src="${asset('forest.jpg')}" alt="Light in a forest — temporary image" /><span class="meta">A PLACE FOR A PORTRAIT, OR A PLACE THAT FEELS LIKE YOU.</span></div><div class="about-copy"><h2>Hi, I’m Tao.<br>I like making worlds.</h2><p>Visual effects, procedural art, and photography — different ways of looking a little closer.</p><p>This space will hold my story: the work I care about, the ideas I keep coming back to, and what I’m looking to create next.</p><div class="about-disciplines"><div class="discipline"><span>Visual effects</span><span class="meta">MOTION & SIMULATION</span></div><div class="discipline"><span>Procedural art</span><span class="meta">SYSTEMS & ENVIRONMENTS</span></div><div class="discipline"><span>Photography</span><span class="meta">LIGHT & OBSERVATION</span></div></div><a class="text-link" href="/contact/">LET’S MAKE SOMETHING ${arrow}</a><p class="about-note">First-look biography · more to come.</p></div></div></section>`;
   }
 
   function blogCategory(value) {
@@ -144,7 +166,7 @@
   }
 
   function blogNavigation(category) {
-    return `<nav class="blog-subnav" aria-label="Blog categories"><span class="blog-subnav-label meta">JOURNAL</span><div class="blog-category-links">${['personal', 'scad'].map(key => `<a href="#/blog?category=${key}" ${category === key ? 'aria-current="page"' : ''}>${key === 'scad' ? 'SCAD' : 'Personal'}</a>`).join('')}</div></nav>`;
+    return `<nav class="blog-subnav" aria-label="Blog categories"><span class="blog-subnav-label meta">JOURNAL</span><div class="blog-category-links">${['personal', 'scad'].map(key => `<a href="/blog/?category=${key}" ${category === key ? 'aria-current="page"' : ''}>${key === 'scad' ? 'SCAD' : 'Personal'}</a>`).join('')}</div></nav>`;
   }
 
   const journalPostNumber = (post, entry) => `post #${String(post.entries.indexOf(entry) + 1).padStart(3, '0')}`;
@@ -152,7 +174,7 @@
 
   function journalCard(post, entry) {
     const title = entry ? journalPostTitle(post, entry) : post.title;
-    const href = `#/blog/${post.id}${entry ? `/${entry.id}` : ''}`;
+    const href = cleanRoute(`/blog/${post.id}${entry ? `/${entry.id}` : ''}`);
     const image = entry?.image || post.image;
     const excerpt = entry ? entry.excerpt : post.excerpt;
     return `<a class="journal-card ${entry ? 'journal-post-card' : 'journal-project-card'}" href="${escape(href)}" aria-label="${entry ? 'Read' : 'Open project'} ${escape(title)}"><div class="journal-card-image"><img src="${asset(image)}" alt="${escape(entry?.imageAlt || post.imageAlt || title)}" width="1600" height="1000" /></div><div class="journal-card-copy"><div class="journal-card-meta meta"><span>${escape(post.category)}</span><span class="journal-card-arrow" aria-hidden="true">${arrow}</span></div><h2>${escape(post.title)}${entry ? ` <span class="journal-post-number">${journalPostNumber(post, entry)}</span>` : ''}</h2>${excerpt ? `<p>${escape(excerpt)}</p>` : ''}</div></a>`;
@@ -165,7 +187,7 @@
 
   function blogProjectPage(post) {
     const category = blogCategory(post.category);
-    return `${blogNavigation(category)}<section class="journal-index journal-project-index"><a class="journal-breadcrumb journal-project-back meta" href="#/blog?category=${category}">${backArrow} ${escape(post.category)} / PROJECTS</a><header class="journal-index-heading journal-project-heading"><div><span class="journal-kicker meta">PROJECT JOURNAL</span><h1>${escape(post.title)}<span aria-hidden="true">.</span></h1></div><p class="meta">${String(post.entries.length).padStart(2, '0')} POSTS</p></header><div class="blog-grid journal-grid journal-post-grid">${post.entries.map(entry => journalCard(post, entry)).join('')}</div></section>`;
+    return `${blogNavigation(category)}<section class="journal-index journal-project-index"><a class="journal-breadcrumb journal-project-back meta" href="/blog/?category=${category}">${backArrow} ${escape(post.category)} / PROJECTS</a><header class="journal-index-heading journal-project-heading"><div><span class="journal-kicker meta">PROJECT JOURNAL</span><h1>${escape(post.title)}<span aria-hidden="true">.</span></h1></div><p class="meta">${String(post.entries.length).padStart(2, '0')} POSTS</p></header><div class="blog-grid journal-grid journal-post-grid">${post.entries.map(entry => journalCard(post, entry)).join('')}</div></section>`;
   }
 
   function articlePage(post, entry) {
@@ -173,7 +195,7 @@
     const entryIndex = post.entries.indexOf(entry);
     const previous = post.entries[entryIndex - 1];
     const next = post.entries[entryIndex + 1];
-    const entryUrl = target => `#/blog/${post.id}/${target.id}`;
+    const entryUrl = target => cleanRoute(`/blog/${post.id}/${target.id}`);
     const step = (target, direction) => target
       ? `<a class="journal-step journal-step-${direction}" href="${entryUrl(target)}" rel="${direction === 'previous' ? 'prev' : 'next'}"><span class="journal-step-label">${direction === 'previous' ? backArrow : arrow}<span>${direction === 'previous' ? 'Previous post' : 'Next post'}</span></span><span class="journal-step-title">${escape(journalPostTitle(post, target))}</span></a>`
       : `<button class="journal-step journal-step-${direction}" type="button" disabled><span class="journal-step-label">${direction === 'previous' ? backArrow : arrow}<span>${direction === 'previous' ? 'Previous post' : 'Next post'}</span></span><span class="journal-step-title">${direction === 'previous' ? 'You’re at the beginning' : 'More to come'}</span></button>`;
@@ -182,11 +204,11 @@
       if (block.type === 'heading') return `<h2>${escape(block.text)}</h2>`;
       return `<p>${escape(block.text)}</p>`;
     }).join('');
-    return `${blogNavigation(category)}<section class="journal-reading"><article class="journal-article"><header class="journal-article-heading"><a class="journal-breadcrumb meta" href="#/blog/${escape(post.id)}">${backArrow} ${escape(post.category)} / ${escape(post.title)}</a><h1>${escape(post.title)} <span class="journal-article-post-number">${journalPostNumber(post, entry)}</span></h1><div class="journal-byline"><span><span class="brand-dot" aria-hidden="true"></span>Tao Luo</span><span class="meta">PROJECT JOURNAL</span></div></header><div class="journal-body">${blocks}</div><nav class="journal-pagination" aria-label="Journal posts">${step(previous, 'previous')}<a class="journal-return" href="#/blog/${escape(post.id)}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h4v4H3zM10 3h4v4h-4zM17 3h4v4h-4zM3 10h4v4H3zM10 10h4v4h-4zM17 10h4v4h-4zM3 17h4v4H3zM10 17h4v4h-4zM17 17h4v4h-4z"/></svg><span>Back</span></a>${step(next, 'next')}</nav></article></section>`;
+    return `${blogNavigation(category)}<section class="journal-reading"><article class="journal-article"><header class="journal-article-heading"><a class="journal-breadcrumb meta" href="/blog/${escape(post.id)}/">${backArrow} ${escape(post.category)} / ${escape(post.title)}</a><h1>${escape(post.title)} <span class="journal-article-post-number">${journalPostNumber(post, entry)}</span></h1><div class="journal-byline"><span><span class="brand-dot" aria-hidden="true"></span>Tao Luo</span><span class="meta">PROJECT JOURNAL</span></div></header><div class="journal-body">${blocks}</div><nav class="journal-pagination" aria-label="Journal posts">${step(previous, 'previous')}<a class="journal-return" href="/blog/${escape(post.id)}/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h4v4H3zM10 3h4v4h-4zM17 3h4v4h-4zM3 10h4v4H3zM10 10h4v4h-4zM17 10h4v4h-4zM3 17h4v4H3zM10 17h4v4h-4zM17 17h4v4h-4z"/></svg><span>Back</span></a>${step(next, 'next')}</nav></article></section>`;
   }
 
   function contactPage() {
-    return `<section class="page-shell contact-page"><div class="contact-layout"><div class="contact-copy">${eyebrow('SAY HELLO')}<h1>Let’s talk.</h1><p>Have a project in mind, a question, or just want to say hello?<br>I’d love to hear from you.</p><div class="contact-detail"><span class="meta">EMAIL</span>${data.email ? `<a href="mailto:${escape(data.email)}">${escape(data.email)}</a>` : '<span>Email coming soon</span>'}</div><div class="contact-detail"><span class="meta">ELSEWHERE</span><div class="contact-inline-socials">${data.socials.filter(s => ['artstation','linkedin','instagram'].includes(s.id)).map(s => `<a href="${escape(s.url || '#/contact')}" ${s.url ? 'target="_blank" rel="noopener noreferrer"' : `data-placeholder="${s.name}"`}>${s.name} ${arrow}</a>`).join('')}</div></div></div><form class="contact-form" id="contact-form"><div class="form-row"><div class="field"><label for="contact-name">NAME <span>*</span></label><input id="contact-name" name="name" autocomplete="name" placeholder="Your name" required maxlength="120" /></div><div class="field"><label for="contact-email">EMAIL <span>*</span></label><input id="contact-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required maxlength="254" /></div></div><div class="field"><label for="contact-subject">SUBJECT</label><input id="contact-subject" name="subject" placeholder="What’s on your mind?" maxlength="200" /></div><div class="field"><label for="contact-message">MESSAGE <span>*</span></label><textarea id="contact-message" name="message" placeholder="Tell me a little about it…" required maxlength="8000"></textarea></div><div class="form-bottom"><button class="send-button" type="submit">SEND MESSAGE ${arrow}</button><span class="contact-note">${data.email ? 'OPENS YOUR EMAIL APP' : 'PREVIEW FORM · EMAIL TO FOLLOW'}</span></div><p id="form-status" class="form-status" role="status" aria-live="polite"></p></form></div></section>`;
+    return `<section class="page-shell contact-page"><div class="contact-layout"><div class="contact-copy">${eyebrow('SAY HELLO')}<h1>Let’s talk.</h1><p>Have a project in mind, a question, or just want to say hello?<br>I’d love to hear from you.</p><div class="contact-detail"><span class="meta">EMAIL</span>${data.email ? `<a href="mailto:${escape(data.email)}">${escape(data.email)}</a>` : '<span>Email coming soon</span>'}</div><div class="contact-detail"><span class="meta">ELSEWHERE</span><div class="contact-inline-socials">${data.socials.filter(s => ['artstation','linkedin','instagram'].includes(s.id)).map(s => `<a href="${escape(s.url || '/contact/')}" ${s.url ? 'target="_blank" rel="noopener noreferrer"' : `data-placeholder="${s.name}"`}>${s.name} ${arrow}</a>`).join('')}</div></div></div><form class="contact-form" id="contact-form"><div class="form-row"><div class="field"><label for="contact-name">NAME <span>*</span></label><input id="contact-name" name="name" autocomplete="name" placeholder="Your name" required maxlength="120" /></div><div class="field"><label for="contact-email">EMAIL <span>*</span></label><input id="contact-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required maxlength="254" /></div></div><div class="field"><label for="contact-subject">SUBJECT</label><input id="contact-subject" name="subject" placeholder="What’s on your mind?" maxlength="200" /></div><div class="field"><label for="contact-message">MESSAGE <span>*</span></label><textarea id="contact-message" name="message" placeholder="Tell me a little about it…" required maxlength="8000"></textarea></div><div class="form-bottom"><button class="send-button" type="submit">SEND MESSAGE ${arrow}</button><span class="contact-note">${data.email ? 'OPENS YOUR EMAIL APP' : 'PREVIEW FORM · EMAIL TO FOLLOW'}</span></div><p id="form-status" class="form-status" role="status" aria-live="polite"></p></form></div></section>`;
   }
 
   function setNavigation(section) {
@@ -228,15 +250,21 @@
   }
 
   function renderRoute(route = getRoute(), { preserveScroll = false } = {}) {
+    route = cleanRoute(route);
     if (webInfoDialog.open) webInfoDialog.close();
     if (photoOverlay.open) photoOverlay.close();
     resetHover();
     const routeUrl = new URL(route, 'https://portfolio.local');
-    const [section = '', id, entryId] = routeUrl.pathname.split('/').filter(Boolean);
+    const segments = routeUrl.pathname.split('/').filter(Boolean);
+    const [section = '', id, entryId] = segments;
+    const validPath = (!section || siteSections.has(section)) &&
+      (section === 'blog' ? segments.length <= 3 : section === 'vfx' ? segments.length <= 2 && (!id || getProject(id)) : segments.length <= 1);
     main.classList.toggle('blog-main', section === 'blog');
     let title = '';
     let content;
-    if (data.release === 'wip' && section !== 'blog') {
+    if (!validPath) {
+      content = null;
+    } else if (data.release === 'wip' && section !== 'blog') {
       content = workInProgressPage(section);
       title = { demo: 'Demo', vfx: 'VFX', photography: 'Photography', about: 'About me', contact: 'Contact' }[section] || '';
     } else if (section === 'vfx' && id) {
@@ -250,6 +278,10 @@
         title = post?.title;
       } else {
         const entry = post?.entries.find(item => item.id === entryId || item.aliases?.includes(entryId));
+        if (entry && entry.id !== entryId) {
+          route = cleanRoute(`/blog/${post.id}/${entry.id}${routeUrl.search}`);
+          history.replaceState(history.state, '', route);
+        }
         content = post && entry ? articlePage(post, entry) : null;
         title = entry ? journalPostTitle(post, entry) : '';
       }
@@ -259,7 +291,7 @@
       title = { demo: 'Demo reel', vfx: 'VFX', photography: 'Photography', about: 'About me', blog: 'Blog', contact: 'Contact' }[section] || '';
     }
     if (!content) {
-      content = `<section class="page-shell">${eyebrow('A SMALL DETOUR')}<h1 class="page-heading">Not here.</h1><p class="page-subtitle">This page couldn’t be found.</p><p><a class="text-link" href="#/">BACK HOME ${arrow}</a></p></section>`;
+      content = `<section class="page-shell">${eyebrow('A SMALL DETOUR')}<h1 class="page-heading">Not here.</h1><p class="page-subtitle">This page couldn’t be found.</p><p><a class="text-link" href="/">BACK HOME ${arrow}</a></p></section>`;
       title = 'Page not found';
     }
     main.innerHTML = content + returnToTop();
@@ -299,7 +331,7 @@
     const sourceImage = sourceSurface?.querySelector('img');
     const origin = sourceSurface?.getBoundingClientRect();
     overlayState = { id, sourceCard, backgroundRoute: renderedRoute, backgroundTitle: document.title, scrollY: window.scrollY };
-    if (!fromHistory) history.pushState({ overlayProject: id, backgroundRoute: renderedRoute, scrollY: window.scrollY }, '', `#/vfx/${id}`);
+    if (!fromHistory) history.pushState({ overlayProject: id, backgroundRoute: renderedRoute, scrollY: window.scrollY }, '', cleanRoute(`/vfx/${id}`));
     overlayScroll.innerHTML = projectPage(project, true);
     overlay.classList.add('is-entering');
     overlay.showModal();
@@ -343,7 +375,7 @@
     if (!overlay.open || closing) return;
     if (history.state?.overlayProject) history.back();
     else {
-      history.replaceState(null, '', `#${overlayState?.backgroundRoute || '/'}`);
+      history.replaceState(null, '', cleanRoute(overlayState?.backgroundRoute || '/'));
       finishClose();
     }
   }
@@ -392,7 +424,15 @@
       return;
     }
     const photo = event.target.closest('[data-photo]');
-    if (photo) showPhoto(Number(photo.dataset.photo));
+    if (photo) { showPhoto(Number(photo.dataset.photo)); return; }
+    const link = event.target.closest('a[href]');
+    if (!link || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || link.hasAttribute('download') || (link.target && link.target !== '_self')) return;
+    const target = new URL(link.href, location.href);
+    if (target.origin !== location.origin || target.hash) return;
+    const section = target.pathname.split('/').filter(Boolean)[0];
+    if (section && !siteSections.has(section)) return;
+    event.preventDefault();
+    navigate(target.pathname + target.search);
   });
 
   document.addEventListener('submit', event => {
@@ -421,14 +461,14 @@
       const project = getProject(next.dataset.overlayNext);
       if (!project) return;
       overlayState.id = project.id;
-      history.replaceState({ ...history.state, overlayProject: project.id }, '', `#/vfx/${project.id}`);
+      history.replaceState({ ...history.state, overlayProject: project.id }, '', cleanRoute(`/vfx/${project.id}`));
       overlayScroll.innerHTML = projectPage(project, true);
       overlayScroll.scrollTo({ top: 0, behavior: reducedMotion.matches ? 'instant' : 'smooth' });
       document.title = `${project.title} — Tao Luo`;
     }
     if (event.target.closest('[data-overlay-all]')) {
       event.preventDefault();
-      history.replaceState(null, '', '#/vfx');
+      history.replaceState(null, '', '/vfx/');
       finishClose();
     }
   });
@@ -490,10 +530,13 @@
     if (getRoute() !== renderedRoute) renderRoute();
   });
   window.addEventListener('hashchange', () => {
+    if (!location.hash.startsWith('#/')) return;
+    migrateLegacyRoute();
     if (overlay.open || closing || history.state?.overlayProject) return;
     if (getRoute() !== renderedRoute) renderRoute();
   });
 
+  migrateLegacyRoute();
   renderFooter();
   syncTheme();
   renderRoute();
