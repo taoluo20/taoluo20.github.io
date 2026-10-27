@@ -9,7 +9,7 @@ const data = context.window.PORTFOLIO;
 assert.equal(data.name, 'Tao Luo');
 assert.ok(['wip', 'full'].includes(data.release), 'release must be wip or full');
 assert.equal(data.socials.length, 5);
-for (const file of ['index.html', 'styles.css', 'blog.css', 'app.js', '.nojekyll', 'assets/social-icons.svg']) assert.ok(fs.existsSync(path.join(root, file)), `Missing ${file}`);
+for (const file of ['index.html', 'styles.css', 'blog.css', 'accents.css', 'app.js', '.nojekyll', 'assets/social-icons.svg']) assert.ok(fs.existsSync(path.join(root, file)), `Missing ${file}`);
 for (const entry of [...data.projects, ...data.photographs, ...data.posts]) {
   for (const image of [entry.image, entry.secondary].filter(Boolean)) assert.ok(fs.existsSync(path.join(root, 'assets/images', image)), `Missing image: ${image}`);
 }

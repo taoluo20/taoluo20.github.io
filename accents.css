@@ -1,0 +1,67 @@
+/* Shared vertical accent: cobalt sky, violet, pink, pale blush. */
+:root {
+  --accent-blue: #3154ff;
+  --accent-violet: #8656ff;
+  --accent-pink: #e679ec;
+  --accent-blush: #ffc0d2;
+  --accent-gradient: linear-gradient(180deg, var(--accent-blue) 0%, var(--accent-violet) 38%, var(--accent-pink) 72%, var(--accent-blush) 100%);
+}
+.accent-defs { position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none; }
+.brand-dot,
+.primary-nav a::after,
+.hero-link::after,
+.blog-category-links a::after {
+  background: var(--accent-gradient);
+}
+.slash-mark {
+  background: var(--accent-gradient);
+  -webkit-mask-image: repeating-linear-gradient(132deg, transparent 0 5px, #000 5px 7px);
+  mask-image: repeating-linear-gradient(132deg, transparent 0 5px, #000 5px 7px);
+}
+.eyebrow,
+.post-category,
+.field label span,
+.form-status,
+.primary-nav a:hover>span,
+.primary-nav a[aria-current=page]>span,
+.text-link:hover,
+.contact-detail a:hover,
+.project-next>a:hover .next-project-title,
+.journal-breadcrumb:hover {
+  color: var(--accent);
+  background-image: var(--accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+/* Give each period its own paint box, so the gradient covers the dot itself. */
+.wip-period,
+.journal-index-heading h1>span {
+  display: inline-block;
+  width: .135em;
+  height: .135em;
+  margin-left: .025em;
+  border-radius: .012em;
+  overflow: hidden;
+  vertical-align: baseline;
+  line-height: 0;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  background: var(--accent-gradient);
+}
+.contact-callout:hover .callout-arrow,
+.overlay-close:hover,
+.photo-close:hover {
+  background: var(--accent-gradient);
+  border-color: transparent;
+}
+.social-link:hover,
+.field input:focus,
+.field textarea:focus {
+  border-color: transparent;
+  background: linear-gradient(var(--bg), var(--bg)) padding-box, var(--accent-gradient) border-box;
+}
+.social-link:hover svg { fill: url(#site-accent-gradient); }
+.text-link:hover svg,
+.contact-detail a:hover svg,
+.journal-breadcrumb:hover svg { stroke: url(#site-accent-gradient); }

@@ -32,7 +32,8 @@ npm.cmd run dev
 - `site-data.js`：姓名、真实社交链接、邮箱、博客文章和作品内容。
 - `release: 'wip'`：只开放 Blog，其余显示 Work in progress。
 - 以后改成 `release: 'full'` 可恢复完整页面，再按一键更新发布。
-- `app.js`：页面与交互；`styles.css`：全站字体、配色和布局；`blog.css`：白底博客样式。
+- `app.js`：页面与交互；`styles.css`：全站字体和布局；`blog.css`：白底博客样式。
+- `accents.css`：全站自上而下的蓝紫—粉色渐变强调色，覆盖圆点、斜纹、强调文字、下划线和悬停状态；SVG 图标及网站图标使用相同配色。
 
 ### 添加 Blog 内容
 
