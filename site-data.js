@@ -64,9 +64,26 @@ window.PORTFOLIO = {
     { image: 'forest.jpg', title: 'A little further in', category: 'Nature', alt: 'Soft light through a dense green forest' },
     { image: 'mist.jpg', title: 'Somewhere quiet', category: 'Nature', alt: 'A mountain valley with trees and a meadow' }
   ],
+  blog: { defaultCategory: 'scad' },
   posts: [
-    { id: 'a-world-in-layers', title: 'A world in layers', category: 'Process', image: 'landscape.jpg', excerpt: 'A place for the ideas, iterations, and small decisions behind a procedural environment.', paragraphs: ['Every project has a version that exists before the final image: a sketch, a few shapes, a question about how something might work.', 'This is a sample article layout. Future notes can collect the process behind a scene, small Houdini discoveries, and the experiments that did not quite make it into a finished project. Images and text can be edited together in site-data.js.'] },
-    { id: 'finding-the-motion', title: 'Finding the motion', category: 'FX notes', image: 'ocean.jpg', excerpt: 'Thinking about rhythm, scale, and the space between simulation and the final shot.', paragraphs: ['A small change in timing can change the feeling of a shot. So can the camera, the light, or the amount of empty space around the action.', 'This sample entry previews a space for simulation notes, breakdowns, and reference studies. Replace it with your own writing when the first post is ready.'] },
-    { id: 'outside-the-viewport', title: 'Outside the viewport', category: 'Field notes', image: 'city.jpg', excerpt: 'Looking for light and composition away from the screen.', paragraphs: ['Sometimes the most useful reference is something found on a walk: an unexpected reflection, a change in the weather, a color that does not quite belong.', 'This preview article connects photography and visual work. Final photographs, observations, and stories will take the place of this sample content.'] }
+    {
+      id: 'magic-crystal-overload',
+      title: 'Magic Crystal Overload',
+      category: 'SCAD',
+      image: 'blog-placeholder.svg',
+      excerpt: 'A project journal. Notes, experiments, and progress — coming soon.',
+      // One card is a journal; add entries in reading order to connect Previous / Next.
+      entries: [
+        {
+          id: 'introduction',
+          title: 'Magic Crystal Overload',
+          blocks: [
+            { type: 'image', image: 'blog-placeholder.svg', alt: 'White image placeholder for Magic Crystal Overload' },
+            { type: 'heading', text: 'Work in progress.' },
+            { type: 'paragraph', text: 'This project journal is taking shape. More updates will be added here.' }
+          ]
+        }
+      ]
+    }
   ]
 };

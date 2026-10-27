@@ -110,12 +110,35 @@
     return `<section class="page-shell"><div class="page-intro">${eyebrow('THE PERSON BEHIND THE PIXELS')}<h1 class="page-heading">A little about me.</h1></div><div class="about-layout"><div class="about-image"><img src="${asset('forest.jpg')}" alt="Light in a forest — temporary image" /><span class="meta">A PLACE FOR A PORTRAIT, OR A PLACE THAT FEELS LIKE YOU.</span></div><div class="about-copy"><h2>Hi, I’m Tao.<br>I like making worlds.</h2><p>Visual effects, procedural art, and photography — different ways of looking a little closer.</p><p>This space will hold my story: the work I care about, the ideas I keep coming back to, and what I’m looking to create next.</p><div class="about-disciplines"><div class="discipline"><span>Visual effects</span><span class="meta">MOTION & SIMULATION</span></div><div class="discipline"><span>Procedural art</span><span class="meta">SYSTEMS & ENVIRONMENTS</span></div><div class="discipline"><span>Photography</span><span class="meta">LIGHT & OBSERVATION</span></div></div><a class="text-link" href="#/contact">LET’S MAKE SOMETHING ${arrow}</a><p class="about-note">First-look biography · more to come.</p></div></div></section>`;
   }
 
-  function blogPage() {
-    return `<section class="page-shell"><div class="page-intro">${eyebrow('NOTES FROM THE PROCESS')}<h1 class="page-heading">In the making.</h1><p class="page-subtitle">Experiments, small discoveries, and a few things<br>that happen along the way.</p></div><div class="blog-grid">${data.posts.map(post => `<a class="post-card" href="#/blog/${post.id}"><img src="${asset(post.image)}" alt="${escape(post.title)} reference image" loading="lazy" /><div class="post-category meta">${escape(post.category)} · SAMPLE ENTRY</div><h2>${escape(post.title)}</h2><p>${escape(post.excerpt)}</p><span class="text-link">READ THE NOTE ${arrow}</span></a>`).join('')}</div><p class="blog-placeholder-note meta">SAMPLE ENTRIES · PERSONAL WRITING TO FOLLOW</p></section>`;
+  function blogCategory(value) {
+    const category = String(value || data.blog?.defaultCategory || 'scad').toLowerCase();
+    return category === 'personal' ? 'personal' : 'scad';
   }
 
-  function articlePage(post) {
-    return `<section class="page-shell"><article class="article"><a class="text-link article-back" href="#/blog">${backArrow} ALL NOTES</a>${eyebrow(`${escape(post.category)} / SAMPLE ENTRY`)}<h1 class="page-heading">${escape(post.title)}</h1><img class="article-image" src="${asset(post.image)}" alt="${escape(post.title)} reference photograph" /><div class="article-body"><p>${escape(post.excerpt)}</p>${post.paragraphs.map(p => `<p>${escape(p)}</p>`).join('')}</div></article></section>`;
+  function blogNavigation(category) {
+    return `<nav class="blog-subnav" aria-label="Blog categories"><span class="blog-subnav-label meta">JOURNAL</span><div class="blog-category-links">${['personal', 'scad'].map(key => `<a href="#/blog?category=${key}" ${category === key ? 'aria-current="page"' : ''}>${key === 'scad' ? 'SCAD' : 'Personal'}</a>`).join('')}</div></nav>`;
+  }
+
+  function blogPage(category) {
+    const posts = data.posts.filter(post => blogCategory(post.category) === category);
+    return `${blogNavigation(category)}<section class="journal-index"><header class="journal-index-heading"><div><span class="journal-kicker meta">A WORKING COLLECTION</span><h1>Blog<span>.</span></h1></div><p>Notes, experiments,<br>and things in the making.</p></header>${posts.length ? `<div class="blog-grid journal-grid">${posts.map(post => `<a class="journal-card" href="#/blog/${escape(post.id)}" aria-label="Read ${escape(post.title)}"><div class="journal-card-image"><img src="${asset(post.image)}" alt="${escape(post.title)} — white cover placeholder" width="1600" height="1000" /></div><div class="journal-card-copy"><div class="journal-card-meta meta"><span>${escape(post.category)}</span><span class="journal-card-arrow" aria-hidden="true">${arrow}</span></div><h2>${escape(post.title)}</h2><p>${escape(post.excerpt)}</p></div></a>`).join('')}</div>` : `<div class="journal-empty"><span class="meta">PERSONAL</span><p>A little more to come.</p><span>Work in progress.</span></div>`}</section>`;
+  }
+
+  function articlePage(post, entry) {
+    const category = blogCategory(post.category);
+    const entryIndex = post.entries.indexOf(entry);
+    const previous = post.entries[entryIndex - 1];
+    const next = post.entries[entryIndex + 1];
+    const entryUrl = target => `#/blog/${post.id}/${target.id}`;
+    const step = (target, direction) => target
+      ? `<a class="journal-step journal-step-${direction}" href="${entryUrl(target)}" rel="${direction === 'previous' ? 'prev' : 'next'}"><span class="journal-step-label">${direction === 'previous' ? backArrow : arrow}<span>${direction === 'previous' ? 'Previous entry' : 'Next entry'}</span></span><span class="journal-step-title">${escape(target.title)}</span></a>`
+      : `<button class="journal-step journal-step-${direction}" type="button" disabled><span class="journal-step-label">${direction === 'previous' ? backArrow : arrow}<span>${direction === 'previous' ? 'Previous entry' : 'Next entry'}</span></span><span class="journal-step-title">${direction === 'previous' ? 'You’re at the beginning' : 'More to come'}</span></button>`;
+    const blocks = entry.blocks.map(block => {
+      if (block.type === 'image') return `<figure class="journal-figure"><img src="${asset(block.image)}" alt="${escape(block.alt || '')}" width="1600" height="1000" />${block.caption ? `<figcaption>${escape(block.caption)}</figcaption>` : ''}</figure>`;
+      if (block.type === 'heading') return `<h2>${escape(block.text)}</h2>`;
+      return `<p>${escape(block.text)}</p>`;
+    }).join('');
+    return `${blogNavigation(category)}<section class="journal-reading"><article class="journal-article"><header class="journal-article-heading"><a class="journal-breadcrumb meta" href="#/blog?category=${category}">${backArrow} ${escape(post.category)} / ${escape(post.title)}</a><h1>${escape(entry.title)}</h1><div class="journal-byline"><span><span class="brand-dot" aria-hidden="true"></span>Tao Luo</span><span class="meta">PROJECT JOURNAL</span></div></header><div class="journal-body">${blocks}</div><nav class="journal-pagination" aria-label="Journal entries">${step(previous, 'previous')}<a class="journal-return" href="#/blog?category=${category}"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="6" height="6"/><rect x="14" y="4" width="6" height="6"/><rect x="4" y="14" width="6" height="6"/><rect x="14" y="14" width="6" height="6"/></svg><span>Back</span></a>${step(next, 'next')}</nav></article></section>`;
   }
 
   function contactPage() {
@@ -163,7 +186,9 @@
   function renderRoute(route = getRoute(), { preserveScroll = false } = {}) {
     if (photoOverlay.open) photoOverlay.close();
     resetHover();
-    const [section = '', id] = route.split('/').filter(Boolean);
+    const routeUrl = new URL(route, 'https://portfolio.local');
+    const [section = '', id, entryId] = routeUrl.pathname.split('/').filter(Boolean);
+    main.classList.toggle('blog-main', section === 'blog');
     let title = '';
     let content;
     if (data.release === 'wip' && section !== 'blog') {
@@ -175,10 +200,11 @@
       title = project?.title;
     } else if (section === 'blog' && id) {
       const post = data.posts.find(post => post.id === id);
-      content = post ? articlePage(post) : null;
-      title = post?.title;
+      const entry = post?.entries.find(item => !entryId || item.id === entryId);
+      content = post && entry ? articlePage(post, entry) : null;
+      title = entry?.title;
     } else {
-      const pages = { demo: demoPage, vfx: vfxPage, photography: photographyPage, about: aboutPage, blog: blogPage, contact: contactPage };
+      const pages = { demo: demoPage, vfx: vfxPage, photography: photographyPage, about: aboutPage, blog: () => blogPage(blogCategory(routeUrl.searchParams.get('category'))), contact: contactPage };
       content = pages[section] ? pages[section]() : section ? null : homePage();
       title = { demo: 'Demo reel', vfx: 'VFX', photography: 'Photography', about: 'About me', blog: 'Blog', contact: 'Contact' }[section] || '';
     }

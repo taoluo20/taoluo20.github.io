@@ -1,6 +1,8 @@
 # Tao Luo — Portfolio
 
-GitHub Pages 发布专用目录。第二版：除 Blog 及其文章外，首页、DEMO、VFX、Photography、About Me、Contact 统一显示 **Work in progress**。导航、日夜切换及五个社交入口保留。Blog 内容沿用第一版，目前仍是明确标注的示例文章。
+GitHub Pages 发布专用目录。首页、DEMO、VFX、Photography、About Me、Contact 统一显示 **Work in progress**。导航、日夜切换及五个社交入口保留。
+
+Blog 使用固定白底画布，导航下面靠右放 Personal / SCAD 分类；桌面每行三张卡片。目前只有 SCAD 下的 **Magic Crystal Overload**，封面为纯白占位图片，Personal 暂无内容。进入后是单列长文章，底部为上一篇 / 返回 / 下一篇；暂时只有一篇，前后按钮禁用。
 
 网站目标地址：https://taoluo20.github.io/  
 仓库：`taoluo20/taoluo20.github.io`
@@ -30,7 +32,18 @@ npm.cmd run dev
 - `site-data.js`：姓名、真实社交链接、邮箱、博客文章和作品内容。
 - `release: 'wip'`：只开放 Blog，其余显示 Work in progress。
 - 以后改成 `release: 'full'` 可恢复完整页面，再按一键更新发布。
-- `app.js`：页面与交互；`styles.css`：字体、配色和布局。
+- `app.js`：页面与交互；`styles.css`：全站字体、配色和布局；`blog.css`：白底博客样式。
+
+### 添加 Blog 内容
+
+在 `site-data.js` 的 `posts` 中，一项对应一个卡片入口：
+
+- `category` 设为 `Personal` 或 `SCAD`；`image` 是封面文件名，图片放在 `assets/images/`。
+- `entries` 按连载阅读顺序排列，系统自动连接上一篇 / 下一篇。一个入口可以有多篇连载，不会为每篇重复生成入口卡片。
+- 每篇的 `blocks` 按从上到下的顺序添加：`image`、`heading`、`paragraph`。
+- 默认进入 SCAD，设置在 `blog.defaultCategory`。
+
+当前正文也是占位内容，后续替换为真实项目文字和图片即可。
 
 ```powershell
 npm.cmd run check
