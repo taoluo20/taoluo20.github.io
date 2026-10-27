@@ -5,6 +5,14 @@
   --accent-pink: #e679ec;
   --accent-blush: #ffc0d2;
   --accent-gradient: linear-gradient(180deg, var(--accent-blue) 0%, var(--accent-violet) 38%, var(--accent-pink) 72%, var(--accent-blush) 100%);
+  --accent-text-color: #deb9f3;
+  --accent-text-gradient: linear-gradient(180deg, #c2b0ff 0%, #e1b4f3 55%, #ffd0dc 100%);
+}
+/* Text uses the readable end of the palette for its actual canvas. */
+:root[data-theme=light],
+.blog-main {
+  --accent-text-color: #4940c9;
+  --accent-text-gradient: linear-gradient(180deg, #2547d0 0%, #4940c9 55%, #7150b8 100%);
 }
 .accent-defs { position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none; }
 .brand-dot,
@@ -28,8 +36,8 @@
 .contact-detail a:hover,
 .project-next>a:hover .next-project-title,
 .journal-breadcrumb:hover {
-  color: var(--accent);
-  background-image: var(--accent-gradient);
+  color: var(--accent-text-color);
+  background-image: var(--accent-text-gradient);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
