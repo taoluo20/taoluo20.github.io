@@ -264,7 +264,7 @@
     }
     main.innerHTML = content + returnToTop();
     renderedRoute = route;
-    document.title = `${title ? title + ' — ' : ''}Tao Luo — Visual Artist`;
+    document.title = section ? `${title ? title + ' — ' : ''}Tao Luo` : 'Tao Luo — Visual Artist';
     setNavigation(section);
     bindCardHover();
     if (!preserveScroll) window.scrollTo({ top: 0, behavior: 'instant' });
@@ -298,7 +298,7 @@
     const sourceSurface = sourceCard?.querySelector('.card-surface');
     const sourceImage = sourceSurface?.querySelector('img');
     const origin = sourceSurface?.getBoundingClientRect();
-    overlayState = { id, sourceCard, backgroundRoute: renderedRoute, scrollY: window.scrollY };
+    overlayState = { id, sourceCard, backgroundRoute: renderedRoute, backgroundTitle: document.title, scrollY: window.scrollY };
     if (!fromHistory) history.pushState({ overlayProject: id, backgroundRoute: renderedRoute, scrollY: window.scrollY }, '', `#/vfx/${id}`);
     overlayScroll.innerHTML = projectPage(project, true);
     overlay.classList.add('is-entering');
@@ -335,7 +335,7 @@
     if (previous && getRoute() === previous.backgroundRoute) {
       window.scrollTo({ top: previous.scrollY, behavior: 'instant' });
       previous.sourceCard?.querySelector('a')?.focus({ preventScroll: true });
-      document.title = 'Tao Luo — Visual Artist';
+      document.title = previous.backgroundTitle;
     } else renderRoute();
   }
 
