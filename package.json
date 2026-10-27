@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "node generate-pages.cjs && node server.cjs",
     "start": "node generate-pages.cjs && node server.cjs",
-    "check": "node --check app.js && node --check site-data.js && node --check server.cjs && node generate-pages.cjs && node check-site.cjs",
+    "check": "node --check app.js && node --check site-data.js && node --check photography.js && node --check photography-data.js && node --check server.cjs && node generate-pages.cjs && node check-site.cjs",
     "build": "node build.cjs"
   }
 }

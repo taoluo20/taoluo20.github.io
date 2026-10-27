@@ -5,6 +5,7 @@ const path = require('node:path');
 const root = __dirname;
 const context = { window: {} };
 vm.runInNewContext(fs.readFileSync(path.join(root, 'site-data.js'), 'utf8'), context);
+vm.runInNewContext(fs.readFileSync(path.join(root, 'photography-data.js'), 'utf8'), context);
 const data = context.window.PORTFOLIO;
 assert.equal(data.name, 'Tao Luo');
 assert.ok(['wip', 'full'].includes(data.release), 'release must be wip or full');
@@ -34,4 +35,20 @@ for (const post of data.posts) {
   }
 }
 for (const social of data.socials) if (social.url) assert.equal(new URL(social.url).protocol, 'https:');
+const photoIds = new Set();
+for (const photo of data.photographs) {
+  assert.match(photo.title, /^IMG_\d+$/, `Invalid public photograph name: ${photo.id}`);
+  assert.ok(!photoIds.has(photo.id), `Duplicate photograph: ${photo.id}`);
+  photoIds.add(photo.id);
+  assert.ok(photo.width > 0 && photo.height > 0, `Invalid photograph size: ${photo.id}`);
+  assert.ok(photo.sources?.length >= 2, `Missing responsive images: ${photo.id}`);
+  for (const image of [...photo.sources.map(source => source.file), photo.largeImage, photo.jpegImage]) {
+    assert.match(path.basename(image), /^IMG_\d+\.(webp|jpg)$/, `Unexpected web image suffix: ${image}`);
+    assert.ok(fs.existsSync(path.join(root, 'assets/images', image)), `Missing photograph asset: ${image}`);
+  }
+  assert.ok(!('latitude' in photo) && !('longitude' in photo), `Precise GPS in public photograph data: ${photo.id}`);
+  if (photo.locationConfirmed) assert.ok(!photo.location.startsWith('Near '), `Confirmed location still has Near: ${photo.id}`);
+  if (photo.year && !photo.date) assert.ok(!photo.capturedAt, `Unknown month/day must stay unset: ${photo.id}`);
+  assert.ok(fs.existsSync(path.join(root, 'photography', photo.id, 'index.html')), `Missing photograph page: ${photo.id}`);
+}
 console.log(`Site check passed (${data.release} release, five social links, all local assets present).`);

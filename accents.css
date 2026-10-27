@@ -43,7 +43,8 @@
 }
 /* Give each period its own paint box, so the gradient covers the dot itself. */
 .wip-period,
-.journal-index-heading h1>span {
+.journal-index-heading h1>span,
+.photography-heading h1>span {
   display: inline-block;
   width: .135em;
   height: .135em;

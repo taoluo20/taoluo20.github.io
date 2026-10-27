@@ -15,6 +15,7 @@ function ownedFile(relative) {
 function generatePages() {
   const context = { window: {} };
   vm.runInNewContext(fs.readFileSync(path.join(root, 'site-data.js'), 'utf8'), context);
+  vm.runInNewContext(fs.readFileSync(path.join(root, 'photography-data.js'), 'utf8'), context);
   const data = context.window.PORTFOLIO;
   const template = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
   const previous = fs.existsSync(manifestFile) ? JSON.parse(fs.readFileSync(manifestFile, 'utf8')) : [];
@@ -31,6 +32,7 @@ function generatePages() {
   };
   for (const [section, title] of [['demo', 'Demo'], ['vfx', 'VFX'], ['photography', 'Photography'], ['about', 'About me'], ['blog', 'Blog'], ['contact', 'Contact']]) add(`/${section}/`, title);
   for (const project of data.projects) add(`/vfx/${slug(project.id)}/`, data.release === 'wip' ? 'VFX' : project.title);
+  for (const photo of data.photographs) add(`/photography/${slug(photo.id)}/`, photo.title);
   for (const project of data.posts) {
     const base = `/blog/${slug(project.id)}/`;
     add(base, project.title);

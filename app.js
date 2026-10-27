@@ -152,8 +152,7 @@
   }
 
   function photographyPage() {
-    visiblePhotos = data.photographs.filter(photo => photoFilter === 'all' || photo.category.toLowerCase() === photoFilter);
-    return `<section class="page-shell"><div class="page-intro">${eyebrow('AWAY FROM THE VIEWPORT')}<h1 class="page-heading">A different lens.</h1><p class="page-subtitle">Light, places, and the things in between.<br>A collection of moments worth keeping.</p></div><div class="filter-bar" aria-label="Filter photographs">${[['all','All photographs'],['nature','Nature'],['street','Street'],['architecture','Architecture']].map(([value,label]) => `<button class="filter-button" data-photo-filter="${value}" aria-pressed="${photoFilter === value}">${label}</button>`).join('')}</div><div class="photography-grid">${visiblePhotos.map((photo, index) => `<button class="photo-card" data-photo="${index}" aria-label="Open ${escape(photo.title)}"><figure><img src="${asset(photo.image)}" alt="${escape(photo.alt)}" loading="lazy" /><figcaption><span class="photo-title">${escape(photo.title)}</span><span class="meta">${escape(photo.category)}</span></figcaption></figure></button>`).join('')}</div><div class="section-bottom"><span class="preview-caption meta">REFERENCE PHOTOGRAPHY · PERSONAL IMAGES TO FOLLOW</span></div></section>`;
+    return window.Photography.render(undefined, new URLSearchParams(location.search));
   }
 
   function aboutPage() {
@@ -251,6 +250,12 @@
 
   function renderRoute(route = getRoute(), { preserveScroll = false } = {}) {
     route = cleanRoute(route);
+    const normalizedPhotoRoute = window.Photography.normalizeRoute(route);
+    if (normalizedPhotoRoute !== route) {
+      route = normalizedPhotoRoute;
+      history.replaceState(history.state, '', route);
+    }
+    window.Photography.cleanup();
     if (webInfoDialog.open) webInfoDialog.close();
     if (photoOverlay.open) photoOverlay.close();
     resetHover();
@@ -258,15 +263,19 @@
     const segments = routeUrl.pathname.split('/').filter(Boolean);
     const [section = '', id, entryId] = segments;
     const validPath = (!section || siteSections.has(section)) &&
-      (section === 'blog' ? segments.length <= 3 : section === 'vfx' ? segments.length <= 2 && (!id || getProject(id)) : segments.length <= 1);
+      (section === 'blog' ? segments.length <= 3 : section === 'vfx' ? segments.length <= 2 && (!id || getProject(id)) : section === 'photography' ? segments.length <= 2 && (!id || window.Photography.getPhoto(id)) : segments.length <= 1);
     main.classList.toggle('blog-main', section === 'blog');
+    main.classList.toggle('photography-main', section === 'photography');
     let title = '';
     let content;
     if (!validPath) {
       content = null;
-    } else if (data.release === 'wip' && section !== 'blog') {
+    } else if (data.release === 'wip' && section !== 'blog' && section !== 'photography') {
       content = workInProgressPage(section);
       title = { demo: 'Demo', vfx: 'VFX', photography: 'Photography', about: 'About me', contact: 'Contact' }[section] || '';
+    } else if (section === 'photography' && id) {
+      content = window.Photography.render(id, routeUrl.searchParams);
+      title = window.Photography.getPhoto(id)?.title;
     } else if (section === 'vfx' && id) {
       const project = getProject(id);
       content = project ? projectPage(project) : null;
@@ -299,6 +308,7 @@
     document.title = section ? `${title ? title + ' — ' : ''}Tao Luo` : 'Tao Luo';
     setNavigation(section);
     bindCardHover();
+    if (section === 'photography' && validPath) window.Photography.bind(main, id, navigate);
     if (!preserveScroll) window.scrollTo({ top: 0, behavior: 'instant' });
   }
 

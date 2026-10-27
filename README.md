@@ -1,6 +1,6 @@
 # Tao Luo — Portfolio
 
-GitHub Pages 发布专用目录。首页、DEMO、VFX、Photography、About Me、Contact 统一显示 **Work in progress**。导航、日夜切换及五个社交入口保留。
+GitHub Pages 发布专用目录。首页、DEMO、VFX、About Me、Contact 统一显示 **Work in progress**。导航、日夜切换及五个社交入口保留。Photography 展示已配对的真实照片，支持年份和地点筛选、悬停摘要及完整参数页。
 
 首次访问、没有已保存的主题时，只读取一次浏览器的深浅色偏好并立即保存。之后打开或刷新均沿用保存的主题，不再自动跟随浏览器变化；手动切换会更新保存的选择。已有主题记录的访客继续使用原来的选择。
 
@@ -36,12 +36,22 @@ npm.cmd run dev
 ## 可编辑内容
 
 - `site-data.js`：姓名、真实社交链接、邮箱、博客文章和作品内容。
-- `release: 'wip'`：只开放 Blog，其余显示 Work in progress。
+- `release: 'wip'`：开放 Blog 和 Photography，其余显示 Work in progress。
 - 以后改成 `release: 'full'` 可恢复完整页面，再按一键更新发布。
 - `app.js`：页面与交互；`styles.css`：全站字体和布局；`blog.css`：博客布局及黑白主题样式。
 - `accents.css`：全站自上而下的蓝紫—粉色渐变强调色，覆盖圆点、斜纹、强调文字、下划线和悬停状态；SVG 图标及网站图标使用相同配色。
 - `footer.css`：返回顶部箭头、Web info 面板和页脚布局；`update-site-info.cjs`：发布时自动生成网站更新日期。
 - `generate-pages.cjs`：根据根目录 `index.html` 和 `site-data.js` 生成页面入口及 `404.html`，文件清单为 `generated-pages.json`。修改根模板和数据，不直接编辑生成的子目录 `index.html`。新增文章后，一键发布会自动生成对应目录。
+
+### Photography 本地预览
+
+`photography.js` / `photography.css` 提供三列错落图片流、0.7 秒悬停摘要、年份筛选和单张照片详情。右侧漏斗图标展开地点筛选，可与年份组合。平板两列，手机一列。单张页有上一篇 / 下一篇 / 返回；方向键切换，Esc 返回。
+
+`photography-data.js` 从摄影目录的本地配对清单生成。当前为 22 张已匹配照片，其中 20 张有完整拍摄日期和 GPS。1283、1688 由用户确认是 2023 年，月日留空。地点使用用户确认的 Savannah、Enoshima、Kamakura、Roppongi，原始 GPS 和附近城市推断只保留在本地清单。网站数据不包含精确坐标或原片路径。
+
+`node import-photographs.cjs` 从 `../../Photography/dlv/for_web/_catalog/photos.json` 导入已配对成片，在 `assets/images/photography/640/`、`1200/`、`2400/` 生成 WebP 和 JPEG 后备图，文件名及展示名统一为 `IMG_数字`，不带编辑或版本后缀。导入需要本机 Sharp，可通过 `SHARP_MODULE` 指定模块路径；不改写原片或交付成片。后续整理新照片时先更新配对清单，再导入。地点筛选名称包含国家，例如 Savannah, United States 和 Enoshima, Japan。
+
+`for_web` 已配对的 Photoshop 工程复制记录在本地清单的 `files.photoshop` 中，仅供本地归档，不进入网站。1283、1688、2054 的 JPG 原片放在各自文件夹的 `original/` 子目录，避免与同名调色 JPG 冲突。
 
 ### 添加 Blog 内容
 

@@ -7,7 +7,7 @@ if (path.dirname(output) !== path.resolve(__dirname) || path.basename(output) !=
 if (fs.existsSync(output) && fs.lstatSync(output).isSymbolicLink()) throw new Error('Build output must not be a symbolic link or junction.');
 fs.rmSync(output, { recursive: true, force: true });
 fs.mkdirSync(output, { recursive: true });
-for (const file of ['index.html', 'styles.css', 'blog.css', 'accents.css', 'footer.css', 'app.js', 'site-data.js', 'site-info.json', '.nojekyll', 'generated-pages.json', ...generatedFiles]) {
+for (const file of ['index.html', 'styles.css', 'blog.css', 'accents.css', 'footer.css', 'photography.css', 'photography.js', 'photography-data.js', 'app.js', 'site-data.js', 'site-info.json', '.nojekyll', 'generated-pages.json', ...generatedFiles]) {
   const target = path.join(output, file);
   fs.mkdirSync(path.dirname(target), { recursive: true });
   fs.copyFileSync(path.join(__dirname, file), target);
