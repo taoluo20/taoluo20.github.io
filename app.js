@@ -146,17 +146,30 @@
   function photogrammetryPage() {
     const scans = data.photogrammetry;
     return `<section class="photogrammetry-page" aria-labelledby="scans-title">
-      <header class="scan-heading"><h1 id="scans-title">Photogrammetry</h1><span class="meta">${String(scans.length).padStart(2, '0')} ${scans.length === 1 ? 'SCAN' : 'SCANS'}</span></header>
+      <header class="scan-heading"><h1 id="scans-title">Photogrammetry<span class="wip-period" aria-hidden="true">.</span></h1><span class="meta">${String(scans.length).padStart(2, '0')} ${scans.length === 1 ? 'SCAN' : 'SCANS'}</span></header>
       <div class="scan-list">${scans.map((scan, index) => {
-        const details = [['Device', scan.device], ['Capture method', scan.captureMethod], ['Detail', scan.detailLevel], ['Frames', scan.frames.toLocaleString('en-US')], ['Vertices', scan.vertices], ['Coordinates (approx.)', scan.coordinates]];
+        const details = [
+          ['Software', scan.software],
+          ['Captured', scan.capturedLabel, scan.capturedAt],
+          ['Published', scan.publishedLabel, scan.publishedAt],
+          ['Device', scan.device],
+          ['Capture method', scan.captureMethod],
+          ['Frames', scan.frames?.toLocaleString('en-US')],
+          ['Source images', scan.images?.toLocaleString('en-US')],
+          ['Processing time', scan.processingTime],
+          ['Triangles', scan.triangles],
+          ['Vertices', scan.vertices],
+          ['Uploaded size', scan.uploadSize],
+          ['Textures', scan.textures],
+          ['Materials', scan.materials]
+        ].filter(([, value]) => value !== undefined && value !== null && value !== '');
         return `<article class="scan-entry" data-scan="${escape(scan.id)}" aria-labelledby="scan-${escape(scan.id)}-title">
-          <div class="scan-viewer"><iframe class="scan-embed" src="${escape(scan.embedUrl)}" title="${escape(scan.title)} at ${escape(scan.location)} - interactive 3D scan" loading="${index ? 'lazy' : 'eager'}" allow="fullscreen; xr-spatial-tracking" allowfullscreen></iframe></div>
+          <div class="scan-viewer"><iframe class="scan-embed" src="${escape(scan.embedUrl)}" title="${escape(scan.title)}${scan.location ? ` at ${escape(scan.location)}` : ''} - interactive 3D scan" loading="${index ? 'lazy' : 'eager'}" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen></iframe></div>
           <div class="scan-copy"><p class="scan-number meta">SCAN ${String(index + 1).padStart(2, '0')}</p><h2 id="scan-${escape(scan.id)}-title">${escape(scan.title)}</h2>
-            <p class="scan-location">${escape(scan.location)}<span>${escape(scan.region)}</span></p>
+            ${scan.location ? `<p class="scan-location">${escape(scan.location)}${scan.region ? `<span>${escape(scan.region)}</span>` : ''}</p>` : ''}
             <p class="scan-description">${escape(scan.description)}</p>
-            <dl class="scan-details"><div><dt>Captured</dt><dd><time datetime="${escape(scan.capturedAt)}">${escape(scan.capturedLabel)}</time></dd></div>${details.map(([label, value]) => `<div><dt>${escape(label)}</dt><dd>${escape(value)}</dd></div>`).join('')}</dl>
-            <ul class="scan-tags" aria-label="Tags">${scan.tags.map(tag => `<li>${escape(tag)}</li>`).join('')}</ul>
-            <a class="text-link scan-source" href="${escape(scan.captureUrl)}" target="_blank" rel="noopener noreferrer">VIEW ON POLYCAM ${arrow}</a>
+            <dl class="scan-details">${details.map(([label, value, dateTime]) => `<div><dt>${escape(label)}</dt><dd>${dateTime ? `<time datetime="${escape(dateTime)}">${escape(value)}</time>` : escape(value)}</dd></div>`).join('')}</dl>
+            <a class="text-link scan-source" href="${escape(scan.captureUrl)}" target="_blank" rel="noopener noreferrer">VIEW ON ${escape(scan.sourceLabel.toUpperCase())} ${arrow}</a>
           </div>
         </article>`;
       }).join('')}</div>

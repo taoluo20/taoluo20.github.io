@@ -16,9 +16,7 @@
 .scan-details>div { display: grid; grid-template-columns: minmax(90px, 1fr) minmax(0, 1.65fr); gap: 18px; padding: 14px 0; border-top: 1px solid var(--line); align-items: baseline; }
 .scan-details dt { margin: 0; color: var(--dim); font: 400 10px/1.7 'IBM Plex Mono', monospace; letter-spacing: 0; }
 .scan-details dd { min-width: 0; margin: 0; text-align: right; font-size: 12px; line-height: 1.7; overflow-wrap: anywhere; }
-.scan-tags { display: flex; flex-wrap: wrap; gap: 8px 16px; padding: 22px 0; margin: 0; border-top: 1px solid var(--line); list-style: none; }
-.scan-tags li { color: var(--dim); font: 400 10px/1.7 'IBM Plex Mono', monospace; letter-spacing: 0; }
-.scan-source { margin-top: 4px; font-size: 9px; gap: 10px; letter-spacing: 0; }
+.scan-source { margin-top: 24px; font-size: 9px; gap: 10px; letter-spacing: 0; }
 @media (max-width:1000px) {
   .scan-entry { grid-template-columns: minmax(0, 1.65fr) minmax(290px, 1fr); gap: 26px; }
 }
