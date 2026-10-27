@@ -10,7 +10,15 @@
     <link rel="preload" href="assets/fonts/archivo-variable-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/fonts/ibm-plex-mono-regular-latin.woff2" as="font" type="font/woff2" crossorigin />
     <script>
-      try { document.documentElement.dataset.theme = localStorage.getItem('tao-theme') || 'dark'; } catch {}
+      (() => {
+        let theme;
+        try { theme = localStorage.getItem('tao-theme'); } catch {}
+        if (theme !== 'dark' && theme !== 'light') {
+          theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          try { localStorage.setItem('tao-theme', theme); } catch {}
+        }
+        document.documentElement.dataset.theme = theme;
+      })();
     </script>
     <link rel="stylesheet" href="styles.css?v=20261027-gradient" />
     <link rel="stylesheet" href="blog.css?v=20261027-inline-post-number" />
