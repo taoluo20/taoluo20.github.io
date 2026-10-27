@@ -2,7 +2,7 @@
 
 GitHub Pages 发布专用目录。首页、DEMO、VFX、Photography、About Me、Contact 统一显示 **Work in progress**。导航、日夜切换及五个社交入口保留。
 
-Blog 使用固定白底画布，导航下面靠右放 Personal / SCAD 分类；桌面每行三张卡片。目前只有 SCAD 下的 **Magic Crystal Overload**，封面为纯白占位图片，Personal 暂无内容。进入后是单列长文章，底部为上一篇 / 返回 / 下一篇；暂时只有一篇，前后按钮禁用。
+Blog 列表、文章及分类栏随全站黑白主题切换，导航下面靠右放 Personal / SCAD 分类；桌面每行三张卡片。目前只有 SCAD 下的 **Magic Crystal Overload**，封面为纯白占位图片，Personal 暂无内容。进入后是单列长文章，底部为上一篇 / 返回 / 下一篇；暂时只有一篇，前后按钮禁用。
 
 网站目标地址：https://taoluo20.github.io/  
 仓库：`taoluo20/taoluo20.github.io`
@@ -32,7 +32,7 @@ npm.cmd run dev
 - `site-data.js`：姓名、真实社交链接、邮箱、博客文章和作品内容。
 - `release: 'wip'`：只开放 Blog，其余显示 Work in progress。
 - 以后改成 `release: 'full'` 可恢复完整页面，再按一键更新发布。
-- `app.js`：页面与交互；`styles.css`：全站字体和布局；`blog.css`：白底博客样式。
+- `app.js`：页面与交互；`styles.css`：全站字体和布局；`blog.css`：博客布局及黑白主题样式。
 - `accents.css`：全站自上而下的蓝紫—粉色渐变强调色，覆盖圆点、斜纹、强调文字、下划线和悬停状态；SVG 图标及网站图标使用相同配色。
 
 ### 添加 Blog 内容
