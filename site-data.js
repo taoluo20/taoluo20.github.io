@@ -5,11 +5,26 @@ window.PORTFOLIO = {
   role: 'Visual effects & procedural art',
   email: 'taoluo20.p@gmail.com',
   reel: '',
-  photogrammetry: {
-    title: 'Cannon',
-    captureUrl: 'https://poly.cam/capture/010E7813-1883-4BDC-A25F-72C572D66C97',
-    embedUrl: 'https://poly.cam/capture/010E7813-1883-4BDC-A25F-72C572D66C97/embed'
-  },
+  photogrammetry: [
+    {
+      id: 'fort-pulaski-cannon',
+      title: 'Cannon',
+      location: 'Fort Pulaski National Monument',
+      region: 'Cockspur Island, Georgia, United States',
+      description: 'A cannon on a wooden platform, with a wheeled carriage and metal fittings. Captured at Fort Pulaski on Cockspur Island.',
+      device: 'Apple iPhone 14 Pro',
+      captureMethod: 'Guided object mode',
+      detailLevel: 'Full',
+      capturedAt: '2026-05-08T10:50:00',
+      capturedLabel: '8 May 2026, 10:50 AM',
+      frames: 1414,
+      vertices: '127.4K',
+      coordinates: '32.03 N, 80.89 W',
+      tags: ['weapon', 'historical', 'artillery', 'cannon', 'military', 'metal', 'wood'],
+      captureUrl: 'https://poly.cam/capture/010E7813-1883-4BDC-A25F-72C572D66C97',
+      embedUrl: 'https://poly.cam/capture/010E7813-1883-4BDC-A25F-72C572D66C97/embed'
+    }
+  ],
   socials: [
     { id: 'artstation', name: 'ArtStation', url: 'https://www.artstation.com/taoluo' },
     { id: 'linkedin', name: 'LinkedIn', url: 'https://www.linkedin.com/in/taoluo20/' },
