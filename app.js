@@ -147,9 +147,25 @@
     return `<nav class="blog-subnav" aria-label="Blog categories"><span class="blog-subnav-label meta">JOURNAL</span><div class="blog-category-links">${['personal', 'scad'].map(key => `<a href="#/blog?category=${key}" ${category === key ? 'aria-current="page"' : ''}>${key === 'scad' ? 'SCAD' : 'Personal'}</a>`).join('')}</div></nav>`;
   }
 
+  const journalPostNumber = (post, entry) => `post #${String(post.entries.indexOf(entry) + 1).padStart(3, '0')}`;
+  const journalPostTitle = (post, entry) => `${post.title} — ${journalPostNumber(post, entry)}`;
+
+  function journalCard(post, entry) {
+    const title = entry ? journalPostTitle(post, entry) : post.title;
+    const href = `#/blog/${post.id}${entry ? `/${entry.id}` : ''}`;
+    const image = entry?.image || post.image;
+    const excerpt = entry ? entry.excerpt : post.excerpt;
+    return `<a class="journal-card ${entry ? 'journal-post-card' : 'journal-project-card'}" href="${escape(href)}" aria-label="${entry ? 'Read' : 'Open project'} ${escape(title)}"><div class="journal-card-image"><img src="${asset(image)}" alt="${escape(entry?.imageAlt || post.imageAlt || title)}" width="1600" height="1000" /></div><div class="journal-card-copy"><div class="journal-card-meta meta"><span>${escape(post.category)}</span><span class="journal-card-arrow" aria-hidden="true">${arrow}</span></div><h2>${escape(post.title)}${entry ? ` <span class="journal-post-number">${journalPostNumber(post, entry)}</span>` : ''}</h2>${excerpt ? `<p>${escape(excerpt)}</p>` : ''}</div></a>`;
+  }
+
   function blogPage(category) {
     const posts = data.posts.filter(post => blogCategory(post.category) === category);
-    return `${blogNavigation(category)}<section class="journal-index"><header class="journal-index-heading"><div><span class="journal-kicker meta">A WORKING COLLECTION</span><h1>Blog<span>.</span></h1></div><p>Notes, experiments,<br>and things in the making.</p></header>${posts.length ? `<div class="blog-grid journal-grid">${posts.map(post => `<a class="journal-card" href="#/blog/${escape(post.id)}" aria-label="Read ${escape(post.title)}"><div class="journal-card-image"><img src="${asset(post.image)}" alt="${escape(post.title)} — white cover placeholder" width="1600" height="1000" /></div><div class="journal-card-copy"><div class="journal-card-meta meta"><span>${escape(post.category)}</span><span class="journal-card-arrow" aria-hidden="true">${arrow}</span></div><h2>${escape(post.title)}</h2><p>${escape(post.excerpt)}</p></div></a>`).join('')}</div>` : `<div class="journal-empty"><span class="meta">PERSONAL</span><p>A little more to come.</p><span>Work in progress.</span></div>`}</section>`;
+    return `${blogNavigation(category)}<section class="journal-index"><header class="journal-index-heading"><div><span class="journal-kicker meta">A WORKING COLLECTION</span><h1>Blog<span>.</span></h1></div><p>Notes, experiments,<br>and things in the making.</p></header>${posts.length ? `<div class="blog-grid journal-grid">${posts.map(post => journalCard(post)).join('')}</div>` : `<div class="journal-empty"><span class="meta">PERSONAL</span><p>A little more to come.</p><span>Work in progress.</span></div>`}</section>`;
+  }
+
+  function blogProjectPage(post) {
+    const category = blogCategory(post.category);
+    return `${blogNavigation(category)}<section class="journal-index journal-project-index"><a class="journal-breadcrumb journal-project-back meta" href="#/blog?category=${category}">${backArrow} ${escape(post.category)} / PROJECTS</a><header class="journal-index-heading journal-project-heading"><div><span class="journal-kicker meta">PROJECT JOURNAL</span><h1>${escape(post.title)}<span aria-hidden="true">.</span></h1></div><p class="meta">${String(post.entries.length).padStart(2, '0')} POSTS</p></header><div class="blog-grid journal-grid journal-post-grid">${post.entries.map(entry => journalCard(post, entry)).join('')}</div></section>`;
   }
 
   function articlePage(post, entry) {
@@ -159,14 +175,14 @@
     const next = post.entries[entryIndex + 1];
     const entryUrl = target => `#/blog/${post.id}/${target.id}`;
     const step = (target, direction) => target
-      ? `<a class="journal-step journal-step-${direction}" href="${entryUrl(target)}" rel="${direction === 'previous' ? 'prev' : 'next'}"><span class="journal-step-label">${direction === 'previous' ? backArrow : arrow}<span>${direction === 'previous' ? 'Previous entry' : 'Next entry'}</span></span><span class="journal-step-title">${escape(target.title)}</span></a>`
-      : `<button class="journal-step journal-step-${direction}" type="button" disabled><span class="journal-step-label">${direction === 'previous' ? backArrow : arrow}<span>${direction === 'previous' ? 'Previous entry' : 'Next entry'}</span></span><span class="journal-step-title">${direction === 'previous' ? 'You’re at the beginning' : 'More to come'}</span></button>`;
+      ? `<a class="journal-step journal-step-${direction}" href="${entryUrl(target)}" rel="${direction === 'previous' ? 'prev' : 'next'}"><span class="journal-step-label">${direction === 'previous' ? backArrow : arrow}<span>${direction === 'previous' ? 'Previous post' : 'Next post'}</span></span><span class="journal-step-title">${escape(journalPostTitle(post, target))}</span></a>`
+      : `<button class="journal-step journal-step-${direction}" type="button" disabled><span class="journal-step-label">${direction === 'previous' ? backArrow : arrow}<span>${direction === 'previous' ? 'Previous post' : 'Next post'}</span></span><span class="journal-step-title">${direction === 'previous' ? 'You’re at the beginning' : 'More to come'}</span></button>`;
     const blocks = entry.blocks.map(block => {
       if (block.type === 'image') return `<figure class="journal-figure"><img src="${asset(block.image)}" alt="${escape(block.alt || '')}" width="1600" height="1000" />${block.caption ? `<figcaption>${escape(block.caption)}</figcaption>` : ''}</figure>`;
       if (block.type === 'heading') return `<h2>${escape(block.text)}</h2>`;
       return `<p>${escape(block.text)}</p>`;
     }).join('');
-    return `${blogNavigation(category)}<section class="journal-reading"><article class="journal-article"><header class="journal-article-heading"><a class="journal-breadcrumb meta" href="#/blog?category=${category}">${backArrow} ${escape(post.category)} / ${escape(post.title)}</a><h1>${escape(entry.title)}</h1><div class="journal-byline"><span><span class="brand-dot" aria-hidden="true"></span>Tao Luo</span><span class="meta">PROJECT JOURNAL</span></div></header><div class="journal-body">${blocks}</div><nav class="journal-pagination" aria-label="Journal entries">${step(previous, 'previous')}<a class="journal-return" href="#/blog?category=${category}"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="6" height="6"/><rect x="14" y="4" width="6" height="6"/><rect x="4" y="14" width="6" height="6"/><rect x="14" y="14" width="6" height="6"/></svg><span>Back</span></a>${step(next, 'next')}</nav></article></section>`;
+    return `${blogNavigation(category)}<section class="journal-reading"><article class="journal-article"><header class="journal-article-heading"><a class="journal-breadcrumb meta" href="#/blog/${escape(post.id)}">${backArrow} ${escape(post.category)} / ${escape(post.title)}</a><h1>${escape(post.title)} <span class="journal-article-post-number">${journalPostNumber(post, entry)}</span></h1><div class="journal-byline"><span><span class="brand-dot" aria-hidden="true"></span>Tao Luo</span><span class="meta">PROJECT JOURNAL</span></div></header><div class="journal-body">${blocks}</div><nav class="journal-pagination" aria-label="Journal posts">${step(previous, 'previous')}<a class="journal-return" href="#/blog/${escape(post.id)}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h4v4H3zM10 3h4v4h-4zM17 3h4v4h-4zM3 10h4v4H3zM10 10h4v4h-4zM17 10h4v4h-4zM3 17h4v4H3zM10 17h4v4h-4zM17 17h4v4h-4z"/></svg><span>Back</span></a>${step(next, 'next')}</nav></article></section>`;
   }
 
   function contactPage() {
@@ -229,9 +245,14 @@
       title = project?.title;
     } else if (section === 'blog' && id) {
       const post = data.posts.find(post => post.id === id);
-      const entry = post?.entries.find(item => !entryId || item.id === entryId);
-      content = post && entry ? articlePage(post, entry) : null;
-      title = entry?.title;
+      if (!entryId) {
+        content = post ? blogProjectPage(post) : null;
+        title = post?.title;
+      } else {
+        const entry = post?.entries.find(item => item.id === entryId || item.aliases?.includes(entryId));
+        content = post && entry ? articlePage(post, entry) : null;
+        title = entry ? journalPostTitle(post, entry) : '';
+      }
     } else {
       const pages = { demo: demoPage, vfx: vfxPage, photography: photographyPage, about: aboutPage, blog: () => blogPage(blogCategory(routeUrl.searchParams.get('category'))), contact: contactPage };
       content = pages[section] ? pages[section]() : section ? null : homePage();

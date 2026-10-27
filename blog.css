@@ -99,6 +99,12 @@
 .journal-card-arrow { color: var(--dim); }
 .journal-card-arrow svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.2; }
 .journal-card h2 { font-size: 23px; line-height: 1.25; font-weight: 600; letter-spacing: -.035em; margin: 17px 0 12px; }
+.journal-post-number { display: block; margin-top: 12px; color: var(--dim); font: 400 12px/1.6 'IBM Plex Mono',monospace; letter-spacing: .015em; }
+.journal-post-card h2 { margin-bottom: 0; }
+.journal-project-back { margin-bottom: 34px; }
+.journal-project-heading h1 { font-size: clamp(36px,4.6vw,64px); font-variation-settings: 'wdth' 110; line-height: 1.08; overflow-wrap: anywhere; }
+.journal-project-heading>div { min-width: 0; }
+.journal-project-heading>p { flex-shrink: 0; font-size: 9px; }
 .journal-card p { color: var(--dim); margin: 0; font-size: 12px; line-height: 1.9; }
 .journal-empty { border-top: 1px solid var(--line); padding: 75px 0 120px; }
 .journal-empty>.meta { color: var(--faint); font-size: 9px; }
@@ -118,6 +124,8 @@
 .journal-byline .brand-dot { width: 4px; height: 4px; }
 .journal-byline .meta { font-size: 8px; color: var(--faint); }
 .journal-body { padding-top: 32px; font-size: 15px; line-height: 1.95; }
+.journal-body:empty { min-height: clamp(160px,22vh,280px); }
+.journal-article-post-number { display: block; margin-top: 18px; color: var(--dim); font: 400 14px/1.6 'IBM Plex Mono',monospace; letter-spacing: .015em; }
 .journal-body>* { margin: 0 0 28px; }
 .journal-body h2 { font-size: 25px; line-height: 1.25; letter-spacing: -.03em; font-weight: 550; margin-top: 38px; margin-bottom: 18px; }
 .journal-body p { color: var(--journal-body); max-width: 690px; }
@@ -157,6 +165,9 @@ a.journal-step:hover, .journal-return:hover { border-color: var(--journal-contro
   .journal-index { padding: 38px 18px 90px; }
   .journal-index-heading h1 { font-size: 56px; }
   .journal-index-heading>p { max-width: 160px; font-size: 10px; }
+  .journal-project-heading { align-items: flex-start; flex-direction: column; gap: 18px; }
+  .journal-project-heading h1 { font-size: 36px; }
+  .journal-project-heading>p { font-size: 8px; }
   .journal-kicker { font-size: 7px; }
   .blog-grid.journal-grid { grid-template-columns: minmax(0,1fr); gap: 28px; }
   .journal-card-copy { padding: 20px 22px 24px; }

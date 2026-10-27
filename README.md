@@ -2,7 +2,7 @@
 
 GitHub Pages 发布专用目录。首页、DEMO、VFX、Photography、About Me、Contact 统一显示 **Work in progress**。导航、日夜切换及五个社交入口保留。
 
-Blog 列表、文章及分类栏随全站黑白主题切换，导航下面靠右放 Personal / SCAD 分类；桌面每行三张卡片。目前只有 SCAD 下的 **Magic Crystal Overload**，白色占位图中央显示 WIP，卡片悬停时显示淡渐变边框，Personal 暂无内容。进入后是单列长文章，底部为上一篇 / 返回 / 下一篇；暂时只有一篇，前后按钮禁用。
+Blog 分为项目列表 → 项目文章网格 → 单篇文章三层，均支持黑白主题。导航下面靠右放 Personal / SCAD 分类；项目和文章网格桌面每行三张卡片。目前 SCAD 下有 **Magic Crystal Overload**，里面有两张白底 WIP 封面的空白文章卡片，自动编号为 **post #001** 和 **post #002**，Personal 暂无内容。单篇文章底部为上一篇 / 返回当前项目 / 下一篇。
 
 Back to top 位于页脚上方右侧，使用随黑白主题变化的弯折渐变箭头。页脚右下角的 Web info 打开网站信息面板，显示作者、网址、方向、托管方式、技术及更新时间。`site-info.json` 的更新时间由发布脚本自动写入（UTC）。没有文件改动时不修改日期，`-CheckOnly` 也不会修改日期。
 
@@ -40,14 +40,15 @@ npm.cmd run dev
 
 ### 添加 Blog 内容
 
-在 `site-data.js` 的 `posts` 中，一项对应一个卡片入口：
+在 `site-data.js` 的 `posts` 中，一项对应一个项目入口：
 
 - `category` 设为 `Personal` 或 `SCAD`；`image` 是封面文件名，图片放在 `assets/images/`。
-- `entries` 按连载阅读顺序排列，系统自动连接上一篇 / 下一篇。一个入口可以有多篇连载，不会为每篇重复生成入口卡片。
-- 每篇的 `blocks` 按从上到下的顺序添加：`image`、`heading`、`paragraph`。
+- `entries` 是该项目的文章卡片，按阅读顺序排列；显示名称自动组合为项目名 + `post #001`、`post #002`，后续继续编号，系统自动连接上一篇 / 下一篇。
+- 每篇文章用固定 `id`（如 `post-001`）作为链接，`image` 可单独设置封面；未设置时沿用项目封面。
+- 每篇的 `blocks` 按从上到下的顺序添加：`image`、`heading`、`paragraph`；空数组 `[]` 表示暂时留空。
 - 默认进入 SCAD，设置在 `blog.defaultCategory`。
 
-当前正文也是占位内容，后续替换为真实项目文字和图片即可。
+目前两篇正文留空，后续往 `blocks` 添加真实项目文字和图片即可。
 
 ```powershell
 npm.cmd run check

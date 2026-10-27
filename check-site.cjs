@@ -25,7 +25,8 @@ for (const post of data.posts) {
   for (const entry of post.entries) {
     assert.ok(!entryIds.has(entry.id), `Duplicate entry: ${post.id}/${entry.id}`);
     entryIds.add(entry.id);
-    assert.ok(entry.blocks?.length, `Entry has no content: ${entry.id}`);
+    assert.ok(Array.isArray(entry.blocks), `Post blocks must be an array: ${entry.id}`);
+    if (entry.image) assert.ok(fs.existsSync(path.join(root, 'assets/images', entry.image)), `Missing post cover: ${entry.image}`);
     for (const block of entry.blocks) {
       assert.ok(['image', 'heading', 'paragraph'].includes(block.type), `Unsupported content block: ${block.type}`);
       if (block.type === 'image') assert.ok(fs.existsSync(path.join(root, 'assets/images', block.image)), `Missing article image: ${block.image}`);

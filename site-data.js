@@ -72,16 +72,18 @@ window.PORTFOLIO = {
       category: 'SCAD',
       image: 'blog-wip.svg',
       excerpt: 'A project journal. Notes, experiments, and progress — coming soon.',
-      // One card is a journal; add entries in reading order to connect Previous / Next.
+      // One card is a project; entries become numbered post cards in reading order.
       entries: [
         {
-          id: 'introduction',
-          title: 'Magic Crystal Overload',
-          blocks: [
-            { type: 'image', image: 'blog-wip.svg', alt: 'Magic Crystal Overload — work in progress' },
-            { type: 'heading', text: 'Work in progress.' },
-            { type: 'paragraph', text: 'This project journal is taking shape. More updates will be added here.' }
-          ]
+          id: 'post-001',
+          aliases: ['introduction'],
+          image: 'blog-wip.svg',
+          blocks: []
+        },
+        {
+          id: 'post-002',
+          image: 'blog-wip.svg',
+          blocks: []
         }
       ]
     }
