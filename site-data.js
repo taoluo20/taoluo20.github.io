@@ -5,6 +5,11 @@ window.PORTFOLIO = {
   role: 'Visual effects & procedural art',
   email: 'taoluo20.p@gmail.com',
   reel: '',
+  photogrammetry: {
+    title: 'Cannon',
+    captureUrl: 'https://poly.cam/capture/010E7813-1883-4BDC-A25F-72C572D66C97',
+    embedUrl: 'https://poly.cam/capture/010E7813-1883-4BDC-A25F-72C572D66C97/embed'
+  },
   socials: [
     { id: 'artstation', name: 'ArtStation', url: 'https://www.artstation.com/taoluo' },
     { id: 'linkedin', name: 'LinkedIn', url: 'https://www.linkedin.com/in/taoluo20/' },

@@ -132,15 +132,22 @@
 
   function vfxPage(category) {
     const navigation = vfxNavigation(category);
-    if (data.release === 'wip' || category === 'photogrammetry') {
-      return navigation + workInProgressPage(category === 'photogrammetry' ? category : 'vfx');
-    }
+    if (category === 'photogrammetry') return navigation + photogrammetryPage();
+    if (data.release === 'wip') return navigation + workInProgressPage('vfx');
     const filtered = data.projects.filter(project => activeFilter === 'all' || project.category === activeFilter);
     const filters = [['all', 'All work'], ['simulation', 'FX & simulation'], ['procedural', 'Procedural'], ['lookdev', 'Look development']];
     return `${navigation}<section class="page-shell"><div class="page-intro">${eyebrow('SELECTED PROJECTS')}<div class="page-topline"><h1 class="page-heading">VFX & beyond.</h1><span class="meta preview-caption">${String(data.projects.length).padStart(2, '0')} PROJECTS</span></div><p class="page-subtitle">Effects, environments, and the systems behind them.<br>A closer look at the work, from first idea to final frame.</p></div>
       <div class="filter-bar" aria-label="Filter projects">${filters.map(([value, label]) => `<button class="filter-button" data-filter="${value}" aria-pressed="${activeFilter === value}">${label}</button>`).join('')}<span class="filter-status meta">${filtered.length} PROJECTS</span></div>
       <div class="work-grid" id="vfx-grid">${filtered.map((project, index) => card(project, index)).join('')}</div>
       <div class="section-bottom"><span class="preview-caption meta">FIRST LOOK · PROJECTS & IMAGERY ARE PLACEHOLDERS</span><a class="text-link" href="/contact/">GET IN TOUCH ${arrow}</a></div>
+    </section>`;
+  }
+
+  function photogrammetryPage() {
+    const scan = data.photogrammetry;
+    return `<section class="photogrammetry-page" aria-labelledby="scan-title">
+      <header class="scan-heading"><div><p class="meta">PHOTOGRAMMETRY</p><h1 id="scan-title">${escape(scan.title)}</h1></div><a class="text-link" href="${escape(scan.captureUrl)}" target="_blank" rel="noopener noreferrer">VIEW ON POLYCAM ${arrow}</a></header>
+      <div class="scan-viewer"><iframe class="scan-embed" src="${escape(scan.embedUrl)}" title="${escape(scan.title)} - interactive 3D scan" allow="fullscreen; xr-spatial-tracking" allowfullscreen></iframe></div>
     </section>`;
   }
 
