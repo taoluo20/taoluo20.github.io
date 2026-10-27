@@ -118,14 +118,26 @@
   }
 
   function workInProgressPage(section = '') {
-    const label = { demo: 'DEMO', vfx: 'VFX', photography: 'PHOTOGRAPHY', about: 'ABOUT ME', contact: 'CONTACT' }[section] || 'TAO LUO / PORTFOLIO';
+    const label = { demo: 'DEMO', vfx: 'VFX', photogrammetry: 'PHOTOGRAMMETRY', photography: 'PHOTOGRAPHY', about: 'ABOUT ME', contact: 'CONTACT' }[section] || 'TAO LUO / PORTFOLIO';
     return `<section class="wip-page" aria-labelledby="wip-title"><div class="wip-copy">${eyebrow(label)}<h1 class="wip-heading" id="wip-title">Work in <span>progress<span class="wip-period">.</span></span></h1><p class="wip-note">A few things are taking shape. Check back soon.</p><a class="text-link wip-blog-link" href="/blog/">VISIT THE BLOG ${arrow}</a></div><span class="wip-bottom meta">TAO LUO — VISUAL EFFECTS & PROCEDURAL ART</span></section>`;
   }
 
-  function vfxPage() {
+  function vfxCategory(value) {
+    return String(value || '').toLowerCase() === 'photogrammetry' ? 'photogrammetry' : 'general';
+  }
+
+  function vfxNavigation(category) {
+    return `<nav class="blog-subnav" aria-label="VFX categories"><span class="blog-subnav-label meta">VFX</span><div class="blog-category-links">${[['general', 'General'], ['photogrammetry', 'Photogrammetry']].map(([key, label]) => `<a href="/vfx/?category=${key}" ${category === key ? 'aria-current="page"' : ''}>${label}</a>`).join('')}</div></nav>`;
+  }
+
+  function vfxPage(category) {
+    const navigation = vfxNavigation(category);
+    if (data.release === 'wip' || category === 'photogrammetry') {
+      return navigation + workInProgressPage(category === 'photogrammetry' ? category : 'vfx');
+    }
     const filtered = data.projects.filter(project => activeFilter === 'all' || project.category === activeFilter);
     const filters = [['all', 'All work'], ['simulation', 'FX & simulation'], ['procedural', 'Procedural'], ['lookdev', 'Look development']];
-    return `<section class="page-shell"><div class="page-intro">${eyebrow('SELECTED PROJECTS')}<div class="page-topline"><h1 class="page-heading">VFX & beyond.</h1><span class="meta preview-caption">${String(data.projects.length).padStart(2, '0')} PROJECTS</span></div><p class="page-subtitle">Effects, environments, and the systems behind them.<br>A closer look at the work, from first idea to final frame.</p></div>
+    return `${navigation}<section class="page-shell"><div class="page-intro">${eyebrow('SELECTED PROJECTS')}<div class="page-topline"><h1 class="page-heading">VFX & beyond.</h1><span class="meta preview-caption">${String(data.projects.length).padStart(2, '0')} PROJECTS</span></div><p class="page-subtitle">Effects, environments, and the systems behind them.<br>A closer look at the work, from first idea to final frame.</p></div>
       <div class="filter-bar" aria-label="Filter projects">${filters.map(([value, label]) => `<button class="filter-button" data-filter="${value}" aria-pressed="${activeFilter === value}">${label}</button>`).join('')}<span class="filter-status meta">${filtered.length} PROJECTS</span></div>
       <div class="work-grid" id="vfx-grid">${filtered.map((project, index) => card(project, index)).join('')}</div>
       <div class="section-bottom"><span class="preview-caption meta">FIRST LOOK · PROJECTS & IMAGERY ARE PLACEHOLDERS</span><a class="text-link" href="/contact/">GET IN TOUCH ${arrow}</a></div>
@@ -265,11 +277,16 @@
     const validPath = (!section || siteSections.has(section)) &&
       (section === 'blog' ? segments.length <= 3 : section === 'vfx' ? segments.length <= 2 && (!id || getProject(id)) : section === 'photography' ? segments.length <= 2 && (!id || window.Photography.getPhoto(id)) : segments.length <= 1);
     main.classList.toggle('blog-main', section === 'blog');
+    main.classList.toggle('vfx-main', section === 'vfx' && !id);
     main.classList.toggle('photography-main', section === 'photography');
     let title = '';
     let content;
     if (!validPath) {
       content = null;
+    } else if (section === 'vfx' && !id) {
+      const category = vfxCategory(routeUrl.searchParams.get('category'));
+      content = vfxPage(category);
+      title = category === 'photogrammetry' ? 'Photogrammetry - VFX' : 'VFX';
     } else if (data.release === 'wip' && section !== 'blog' && section !== 'photography') {
       content = workInProgressPage(section);
       title = { demo: 'Demo', vfx: 'VFX', photography: 'Photography', about: 'About me', contact: 'Contact' }[section] || '';
@@ -295,7 +312,7 @@
         title = entry ? journalPostTitle(post, entry) : '';
       }
     } else {
-      const pages = { demo: demoPage, vfx: vfxPage, photography: photographyPage, about: aboutPage, blog: () => blogPage(blogCategory(routeUrl.searchParams.get('category'))), contact: contactPage };
+      const pages = { demo: demoPage, photography: photographyPage, about: aboutPage, blog: () => blogPage(blogCategory(routeUrl.searchParams.get('category'))), contact: contactPage };
       content = pages[section] ? pages[section]() : section ? null : homePage();
       title = { demo: 'Demo reel', vfx: 'VFX', photography: 'Photography', about: 'About me', blog: 'Blog', contact: 'Contact' }[section] || '';
     }
