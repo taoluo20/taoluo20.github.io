@@ -56,13 +56,11 @@
       const info = await siteInfoPromise;
       const updated = new Date(info.updatedAt);
       if (Number.isNaN(updated.getTime())) throw new Error('Invalid update date');
-      webInfoDialog.querySelector('#web-info-version').textContent = info.version;
       const time = webInfoDialog.querySelector('#web-info-updated');
       time.dateTime = info.updatedAt;
       time.textContent = `${new Intl.DateTimeFormat('en-GB', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hourCycle: 'h23', timeZone: 'UTC' }).format(updated)} UTC`;
     } catch {
       siteInfoPromise = null;
-      webInfoDialog.querySelector('#web-info-version').textContent = 'Unavailable';
       webInfoDialog.querySelector('#web-info-updated').textContent = 'Unavailable';
     }
   }

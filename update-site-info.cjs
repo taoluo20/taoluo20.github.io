@@ -6,7 +6,6 @@ const changes = execFileSync('git', ['status', '--porcelain', '--untracked-files
 if (!changes) {
   console.log('Site information unchanged; no empty update commit.');
 } else {
-  const { version } = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'));
-  fs.writeFileSync(path.join(root, 'site-info.json'), JSON.stringify({ version, updatedAt: new Date().toISOString() }, null, 2) + '\n');
-  console.log('Website version and update date refreshed.');
+  fs.writeFileSync(path.join(root, 'site-info.json'), JSON.stringify({ updatedAt: new Date().toISOString() }, null, 2) + '\n');
+  console.log('Website update date refreshed.');
 }
