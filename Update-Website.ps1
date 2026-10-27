@@ -28,6 +28,7 @@ try {
     Write-Host "`nChecking website..." -ForegroundColor Cyan
     Invoke-Checked 'node' @('--check', 'app.js')
     Invoke-Checked 'node' @('--check', 'site-data.js')
+    if (-not $CheckOnly) { Invoke-Checked 'node' @('update-site-info.cjs') }
     Invoke-Checked 'node' @('check-site.cjs')
     Invoke-Checked 'node' @('build.cjs')
     if ($CheckOnly) { Write-Host 'Local checks passed. No commit or push was performed.' -ForegroundColor Green; return }

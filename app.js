@@ -6,6 +6,7 @@
   const overlay = document.querySelector('#project-overlay');
   const overlayScroll = overlay.querySelector('.overlay-scroll');
   const photoOverlay = document.querySelector('#photo-overlay');
+  const webInfoDialog = document.querySelector('#web-info-dialog');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const arrow = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg>';
   const backArrow = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m7-7-7 7 7 7"/></svg>';
@@ -19,6 +20,7 @@
   let closing = false;
   let toastTimeout;
   const hoverTimers = new Map();
+  let siteInfoPromise;
   const asset = filename => `assets/images/${filename}`;
   const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const tags = project => `<div class="project-tags">${project.tags.map(tag => `<span class="project-tag">${escape(tag)}</span>`).join('')}</div>`;
@@ -34,7 +36,36 @@
   }
 
   function renderFooter() {
-    footer.innerHTML = `${socialLinks()}<div class="footer-meta"><span class="footer-note">© ${new Date().getFullYear()} TAO LUO</span><span class="footer-note">VFX · PROCEDURAL ART · PHOTOGRAPHY</span><a class="footer-top meta" href="#top" data-back-top>BACK TO TOP <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V4m-6 6 6-6 6 6"/></svg></a></div>`;
+    footer.innerHTML = `${socialLinks()}<div class="footer-meta"><span class="footer-note">© ${new Date().getFullYear()} TAO LUO</span><span class="footer-note">VFX · PROCEDURAL ART · PHOTOGRAPHY</span><button class="web-info-trigger meta" data-web-info aria-haspopup="dialog" aria-controls="web-info-dialog">WEB INFO <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10v1"/></svg></button></div>`;
+  }
+
+  function returnToTop() {
+    return `<div class="page-end"><button class="back-top-control" data-back-top aria-label="Back to top"><svg class="back-top-art" viewBox="0 0 112 140" aria-hidden="true"><defs><linearGradient id="back-top-gradient" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--back-top-start)"/><stop offset=".55" style="stop-color:var(--back-top-middle)"/><stop offset="1" style="stop-color:var(--back-top-end)"/></linearGradient></defs><path d="M15 121h24c27 0 49-22 49-49V17m-15 16 15-16 15 16"/></svg><span class="back-top-label meta">BACK TO TOP</span></button></div>`;
+  }
+
+  async function showWebInfo() {
+    if (!webInfoDialog.open) {
+      webInfoDialog.showModal();
+      document.body.classList.add('modal-open');
+    }
+    webInfoDialog.querySelector('#web-info-status').textContent = data.release === 'wip' ? 'Work in progress' : 'Live';
+    try {
+      siteInfoPromise ||= fetch('site-info.json', { cache: 'no-store' }).then(response => {
+        if (!response.ok) throw new Error('Site information unavailable');
+        return response.json();
+      });
+      const info = await siteInfoPromise;
+      const updated = new Date(info.updatedAt);
+      if (Number.isNaN(updated.getTime())) throw new Error('Invalid update date');
+      webInfoDialog.querySelector('#web-info-version').textContent = info.version;
+      const time = webInfoDialog.querySelector('#web-info-updated');
+      time.dateTime = info.updatedAt;
+      time.textContent = `${new Intl.DateTimeFormat('en-GB', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hourCycle: 'h23', timeZone: 'UTC' }).format(updated)} UTC`;
+    } catch {
+      siteInfoPromise = null;
+      webInfoDialog.querySelector('#web-info-version').textContent = 'Unavailable';
+      webInfoDialog.querySelector('#web-info-updated').textContent = 'Unavailable';
+    }
   }
 
   function card(project, index, mode = 'page') {
@@ -184,6 +215,7 @@
   }
 
   function renderRoute(route = getRoute(), { preserveScroll = false } = {}) {
+    if (webInfoDialog.open) webInfoDialog.close();
     if (photoOverlay.open) photoOverlay.close();
     resetHover();
     const routeUrl = new URL(route, 'https://portfolio.local');
@@ -212,7 +244,7 @@
       content = `<section class="page-shell">${eyebrow('A SMALL DETOUR')}<h1 class="page-heading">Not here.</h1><p class="page-subtitle">This page couldn’t be found.</p><p><a class="text-link" href="#/">BACK HOME ${arrow}</a></p></section>`;
       title = 'Page not found';
     }
-    main.innerHTML = content;
+    main.innerHTML = content + returnToTop();
     renderedRoute = route;
     document.title = `${title ? title + ' — ' : ''}Tao Luo — Visual Artist`;
     setNavigation(section);
@@ -316,7 +348,8 @@
     const placeholder = event.target.closest('[data-placeholder]');
     if (placeholder) { event.preventDefault(); toast(`${placeholder.dataset.placeholder} — Tao’s link will be added soon.`); return; }
     const backTop = event.target.closest('[data-back-top]');
-    if (backTop) { event.preventDefault(); window.scrollTo({ top: 0, behavior: reducedMotion.matches ? 'instant' : 'smooth' }); return; }
+    if (backTop) { event.preventDefault(); main.focus({ preventScroll: true }); window.scrollTo({ top: 0, behavior: reducedMotion.matches ? 'instant' : 'smooth' }); return; }
+    if (event.target.closest('[data-web-info]')) { showWebInfo(); return; }
     if (event.target.closest('[data-scroll-work]')) { event.preventDefault(); document.querySelector('#selected-work')?.scrollIntoView({ behavior: reducedMotion.matches ? 'instant' : 'smooth' }); return; }
     const projectLink = event.target.closest('[data-project]');
     if (projectLink && projectLink.dataset.mode === 'overlay' && !event.metaKey && !event.ctrlKey && !event.shiftKey && event.button === 0) {
@@ -385,6 +418,15 @@
   photoOverlay.querySelector('.photo-prev').addEventListener('click', () => showPhoto(activePhoto - 1));
   photoOverlay.querySelector('.photo-next').addEventListener('click', () => showPhoto(activePhoto + 1));
   photoOverlay.addEventListener('close', () => document.body.classList.remove('modal-open'));
+  webInfoDialog.querySelector('.web-info-close').addEventListener('click', () => webInfoDialog.close());
+  webInfoDialog.addEventListener('close', () => {
+    if (!overlay.open && !photoOverlay.open) document.body.classList.remove('modal-open');
+  });
+  webInfoDialog.addEventListener('click', event => {
+    if (event.target !== webInfoDialog) return;
+    const bounds = webInfoDialog.getBoundingClientRect();
+    if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) webInfoDialog.close();
+  });
   photoOverlay.addEventListener('keydown', event => {
     if (event.key === 'ArrowLeft') { event.preventDefault(); showPhoto(activePhoto - 1); }
     if (event.key === 'ArrowRight') { event.preventDefault(); showPhoto(activePhoto + 1); }
