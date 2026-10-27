@@ -219,7 +219,18 @@
   }
 
   function contactPage() {
-    return `<section class="page-shell contact-page"><div class="contact-layout"><div class="contact-copy">${eyebrow('SAY HELLO')}<h1>Let’s talk.</h1><p>Have a project in mind, a question, or just want to say hello?<br>I’d love to hear from you.</p><div class="contact-detail"><span class="meta">EMAIL</span>${data.email ? `<a href="mailto:${escape(data.email)}">${escape(data.email)}</a>` : '<span>Email coming soon</span>'}</div><div class="contact-detail"><span class="meta">ELSEWHERE</span><div class="contact-inline-socials">${data.socials.filter(s => ['artstation','linkedin','instagram'].includes(s.id)).map(s => `<a href="${escape(s.url || '/contact/')}" ${s.url ? 'target="_blank" rel="noopener noreferrer"' : `data-placeholder="${s.name}"`}>${s.name} ${arrow}</a>`).join('')}</div></div></div><form class="contact-form" id="contact-form"><div class="form-row"><div class="field"><label for="contact-name">NAME <span>*</span></label><input id="contact-name" name="name" autocomplete="name" placeholder="Your name" required maxlength="120" /></div><div class="field"><label for="contact-email">EMAIL <span>*</span></label><input id="contact-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required maxlength="254" /></div></div><div class="field"><label for="contact-subject">SUBJECT</label><input id="contact-subject" name="subject" placeholder="What’s on your mind?" maxlength="200" /></div><div class="field"><label for="contact-message">MESSAGE <span>*</span></label><textarea id="contact-message" name="message" placeholder="Tell me a little about it…" required maxlength="8000"></textarea></div><div class="form-bottom"><button class="send-button" type="submit">SEND MESSAGE ${arrow}</button><span class="contact-note">${data.email ? 'OPENS YOUR EMAIL APP' : 'PREVIEW FORM · EMAIL TO FOLLOW'}</span></div><p id="form-status" class="form-status" role="status" aria-live="polite"></p></form></div></section>`;
+    return `<section class="contact-page" aria-label="Contact Tao Luo">
+      <form class="contact-form" id="contact-form" aria-label="Write an email">
+        <div class="form-row">
+          <div class="field"><label for="contact-name">Name <span aria-hidden="true">*</span></label><input id="contact-name" name="name" autocomplete="name" placeholder="What should I call you?" required maxlength="120" /></div>
+          <div class="field"><label for="contact-email">Email <span aria-hidden="true">*</span></label><input id="contact-email" name="email" type="email" autocomplete="email" placeholder="Your reply-to email" required maxlength="254" /></div>
+        </div>
+        <div class="field"><label for="contact-subject">Subject</label><input id="contact-subject" name="subject" placeholder="A project, an idea, or a question" maxlength="200" /></div>
+        <div class="field"><label for="contact-message">Message <span aria-hidden="true">*</span></label><textarea id="contact-message" name="message" placeholder="Share what you're working on, or leave a note." required maxlength="8000"></textarea></div>
+        <div class="form-bottom"><button class="send-button" type="submit">Write email ${arrow}</button><span class="contact-note">${data.email ? 'Continues in your email app' : 'Email will be available soon'}</span></div>
+        <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>`;
   }
 
   function setNavigation(section) {
@@ -287,7 +298,7 @@
       const category = vfxCategory(routeUrl.searchParams.get('category'));
       content = vfxPage(category);
       title = category === 'photogrammetry' ? 'Photogrammetry - VFX' : 'VFX';
-    } else if (data.release === 'wip' && section !== 'blog' && section !== 'photography') {
+    } else if (data.release === 'wip' && section !== 'blog' && section !== 'photography' && section !== 'contact') {
       content = workInProgressPage(section);
       title = { demo: 'Demo', vfx: 'VFX', photography: 'Photography', about: 'About me', contact: 'Contact' }[section] || '';
     } else if (section === 'photography' && id) {
@@ -476,7 +487,7 @@
     const subject = values.get('subject') || `Portfolio inquiry from ${values.get('name')}`;
     const body = `${values.get('message')}\n\nFrom: ${values.get('name')}\nEmail: ${values.get('email')}`;
     location.href = `mailto:${data.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    status.textContent = 'Your email app will open with this message. Send it there when you’re ready.';
+    status.textContent = 'Continue in your email app to review and send your message.';
   });
 
   overlay.querySelector('.overlay-close').addEventListener('click', requestClose);

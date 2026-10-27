@@ -1,0 +1,69 @@
+.contact-page {
+  display: grid;
+  place-items: center;
+  min-height: calc(100svh - var(--header-height) - 194px);
+  padding: 96px var(--gutter) 64px;
+}
+.contact-page .contact-form {
+  width: min(100%, 800px);
+  min-width: 0;
+  margin: 0 auto;
+  padding: 0;
+}
+.contact-page .form-row {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+.contact-page .field { min-width: 0; margin-bottom: 26px; }
+.contact-page .field label { margin-bottom: 10px; font-size: 10px; letter-spacing: 0; }
+.contact-page .field input,
+.contact-page .field textarea {
+  display: block;
+  min-height: 50px;
+  padding: 14px 16px;
+  border-radius: 6px;
+  background-color: var(--soft);
+  font-size: 14px;
+  line-height: 1.6;
+  letter-spacing: 0;
+}
+.contact-page .field input::placeholder,
+.contact-page .field textarea::placeholder { color: var(--dim); opacity: 1; }
+.contact-page .field textarea { min-height: 224px; }
+.contact-page .form-bottom {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.contact-page .send-button {
+  min-height: 48px;
+  padding: 12px 20px;
+  border-radius: 6px;
+  gap: 28px;
+  font-size: 13px;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+.contact-page .contact-note {
+  max-width: none;
+  font: 400 12px/1.6 Archivo, Arial, sans-serif;
+  letter-spacing: 0;
+  text-transform: none;
+  text-align: right;
+}
+.contact-page .form-status { margin: 18px 0 0; letter-spacing: 0; }
+.contact-page .form-status:empty { display: none; }
+@media (max-width:800px) {
+  .contact-page { min-height: calc(100svh - var(--header-height) - 190px); padding-top: 64px; padding-bottom: 48px; }
+}
+@media (max-width:520px) {
+  .contact-page { min-height: 0; padding-top: 48px; padding-bottom: 30px; }
+  .contact-page .form-row { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .contact-page .field { margin-bottom: 22px; }
+  .contact-page .field input,
+  .contact-page .field textarea { font-size: 16px; padding: 13px 14px; }
+  .contact-page .field textarea { min-height: 200px; }
+  .contact-page .form-bottom { flex-wrap: wrap; gap: 14px 20px; }
+  .contact-page .contact-note { text-align: left; font-size: 11px; }
+}
