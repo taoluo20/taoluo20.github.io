@@ -70,7 +70,7 @@ window.PORTFOLIO = {
       id: 'magic-crystal-overload',
       title: 'Magic Crystal Overload',
       category: 'SCAD',
-      image: 'blog-placeholder.svg',
+      image: 'blog-wip.svg',
       excerpt: 'A project journal. Notes, experiments, and progress — coming soon.',
       // One card is a journal; add entries in reading order to connect Previous / Next.
       entries: [
@@ -78,7 +78,7 @@ window.PORTFOLIO = {
           id: 'introduction',
           title: 'Magic Crystal Overload',
           blocks: [
-            { type: 'image', image: 'blog-placeholder.svg', alt: 'White image placeholder for Magic Crystal Overload' },
+            { type: 'image', image: 'blog-wip.svg', alt: 'Magic Crystal Overload — work in progress' },
             { type: 'heading', text: 'Work in progress.' },
             { type: 'paragraph', text: 'This project journal is taking shape. More updates will be added here.' }
           ]

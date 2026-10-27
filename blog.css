@@ -10,7 +10,6 @@
   --journal-paper: #111113;
   --journal-paper-hover: #19191c;
   --journal-border: #2a2a2d;
-  --journal-card-hover: #56535e;
   --journal-control-hover: #65616c;
   --journal-image-border: #252528;
   --journal-body: #b8b4ad;
@@ -35,7 +34,6 @@
   --journal-paper: #fff;
   --journal-paper-hover: #fafaf8;
   --journal-border: #e9e9e6;
-  --journal-card-hover: #cfcfc8;
   --journal-control-hover: #b7b7ae;
   --journal-image-border: #efefec;
   --journal-body: #72726c;
@@ -79,10 +77,21 @@
 .journal-index-heading>p { margin: 0 0 3px; font-size: 12px; line-height: 1.8; color: var(--dim); text-align: right; }
 .blog-grid.journal-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 38px 28px; align-items: start; }
 .journal-card {
+  position: relative;
   min-width: 0; display: block; border: 1px solid var(--journal-border); border-radius: 14px;
   overflow: hidden; background: var(--journal-paper); transition: border-color .2s,transform .3s,box-shadow .3s,background-color .3s;
 }
-.journal-card:hover { border-color: var(--journal-card-hover); transform: translateY(-4px); box-shadow: 0 12px 32px var(--journal-shadow); }
+.journal-card::after {
+  content: ''; position: absolute; inset: 0; padding: 1px; border-radius: inherit;
+  background: var(--accent-gradient); pointer-events: none;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0; transition: opacity .25s;
+}
+.journal-card:hover, .journal-card:focus-visible { border-color: transparent; transform: translateY(-4px); box-shadow: 0 12px 32px var(--journal-shadow); }
+.journal-card:hover::after, .journal-card:focus-visible::after { opacity: .5; }
 .journal-card-image { aspect-ratio: 1.6; overflow: hidden; border-bottom: 1px solid var(--journal-image-border); background: var(--journal-paper); }
 .journal-card-image img { width: 100%; height: 100%; object-fit: cover; }
 .journal-card-copy { padding: 20px 23px 25px; }
