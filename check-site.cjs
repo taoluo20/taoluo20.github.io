@@ -38,9 +38,13 @@ for (const post of data.posts) {
     assert.ok(!entryIds.has(entry.id), `Duplicate entry: ${post.id}/${entry.id}`);
     entryIds.add(entry.id);
     assert.ok(Array.isArray(entry.blocks), `Post blocks must be an array: ${entry.id}`);
+    if (entry.publishedAt) {
+      assert.match(entry.publishedAt, /^\d{4}-\d{2}-\d{2}$/, 'Post publication dates must use YYYY-MM-DD');
+      assert.equal(new Date(`${entry.publishedAt}T00:00:00Z`).toISOString().slice(0, 10), entry.publishedAt, 'Invalid post publication date');
+    }
     if (entry.image) assert.ok(fs.existsSync(path.join(root, 'assets/images', entry.image)), `Missing post cover: ${entry.image}`);
     for (const block of entry.blocks) {
-      assert.ok(['image', 'video', 'heading', 'paragraph'].includes(block.type), `Unsupported content block: ${block.type}`);
+      assert.ok(['image', 'video', 'youtube', 'heading', 'paragraph'].includes(block.type), `Unsupported content block: ${block.type}`);
       if (block.type === 'image') {
         assert.ok(fs.existsSync(path.join(root, 'assets/images', block.image)), `Missing article image: ${block.image}`);
         assert.ok(block.alt?.trim(), 'Article images need descriptive alt text');
@@ -51,6 +55,11 @@ for (const post of data.posts) {
         assert.ok(block.title?.trim(), 'Article videos need an accessible title');
         assert.ok(fs.existsSync(path.join(root, 'assets/images', block.poster)), `Missing video poster: ${block.poster}`);
         assert.ok(block.credit?.trim() && block.sourceUrl, 'Article videos need attribution and a source link');
+      }
+      if (block.type === 'youtube') {
+        assert.match(block.videoId, /^[A-Za-z0-9_-]{11}$/, 'Invalid YouTube video id');
+        assert.ok(block.title?.trim() && block.credit?.trim(), 'YouTube references need a title and creator credit');
+        assert.equal(block.sourceUrl, `https://www.youtube.com/watch?v=${block.videoId}`, 'YouTube source must match the embedded video');
       }
       if (block.type === 'paragraph') checkJournalInline(block.children || block.text);
       if (block.type === 'heading') assert.ok(block.text?.trim(), 'Article headings must not be empty');

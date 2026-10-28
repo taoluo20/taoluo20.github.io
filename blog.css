@@ -125,9 +125,12 @@
   line-height: 1.12; letter-spacing: 0; margin: 26px 0 28px; overflow-wrap: anywhere;
 }
 .journal-byline { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-bottom: 29px; border-bottom: 1px solid var(--line); font-size: 11px; }
-.journal-byline>span:first-child { display: inline-flex; align-items: center; gap: 9px; }
+.journal-byline>span:first-child { display: inline-flex; align-items: center; gap: 9px; flex-shrink: 0; white-space: nowrap; }
 .journal-byline .brand-dot { width: 4px; height: 4px; }
 .journal-byline .meta { font-size: 8px; color: var(--faint); }
+.journal-byline-details { min-width: 0; display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 8px 20px; color: var(--dim); font-size: 11px; }
+.journal-date { white-space: nowrap; }
+.journal-publication { display: inline-flex; flex-wrap: wrap; justify-content: flex-end; gap: 5px; }
 .journal-body { padding-top: 38px; font-size: 16px; line-height: 1.9; overflow-wrap: anywhere; }
 .journal-body:empty { min-height: clamp(160px,22vh,280px); }
 .journal-article-post-number { display: block; margin-top: 18px; color: var(--dim); font: 400 14px/1.6 'IBM Plex Mono',monospace; letter-spacing: .015em; }
@@ -139,7 +142,9 @@
 /* Media has its own measure; subsequent prose uses the article's wider column. */
 .journal-body .journal-figure { width: 100%; max-width: 800px; margin: 36px auto 42px; }
 .journal-body .journal-figure-wide { max-width: 100%; }
-.journal-figure img, .journal-figure video { display: block; width: 100%; height: auto; border: 1px solid var(--journal-image-border); border-radius: 4px; }
+.journal-figure img, .journal-figure video, .journal-figure iframe { display: block; width: 100%; height: auto; border: 1px solid var(--journal-image-border); border-radius: 4px; }
+.journal-image-link { display: block; cursor: zoom-in; }
+.journal-figure iframe { aspect-ratio: 16 / 9; }
 .journal-figure video { aspect-ratio: 16 / 9; background: #000; }
 .journal-figure figcaption { color: var(--dim); font-size: 12px; line-height: 1.7; margin-top: 12px; }
 .journal-figure figcaption>span { display: block; }
@@ -193,7 +198,8 @@ a.journal-step:hover, .journal-return:hover { border-color: var(--journal-contro
   .journal-article-heading h1 { font-size: 34px; }
   .journal-breadcrumb { font-size: 7px; align-items: flex-start; }
   .journal-breadcrumb svg { width: 14px; height: 14px; }
-  .journal-byline { padding-bottom: 23px; font-size: 10px; }
+  .journal-byline { align-items: flex-start; flex-direction: column; gap: 12px; padding-bottom: 23px; font-size: 10px; }
+  .journal-byline-details, .journal-publication { justify-content: flex-start; }
   .journal-byline .meta { font-size: 7px; }
   .journal-body { padding-top: 28px; font-size: 15px; }
   .journal-body h2 { font-size: 24px; }

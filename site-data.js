@@ -241,12 +241,13 @@ window.PORTFOLIO = {
         {
           "id": "post-001",
           "title": "Reference & Effect Breakdown",
+          "publishedAt": "2026-10-25",
           "aliases": [
             "introduction"
           ],
           "image": "blog/magic-crystal-overload/post-001/nasa-supernova-still.jpg",
           "imageAlt": "A blue and violet supernova cloud expanding against dark space.",
-          "excerpt": "References and a frame-by-frame breakdown of NASA's supernova animation, exploring Pyro, volume, light, and the timing of a magical crystal explosion.",
+          "excerpt": "Visual references, solar-eruption research, and a practical path to a controllable Houdini volume effect.",
           "blocks": [
             {
               "type": "heading",
@@ -300,10 +301,6 @@ window.PORTFOLIO = {
               "text": "Reading the reference over time"
             },
             {
-              "type": "paragraph",
-              "text": "I stepped through the original video to see how the effect changes. The progression I find useful is the shift from a concentrated flash to a billowing volume, and then to a thinner, more transparent cloud. The timestamps below refer to the original-speed video."
-            },
-            {
               "type": "image",
               "image": "blog/magic-crystal-overload/post-001/nasa-supernova-original-contact-sheet.jpg",
               "width": 1176,
@@ -314,94 +311,12 @@ window.PORTFOLIO = {
               "sourceUrl": "https://svs.gsfc.nasa.gov/20413/"
             },
             {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/post-001/nasa-supernova-key-01.jpg",
-              "width": 1280,
-              "height": 720,
-              "timeSeconds": 6,
-              "alt": "At 00:06, a small white-cyan light and soft blue halo sit in a dark star field.",
-              "caption": "00:06 / Buildup. Frame from the original NASA animation.",
-              "credit": "NASA's Goddard Space Flight Center Conceptual Image Lab",
-              "sourceUrl": "https://svs.gsfc.nasa.gov/20413/"
+              "type": "paragraph",
+              "text": "Reading the sequence as a whole, I see four broad stages: a small source brightens (00:00-00:06), a strong flash takes over (around 00:09), the burst opens into a lumpy, billowing volume (00:12-00:24), and a more transparent blue-violet cloud spreads around the central light (00:27-00:40). These timestamps refer to the original-speed video."
             },
             {
               "type": "paragraph",
-              "text": "For roughly the first six seconds, the source stays small before the halo begins to grow. At 00:06, the center has become brighter, but there is little visible cloud structure. For my crystal, this suggests a short buildup of internal light before the release."
-            },
-            {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/post-001/nasa-supernova-key-02.jpg",
-              "width": 1280,
-              "height": 720,
-              "timeSeconds": 9,
-              "alt": "At 00:09, a white flash and cyan-blue glow obscure most of the internal structure.",
-              "caption": "00:09 / The flash. Frame from the original NASA animation.",
-              "credit": "NASA's Goddard Space Flight Center Conceptual Image Lab",
-              "sourceUrl": "https://svs.gsfc.nasa.gov/20413/"
-            },
-            {
-              "type": "paragraph",
-              "text": "By 00:09, the white center and cyan glow dominate the image. Fine detail is difficult to read at this point; the change is mostly about light and scale. This is a useful reference for the initial flash of the crystal explosion."
-            },
-            {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/post-001/nasa-supernova-key-03.jpg",
-              "width": 1280,
-              "height": 720,
-              "timeSeconds": 15,
-              "alt": "At 00:15, a compact white luminous volume has developed an uneven, lobed outline.",
-              "caption": "00:15 / A dense, uneven burst. Frame from the original NASA animation.",
-              "credit": "NASA's Goddard Space Flight Center Conceptual Image Lab",
-              "sourceUrl": "https://svs.gsfc.nasa.gov/20413/"
-            },
-            {
-              "type": "paragraph",
-              "text": "At 00:15, the burst has a compact, uneven outline with larger rounded lobes. The middle is still almost white, so the silhouette carries most of the shape. This is where I start thinking about a dense Pyro burst and the large forms I would want to establish first."
-            },
-            {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/post-001/nasa-supernova-key-04.jpg",
-              "width": 1280,
-              "height": 720,
-              "timeSeconds": 21,
-              "alt": "At 00:21, cyan folds and curled edges surround a pink interior and a small bright central light.",
-              "caption": "00:21 / Billowing folds become readable. Frame from the original NASA animation.",
-              "credit": "NASA's Goddard Space Flight Center Conceptual Image Lab",
-              "sourceUrl": "https://svs.gsfc.nasa.gov/20413/"
-            },
-            {
-              "type": "paragraph",
-              "text": "Around 00:21, the bright mass opens into overlapping folds and curled edges. Cyan outer forms separate from a pink interior, and the central light becomes visible. This feels closest to the smoke-like, billowing behavior I want to study with Pyro, especially the balance between large lobes and smaller wisps."
-            },
-            {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/post-001/nasa-supernova-key-05.jpg",
-              "width": 1280,
-              "height": 720,
-              "timeSeconds": 30,
-              "alt": "At 00:30, an expanded blue-violet cloud has thinner outer wisps and a visible pink interior.",
-              "caption": "00:30 / A more open, layered volume. Frame from the original NASA animation.",
-              "credit": "NASA's Goddard Space Flight Center Conceptual Image Lab",
-              "sourceUrl": "https://svs.gsfc.nasa.gov/20413/"
-            },
-            {
-              "type": "paragraph",
-              "text": "By 00:30, the cloud occupies more of the frame and its outer wisps look thinner. Blue and violet layers surround the pink center, making the depth easier to read. For my project, this points toward volumetric shading and a gradual reduction in brightness and opacity as the burst spreads."
-            },
-            {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/post-001/nasa-supernova-key-06.jpg",
-              "width": 1280,
-              "height": 720,
-              "timeSeconds": 39,
-              "alt": "At 00:39, a broad, translucent blue-violet cloud surrounds a clearly visible white central light.",
-              "caption": "00:39 / The lingering cloud and central light. Frame from the original NASA animation.",
-              "credit": "NASA's Goddard Space Flight Center Conceptual Image Lab",
-              "sourceUrl": "https://svs.gsfc.nasa.gov/20413/"
-            },
-            {
-              "type": "paragraph",
-              "text": "Near 00:39, the broad cloud reads as a translucent nebula around a distinct central light. NASA identifies that central object as a pulsar. For the crystal effect, I like the idea of a lingering luminous volume after the main burst, with a small source of energy still visible inside it."
+              "text": "What I find useful is the transition from dense, Pyro-like shapes to a softer, layered volume. For the crystal explosion, I want a short buildup, a clear release of energy, and a luminous cloud that lingers after the main burst."
             },
             {
               "type": "heading",
@@ -434,13 +349,169 @@ window.PORTFOLIO = {
               "credit": "Adapted timing by Tao Luo. Original animation: NASA's Goddard Space Flight Center Conceptual Image Lab.",
               "sourceUrl": "https://svs.gsfc.nasa.gov/20413/",
               "title": "Sped-up NASA reference edited by Tao Luo"
+            },
+            {
+              "type": "heading",
+              "text": "From the supernova to solar eruptions"
+            },
+            {
+              "type": "paragraph",
+              "text": "The curling shapes in the supernova reference reminded me of a coronal mass ejection (CME). Solar eruptions became another visual reference for the stretched filaments, uneven edges, and outward movement I was interested in. That resemblance led me to start looking into magnetic fields and how these kinds of structures form."
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-001/nasa-cme-2012.jpg",
+              "width": 1600,
+              "height": 900,
+              "alt": "An orange solar filament stretches outward from the Sun during the August 31, 2012 eruption, in a blended extreme-ultraviolet observation.",
+              "caption": "The August 31, 2012 solar eruption, observed in extreme ultraviolet. The stretched, curling filament became a second shape reference for my effect.",
+              "credit": "NASA/GSFC/SDO",
+              "sourceUrl": "https://svs.gsfc.nasa.gov/11095/",
+              "sourceLabel": "NASA CME reference"
+            },
+            {
+              "type": "heading",
+              "text": "Researching the expanding interface"
+            },
+            {
+              "type": "paragraph",
+              "text": "The main paper I found was A 3D Numerical Study of Anisotropies in Supernova Remnants by Soham Mandal, Paul C. Duffell, Abigail Polin, and Dan Milisavljevic (2023)."
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "Read the paper: A 3D Numerical Study of Anisotropies in Supernova Remnants",
+                  "href": "https://arxiv.org/pdf/2305.17324"
+                }
+              ]
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-001/mandal-2023-paper-header.jpg",
+              "width": 1050,
+              "height": 194,
+              "alt": "Title and authors of A 3D Numerical Study of Anisotropies in Supernova Remnants.",
+              "caption": "The paper that helped me think about structure at the expanding interface.",
+              "credit": "Mandal, Duffell, Polin, and Milisavljevic (2023). Title and author excerpt.",
+              "sourceUrl": "https://arxiv.org/abs/2305.17324",
+              "sourceLabel": "Paper and citation"
+            },
+            {
+              "type": "paragraph",
+              "text": "Its introduction explains that supernova remnants form from material ejected by a supernova. It points to three-dimensional observations of Tycho's remnant (Williams et al., 2017), N132D (Vogt and Dopita, 2011; Law et al., 2020), Cassiopeia A (DeLaney et al., 2010; Milisavljevic and Fesen, 2013, 2015), and SN 1987A (Larsson et al., 2016)."
+            },
+            {
+              "type": "paragraph",
+              "text": "It discusses hydrodynamic and magnetohydrodynamic Rayleigh-Taylor instability (RTI) as possible contributors to these uneven structures. The ejecta interacting with circumstellar material (CSM) drives a forward shock into the CSM and a reverse shock into the ejecta. The contact discontinuity between the shocked layers is Rayleigh-Taylor unstable."
+            },
+            {
+              "type": "paragraph",
+              "text": "My search started with magnetic fields, while this paper's numerical models are hydrodynamic. For the effect, the expanding interface and the structures developing around it gave me a more useful way to think about the shape."
+            },
+            {
+              "type": "heading",
+              "text": "Bringing the idea into Houdini"
+            },
+            {
+              "type": "paragraph",
+              "text": "The practical question is how to turn that reference into something lightweight and controllable in Houdini. I want controls for the overall expansion, timing, and broad shapes that let me iterate quickly. That led me back to YouTube to look for existing Houdini examples."
+            },
+            {
+              "type": "paragraph",
+              "text": "Doxia Studio's Houdini Tutorial - Nebula Part 1 was one of the examples I found. Its public overview describes using VOPs, volumes, particles, and noise to build nebula shapes. The finished look is close to the direction I want to explore. The detailed material I found required paid access, so the visible result is a useful reference at this stage."
+            },
+            {
+              "type": "youtube",
+              "videoId": "DTNYeaFd78w",
+              "title": "Houdini Tutorial - Nebula Part 1 by Doxia Studio",
+              "caption": "A volume-shaping reference whose finished look is close to the direction I want to explore.",
+              "credit": "Doxia Studio",
+              "sourceUrl": "https://www.youtube.com/watch?v=DTNYeaFd78w",
+              "sourceLabel": "Watch on YouTube"
+            },
+            {
+              "type": "paragraph",
+              "text": "I also found Cody Burke's Houdini Tutorial: Nebula - Easy! as another example of a nebula workflow in Houdini. Together, these references give me a starting point for exploring volume construction alongside Pyro motion."
+            },
+            {
+              "type": "youtube",
+              "videoId": "yL7lRwgTYiE",
+              "title": "Houdini Tutorial: Nebula - Easy! by Cody Burke",
+              "caption": "Another Houdini nebula example I bookmarked while researching the effect.",
+              "credit": "Cody Burke",
+              "sourceUrl": "https://www.youtube.com/watch?v=yL7lRwgTYiE",
+              "sourceLabel": "Watch on YouTube"
+            },
+            {
+              "type": "heading",
+              "text": "Next: establish the main shape"
+            },
+            {
+              "type": "paragraph",
+              "text": "My next step is to get the broad shape working first: an outward burst with an uneven outline and a readable separation between the outer volume and the center. I will use that blockout to judge the motion before pushing smaller details, lighting, and the crystal scene."
             }
           ]
         },
         {
-          id: 'post-002',
-          image: 'blog-wip.svg',
-          blocks: []
+          "id": "post-002",
+          "title": "Shape Blockout & Pyro Test",
+          "publishedAt": "2026-10-26",
+          "image": "blog/magic-crystal-overload/post-002/pyro-test-02-poster.jpg",
+          "imageAlt": "A blue expanding volume surrounds a bright purple center in the Houdini Pyro test.",
+          "excerpt": "A first shape blockout in Houdini: two burst sources, a cached Pyro simulation, and a viewport flipbook.",
+          "blocks": [
+            {
+              "type": "heading",
+              "text": "Blocking out the shape"
+            },
+            {
+              "type": "paragraph",
+              "text": "Following the reference research, I started with the broad shape in Houdini. At this stage, I am judging the outward expansion, the silhouette, and the separation between the blue outer volume and the purple center."
+            },
+            {
+              "type": "video",
+              "src": "/assets/videos/blog/magic-crystal-overload/post-002/pyro-test-02-flipbook.mp4",
+              "mimeType": "video/mp4",
+              "poster": "blog/magic-crystal-overload/post-002/pyro-test-02-poster.jpg",
+              "width": 1920,
+              "height": 1080,
+              "caption": "Pyro Test 02. Native Houdini viewport flipbook: 120 frames at 24 fps, 1920 x 1080.",
+              "credit": "Tao Luo. Houdini 22 viewport preview.",
+              "sourceUrl": "/assets/videos/blog/magic-crystal-overload/post-002/pyro-test-02-flipbook.mp4",
+              "sourceLabel": "Open flipbook",
+              "title": "Crystal Overload Pyro Test 02 viewport flipbook"
+            },
+            {
+              "type": "heading",
+              "text": "Node setup"
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-002/pyro-test-02-nodes.jpg",
+              "width": 1050,
+              "height": 1510,
+              "alt": "The actual Houdini SOP network: two Pyro Burst Source branches merge into Volume Rasterize Attributes, a Pyro Solver, File Cache, and volume appearance nodes.",
+              "caption": "The current Houdini SOP network, captured from the Pyro Test 02 scene.",
+              "credit": "Tao Luo. Houdini 22.0.368."
+            },
+            {
+              "type": "paragraph",
+              "text": "The setup starts with two burst sources: a blue outer layer and a slower inner layer that appears slightly later. After adjusting their velocity and color, I merge the sources, rasterize their attributes into volume fields, and feed those fields into the Pyro Solver."
+            },
+            {
+              "type": "paragraph",
+              "text": "I cache the simulation before adjusting the density, color, and viewport emission. Keeping those appearance adjustments after the cache lets me compare looks without rerunning the fluid simulation each time."
+            },
+            {
+              "type": "heading",
+              "text": "What I want to improve"
+            },
+            {
+              "type": "paragraph",
+              "text": "The overall expansion is present, but the center still reads quite full and the silhouette is softer than the reference. I want to improve the separation of the layers, make the outer wisps more distinct, and tighten the timing before bringing the effect into the crystal scene."
+            }
+          ]
         }
       ]
     }
