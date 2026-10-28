@@ -54,7 +54,7 @@ for (const post of data.posts) {
         if (block.src.startsWith('/')) assert.ok(fs.existsSync(path.join(root, block.src.slice(1))), `Missing article video: ${block.src}`);
         assert.ok(block.title?.trim(), 'Article videos need an accessible title');
         assert.ok(fs.existsSync(path.join(root, 'assets/images', block.poster)), `Missing video poster: ${block.poster}`);
-        assert.ok(block.credit?.trim() && block.sourceUrl, 'Article videos need attribution and a source link');
+        if (block.src.startsWith('https://')) assert.ok(block.credit?.trim() && block.sourceUrl, 'External article videos need attribution and a source link');
       }
       if (block.type === 'youtube') {
         assert.match(block.videoId, /^[A-Za-z0-9_-]{11}$/, 'Invalid YouTube video id');

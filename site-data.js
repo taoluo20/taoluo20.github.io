@@ -462,6 +462,13 @@ window.PORTFOLIO = {
           "excerpt": "A step-by-step Houdini Pyro test: two source layers, noise, simulation, and the final Pyro Bake Volume preview.",
           "blocks": [
             {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-002/pyro-node-overview.jpg",
+              "width": 1050,
+              "height": 1510,
+              "alt": "Full Houdini SOP network overview, from the two Pyro Burst Sources through the simulation and volume appearance nodes."
+            },
+            {
               "type": "heading",
               "text": "Two source layers"
             },
@@ -470,9 +477,7 @@ window.PORTFOLIO = {
               "image": "blog/magic-crystal-overload/post-002/pyro-sources.jpg",
               "width": 1050,
               "height": 150,
-              "alt": "The two Pyro Burst Source nodes in the actual Houdini network.",
-              "credit": "Tao Luo. Houdini 22.",
-              "caption": ""
+              "alt": "The two Pyro Burst Source nodes in the actual Houdini network."
             },
             {
               "type": "paragraph",
@@ -487,9 +492,7 @@ window.PORTFOLIO = {
               "image": "blog/magic-crystal-overload/post-002/source-noise.jpg",
               "width": 1050,
               "height": 150,
-              "alt": "The two source Attribute Wrangles in the Houdini network.",
-              "credit": "Tao Luo. Houdini 22.",
-              "caption": ""
+              "alt": "The two source Attribute Wrangles in the Houdini network."
             },
             {
               "type": "paragraph",
@@ -504,9 +507,7 @@ window.PORTFOLIO = {
               "image": "blog/magic-crystal-overload/post-002/attribute-delete.jpg",
               "width": 1050,
               "height": 190,
-              "alt": "Attribute Delete nodes on both source branches.",
-              "credit": "Tao Luo. Houdini 22.",
-              "caption": ""
+              "alt": "Attribute Delete nodes on both source branches."
             },
             {
               "type": "paragraph",
@@ -524,11 +525,7 @@ window.PORTFOLIO = {
               "width": 1920,
               "height": 1080,
               "title": "Merge — Crystal Overload",
-              "label": "Merge viewport flipbook",
-              "caption": "",
-              "credit": "Tao Luo. Houdini 22 viewport flipbook. 120 frames at 24 fps.",
-              "sourceUrl": "/assets/videos/blog/magic-crystal-overload/post-002/merge1.mp4",
-              "sourceLabel": "Open video"
+              "label": "Merge viewport flipbook"
             },
             {
               "type": "paragraph",
@@ -543,13 +540,7 @@ window.PORTFOLIO = {
               "image": "blog/magic-crystal-overload/post-002/volume-rasterize.jpg",
               "width": 1920,
               "height": 1080,
-              "alt": "Rasterized source volume at frame 4.",
-              "credit": "Tao Luo. Houdini 22.",
-              "caption": ""
-            },
-            {
-              "type": "paragraph",
-              "text": "Volume Rasterize Attributes converts the source-point attributes into volume fields that the solver can read."
+              "alt": "Rasterized source volume at frame 4."
             },
             {
               "type": "heading",
@@ -563,32 +554,7 @@ window.PORTFOLIO = {
               "width": 1920,
               "height": 1080,
               "title": "Pyro Solver — Crystal Overload",
-              "label": "Pyro Solver viewport flipbook",
-              "caption": "",
-              "credit": "Tao Luo. Houdini 22 viewport flipbook. 120 frames at 24 fps.",
-              "sourceUrl": "/assets/videos/blog/magic-crystal-overload/post-002/pyrosolver1.mp4",
-              "sourceLabel": "Open video"
-            },
-            {
-              "type": "paragraph",
-              "text": "The Pyro Solver evolves the volume fields over time, creating the outward expansion, rolling motion, and dissipation."
-            },
-            {
-              "type": "heading",
-              "text": "File Cache"
-            },
-            {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/post-002/file-cache.jpg",
-              "width": 1050,
-              "height": 190,
-              "alt": "The File Cache node and its frame-numbered simulation path.",
-              "credit": "Tao Luo. Houdini 22.",
-              "caption": ""
-            },
-            {
-              "type": "paragraph",
-              "text": "File Cache saves the simulation so I can adjust the look without solving it again."
+              "label": "Pyro Solver viewport flipbook"
             },
             {
               "type": "heading",
@@ -599,9 +565,7 @@ window.PORTFOLIO = {
               "image": "blog/magic-crystal-overload/post-002/volume-wrangle.jpg",
               "width": 1920,
               "height": 1080,
-              "alt": "The cached volume after its color and central density adjustment.",
-              "credit": "Tao Luo. Houdini 22.",
-              "caption": ""
+              "alt": "The cached volume after its color and central density adjustment."
             },
             {
               "type": "paragraph",
@@ -609,7 +573,7 @@ window.PORTFOLIO = {
             },
             {
               "type": "heading",
-              "text": "Pyro Bake Volume"
+              "text": "Current Progress"
             },
             {
               "type": "video",
@@ -618,16 +582,20 @@ window.PORTFOLIO = {
               "poster": "blog/magic-crystal-overload/post-002/pyrobakevolume1-poster.jpg",
               "width": 1920,
               "height": 1080,
-              "title": "Pyro Bake Volume — Crystal Overload",
-              "label": "Pyro Bake Volume viewport flipbook",
-              "caption": "",
-              "credit": "Tao Luo. Houdini 22 viewport flipbook. 120 frames at 24 fps.",
-              "sourceUrl": "/assets/videos/blog/magic-crystal-overload/post-002/pyrobakevolume1.mp4",
-              "sourceLabel": "Open video"
+              "title": "Current Progress — Crystal Overload",
+              "label": "Current Progress viewport preview"
             },
             {
               "type": "paragraph",
               "text": "Pyro Bake Volume controls the smoke density, emission, and volume material after the simulation. I use its output directly for the final preview."
+            },
+            {
+              "type": "heading",
+              "text": "Personal reflection"
+            },
+            {
+              "type": "paragraph",
+              "text": "In the next iteration, I want to emphasize the banded contours and make the layers more distinct. I can develop the effect further by referring to tutorial videos."
             }
           ]
         }
