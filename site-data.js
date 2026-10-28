@@ -457,59 +457,177 @@ window.PORTFOLIO = {
           "id": "post-002",
           "title": "Shape Blockout & Pyro Test",
           "publishedAt": "2026-10-26",
-          "image": "blog/magic-crystal-overload/post-002/pyro-test-02-poster.jpg",
-          "imageAlt": "A blue expanding volume surrounds a bright purple center in the Houdini Pyro test.",
-          "excerpt": "A first shape blockout in Houdini: two burst sources, a cached Pyro simulation, and a viewport flipbook.",
+          "image": "blog/magic-crystal-overload/post-002/pyrobakevolume1-poster.jpg",
+          "imageAlt": "The blue volume at the selected Pyro Bake Volume output.",
+          "excerpt": "A step-by-step Houdini Pyro test: two source layers, noise, simulation, and the final Pyro Bake Volume preview.",
           "blocks": [
             {
               "type": "heading",
-              "text": "Blocking out the shape"
-            },
-            {
-              "type": "paragraph",
-              "text": "Following the reference research, I started with the broad shape in Houdini. At this stage, I am judging the outward expansion, the silhouette, and the separation between the blue outer volume and the purple center."
-            },
-            {
-              "type": "video",
-              "src": "/assets/videos/blog/magic-crystal-overload/post-002/pyro-test-02-flipbook.mp4",
-              "mimeType": "video/mp4",
-              "poster": "blog/magic-crystal-overload/post-002/pyro-test-02-poster.jpg",
-              "width": 1920,
-              "height": 1080,
-              "caption": "Pyro Test 02. Native Houdini viewport flipbook: 120 frames at 24 fps, 1920 x 1080.",
-              "credit": "Tao Luo. Houdini 22 viewport preview.",
-              "sourceUrl": "/assets/videos/blog/magic-crystal-overload/post-002/pyro-test-02-flipbook.mp4",
-              "sourceLabel": "Open flipbook",
-              "title": "Crystal Overload Pyro Test 02 viewport flipbook"
-            },
-            {
-              "type": "heading",
-              "text": "Node setup"
+              "text": "Two source layers"
             },
             {
               "type": "image",
-              "image": "blog/magic-crystal-overload/post-002/pyro-test-02-nodes.jpg",
+              "image": "blog/magic-crystal-overload/post-002/pyro-sources.jpg",
               "width": 1050,
-              "height": 1510,
-              "alt": "The actual Houdini SOP network: two Pyro Burst Source branches merge into Volume Rasterize Attributes, a Pyro Solver, File Cache, and volume appearance nodes.",
-              "caption": "The current Houdini SOP network, captured from the Pyro Test 02 scene.",
-              "credit": "Tao Luo. Houdini 22.0.368."
+              "height": 150,
+              "alt": "The two Pyro Burst Source nodes in the actual Houdini network.",
+              "credit": "Tao Luo. Houdini 22.",
+              "caption": ""
             },
             {
               "type": "paragraph",
-              "text": "The setup starts with two burst sources: a blue outer layer and a slower inner layer that appears slightly later. After adjusting their velocity and color, I merge the sources, rasterize their attributes into volume fields, and feed those fields into the Pyro Solver."
-            },
-            {
-              "type": "paragraph",
-              "text": "I cache the simulation before adjusting the density, color, and viewport emission. Keeping those appearance adjustments after the cache lets me compare looks without rerunning the fluid simulation each time."
+              "text": "I used two Pyro Burst Sources because the reference clearly shows two distinct layers."
             },
             {
               "type": "heading",
-              "text": "What I want to improve"
+              "text": "Source noise"
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-002/source-noise.jpg",
+              "width": 1050,
+              "height": 150,
+              "alt": "The two source Attribute Wrangles in the Houdini network.",
+              "credit": "Tao Luo. Houdini 22.",
+              "caption": ""
             },
             {
               "type": "paragraph",
-              "text": "The overall expansion is present, but the center still reads quite full and the silhouette is softer than the reference. I want to improve the separation of the layers, make the outer wisps more distinct, and tighten the timing before bringing the effect into the crystal scene."
+              "text": "I added a small amount of noise to the source density and velocity to make the burst less uniform."
+            },
+            {
+              "type": "heading",
+              "text": "Attribute Delete"
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-002/attribute-delete.jpg",
+              "width": 1050,
+              "height": 190,
+              "alt": "Attribute Delete nodes on both source branches.",
+              "credit": "Tao Luo. Houdini 22.",
+              "caption": ""
+            },
+            {
+              "type": "paragraph",
+              "text": "Attribute Delete keeps the attributes needed for the simulation and removes the rest so both source branches stay consistent."
+            },
+            {
+              "type": "heading",
+              "text": "Merge"
+            },
+            {
+              "type": "video",
+              "src": "/assets/videos/blog/magic-crystal-overload/post-002/merge1.mp4",
+              "mimeType": "video/mp4",
+              "poster": "blog/magic-crystal-overload/post-002/merge1-poster.jpg",
+              "width": 1920,
+              "height": 1080,
+              "title": "Merge — Crystal Overload",
+              "label": "Merge viewport flipbook",
+              "caption": "",
+              "credit": "Tao Luo. Houdini 22 viewport flipbook. 120 frames at 24 fps.",
+              "sourceUrl": "/assets/videos/blog/magic-crystal-overload/post-002/merge1.mp4",
+              "sourceLabel": "Open video"
+            },
+            {
+              "type": "paragraph",
+              "text": "Merge combines the two source branches before rasterization; the points appear only during the short emission period."
+            },
+            {
+              "type": "heading",
+              "text": "Volume Rasterize Attributes"
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-002/volume-rasterize.jpg",
+              "width": 1920,
+              "height": 1080,
+              "alt": "Rasterized source volume at frame 4.",
+              "credit": "Tao Luo. Houdini 22.",
+              "caption": ""
+            },
+            {
+              "type": "paragraph",
+              "text": "Volume Rasterize Attributes converts the source-point attributes into volume fields that the solver can read."
+            },
+            {
+              "type": "heading",
+              "text": "Pyro Solver"
+            },
+            {
+              "type": "video",
+              "src": "/assets/videos/blog/magic-crystal-overload/post-002/pyrosolver1.mp4",
+              "mimeType": "video/mp4",
+              "poster": "blog/magic-crystal-overload/post-002/pyrosolver1-poster.jpg",
+              "width": 1920,
+              "height": 1080,
+              "title": "Pyro Solver — Crystal Overload",
+              "label": "Pyro Solver viewport flipbook",
+              "caption": "",
+              "credit": "Tao Luo. Houdini 22 viewport flipbook. 120 frames at 24 fps.",
+              "sourceUrl": "/assets/videos/blog/magic-crystal-overload/post-002/pyrosolver1.mp4",
+              "sourceLabel": "Open video"
+            },
+            {
+              "type": "paragraph",
+              "text": "The Pyro Solver evolves the volume fields over time, creating the outward expansion, rolling motion, and dissipation."
+            },
+            {
+              "type": "heading",
+              "text": "File Cache"
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-002/file-cache.jpg",
+              "width": 1050,
+              "height": 190,
+              "alt": "The File Cache node and its frame-numbered simulation path.",
+              "credit": "Tao Luo. Houdini 22.",
+              "caption": ""
+            },
+            {
+              "type": "paragraph",
+              "text": "File Cache saves the simulation so I can adjust the look without solving it again."
+            },
+            {
+              "type": "heading",
+              "text": "Volume Wrangle"
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-002/volume-wrangle.jpg",
+              "width": 1920,
+              "height": 1080,
+              "alt": "The cached volume after its color and central density adjustment.",
+              "credit": "Tao Luo. Houdini 22.",
+              "caption": ""
+            },
+            {
+              "type": "paragraph",
+              "text": "Volume Wrangle strengthens the color separation and reduces density near the center for a thinner core."
+            },
+            {
+              "type": "heading",
+              "text": "Pyro Bake Volume"
+            },
+            {
+              "type": "video",
+              "src": "/assets/videos/blog/magic-crystal-overload/post-002/pyrobakevolume1.mp4",
+              "mimeType": "video/mp4",
+              "poster": "blog/magic-crystal-overload/post-002/pyrobakevolume1-poster.jpg",
+              "width": 1920,
+              "height": 1080,
+              "title": "Pyro Bake Volume — Crystal Overload",
+              "label": "Pyro Bake Volume viewport flipbook",
+              "caption": "",
+              "credit": "Tao Luo. Houdini 22 viewport flipbook. 120 frames at 24 fps.",
+              "sourceUrl": "/assets/videos/blog/magic-crystal-overload/post-002/pyrobakevolume1.mp4",
+              "sourceLabel": "Open video"
+            },
+            {
+              "type": "paragraph",
+              "text": "Pyro Bake Volume controls the smoke density, emission, and volume material after the simulation. I use its output directly for the final preview."
             }
           ]
         }
