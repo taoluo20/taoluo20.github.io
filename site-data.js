@@ -233,15 +233,70 @@ window.PORTFOLIO = {
       id: 'magic-crystal-overload',
       title: 'Magic Crystal Overload',
       category: 'SCAD',
-      image: 'blog-wip.svg',
-      excerpt: 'A project journal. Notes, experiments, and progress — coming soon.',
+      image: 'blog/magic-crystal-overload/post-001/nasa-supernova-still.jpg',
+      imageAlt: 'A blue and violet supernova cloud expanding against dark space.',
+      excerpt: 'A project journal exploring a magical crystal explosion, Pyro, volume, light, and timing.',
       // One card is a project; entries become numbered post cards in reading order.
       entries: [
         {
           id: 'post-001',
           aliases: ['introduction'],
-          image: 'blog-wip.svg',
-          blocks: []
+          image: 'blog/magic-crystal-overload/post-001/nasa-supernova-still.jpg',
+          imageAlt: 'A blue and violet supernova cloud expanding against dark space.',
+          excerpt: 'Starting with a NASA supernova reference to explore a magical crystal explosion, Pyro, volume, light, and timing.',
+          blocks: [
+            { type: 'heading', text: 'Why this project?' },
+            {
+              type: 'paragraph',
+              text: "For this project, I want to create a magical crystal explosion. I am interested in the moment when a glowing crystal releases its energy, and how that energy could expand into a cloud of light and volume. NASA's supernova animation gave me a starting point for developing that idea."
+            },
+            { type: 'heading', text: 'A reference from NASA' },
+            {
+              type: 'paragraph',
+              text: "I found this animation on NASA's Scientific Visualization Studio. It shows a supernova explosion and an expanding cloud of debris, with a pulsar appearing at the center as the brightness fades. The expanding shape and luminous detail are what first caught my attention."
+            },
+            {
+              type: 'paragraph',
+              children: [{ text: 'Supernova explosion animation, with & without pulsar - NASA SVS', href: 'https://svs.gsfc.nasa.gov/20413/' }]
+            },
+            {
+              type: 'video',
+              src: 'https://svs.gsfc.nasa.gov/vis/a020000/a020400/a020413/SN_HQ_Full_H264_V001.mp4',
+              poster: 'blog/magic-crystal-overload/post-001/nasa-supernova-still.jpg',
+              width: 3840,
+              height: 2160,
+              title: 'Original NASA supernova animation',
+              caption: 'Original NASA animation at its published speed.',
+              credit: "NASA's Goddard Space Flight Center Conceptual Image Lab. Animation: Jonathan North (eMITS). Science writer: Francis Reddy (University of Maryland College Park).",
+              sourceUrl: 'https://svs.gsfc.nasa.gov/20413/',
+              sourceLabel: 'NASA SVS / Credits'
+            },
+            {
+              type: 'image',
+              image: 'blog/magic-crystal-overload/post-001/nasa-supernova-still.jpg',
+              width: 1024,
+              height: 576,
+              alt: 'A blue and violet supernova cloud with a textured, expanding outer edge against dark space.',
+              caption: 'A still from the same NASA reference, showing the expanding cloud without the central pulsar.',
+              credit: "NASA's Goddard Space Flight Center Conceptual Image Lab. Animation: Jonathan North (eMITS). Science writer: Francis Reddy (University of Maryland College Park).",
+              sourceUrl: 'https://svs.gsfc.nasa.gov/20413/',
+              sourceLabel: 'NASA SVS / Credits'
+            },
+            { type: 'heading', text: 'Pyro, volume, and a glowing crystal' },
+            {
+              type: 'paragraph',
+              text: 'At this stage, I think the project will mainly involve Pyro and volumetric work in Houdini. The shapes in this reference make me think about an expanding volume, its internal detail, and the balance between a bright center and a softer outer edge. Those are the qualities I want to explore in my effect.'
+            },
+            {
+              type: 'paragraph',
+              text: 'I can imagine this working as a visual reference for a magical crystal overloading and exploding. The burst of light could come from inside the crystal and spread outward into a luminous cloud. In a nighttime setting, I think the glow would look especially striking against the darkness and could illuminate the space around the crystal.'
+            },
+            { type: 'heading', text: 'Finding the right timing' },
+            {
+              type: 'paragraph',
+              text: 'The original animation develops too slowly for the explosion I have in mind. Speeding it up should bring it closer to the feeling of a magical crystal releasing its energy. I am exploring a faster version of the reference to find a rhythm that feels right for the effect.'
+            }
+          ]
         },
         {
           id: 'post-002',

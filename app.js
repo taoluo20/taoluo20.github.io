@@ -226,6 +226,28 @@
     return `${blogNavigation(category)}<section class="journal-index journal-project-index"><a class="journal-breadcrumb journal-project-back meta" href="/blog/?category=${category}">${backArrow} ${escape(post.category)} / PROJECTS</a><header class="journal-index-heading journal-project-heading"><div><span class="journal-kicker meta">PROJECT JOURNAL</span><h1>${escape(post.title)}<span aria-hidden="true">.</span></h1></div><p class="meta">${String(post.entries.length).padStart(2, '0')} POSTS</p></header><div class="blog-grid journal-grid journal-post-grid">${post.entries.map(entry => journalCard(post, entry)).join('')}</div></section>`;
   }
 
+  function journalInline(content) {
+    if (!Array.isArray(content)) return escape(content);
+    return content.map(part => {
+      const text = escape(part.text);
+      if (!part.href || !/^(https:\/\/|\/(?!\/))/.test(part.href)) return text;
+      return `<a href="${escape(part.href)}"${part.href.startsWith('https://') ? ' target="_blank" rel="noopener noreferrer"' : ''}>${text}</a>`;
+    }).join('');
+  }
+
+  function journalBlock(block, index) {
+    if (block.type === 'heading') return `<h2>${escape(block.text)}</h2>`;
+    if (block.type === 'paragraph') return `<p>${journalInline(block.children || block.text)}</p>`;
+    if (!['image', 'video'].includes(block.type)) return '';
+    const captionId = `journal-media-${index}`;
+    const hasCaption = block.caption || block.credit || block.sourceUrl;
+    const caption = hasCaption ? `<figcaption id="${captionId}">${block.caption ? `<span>${journalInline(block.caption)}</span>` : ''}${block.credit ? `<span class="journal-credit">${escape(block.credit)}</span>` : ''}${block.sourceUrl ? `<a href="${escape(block.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escape(block.sourceLabel || 'View original source')} ${arrow}</a>` : ''}</figcaption>` : '';
+    const media = block.type === 'video'
+      ? `<video controls playsinline preload="metadata" poster="${asset(block.poster)}" width="${block.width || 1920}" height="${block.height || 1080}" aria-label="${escape(block.title)}"${hasCaption ? ` aria-describedby="${captionId}"` : ''}><source src="${escape(block.src)}" type="video/mp4" /><a href="${escape(block.src)}">Open the original video</a></video>`
+      : `<img src="${asset(block.image)}" alt="${escape(block.alt)}" width="${block.width || 1600}" height="${block.height || 900}" loading="lazy" decoding="async" />`;
+    return `<figure class="journal-figure${block.size === 'wide' ? ' journal-figure-wide' : ''}">${media}${caption}</figure>`;
+  }
+
   function articlePage(post, entry) {
     const category = blogCategory(post.category);
     const entryIndex = post.entries.indexOf(entry);
@@ -235,11 +257,7 @@
     const step = (target, direction) => target
       ? `<a class="journal-step journal-step-${direction}" href="${entryUrl(target)}" rel="${direction === 'previous' ? 'prev' : 'next'}"><span class="journal-step-label">${direction === 'previous' ? backArrow : arrow}<span>${direction === 'previous' ? 'Previous post' : 'Next post'}</span></span><span class="journal-step-title">${escape(journalPostTitle(post, target))}</span></a>`
       : `<button class="journal-step journal-step-${direction}" type="button" disabled><span class="journal-step-label">${direction === 'previous' ? backArrow : arrow}<span>${direction === 'previous' ? 'Previous post' : 'Next post'}</span></span><span class="journal-step-title">${direction === 'previous' ? 'You’re at the beginning' : 'More to come'}</span></button>`;
-    const blocks = entry.blocks.map(block => {
-      if (block.type === 'image') return `<figure class="journal-figure"><img src="${asset(block.image)}" alt="${escape(block.alt || '')}" width="1600" height="1000" />${block.caption ? `<figcaption>${escape(block.caption)}</figcaption>` : ''}</figure>`;
-      if (block.type === 'heading') return `<h2>${escape(block.text)}</h2>`;
-      return `<p>${escape(block.text)}</p>`;
-    }).join('');
+    const blocks = entry.blocks.map(journalBlock).join('');
     return `${blogNavigation(category)}<section class="journal-reading"><article class="journal-article"><header class="journal-article-heading"><a class="journal-breadcrumb meta" href="/blog/${escape(post.id)}/">${backArrow} ${escape(post.category)} / ${escape(post.title)}</a><h1>${escape(post.title)} <span class="journal-article-post-number">${journalPostNumber(post, entry)}</span></h1><div class="journal-byline"><span><span class="brand-dot" aria-hidden="true"></span>Tao Luo</span><span class="meta">PROJECT JOURNAL</span></div></header><div class="journal-body">${blocks}</div><nav class="journal-pagination" aria-label="Journal posts">${step(previous, 'previous')}<a class="journal-return" href="/blog/${escape(post.id)}/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h4v4H3zM10 3h4v4h-4zM17 3h4v4h-4zM3 10h4v4H3zM10 10h4v4h-4zM17 10h4v4h-4zM3 17h4v4H3zM10 17h4v4h-4zM17 17h4v4h-4z"/></svg><span>Back</span></a>${step(next, 'next')}</nav></article></section>`;
   }
 

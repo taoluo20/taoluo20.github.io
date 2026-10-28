@@ -4,7 +4,9 @@ GitHub Pages 发布专用目录。首页、DEMO、VFX、About Me、Contact 统�
 
 首次访问、没有已保存的主题时，只读取一次浏览器的深浅色偏好并立即保存。之后打开或刷新均沿用保存的主题，不再自动跟随浏览器变化；手动切换会更新保存的选择。已有主题记录的访客继续使用原来的选择。
 
-Blog 分为项目列表 → 项目文章网格 → 单篇文章三层，均支持黑白主题。导航下面靠右放 Personal / SCAD 分类；项目和文章网格桌面每行三张卡片。目前 SCAD 下有 **Magic Crystal Overload**，里面有两张白底 WIP 封面的空白文章卡片，自动编号为 **post #001** 和 **post #002**，Personal 暂无内容。单篇文章底部为上一篇 / 返回当前项目 / 下一篇。
+Blog 分为项目列表 → 项目文章网格 → 单篇文章三层，均支持黑白主题。导航下面靠右放 Personal / SCAD 分类；项目和文章网格桌面每行三张卡片。目前 SCAD 下有 **Magic Crystal Overload**，**post #001** 已发布项目动机与 NASA 超新星参考，**post #002** 保留 WIP 封面和空白正文，Personal 暂无内容。单篇文章底部为上一篇 / 返回当前项目 / 下一篇。
+
+文章区域最大 1080px，段落最大 1000px，图片和视频默认最大 800px 居中，正文宽度独立于媒体。001 使用 NASA 官方 MP4 原生播放器，无自动播放，带本地 poster、来源链接和完整署名；still 同时用于项目及 001 封面。加速参考待实际文件提供后再添加。
 
 Back to top 位于页脚上方右侧，使用随黑白主题变化的弯折渐变箭头。页脚右下角的 Web info 打开网站信息面板，显示作者、网址、方向、托管方式、技术及更新时间。`site-info.json` 的更新时间由发布脚本自动写入（UTC）。没有文件改动时不修改日期，`-CheckOnly` 也不会修改日期。
 
@@ -60,10 +62,13 @@ npm.cmd run dev
 - `category` 设为 `Personal` 或 `SCAD`；`image` 是封面文件名，图片放在 `assets/images/`。
 - `entries` 是该项目的文章卡片，按阅读顺序排列；显示名称自动组合为项目名 + `post #001`、`post #002`，后续继续编号，系统自动连接上一篇 / 下一篇。
 - 每篇文章用固定 `id`（如 `post-001`）作为链接，`image` 可单独设置封面；未设置时沿用项目封面。
-- 每篇的 `blocks` 按从上到下的顺序添加：`image`、`heading`、`paragraph`；空数组 `[]` 表示暂时留空。
+- 每篇的 `blocks` 按从上到下的顺序添加：`image`、`video`、`heading`、`paragraph`；空数组 `[]` 表示暂时留空。
+- `paragraph` 可用 `text` 字符串，或 `children: [{ text, href? }]` 添加真正的链接；只接受 HTTPS 或站内绝对路径，不接受 HTML。
+- `image` 使用 `image`（相对 `assets/images/`）、`alt`、`width`、`height`；媒体共用 `caption`、`credit`、`sourceUrl`、`sourceLabel`。可选 `size: 'wide'` 使用完整文章宽度。
+- `video` 使用 `src`（HTTPS MP4 或站内绝对路径）、`poster`（相对 `assets/images/`）、`title`、`width`、`height`，并提供 `credit` 和 `sourceUrl`。播放器使用 `controls`、`playsinline`、`preload="metadata"`，不会自动播放。
 - 默认进入 SCAD，设置在 `blog.defaultCategory`。
 
-目前两篇正文留空，后续往 `blocks` 添加真实项目文字和图片即可。
+后续往 `blocks` 添加真实项目文字和媒体即可。001 正文交接来源在项目外部的 `VFX_428/blog/post-001/`，网页仓库只保存发布所需正文与素材，不复制本地原片路径或待办元数据。
 
 ```powershell
 npm.cmd run check

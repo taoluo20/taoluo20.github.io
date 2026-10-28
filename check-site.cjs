@@ -17,6 +17,17 @@ for (const entry of [...data.projects, ...data.photographs, ...data.posts]) {
   for (const image of [entry.image, entry.secondary].filter(Boolean)) assert.ok(fs.existsSync(path.join(root, 'assets/images', image)), `Missing image: ${image}`);
 }
 const journalIds = new Set();
+const checkJournalLink = href => {
+  assert.match(href, /^(https:\/\/|\/(?!\/))/, `Invalid article link: ${href}`);
+  if (href.startsWith('https://')) assert.equal(new URL(href).protocol, 'https:');
+};
+const checkJournalInline = content => {
+  assert.ok(typeof content === 'string' || Array.isArray(content), 'Article text must be a string or inline runs');
+  if (Array.isArray(content)) for (const part of content) {
+    assert.equal(typeof part.text, 'string');
+    if (part.href) checkJournalLink(part.href);
+  }
+};
 for (const post of data.posts) {
   assert.ok(['Personal', 'SCAD'].includes(post.category), `Unknown Blog category: ${post.category}`);
   assert.ok(!journalIds.has(post.id), `Duplicate journal: ${post.id}`);
@@ -29,8 +40,22 @@ for (const post of data.posts) {
     assert.ok(Array.isArray(entry.blocks), `Post blocks must be an array: ${entry.id}`);
     if (entry.image) assert.ok(fs.existsSync(path.join(root, 'assets/images', entry.image)), `Missing post cover: ${entry.image}`);
     for (const block of entry.blocks) {
-      assert.ok(['image', 'heading', 'paragraph'].includes(block.type), `Unsupported content block: ${block.type}`);
-      if (block.type === 'image') assert.ok(fs.existsSync(path.join(root, 'assets/images', block.image)), `Missing article image: ${block.image}`);
+      assert.ok(['image', 'video', 'heading', 'paragraph'].includes(block.type), `Unsupported content block: ${block.type}`);
+      if (block.type === 'image') {
+        assert.ok(fs.existsSync(path.join(root, 'assets/images', block.image)), `Missing article image: ${block.image}`);
+        assert.ok(block.alt?.trim(), 'Article images need descriptive alt text');
+      }
+      if (block.type === 'video') {
+        checkJournalLink(block.src);
+        if (block.src.startsWith('/')) assert.ok(fs.existsSync(path.join(root, block.src.slice(1))), `Missing article video: ${block.src}`);
+        assert.ok(block.title?.trim(), 'Article videos need an accessible title');
+        assert.ok(fs.existsSync(path.join(root, 'assets/images', block.poster)), `Missing video poster: ${block.poster}`);
+        assert.ok(block.credit?.trim() && block.sourceUrl, 'Article videos need attribution and a source link');
+      }
+      if (block.type === 'paragraph') checkJournalInline(block.children || block.text);
+      if (block.type === 'heading') assert.ok(block.text?.trim(), 'Article headings must not be empty');
+      if (block.caption) checkJournalInline(block.caption);
+      if (block.sourceUrl) checkJournalLink(block.sourceUrl);
     }
   }
 }

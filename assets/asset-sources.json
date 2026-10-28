@@ -99,5 +99,18 @@
     "sourceUrl": "https://images.unsplash.com/photo-1636144023232-a321eb581070?auto=format&fit=crop&w=1600&q=82",
     "filename": "volcano.jpg",
     "width": 1600
+  },
+  {
+    "filename": "blog/magic-crystal-overload/post-001/nasa-supernova-still.jpg",
+    "category": "Magic Crystal Overload / NASA reference",
+    "sourceUrl": "https://svs.gsfc.nasa.gov/vis/a020000/a020400/a020413/SN_8K_NoPulse_V001_Still_00000_print.jpg",
+    "pageUrl": "https://svs.gsfc.nasa.gov/20413/",
+    "credit": "NASA's Goddard Space Flight Center Conceptual Image Lab",
+    "animator": "Jonathan North (eMITS)",
+    "scienceWriter": "Francis Reddy (University of Maryland College Park)",
+    "bytes": 119617,
+    "width": 1024,
+    "height": 576,
+    "note": "Official supernova still without the central pulsar. Used as reference, article cover, and video poster."
   }
 ]
