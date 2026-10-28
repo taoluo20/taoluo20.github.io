@@ -340,9 +340,9 @@ window.PORTFOLIO = {
             },
             {
               "type": "video",
-              "src": "/assets/videos/blog/magic-crystal-overload/post-001/nasa-supernova-sped-up.mp4",
+              "src": "/assets/videos/blog/magic-crystal-overload/post-001/nasa-supernova-sped-up-600.mp4",
               "mimeType": "video/mp4",
-              "poster": "blog/magic-crystal-overload/post-001/nasa-supernova-sped-up-poster.jpg",
+              "poster": "blog/magic-crystal-overload/post-001/nasa-supernova-sped-up-600-poster.jpg",
               "width": 1920,
               "height": 1080,
               "caption": "With the timing sped up, the expanding glow feels much closer to the magical crystal explosion I have in mind.",
