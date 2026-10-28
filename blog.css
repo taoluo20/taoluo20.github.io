@@ -142,6 +142,9 @@
 /* Media has its own measure; subsequent prose uses the article's wider column. */
 .journal-body .journal-figure { width: 100%; max-width: 800px; margin: 36px auto 42px; }
 .journal-body .journal-figure-wide { max-width: 100%; }
+.journal-media-row { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); align-items: center; gap: 24px; margin: 36px 0 42px; }
+.journal-body .journal-media-row>.journal-figure { min-width: 0; max-width: none; margin: 0; }
+@media (max-width:760px) { .journal-media-row { grid-template-columns: minmax(0,1fr); gap: 20px; } }
 .journal-figure img, .journal-figure video, .journal-figure iframe { display: block; width: 100%; height: auto; border: 1px solid var(--journal-image-border); border-radius: 4px; }
 .journal-image-link { display: block; cursor: zoom-in; }
 .journal-figure iframe { aspect-ratio: 16 / 9; }

@@ -43,7 +43,13 @@ for (const post of data.posts) {
       assert.equal(new Date(`${entry.publishedAt}T00:00:00Z`).toISOString().slice(0, 10), entry.publishedAt, 'Invalid post publication date');
     }
     if (entry.image) assert.ok(fs.existsSync(path.join(root, 'assets/images', entry.image)), `Missing post cover: ${entry.image}`);
-    for (const block of entry.blocks) {
+    const blocks = entry.blocks.flatMap(block => {
+      if (block.type !== 'mediaRow') return [block];
+      assert.ok(Array.isArray(block.items) && block.items.length === 2, 'Media rows need two items');
+      assert.ok(block.items.every(item => ['image', 'video'].includes(item.type)), 'Media row items must be images or videos');
+      return block.items;
+    });
+    for (const block of blocks) {
       assert.ok(['image', 'video', 'youtube', 'heading', 'paragraph'].includes(block.type), `Unsupported content block: ${block.type}`);
       if (block.type === 'image') {
         assert.ok(fs.existsSync(path.join(root, 'assets/images', block.image)), `Missing article image: ${block.image}`);

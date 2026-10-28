@@ -242,6 +242,7 @@
   }
 
   function journalBlock(block, index) {
+    if (block.type === 'mediaRow') return `<div class="journal-media-row">${(block.items || []).map((item, itemIndex) => journalBlock(item, `${index}-${itemIndex}`)).join('')}</div>`;
     if (block.type === 'heading') return `<h2>${escape(block.text)}</h2>`;
     if (block.type === 'paragraph') return `<p>${journalInline(block.children || block.text)}</p>`;
     if (!['image', 'video', 'youtube'].includes(block.type)) return '';

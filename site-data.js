@@ -470,66 +470,33 @@ window.PORTFOLIO = {
             },
             {
               "type": "heading",
-              "text": "Two source layers"
+              "text": "Emission Source"
             },
             {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/post-002/pyro-sources.jpg",
-              "width": 1050,
-              "height": 150,
-              "alt": "The two Pyro Burst Source nodes in the actual Houdini network."
-            },
-            {
-              "type": "paragraph",
-              "text": "I used two Pyro Burst Sources because the reference clearly shows two distinct layers."
-            },
-            {
-              "type": "heading",
-              "text": "Source noise"
-            },
-            {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/post-002/source-noise.jpg",
-              "width": 1050,
-              "height": 150,
-              "alt": "The two source Attribute Wrangles in the Houdini network."
-            },
-            {
-              "type": "paragraph",
-              "text": "I added a small amount of noise to the source density and velocity to make the burst less uniform."
-            },
-            {
-              "type": "heading",
-              "text": "Attribute Delete"
-            },
-            {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/post-002/attribute-delete.jpg",
-              "width": 1050,
-              "height": 190,
-              "alt": "Attribute Delete nodes on both source branches."
+              "type": "mediaRow",
+              "items": [
+                {
+                  "type": "image",
+                  "image": "blog/magic-crystal-overload/post-002/pyro-source-network.png",
+                  "width": 969,
+                  "height": 713,
+                  "alt": "Both Pyro Burst Source branches, their source Attribute Wrangles and Attribute Delete nodes, connected to merge1."
+                },
+                {
+                  "type": "video",
+                  "src": "/assets/videos/blog/magic-crystal-overload/post-002/merge1.mp4",
+                  "mimeType": "video/mp4",
+                  "poster": "blog/magic-crystal-overload/post-002/merge1-poster.jpg",
+                  "width": 1920,
+                  "height": 1080,
+                  "title": "Emission Source — Crystal Overload",
+                  "label": "Emission Source viewport preview"
+                }
+              ]
             },
             {
               "type": "paragraph",
-              "text": "Attribute Delete keeps the attributes needed for the simulation and removes the rest so both source branches stay consistent."
-            },
-            {
-              "type": "heading",
-              "text": "Merge"
-            },
-            {
-              "type": "video",
-              "src": "/assets/videos/blog/magic-crystal-overload/post-002/merge1.mp4",
-              "mimeType": "video/mp4",
-              "poster": "blog/magic-crystal-overload/post-002/merge1-poster.jpg",
-              "width": 1920,
-              "height": 1080,
-              "title": "Merge — Crystal Overload",
-              "label": "Merge viewport flipbook"
-            },
-            {
-              "type": "paragraph",
-              "text": "Merge combines the two source branches before rasterization; the points appear only during the short emission period."
+              "text": "Two Pyro Burst Sources create the layers visible in the reference, with subtle noise added to vary the source density and velocity."
             },
             {
               "type": "heading",
@@ -591,11 +558,11 @@ window.PORTFOLIO = {
             },
             {
               "type": "heading",
-              "text": "Personal reflection"
+              "text": "Possible Further Improvements"
             },
             {
               "type": "paragraph",
-              "text": "In the next iteration, I want to emphasize the banded contours and make the layers more distinct. I can develop the effect further by referring to tutorial videos."
+              "text": "In the next iteration, I want to emphasize the banded contours, make the layers more distinct, and convey a stronger sense of scale. I can develop the effect further by referring to tutorial videos."
             }
           ]
         }
