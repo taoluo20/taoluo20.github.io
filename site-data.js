@@ -469,6 +469,10 @@ window.PORTFOLIO = {
               "alt": "Full Houdini SOP network overview, from the two Pyro Burst Sources through the simulation and volume appearance nodes."
             },
             {
+              "type": "paragraph",
+              "text": "Following the reference breakdown in the first post, I started testing the main shape in Houdini. I wanted to see how an outward burst could develop an uneven edge and a softer interior before building the full crystal scene."
+            },
+            {
               "type": "heading",
               "text": "Emission Source"
             },
@@ -496,7 +500,7 @@ window.PORTFOLIO = {
             },
             {
               "type": "paragraph",
-              "text": "Two Pyro Burst Sources create the layers visible in the reference, with subtle noise added to vary the source density and velocity."
+              "text": "I started with two Pyro Burst Sources to explore the layered shape in the reference. Subtle noise varies the source density and velocity, helping the burst expand less uniformly. I want the two layers to feel connected while still leaving a readable difference between them."
             },
             {
               "type": "heading",
@@ -513,6 +517,10 @@ window.PORTFOLIO = {
               "label": "Pyro Solver viewport flipbook"
             },
             {
+              "type": "paragraph",
+              "text": "At this stage, I am using the Pyro Solver preview to judge the overall expansion and the uneven edge of the burst. The result has the billowing movement I was looking for, but it still feels closer to colored smoke than the thinner, layered cloud in the reference. This gives me a starting point for the motion and a clearer idea of what to refine."
+            },
+            {
               "type": "heading",
               "text": "Volume Wrangle"
             },
@@ -525,7 +533,7 @@ window.PORTFOLIO = {
             },
             {
               "type": "paragraph",
-              "text": "Volume Wrangle strengthens the color separation and reduces density near the center for a thinner core."
+              "text": "After caching the simulation, I used a Volume Wrangle to strengthen the color separation and reduce density near the center. The thinner core helps the outer layer stand out, bringing the shape closer to the more transparent cloud I noticed in the reference. I can adjust this appearance on the cached volume while keeping the simulated motion."
             },
             {
               "type": "heading",
@@ -543,7 +551,7 @@ window.PORTFOLIO = {
             },
             {
               "type": "paragraph",
-              "text": "Pyro Bake Volume controls the smoke density, emission, and volume material after the simulation. I use its output directly for the final preview."
+              "text": "For the current preview, I used Pyro Bake Volume to adjust the smoke density, emission, and material. The blue glow brings the test closer to the direction I imagined for the crystal, although the overall shape still feels quite round. I will use this version as a starting point for refining the layers and silhouette."
             },
             {
               "type": "heading",
@@ -551,7 +559,7 @@ window.PORTFOLIO = {
             },
             {
               "type": "paragraph",
-              "text": "In the next iteration, I want to emphasize the banded contours, make the layers more distinct, and convey a stronger sense of scale. I can develop the effect further by referring to tutorial videos."
+              "text": "In the next iteration, I want to emphasize the banded contours, make the layers more distinct, and convey a stronger sense of scale. I would like the expanding edge to have more variation so the burst feels less like a single round cloud. I will return to the references and tutorial videos to look for ways to develop those shapes while keeping the effect controllable."
             }
           ]
         }
