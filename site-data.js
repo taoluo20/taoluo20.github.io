@@ -500,17 +500,6 @@ window.PORTFOLIO = {
             },
             {
               "type": "heading",
-              "text": "Volume Rasterize Attributes"
-            },
-            {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/post-002/volume-rasterize.jpg",
-              "width": 1920,
-              "height": 1080,
-              "alt": "Rasterized source volume at frame 4."
-            },
-            {
-              "type": "heading",
               "text": "Pyro Solver"
             },
             {
