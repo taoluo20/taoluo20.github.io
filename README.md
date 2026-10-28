@@ -49,7 +49,7 @@ npm.cmd run dev
 
 `photography.js` / `photography.css` 提供三列错落图片流、0.7 秒悬停摘要、年份筛选和单张照片详情。右侧漏斗图标展开地点筛选，可与年份组合。平板两列，手机一列。单张页有上一篇 / 下一篇 / 返回；方向键切换，Esc 返回。
 
-`photography-data.js` 从摄影目录的本地配对清单生成。当前为 22 张已匹配照片，其中 20 张有完整拍摄日期和 GPS。1283、1688 由用户确认是 2023 年，月日留空。地点使用用户确认的 Savannah、Enoshima、Kamakura、Roppongi，原始 GPS 和附近城市推断只保留在本地清单。网站数据不包含精确坐标或原片路径。
+`photography-data.js` 从摄影目录的本地配对清单生成。当前为 23 张已匹配照片，其中 21 张有完整拍摄日期和 GPS。1283、1688 由用户确认是 2023 年，月日留空。地点使用用户确认的 Savannah、Enoshima、Kamakura、Roppongi，原始 GPS 和附近城市推断只保留在本地清单。网站数据不包含精确坐标或原片路径。
 
 `node import-photographs.cjs` 从 `../../Photography/dlv/for_web/_catalog/photos.json` 导入已配对成片，在 `assets/images/photography/640/`、`1200/`、`2400/` 生成 WebP 和 JPEG 后备图，文件名及展示名统一为 `IMG_数字`，不带编辑或版本后缀。导入需要本机 Sharp，可通过 `SHARP_MODULE` 指定模块路径；不改写原片或交付成片。后续整理新照片时先更新配对清单，再导入。地点筛选名称包含国家，例如 Savannah, United States 和 Enoshima, Japan。
 

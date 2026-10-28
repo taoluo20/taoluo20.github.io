@@ -1,6 +1,64 @@
 /* Generated from the reviewed local photo catalog. No precise GPS or original file paths. */
 window.PORTFOLIO.photographs = [
   {
+    "id": "img-7469",
+    "title": "IMG_7469",
+    "alt": "Photograph IMG_7469 by Tao Luo",
+    "image": "photography/1200/IMG_7469.webp",
+    "largeImage": "photography/2400/IMG_7469.webp",
+    "jpegImage": "photography/2400/IMG_7469.jpg",
+    "sources": [
+      {
+        "file": "photography/640/IMG_7469.webp",
+        "width": 480,
+        "height": 640,
+        "bytes": 54008
+      },
+      {
+        "file": "photography/1200/IMG_7469.webp",
+        "width": 900,
+        "height": 1200,
+        "bytes": 167332
+      },
+      {
+        "file": "photography/2400/IMG_7469.webp",
+        "width": 1800,
+        "height": 2400,
+        "bytes": 665268
+      }
+    ],
+    "width": 3024,
+    "height": 4032,
+    "webWidth": 1800,
+    "webHeight": 2400,
+    "webBytes": 665268,
+    "jpegBytes": 721085,
+    "originalWidth": 4032,
+    "originalHeight": 3024,
+    "originalOrientation": 6,
+    "originalFormat": "DNG",
+    "year": 2026,
+    "date": "2026-05-15",
+    "capturedAt": "2026:05:15 17:39:45.961-04:00",
+    "timeOffset": "-04:00",
+    "location": "Savannah, Georgia, United States",
+    "locationKey": "savannah",
+    "locationLabel": "Savannah",
+    "locationConfirmed": true,
+    "country": "United States",
+    "camera": {
+      "make": "Apple",
+      "model": "iPhone 14 Pro",
+      "lens": "iPhone 14 Pro back triple camera 6.86mm f/1.78",
+      "aperture": 1.8,
+      "shutter": "1/3876",
+      "iso": 64,
+      "focalLength": "6.9 mm",
+      "focalLength35mm": "48 mm",
+      "exposureCompensation": 0
+    }
+  },
+  {
     "id": "img-7129",
     "title": "IMG_7129",
     "alt": "Photograph IMG_7129 by Tao Luo",
