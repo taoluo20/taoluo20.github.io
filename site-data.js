@@ -239,62 +239,201 @@ window.PORTFOLIO = {
       // One card is a project; entries become numbered post cards in reading order.
       entries: [
         {
-          id: 'post-001',
-          aliases: ['introduction'],
-          image: 'blog/magic-crystal-overload/post-001/nasa-supernova-still.jpg',
-          imageAlt: 'A blue and violet supernova cloud expanding against dark space.',
-          excerpt: 'Starting with a NASA supernova reference to explore a magical crystal explosion, Pyro, volume, light, and timing.',
-          blocks: [
-            { type: 'heading', text: 'Why this project?' },
+          "id": "post-001",
+          "title": "Reference & Effect Breakdown",
+          "aliases": [
+            "introduction"
+          ],
+          "image": "blog/magic-crystal-overload/post-001/nasa-supernova-still.jpg",
+          "imageAlt": "A blue and violet supernova cloud expanding against dark space.",
+          "excerpt": "References and a frame-by-frame breakdown of NASA's supernova animation, exploring Pyro, volume, light, and the timing of a magical crystal explosion.",
+          "blocks": [
             {
-              type: 'paragraph',
-              text: "For this project, I want to create a magical crystal explosion. I am interested in the moment when a glowing crystal releases its energy, and how that energy could expand into a cloud of light and volume. NASA's supernova animation gave me a starting point for developing that idea."
-            },
-            { type: 'heading', text: 'A reference from NASA' },
-            {
-              type: 'paragraph',
-              text: "I found this animation on NASA's Scientific Visualization Studio. It shows a supernova explosion and an expanding cloud of debris, with a pulsar appearing at the center as the brightness fades. The expanding shape and luminous detail are what first caught my attention."
+              "type": "heading",
+              "text": "Why this project?"
             },
             {
-              type: 'paragraph',
-              children: [{ text: 'Supernova explosion animation, with & without pulsar - NASA SVS', href: 'https://svs.gsfc.nasa.gov/20413/' }]
+              "type": "paragraph",
+              "text": "For this project, I want to create a magical crystal explosion. I am interested in the moment when a glowing crystal releases its energy, and how that energy could expand into a cloud of light and volume. NASA's supernova animation gave me a starting point for developing that idea."
             },
             {
-              type: 'video',
-              src: 'https://svs.gsfc.nasa.gov/vis/a020000/a020400/a020413/SN_HQ_Full_H264_V001.mp4',
-              poster: 'blog/magic-crystal-overload/post-001/nasa-supernova-still.jpg',
-              width: 3840,
-              height: 2160,
-              title: 'Original NASA supernova animation',
-              caption: 'Original NASA animation at its published speed.',
-              credit: "NASA's Goddard Space Flight Center Conceptual Image Lab. Animation: Jonathan North (eMITS). Science writer: Francis Reddy (University of Maryland College Park).",
-              sourceUrl: 'https://svs.gsfc.nasa.gov/20413/',
-              sourceLabel: 'NASA SVS / Credits'
+              "type": "heading",
+              "text": "A reference from NASA"
             },
             {
-              type: 'image',
-              image: 'blog/magic-crystal-overload/post-001/nasa-supernova-still.jpg',
-              width: 1024,
-              height: 576,
-              alt: 'A blue and violet supernova cloud with a textured, expanding outer edge against dark space.',
-              caption: 'A still from the same NASA reference, showing the expanding cloud without the central pulsar.',
-              credit: "NASA's Goddard Space Flight Center Conceptual Image Lab. Animation: Jonathan North (eMITS). Science writer: Francis Reddy (University of Maryland College Park).",
-              sourceUrl: 'https://svs.gsfc.nasa.gov/20413/',
-              sourceLabel: 'NASA SVS / Credits'
-            },
-            { type: 'heading', text: 'Pyro, volume, and a glowing crystal' },
-            {
-              type: 'paragraph',
-              text: 'At this stage, I think the project will mainly involve Pyro and volumetric work in Houdini. The shapes in this reference make me think about an expanding volume, its internal detail, and the balance between a bright center and a softer outer edge. Those are the qualities I want to explore in my effect.'
+              "type": "paragraph",
+              "text": "I found this animation on NASA's Scientific Visualization Studio. It shows a supernova explosion and an expanding cloud of debris, with a pulsar appearing at the center as the brightness fades. The expanding shape and luminous detail are what first caught my attention."
             },
             {
-              type: 'paragraph',
-              text: 'I can imagine this working as a visual reference for a magical crystal overloading and exploding. The burst of light could come from inside the crystal and spread outward into a luminous cloud. In a nighttime setting, I think the glow would look especially striking against the darkness and could illuminate the space around the crystal.'
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "Supernova explosion animation, with & without pulsar - NASA SVS",
+                  "href": "https://svs.gsfc.nasa.gov/20413/"
+                }
+              ]
             },
-            { type: 'heading', text: 'Finding the right timing' },
             {
-              type: 'paragraph',
-              text: 'The original animation develops too slowly for the explosion I have in mind. Speeding it up should bring it closer to the feeling of a magical crystal releasing its energy. I am exploring a faster version of the reference to find a rhythm that feels right for the effect.'
+              "type": "video",
+              "src": "https://svs.gsfc.nasa.gov/vis/a020000/a020400/a020413/SN_HQ_Full_H264_V001.mp4",
+              "mimeType": "video/mp4",
+              "poster": "blog/magic-crystal-overload/post-001/nasa-supernova-still.jpg",
+              "width": 3840,
+              "height": 2160,
+              "caption": "Original NASA animation at its published speed.",
+              "credit": "NASA's Goddard Space Flight Center Conceptual Image Lab",
+              "sourceUrl": "https://svs.gsfc.nasa.gov/20413/",
+              "title": "Original NASA supernova animation"
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-001/nasa-supernova-still.jpg",
+              "width": 1024,
+              "height": 576,
+              "alt": "A blue and violet supernova cloud with a textured, expanding outer edge against dark space.",
+              "caption": "A still from the same NASA reference, showing the expanding cloud without the central pulsar.",
+              "credit": "NASA's Goddard Space Flight Center Conceptual Image Lab",
+              "sourceUrl": "https://svs.gsfc.nasa.gov/20413/"
+            },
+            {
+              "type": "heading",
+              "text": "Reading the reference over time"
+            },
+            {
+              "type": "paragraph",
+              "text": "I stepped through the original video to see how the effect changes. The progression I find useful is the shift from a concentrated flash to a billowing volume, and then to a thinner, more transparent cloud. The timestamps below refer to the original-speed video."
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-001/nasa-supernova-original-contact-sheet.jpg",
+              "width": 1176,
+              "height": 1276,
+              "alt": "Fifteen timestamped frames show the original animation progressing from a small light at 00:00 through a white flash to an expanded blue-violet cloud at 00:40.",
+              "caption": "Original-speed frame sequence, 00:00-00:40. A similar frame sequence can be assembled in DaVinci Resolve to compare how the effect changes over time.",
+              "credit": "NASA's Goddard Space Flight Center Conceptual Image Lab",
+              "sourceUrl": "https://svs.gsfc.nasa.gov/20413/"
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-001/nasa-supernova-key-01.jpg",
+              "width": 1280,
+              "height": 720,
+              "timeSeconds": 6,
+              "alt": "At 00:06, a small white-cyan light and soft blue halo sit in a dark star field.",
+              "caption": "00:06 / Buildup. Frame from the original NASA animation.",
+              "credit": "NASA's Goddard Space Flight Center Conceptual Image Lab",
+              "sourceUrl": "https://svs.gsfc.nasa.gov/20413/"
+            },
+            {
+              "type": "paragraph",
+              "text": "For roughly the first six seconds, the source stays small before the halo begins to grow. At 00:06, the center has become brighter, but there is little visible cloud structure. For my crystal, this suggests a short buildup of internal light before the release."
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-001/nasa-supernova-key-02.jpg",
+              "width": 1280,
+              "height": 720,
+              "timeSeconds": 9,
+              "alt": "At 00:09, a white flash and cyan-blue glow obscure most of the internal structure.",
+              "caption": "00:09 / The flash. Frame from the original NASA animation.",
+              "credit": "NASA's Goddard Space Flight Center Conceptual Image Lab",
+              "sourceUrl": "https://svs.gsfc.nasa.gov/20413/"
+            },
+            {
+              "type": "paragraph",
+              "text": "By 00:09, the white center and cyan glow dominate the image. Fine detail is difficult to read at this point; the change is mostly about light and scale. This is a useful reference for the initial flash of the crystal explosion."
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-001/nasa-supernova-key-03.jpg",
+              "width": 1280,
+              "height": 720,
+              "timeSeconds": 15,
+              "alt": "At 00:15, a compact white luminous volume has developed an uneven, lobed outline.",
+              "caption": "00:15 / A dense, uneven burst. Frame from the original NASA animation.",
+              "credit": "NASA's Goddard Space Flight Center Conceptual Image Lab",
+              "sourceUrl": "https://svs.gsfc.nasa.gov/20413/"
+            },
+            {
+              "type": "paragraph",
+              "text": "At 00:15, the burst has a compact, uneven outline with larger rounded lobes. The middle is still almost white, so the silhouette carries most of the shape. This is where I start thinking about a dense Pyro burst and the large forms I would want to establish first."
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-001/nasa-supernova-key-04.jpg",
+              "width": 1280,
+              "height": 720,
+              "timeSeconds": 21,
+              "alt": "At 00:21, cyan folds and curled edges surround a pink interior and a small bright central light.",
+              "caption": "00:21 / Billowing folds become readable. Frame from the original NASA animation.",
+              "credit": "NASA's Goddard Space Flight Center Conceptual Image Lab",
+              "sourceUrl": "https://svs.gsfc.nasa.gov/20413/"
+            },
+            {
+              "type": "paragraph",
+              "text": "Around 00:21, the bright mass opens into overlapping folds and curled edges. Cyan outer forms separate from a pink interior, and the central light becomes visible. This feels closest to the smoke-like, billowing behavior I want to study with Pyro, especially the balance between large lobes and smaller wisps."
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-001/nasa-supernova-key-05.jpg",
+              "width": 1280,
+              "height": 720,
+              "timeSeconds": 30,
+              "alt": "At 00:30, an expanded blue-violet cloud has thinner outer wisps and a visible pink interior.",
+              "caption": "00:30 / A more open, layered volume. Frame from the original NASA animation.",
+              "credit": "NASA's Goddard Space Flight Center Conceptual Image Lab",
+              "sourceUrl": "https://svs.gsfc.nasa.gov/20413/"
+            },
+            {
+              "type": "paragraph",
+              "text": "By 00:30, the cloud occupies more of the frame and its outer wisps look thinner. Blue and violet layers surround the pink center, making the depth easier to read. For my project, this points toward volumetric shading and a gradual reduction in brightness and opacity as the burst spreads."
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-001/nasa-supernova-key-06.jpg",
+              "width": 1280,
+              "height": 720,
+              "timeSeconds": 39,
+              "alt": "At 00:39, a broad, translucent blue-violet cloud surrounds a clearly visible white central light.",
+              "caption": "00:39 / The lingering cloud and central light. Frame from the original NASA animation.",
+              "credit": "NASA's Goddard Space Flight Center Conceptual Image Lab",
+              "sourceUrl": "https://svs.gsfc.nasa.gov/20413/"
+            },
+            {
+              "type": "paragraph",
+              "text": "Near 00:39, the broad cloud reads as a translucent nebula around a distinct central light. NASA identifies that central object as a pulsar. For the crystal effect, I like the idea of a lingering luminous volume after the main burst, with a small source of energy still visible inside it."
+            },
+            {
+              "type": "heading",
+              "text": "Pyro, volume, and a glowing crystal"
+            },
+            {
+              "type": "paragraph",
+              "text": "At this stage, I think the project will mainly involve Pyro and volumetric work in Houdini. The shapes in this reference make me think about an expanding volume, its internal detail, and the balance between a bright center and a softer outer edge. Those are the qualities I want to explore in my effect."
+            },
+            {
+              "type": "paragraph",
+              "text": "I can imagine this working as a visual reference for a magical crystal overloading and exploding. The burst of light could come from inside the crystal and spread outward into a luminous cloud. In a nighttime setting, I think the glow would look especially striking against the darkness and could illuminate the space around the crystal."
+            },
+            {
+              "type": "heading",
+              "text": "Finding the right timing"
+            },
+            {
+              "type": "paragraph",
+              "text": "The original animation develops too slowly for the explosion I have in mind, so I made a faster version of the reference. With the timing sped up, the buildup and expanding glow feel much closer to a magical crystal releasing its energy. This gives me a better starting point for the rhythm of the effect."
+            },
+            {
+              "type": "video",
+              "src": "/assets/videos/blog/magic-crystal-overload/post-001/nasa-supernova-sped-up.mp4",
+              "mimeType": "video/mp4",
+              "poster": "blog/magic-crystal-overload/post-001/nasa-supernova-sped-up-poster.jpg",
+              "width": 1920,
+              "height": 1080,
+              "caption": "With the timing sped up, the expanding glow feels much closer to the magical crystal explosion I have in mind.",
+              "credit": "Adapted timing by Tao Luo. Original animation: NASA's Goddard Space Flight Center Conceptual Image Lab.",
+              "sourceUrl": "https://svs.gsfc.nasa.gov/20413/",
+              "title": "Sped-up NASA reference edited by Tao Luo"
             }
           ]
         },

@@ -37,7 +37,7 @@ function generatePages() {
     const base = `/blog/${slug(project.id)}/`;
     add(base, project.title);
     project.entries.forEach((entry, index) => {
-      const title = `${project.title} — post #${String(index + 1).padStart(3, '0')}`;
+      const title = `${project.title} — post #${String(index + 1).padStart(3, '0')}${entry.title ? `: ${entry.title}` : ''}`;
       add(`${base}${slug(entry.id)}/`, title);
       for (const alias of entry.aliases || []) add(`${base}${slug(alias)}/`, title);
     });

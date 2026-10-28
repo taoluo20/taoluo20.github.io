@@ -6,7 +6,7 @@ GitHub Pages 发布专用目录。首页、DEMO、VFX、About Me、Contact 统�
 
 Blog 分为项目列表 → 项目文章网格 → 单篇文章三层，均支持黑白主题。导航下面靠右放 Personal / SCAD 分类；项目和文章网格桌面每行三张卡片。目前 SCAD 下有 **Magic Crystal Overload**，**post #001** 已发布项目动机与 NASA 超新星参考，**post #002** 保留 WIP 封面和空白正文，Personal 暂无内容。单篇文章底部为上一篇 / 返回当前项目 / 下一篇。
 
-文章区域最大 1080px，段落最大 1000px，图片和视频默认最大 800px 居中，正文宽度独立于媒体。001 使用 NASA 官方 MP4 原生播放器，无自动播放，带本地 poster、来源链接和完整署名；still 同时用于项目及 001 封面。加速参考待实际文件提供后再添加。
+文章区域最大 1080px，段落最大 1000px，图片和视频默认最大 800px 居中，正文宽度独立于媒体。001 使用 NASA 官方 MP4 原生播放器，无自动播放，带本地 poster、来源链接和完整署名；still 同时用于项目及 001 封面。加速参考使用用户导出的画面，转为 H.264/AAC MP4 后本地托管，保留用户的剪辑节奏。本地预览支持 MP4 类型及分段请求，可拖动视频进度。
 
 Back to top 位于页脚上方右侧，使用随黑白主题变化的弯折渐变箭头。页脚右下角的 Web info 打开网站信息面板，显示作者、网址、方向、托管方式、技术及更新时间。`site-info.json` 的更新时间由发布脚本自动写入（UTC）。没有文件改动时不修改日期，`-CheckOnly` 也不会修改日期。
 
@@ -60,12 +60,13 @@ npm.cmd run dev
 在 `site-data.js` 的 `posts` 中，一项对应一个项目入口：
 
 - `category` 设为 `Personal` 或 `SCAD`；`image` 是封面文件名，图片放在 `assets/images/`。
-- `entries` 是该项目的文章卡片，按阅读顺序排列；显示名称自动组合为项目名 + `post #001`、`post #002`，后续继续编号，系统自动连接上一篇 / 下一篇。
+- `entries` 是该项目的文章卡片，按阅读顺序排列；显示名称自动组合为项目名 + `post #001`、`post #002`，可附加文章主题，后续继续编号，系统自动连接上一篇 / 下一篇。
 - 每篇文章用固定 `id`（如 `post-001`）作为链接，`image` 可单独设置封面；未设置时沿用项目封面。
 - 每篇的 `blocks` 按从上到下的顺序添加：`image`、`video`、`heading`、`paragraph`；空数组 `[]` 表示暂时留空。
 - `paragraph` 可用 `text` 字符串，或 `children: [{ text, href? }]` 添加真正的链接；只接受 HTTPS 或站内绝对路径，不接受 HTML。
 - `image` 使用 `image`（相对 `assets/images/`）、`alt`、`width`、`height`；媒体共用 `caption`、`credit`、`sourceUrl`、`sourceLabel`。可选 `size: 'wide'` 使用完整文章宽度。
 - `video` 使用 `src`（HTTPS MP4 或站内绝对路径）、`poster`（相对 `assets/images/`）、`title`、`width`、`height`，并提供 `credit` 和 `sourceUrl`。播放器使用 `controls`、`playsinline`、`preload="metadata"`，不会自动播放。
+- 文章可设置 `title`，显示在文章标题、卡片和浏览器标题中。001 主题为 **Reference & Effect Breakdown**，包含 15 帧时间序列、6 个阶段的形态分析，以及用户提供的加速参考视频。
 - 默认进入 SCAD，设置在 `blog.defaultCategory`。
 
 后续往 `blocks` 添加真实项目文字和媒体即可。001 正文交接来源在项目外部的 `VFX_428/blog/post-001/`，网页仓库只保存发布所需正文与素材，不复制本地原片路径或待办元数据。

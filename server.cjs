@@ -3,11 +3,31 @@ const fs = require('node:fs');
 const path = require('node:path');
 const root = __dirname;
 const port = Number(process.env.PORT || 5174);
-const mime = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.json': 'application/json; charset=utf-8', '.svg': 'image/svg+xml', '.jpg': 'image/jpeg', '.png': 'image/png', '.webp': 'image/webp', '.woff2': 'font/woff2', '.txt': 'text/plain; charset=utf-8' };
+const mime = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.json': 'application/json; charset=utf-8', '.svg': 'image/svg+xml', '.jpg': 'image/jpeg', '.png': 'image/png', '.webp': 'image/webp', '.mp4': 'video/mp4', '.woff2': 'font/woff2', '.txt': 'text/plain; charset=utf-8' };
 function sendFile(req, res, file, status = 200) {
-  res.writeHead(status, { 'Content-Type': mime[path.extname(file)] || 'application/octet-stream', 'Cache-Control': 'no-cache', 'X-Content-Type-Options': 'nosniff' });
+  const size = fs.statSync(file).size;
+  const headers = { 'Content-Type': mime[path.extname(file)] || 'application/octet-stream', 'Content-Length': size, 'Accept-Ranges': 'bytes', 'Cache-Control': 'no-cache', 'X-Content-Type-Options': 'nosniff' };
+  let streamOptions;
+  // Match the byte-range support needed for video seeking on GitHub Pages.
+  if (status === 200 && req.headers.range) {
+    const range = /^bytes=(\d*)-(\d*)$/.exec(req.headers.range);
+    const first = range?.[1] ? Number(range[1]) : null;
+    const last = range?.[2] ? Number(range[2]) : null;
+    const start = first === null ? Math.max(0, size - last) : first;
+    const end = first === null || last === null ? size - 1 : Math.min(last, size - 1);
+    if (!range || (first === null && last === null) || (first === null && last === 0) || !Number.isSafeInteger(start) || !Number.isSafeInteger(end) || start < 0 || start >= size || end < start) {
+      res.writeHead(416, { ...headers, 'Content-Length': 0, 'Content-Range': `bytes */${size}` });
+      res.end();
+      return;
+    }
+    status = 206;
+    headers['Content-Length'] = end - start + 1;
+    headers['Content-Range'] = `bytes ${start}-${end}/${size}`;
+    streamOptions = { start, end };
+  }
+  res.writeHead(status, headers);
   if (req.method === 'HEAD') { res.end(); return; }
-  fs.createReadStream(file).pipe(res);
+  fs.createReadStream(file, streamOptions).pipe(res);
 }
 function notFound(req, res) {
   const file = path.join(root, '404.html');
