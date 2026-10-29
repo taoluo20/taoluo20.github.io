@@ -7,23 +7,6 @@ window.PORTFOLIO = {
   reel: '',
   photogrammetry: [
     {
-      id: 'fort-pulaski-cannon',
-      title: 'Cannon - Polycam',
-      software: 'Polycam',
-      scanType: 'Photogrammetry Mesh',
-      sourceLabel: 'Polycam',
-      location: 'Fort Pulaski National Monument',
-      region: 'Cockspur Island, Georgia, United States',
-      device: 'Apple iPhone 14 Pro',
-      captureMethod: 'Guided object mode',
-      capturedAt: '2026-05-08T10:50:00',
-      capturedLabel: '8 May 2026, 10:50 AM',
-      images: 1414,
-      vertices: '127.4K',
-      captureUrl: 'https://poly.cam/capture/010E7813-1883-4BDC-A25F-72C572D66C97',
-      embedUrl: 'https://poly.cam/capture/010E7813-1883-4BDC-A25F-72C572D66C97/embed'
-    },
-    {
       id: 'fort-pulaski-cannon-realityscan',
       title: 'Cannon - RealityScan',
       software: 'RealityScan',
@@ -42,6 +25,23 @@ window.PORTFOLIO = {
       materials: 1,
       captureUrl: 'https://sketchfab.com/3d-models/cannon-fort-pulaski-sav-d9ad4c2b4d5e4e94ba9e9f7af51fec62',
       embedUrl: 'https://sketchfab.com/models/d9ad4c2b4d5e4e94ba9e9f7af51fec62/embed?autostart=1'
+    },
+    {
+      id: 'fort-pulaski-cannon',
+      title: 'Cannon - Polycam',
+      software: 'Polycam',
+      scanType: 'Photogrammetry Mesh',
+      sourceLabel: 'Polycam',
+      location: 'Fort Pulaski National Monument',
+      region: 'Cockspur Island, Georgia, United States',
+      device: 'Apple iPhone 14 Pro',
+      captureMethod: 'Guided object mode',
+      capturedAt: '2026-05-08T10:50:00',
+      capturedLabel: '8 May 2026, 10:50 AM',
+      images: 1414,
+      vertices: '127.4K',
+      captureUrl: 'https://poly.cam/capture/010E7813-1883-4BDC-A25F-72C572D66C97',
+      embedUrl: 'https://poly.cam/capture/010E7813-1883-4BDC-A25F-72C572D66C97/embed'
     },
     {
       id: 'fort-pulaski-mortar',
