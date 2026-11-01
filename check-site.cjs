@@ -50,7 +50,7 @@ for (const post of data.posts) {
       return block.items;
     });
     for (const block of blocks) {
-      assert.ok(['image', 'video', 'youtube', 'heading', 'paragraph'].includes(block.type), `Unsupported content block: ${block.type}`);
+      assert.ok(['image', 'video', 'youtube', 'heading', 'paragraph', 'list'].includes(block.type), `Unsupported content block: ${block.type}`);
       if (block.type === 'image') {
         assert.ok(fs.existsSync(path.join(root, 'assets/images', block.image)), `Missing article image: ${block.image}`);
         assert.ok(block.alt?.trim(), 'Article images need descriptive alt text');
@@ -68,6 +68,10 @@ for (const post of data.posts) {
         assert.equal(block.sourceUrl, `https://www.youtube.com/watch?v=${block.videoId}`, 'YouTube source must match the embedded video');
       }
       if (block.type === 'paragraph') checkJournalInline(block.children || block.text);
+      if (block.type === 'list') {
+        assert.ok(Array.isArray(block.items) && block.items.length > 0, 'Article lists must contain items');
+        block.items.forEach(checkJournalInline);
+      }
       if (block.type === 'heading') assert.ok(block.text?.trim(), 'Article headings must not be empty');
       if (block.caption) checkJournalInline(block.caption);
       if (block.sourceUrl) checkJournalLink(block.sourceUrl);

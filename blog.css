@@ -135,6 +135,8 @@
 .journal-body:empty { min-height: clamp(160px,22vh,280px); }
 .journal-article-post-number { display: block; margin-top: 18px; color: var(--dim); font: 400 14px/1.6 'IBM Plex Mono',monospace; letter-spacing: .015em; }
 .journal-body>* { margin: 0 0 28px; }
+.journal-body ul { padding-left: 1.5em; list-style: disc; color: var(--journal-body); }
+.journal-body li+li { margin-top: 10px; }
 .journal-body h2 { font-size: 27px; line-height: 1.3; letter-spacing: 0; font-weight: 600; margin-top: 52px; margin-bottom: 18px; }
 .journal-body p { color: var(--journal-body); max-width: 1000px; }
 .journal-body a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--faint); text-underline-offset: 4px; }

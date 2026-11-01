@@ -555,11 +555,17 @@ window.PORTFOLIO = {
             },
             {
               "type": "heading",
-              "text": "Possible Further Improvements"
+              "text": "What I will do next:"
             },
             {
-              "type": "paragraph",
-              "text": "In the next iteration, I want to emphasize the banded contours, make the layers more distinct, and convey a stronger sense of scale. I would like the expanding edge to have more variation so the burst feels less like a single round cloud. I will return to the references and tutorial videos to look for ways to develop those shapes while keeping the effect controllable."
+              "type": "list",
+              "items": [
+                "Emphasize the banded contours.",
+                "Make the inner and outer layers more distinct.",
+                "Strengthen the sense of scale in the expanding volume.",
+                "Add more variation to the expanding edge so the burst feels less like a single round cloud.",
+                "Refine the shapes using the references and tutorial videos while keeping the effect controllable."
+              ]
             }
           ]
         }
