@@ -2,6 +2,7 @@ const fs = require('node:fs');
 const vm = require('node:vm');
 const assert = require('node:assert/strict');
 const path = require('node:path');
+const { createHash } = require('node:crypto');
 const root = __dirname;
 const context = { window: {} };
 vm.runInNewContext(fs.readFileSync(path.join(root, 'site-data.js'), 'utf8'), context);
@@ -11,6 +12,12 @@ assert.equal(data.name, 'Tao Luo');
 assert.ok(['wip', 'full'].includes(data.release), 'release must be wip or full');
 assert.equal(data.socials.length, 5);
 for (const file of ['index.html', 'styles.css', 'blog.css', 'accents.css', 'footer.css', 'contact.css', 'photogrammetry.css', 'app.js', 'site-info.json', 'generate-pages.cjs', 'generated-pages.json', '.nojekyll', 'assets/social-icons.svg']) assert.ok(fs.existsSync(path.join(root, file)), `Missing ${file}`);
+const contentVersion = createHash('sha256').update(fs.readFileSync(path.join(root, 'site-data.js'), 'utf8').replace(/\r\n/g, '\n')).digest('hex').slice(0, 12);
+const generatedPages = JSON.parse(fs.readFileSync(path.join(root, 'generated-pages.json'), 'utf8'));
+for (const file of ['index.html', ...generatedPages]) {
+  const html = fs.readFileSync(path.join(root, file), 'utf8');
+  assert.ok(html.includes(`src="/site-data.js?v=${contentVersion}"`), `Stale site data version in ${file}`);
+}
 const siteInfo = JSON.parse(fs.readFileSync(path.join(root, 'site-info.json'), 'utf8'));
 assert.ok(Number.isFinite(Date.parse(siteInfo.updatedAt)), 'Invalid website update date');
 for (const entry of [...data.projects, ...data.photographs, ...data.posts]) {
