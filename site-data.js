@@ -734,6 +734,183 @@ window.PORTFOLIO = {
               "text": "With the background established, I can judge the next volume test against a consistent field of stars. Post 004 will continue with the nebula shape, layers, and motion."
             }
           ]
+        },
+        {
+          "id": "post-004",
+          "title": "Developing the Blue Nebula",
+          "publishedAt": "2026-11-01",
+          "image": "blog/magic-crystal-overload/post-004/blue-nebula-poster.jpg",
+          "imageAlt": "A soft cyan-blue volume curling outward against the star background.",
+          "excerpt": "A particle-driven volume study: softer folds, outward motion, cooling color, and a gradual fade.",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "With the star background in place, I returned to the blue outer layer of the burst. I wanted it to begin as a bright, compact sphere, open into curling shapes, and then spread outward more gently as its light faded."
+            },
+            {
+              "type": "video",
+              "src": "/assets/videos/blog/magic-crystal-overload/post-004/blue-nebula-progress.mp4",
+              "poster": "blog/magic-crystal-overload/post-004/blue-nebula-poster.jpg",
+              "width": 1280,
+              "height": 720,
+              "title": "Blue Nebula — current eight-second Houdini viewport preview",
+              "caption": "Current progress: 192 frames at 24 fps, with the pink layer hidden. This is a Houdini viewport preview; the final lighting and composited glow are still to come."
+            },
+            {
+              "type": "heading",
+              "text": "What needed to change"
+            },
+            {
+              "type": "paragraph",
+              "text": "The earlier blue layer had very thin, sharp folds. It gave me interesting detail, but the edges felt too defined compared with the softer volume in the reference. I also wanted a clearer change in energy over time: a strong beginning, active outward curls, and a calmer ending."
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-004/softness-before-after.jpg",
+              "width": 1920,
+              "height": 566,
+              "alt": "The earlier sharp blue folds on the left and the softer current blue volume on the right.",
+              "caption": "Frame 76: v006 on the left, v007 on the right. Both versions are scaled to a maximum width of 25 m across their animation; their outlines and sizes at this particular frame differ."
+            },
+            {
+              "type": "heading",
+              "text": "Studying the tutorial and adapting the approach"
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "I studied the supplied project for Doxia Studio’s "
+                },
+                {
+                  "text": "Houdini Tutorial — Nebula Part 1",
+                  "href": "https://www.youtube.com/watch?v=DTNYeaFd78w"
+                },
+                {
+                  "text": " and "
+                },
+                {
+                  "text": "Nebula Part 2",
+                  "href": "https://www.youtube.com/watch?v=XBPK2kCuT0A"
+                },
+                {
+                  "text": ", focusing on how particle motion and volume construction could help develop this effect. With AI assistance, I inspected the project and adapted the motion, density, color, and timing controls for this shot."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "The current prototype uses native POP advection to move spherical guides, followed by VDB rasterization to build the visible volume. Keeping motion and volume appearance in separate stages lets me adjust the softness and color while reusing the guide cache."
+            },
+            {
+              "type": "heading",
+              "text": "Keeping the motion outward"
+            },
+            {
+              "type": "paragraph",
+              "text": "I start with a closed sphere and emit the guide points once. CONTINUOUS_VELOCITY combines radial expansion with broad curl motion and a smaller layer of detail. The POP solver integrates this velocity over time, so the curls develop through the animation."
+            },
+            {
+              "type": "list",
+              "items": [
+                "Begin with a simple spherical shape and let the curls grow after the initial expansion.",
+                "Keep a minimum outward component so local eddies do not pull the whole effect back toward the center.",
+                "Reduce the curl strength after about 2.4 seconds while retaining a gentle outward drift."
+              ]
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-004/motion-network.jpg",
+              "width": 1620,
+              "height": 1480,
+              "alt": "The five-node POP network, with EMIT_ONCE and CONTINUOUS_VELOCITY feeding SOLVE alongside guide_points.",
+              "caption": "The motion network inside ADVECT_SPHERE. The guide motion is cached before the denser volume samples are constructed."
+            },
+            {
+              "type": "heading",
+              "text": "Attaching detail to the moving surface"
+            },
+            {
+              "type": "paragraph",
+              "text": "I scatter the volume samples once on the rest sphere and preserve their identities and surface coordinates. READ_GUIDES loads the cached motion, MOVING_SPHERE copies the moving positions onto the guide surface, and ATTACH_SAMPLES follows that surface with the same samples each frame. This keeps the detail attached as the sphere folds and expands."
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-004/sampling-network.jpg",
+              "width": 2490,
+              "height": 1530,
+              "alt": "The rest sphere branches into stable samples and a moving guide surface, which meet at ATTACH_SAMPLES.",
+              "caption": "The sampling stage. ADVECT_SPHERE produces the motion used by the guide cache; READ_GUIDES brings that cache back into the visible-volume branch.",
+              "size": "wide"
+            },
+            {
+              "type": "heading",
+              "text": "Making the folds feel softer"
+            },
+            {
+              "type": "paragraph",
+              "text": "The biggest visual change came from giving the samples more thickness as the animation develops. After rasterization, a Gaussian VDB Smooth pass softens the density and emission fields. My first test became too soft and lost the curls, so I reduced the filtering until the larger folds remained readable."
+            },
+            {
+              "type": "paragraph",
+              "text": "Density and emission are stored separately. This gives me control over both the visible thickness and the amount of light. LOOK_BLUE provides the current viewport appearance, and a uniform transform sets the maximum width to 25 m."
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-004/volume-network.jpg",
+              "width": 3080,
+              "height": 1370,
+              "alt": "The volume stage from BLUE_DENSITY_COOLING through rasterization, smoothing, caching, visualization, scaling, and OUT_BLUE.",
+              "caption": "Read the top row from left to right, then follow the cache into the lower row from right to left: density and color → rasterize → smooth → cache → viewport look → scale → output.",
+              "size": "wide"
+            },
+            {
+              "type": "heading",
+              "text": "Color, brightness, and dissipation"
+            },
+            {
+              "type": "paragraph",
+              "text": "I wanted the color to describe the loss of energy. The early burst is close to white-cyan, then the folds become cyan and blue, and the remaining volume settles into a darker blue before disappearing. Emission falls with the density, so the ending gradually loses both brightness and substance."
+            },
+            {
+              "type": "paragraph",
+              "text": "The density fades smoothly from roughly 2.0 to 7.8 seconds. As the turbulence weakens, the shape continues drifting outward with less agitation. The final frame returns to the star background."
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-004/blue-evolution.jpg",
+              "width": 1920,
+              "height": 592,
+              "alt": "Eight timestamped frames show the white sphere opening into cyan curls, shifting toward blue, and fading into the background.",
+              "caption": "The complete v007 progression, from the initial bright sphere to the clear background at the end of the eight-second preview.",
+              "size": "wide"
+            },
+            {
+              "type": "heading",
+              "text": "Current progress and the next pass"
+            },
+            {
+              "type": "paragraph",
+              "text": "I cleaned the working scene down to the blue layer, the separately controlled pink layer, the star background, and the camera. The pink layer is currently switched off so I can judge the blue shape and softness on their own. The 192-frame caches have been checked, and the original study remains saved separately from the copy used to organize these screenshots."
+            },
+            {
+              "type": "paragraph",
+              "text": "The blue layer now has more volume and a clearer change in motion and color. Its silhouette still feels quite round in places, and I want to keep refining the balance between soft edges and readable internal detail. The softness shown here comes from the volume fields; the reference-style lens glow will be developed in compositing."
+            },
+            {
+              "type": "heading",
+              "text": "What I will do next:"
+            },
+            {
+              "type": "list",
+              "items": [
+                "Break up the round silhouette while keeping the overall outward expansion.",
+                "Refine the density and emission balance so the folds stay readable as they fade.",
+                "Restore the pink layer and adjust its brightness and timing against the blue layer.",
+                "Add the composited glow and review the effect as a complete shot."
+              ]
+            }
+          ]
         }
       ]
     }
