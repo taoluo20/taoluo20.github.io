@@ -790,8 +790,12 @@ window.PORTFOLIO = {
               "text": "Next step"
             },
             {
-              "type": "paragraph",
-              "text": "Next, I will use a clear, readable silhouette as the foundation for a Pyro version, or layer Pyro over the existing structure. The aim is to add fluid motion and volume while keeping the connected blue folds and the separation between the blue outer layer and pink center."
+              "type": "list",
+              "items": [
+                "Use a clear, readable silhouette as the foundation for a Pyro version, or layer Pyro over the existing structure.",
+                "Add fluid motion and volume while preserving the connected blue folds.",
+                "Keep the blue outer layer and pink center clearly separated."
+              ]
             }
           ]
         },
@@ -938,8 +942,12 @@ window.PORTFOLIO = {
               "text": "Next step"
             },
             {
-              "type": "paragraph",
-              "text": "For the surrounding energy effect, the next step is to work from the clear silhouette established in the nebula visual test. I will try building that structure with Pyro, or overlaying a Pyro layer, while keeping the large contours and blue–pink separation readable."
+              "type": "list",
+              "items": [
+                "Develop the surrounding energy effect from the clear silhouette established in the nebula visual test.",
+                "Try building that structure with Pyro, or overlaying a Pyro layer.",
+                "Keep the large contours and blue–pink separation readable."
+              ]
             },
             {
               "type": "heading",
