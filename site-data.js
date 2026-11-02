@@ -595,6 +595,10 @@ window.PORTFOLIO = {
             },
             {
               "type": "paragraph",
+              "text": "AsterLoom is another personal project of mine, developed with AI assistance. I reused its star catalog and sky-dome workflow for this shot, and used AI assistance to adapt and document the setup."
+            },
+            {
+              "type": "paragraph",
               "children": [
                 {
                   "text": "My earlier AsterLoom sky experiments used "
@@ -614,11 +618,11 @@ window.PORTFOLIO = {
             },
             {
               "type": "image",
-              "image": "blog/magic-crystal-overload/post-003/catalog-network.jpg",
-              "width": 3470,
-              "height": 1410,
-              "alt": "The actual AsterLoom data network, including CATALOG_POINTS, SOURCE, PROJECT_AND_STYLE, and separate background branches.",
-              "caption": "A cropped Houdini screenshot of the original data network. The active catalog route enters SOURCE through input 3, then passes into PROJECT_AND_STYLE. The other source branches belong to the broader AsterLoom setup.",
+              "image": "blog/magic-crystal-overload/post-003/catalog-network-organized.jpg",
+              "width": 2950,
+              "height": 1470,
+              "alt": "The organized AsterLoom network with four data sources across the top, the render branch on the left, and the preview branch on the right.",
+              "caption": "AsterLoom is my separate project, developed with AI assistance. I organized the existing nodes for this screenshot: data inputs at the top, rendering on the left, and viewport preview on the right. The catalog route enters SOURCE through input 3. Node connections remain unchanged.",
               "size": "wide"
             },
             {
@@ -628,6 +632,14 @@ window.PORTFOLIO = {
             {
               "type": "paragraph",
               "text": "In AsterLoom, the DOME sphere provides the surrounding sky surface. CANONICAL_LATLONG_UV gives it spherical texture coordinates, and INWARD_SURFACE reverses the surface so it can be viewed from inside. PREVIEW_SURFACE switches between this dome and a flat atlas. LIVE_PREVIEW and LIVE_TEXTURE then display the generated sky texture."
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-003/sky-dome-viewport.jpg",
+              "width": 1000,
+              "height": 1000,
+              "alt": "An actual Houdini viewport capture of the spherical AsterLoom sky dome, with the star texture wrapping around its curved surface.",
+              "caption": "The spherical sky dome in AsterLoom, viewed from outside to show its shape and wrapped star texture. The viewing camera normally sits inside this surrounding surface. This is the broader AsterLoom sky; the sparse camera plate for this shot is generated separately."
             },
             {
               "type": "image",
