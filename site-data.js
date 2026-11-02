@@ -737,50 +737,33 @@ window.PORTFOLIO = {
         },
         {
           "id": "post-004",
-          "title": "Developing the Blue Nebula",
+          "title": "Nebula Visual Test",
           "publishedAt": "2026-11-01",
-          "image": "blog/magic-crystal-overload/post-004/blue-nebula-poster.jpg",
-          "imageAlt": "A soft cyan-blue volume curling outward against the star background.",
-          "excerpt": "A particle-driven volume study: softer folds, outward motion, cooling color, and a gradual fade.",
+          "image": "blog/magic-crystal-overload/post-004/nebula-visual-test.jpg",
+          "imageAlt": "Continuous cyan-blue folds surround a bright pink core against a field of stars.",
+          "excerpt": "A tutorial-based visual test for the silhouette, layered structure, and color of the crystal’s energy effect.",
           "blocks": [
             {
               "type": "paragraph",
-              "text": "With the star background in place, I returned to the blue outer layer of the burst. I wanted it to begin as a bright, compact sphere, open into curling shapes, and then spread outward more gently as its light faded."
-            },
-            {
-              "type": "video",
-              "src": "/assets/videos/blog/magic-crystal-overload/post-004/blue-nebula-progress.mp4",
-              "poster": "blog/magic-crystal-overload/post-004/blue-nebula-poster.jpg",
-              "width": 1280,
-              "height": 720,
-              "title": "Blue Nebula — current eight-second Houdini viewport preview",
-              "caption": "Current progress: 192 frames at 24 fps, with the pink layer hidden. This is a Houdini viewport preview; the final lighting and composited glow are still to come."
-            },
-            {
-              "type": "heading",
-              "text": "What needed to change"
-            },
-            {
-              "type": "paragraph",
-              "text": "The earlier blue layer had very thin, sharp folds. It gave me interesting detail, but the edges felt too defined compared with the softer volume in the reference. I also wanted a clearer change in energy over time: a strong beginning, active outward curls, and a calmer ending."
+              "text": "This is a visual test based on a nebula tutorial, exploring a direction for the energy effect around the crystal. I am using this still to judge the overall silhouette, the continuous blue folds, and the contrast with the bright pink center."
             },
             {
               "type": "image",
-              "image": "blog/magic-crystal-overload/post-004/softness-before-after.jpg",
+              "image": "blog/magic-crystal-overload/post-004/nebula-visual-test.jpg",
               "width": 1920,
-              "height": 566,
-              "alt": "The earlier sharp blue folds on the left and the softer current blue volume on the right.",
-              "caption": "Frame 76: v006 on the left, v007 on the right. Both versions are scaled to a maximum width of 25 m across their animation; their outlines and sizes at this particular frame differ."
+              "height": 1080,
+              "alt": "A cyan-blue nebula with thin curling layers around a compact pink core, set against the star background.",
+              "caption": "v006, frame 76 — a Houdini viewport still from the visual study."
             },
             {
               "type": "heading",
-              "text": "Studying the tutorial and adapting the approach"
+              "text": "Tutorial study"
             },
             {
               "type": "paragraph",
               "children": [
                 {
-                  "text": "I studied the supplied project for Doxia Studio’s "
+                  "text": "The starting point was Doxia Studio’s "
                 },
                 {
                   "text": "Houdini Tutorial — Nebula Part 1",
@@ -794,121 +777,177 @@ window.PORTFOLIO = {
                   "href": "https://www.youtube.com/watch?v=XBPK2kCuT0A"
                 },
                 {
-                  "text": ", focusing on how particle motion and volume construction could help develop this effect. With AI assistance, I inspected the project and adapted the motion, density, color, and timing controls for this shot."
+                  "text": ". I studied the supplied project and adapted its approach to explore the shape and color of this shot. AI assisted with inspecting the project and adjusting the motion and volume controls."
                 }
               ]
             },
             {
               "type": "paragraph",
-              "text": "The current prototype uses native POP advection to move spherical guides, followed by VDB rasterization to build the visible volume. Keeping motion and volume appearance in separate stages lets me adjust the softness and color while reusing the guide cache."
+              "text": "The current study uses particle-driven volume construction. The thin, connected folds give me a useful visual target: I want the large shapes to stay readable while smaller details support them. This establishes an appearance to work toward; it is not a finished Pyro simulation or final shot."
             },
             {
               "type": "heading",
-              "text": "Keeping the motion outward"
+              "text": "Next step"
             },
             {
               "type": "paragraph",
-              "text": "I start with a closed sphere and emit the guide points once. CONTINUOUS_VELOCITY combines radial expansion with broad curl motion and a smaller layer of detail. The POP solver integrates this velocity over time, so the curls develop through the animation."
+              "text": "Next, I will use a clear, readable silhouette as the foundation for a Pyro version, or layer Pyro over the existing structure. The aim is to add fluid motion and volume while keeping the connected blue folds and the separation between the blue outer layer and pink center."
+            }
+          ]
+        },
+        {
+          "id": "post-005",
+          "title": "Crystal Development",
+          "publishedAt": "2026-11-01",
+          "image": "blog/magic-crystal-overload/post-005/jade-surface-comparison.jpg",
+          "imageAlt": "Two pale aqua crystal renders compare the sharpened and hand-planed surface versions.",
+          "excerpt": "From an AI-assisted concept and Tripo base mesh to layered materials, sharper edges, and irregular carved surfaces in Houdini.",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Alongside the nebula study, I have been developing the crystal itself. This post follows the process from the concept image and Tripo model to the material and geometry revisions in Houdini. The goal is a rough, imperfect mineral with a recognizable silhouette, layered internal detail, and a pale aqua translucency."
             },
             {
-              "type": "list",
-              "items": [
-                "Begin with a simple spherical shape and let the curls grow after the initial expansion.",
-                "Keep a minimum outward component so local eddies do not pull the whole effect back toward the center.",
-                "Reduce the curl strength after about 2.4 seconds while retaining a gentle outward drift."
-              ]
+              "type": "heading",
+              "text": "1. Concept: an eroded, layered crystal"
+            },
+            {
+              "type": "paragraph",
+              "text": "I explored a pointed, asymmetric crystal with chipped shoulders, deep hollows, and a raised central ridge. The surface direction combines rough mineral fractures with flowing, Damascus-like layers. The selected concept is cloudy and only partly translucent, with brighter thin edges and pale inclusions inside."
             },
             {
               "type": "image",
-              "image": "blog/magic-crystal-overload/post-004/motion-network.jpg",
+              "image": "blog/magic-crystal-overload/post-005/crystal-concept.jpg",
+              "width": 940,
+              "height": 1672,
+              "alt": "The selected pale aqua crystal concept, with an asymmetric pointed silhouette, deep pits, chipped edges, and flowing mineral layers.",
+              "caption": "Selected AI-generated concept reference: rough mineral surfaces, layered texture, and a clear asymmetric outline."
+            },
+            {
+              "type": "heading",
+              "text": "2. Tripo: establishing the base model"
+            },
+            {
+              "type": "paragraph",
+              "text": "The concept was taken into Tripo to generate the starting 3D model. The exported FBX established the overall volume and irregular outline, but the broad faces and cavities were softer than the image. Its Base Color and Normal maps were useful as an initial visual reference."
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-005/tripo-source-model.jpg",
+              "width": 2160,
+              "height": 1030,
+              "alt": "Three views of the original Tripo mesh: front with exported textures, a textured three-quarter view, and a neutral clay front view.",
+              "caption": "Original Tripo FBX, shown with its exported textures and as a clay model. These review images were rendered in Blender for this post; the source geometry has not been reshaped.",
+              "size": "wide"
+            },
+            {
+              "type": "paragraph",
+              "text": "The exported color map already contained highlights, shadows, and ice-like detail. For the Houdini look, I moved to a procedural material so I could control translucency and build layers that also exist inside the crystal. The model was prepared at a height of 2 m."
+            },
+            {
+              "type": "heading",
+              "text": "3. Houdini v001: surface and internal layers"
+            },
+            {
+              "type": "paragraph",
+              "text": "The first material pass combined a refractive surface with a separate internal volume. Both use the same three-dimensional layer pattern and rest coordinates. This gave the crystal depth and provided a way to carry the pattern through new cut surfaces when the crystal eventually breaks."
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-005/initial-layered-shader.jpg",
+              "width": 1080,
+              "height": 768,
+              "alt": "The v001 transparent crystal beside a sectioned view showing the internal layered material.",
+              "caption": "v001 material review: intact crystal on the left, separated sections on the right. This is a static continuity check, not the finished fracture animation."
+            },
+            {
+              "type": "heading",
+              "text": "4. Houdini v002: moving toward jade"
+            },
+            {
+              "type": "paragraph",
+              "text": "The first pass felt too much like clear glass. In v002, I made the layers denser, reduced the direct transparency, and added cloudy white inclusions and shallow scattering. The result moves toward the soft, pale aqua character of jade while retaining some light through the thinner edges."
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-005/material-evolution.jpg",
+              "width": 1440,
+              "height": 768,
+              "alt": "A comparison of the concept image, the clearer v001 crystal, and the cloudier jade-like v002 material.",
+              "caption": "Left to right: concept reference, v001 clear material, and v002 cloudy mineral material.",
+              "size": "wide"
+            },
+            {
+              "type": "heading",
+              "text": "5. Houdini v003: topology and shape study"
+            },
+            {
+              "type": "paragraph",
+              "text": "I tested a rebuilt topology followed by remeshing and stronger large facets. It clarified some of the central ridge and shoulder transitions, but I preferred the character of the original v002 shape. This study helped identify which changes to keep and which parts of the silhouette to preserve."
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-005/retopology-study.jpg",
+              "width": 1440,
+              "height": 688,
+              "alt": "Clay models compare the original v002 surface, the remeshed v003 surface, and a three-quarter view of v003.",
+              "caption": "Left to right: v002 original surface, v003 retopology and remesh study, and v003 from a three-quarter angle.",
+              "size": "wide"
+            },
+            {
+              "type": "heading",
+              "text": "6. Houdini v004 and v005: sharper edges and shallow cuts"
+            },
+            {
+              "type": "paragraph",
+              "text": "For v004, I returned to the original v002 form and strengthened its ridges, shoulder transitions, and tips. I kept the larger outline and existing hollows, then repaired thin overlaps introduced by the sharpening."
+            },
+            {
+              "type": "paragraph",
+              "text": "I saved a separate v005 version with irregular shallow cuts, similar to marks left by a hand plane. The cuts vary in length, width, and depth, creating small steps across the broad faces. An early pass was too regular, so I widened and softened the marks. These changes are in the geometry."
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-005/surface-development.jpg",
               "width": 1620,
-              "height": 1480,
-              "alt": "The five-node POP network, with EMIT_ONCE and CONTINUOUS_VELOCITY feeding SOLVE alongside guide_points.",
-              "caption": "The motion network inside ADVECT_SPHERE. The guide motion is cached before the denser volume samples are constructed."
-            },
-            {
-              "type": "heading",
-              "text": "Attaching detail to the moving surface"
-            },
-            {
-              "type": "paragraph",
-              "text": "I scatter the volume samples once on the rest sphere and preserve their identities and surface coordinates. READ_GUIDES loads the cached motion, MOVING_SPHERE copies the moving positions onto the guide surface, and ATTACH_SAMPLES follows that surface with the same samples each frame. This keeps the detail attached as the sphere folds and expands."
+              "height": 776,
+              "alt": "Three clay crystals show the original v002 form, sharpened v004 edges, and irregular shallow cuts in v005.",
+              "caption": "Left to right: v002 original form, v004 sharper edges, and v005 with shallow planed surfaces.",
+              "size": "wide"
             },
             {
               "type": "image",
-              "image": "blog/magic-crystal-overload/post-004/sampling-network.jpg",
-              "width": 2490,
-              "height": 1530,
-              "alt": "The rest sphere branches into stable samples and a moving guide surface, which meet at ATTACH_SAMPLES.",
-              "caption": "The sampling stage. ADVECT_SPHERE produces the motion used by the guide cache; READ_GUIDES brings that cache back into the visible-volume branch.",
+              "image": "blog/magic-crystal-overload/post-005/jade-surface-comparison.jpg",
+              "width": 1200,
+              "height": 856,
+              "alt": "The sharpened v004 crystal and the planed v005 crystal rendered with the pale aqua mineral material.",
+              "caption": "The two surface options with the same jade-like material: v004 on the left and v005 on the right.",
+              "size": "wide"
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-005/planed-multiview.jpg",
+              "width": 1440,
+              "height": 696,
+              "alt": "Front, three-quarter, and back clay views of the v005 crystal reveal its thickness and irregular surface cuts.",
+              "caption": "v005 geometry review from the front, three-quarter angle, and back.",
               "size": "wide"
             },
             {
               "type": "heading",
-              "text": "Making the folds feel softer"
+              "text": "Next step"
             },
             {
               "type": "paragraph",
-              "text": "The biggest visual change came from giving the samples more thickness as the animation develops. After rasterization, a Gaussian VDB Smooth pass softens the density and emission fields. My first test became too soft and lost the curls, so I reduced the filtering until the larger folds remained readable."
-            },
-            {
-              "type": "paragraph",
-              "text": "Density and emission are stored separately. This gives me control over both the visible thickness and the amount of light. LOOK_BLUE provides the current viewport appearance, and a uniform transform sets the maximum width to 25 m."
-            },
-            {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/post-004/volume-network.jpg",
-              "width": 3080,
-              "height": 1370,
-              "alt": "The volume stage from BLUE_DENSITY_COOLING through rasterization, smoothing, caching, visualization, scaling, and OUT_BLUE.",
-              "caption": "Read the top row from left to right, then follow the cache into the lower row from right to left: density and color → rasterize → smooth → cache → viewport look → scale → output.",
-              "size": "wide"
+              "text": "For the surrounding energy effect, the next step is to work from the clear silhouette established in the nebula visual test. I will try building that structure with Pyro, or overlaying a Pyro layer, while keeping the large contours and blue–pink separation readable."
             },
             {
               "type": "heading",
-              "text": "Color, brightness, and dissipation"
+              "text": "Process credit"
             },
             {
               "type": "paragraph",
-              "text": "I wanted the color to describe the loss of energy. The early burst is close to white-cyan, then the folds become cyan and blue, and the remaining volume settles into a darker blue before disappearing. Emission falls with the density, so the ending gradually loses both brightness and substance."
-            },
-            {
-              "type": "paragraph",
-              "text": "The density fades smoothly from roughly 2.0 to 7.8 seconds. As the turbulence weakens, the shape continues drifting outward with less agitation. The final frame returns to the star background."
-            },
-            {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/post-004/blue-evolution.jpg",
-              "width": 1920,
-              "height": 592,
-              "alt": "Eight timestamped frames show the white sphere opening into cyan curls, shifting toward blue, and fading into the background.",
-              "caption": "The complete v007 progression, from the initial bright sphere to the clear background at the end of the eight-second preview.",
-              "size": "wide"
-            },
-            {
-              "type": "heading",
-              "text": "Current progress and the next pass"
-            },
-            {
-              "type": "paragraph",
-              "text": "I cleaned the working scene down to the blue layer, the separately controlled pink layer, the star background, and the camera. The pink layer is currently switched off so I can judge the blue shape and softness on their own. The 192-frame caches have been checked, and the original study remains saved separately from the copy used to organize these screenshots."
-            },
-            {
-              "type": "paragraph",
-              "text": "The blue layer now has more volume and a clearer change in motion and color. Its silhouette still feels quite round in places, and I want to keep refining the balance between soft edges and readable internal detail. The softness shown here comes from the volume fields; the reference-style lens glow will be developed in compositing."
-            },
-            {
-              "type": "heading",
-              "text": "What I will do next:"
-            },
-            {
-              "type": "list",
-              "items": [
-                "Break up the round silhouette while keeping the overall outward expansion.",
-                "Refine the density and emission balance so the folds stay readable as they fade.",
-                "Restore the pink layer and adjust its brightness and timing against the blue layer.",
-                "Add the composited glow and review the effect as a complete shot."
-              ]
+              "text": "The concept image was generated with AI, and Tripo supplied the starting mesh and textures. The material, internal layer setup, geometry revisions, and comparison renders were developed in Houdini with AI assistance. The original Tripo review above was rendered separately in Blender to document the starting point."
             }
           ]
         }
