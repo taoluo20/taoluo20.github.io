@@ -568,6 +568,160 @@ window.PORTFOLIO = {
               ]
             }
           ]
+        },
+        {
+          "id": "post-003",
+          "title": "Building the Star Background",
+          "publishedAt": "2026-10-31",
+          "image": "blog/magic-crystal-overload/post-003/star-background.jpg",
+          "imageAlt": "A sparse catalog-based star field over a soft, deep-blue background.",
+          "excerpt": "Astronomical star data, the AsterLoom sky dome, and a controlled deep-blue background for the shot.",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Before developing the next volume test, I worked on the space behind it. I wanted a deep-blue background with enough stars to establish scale, while leaving room for the crystal burst to remain the focus."
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-003/star-background.jpg",
+              "width": 1920,
+              "height": 1080,
+              "alt": "The finished 1920 by 1080 star background, with a subtle blue glow toward the center.",
+              "caption": "The background for this shot: 4,210 catalog stars over a separate blue gradient."
+            },
+            {
+              "type": "heading",
+              "text": "Starting from astronomical data"
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "My earlier AsterLoom sky experiments used "
+                },
+                {
+                  "text": "NASA’s Deep Star Maps 2020",
+                  "href": "https://svs.gsfc.nasa.gov/4851/"
+                },
+                {
+                  "text": " as an all-sky image source. These maps store the sky in a latitude–longitude projection that can wrap around a sphere. The later AsterLoom setup also works with editable catalog records, so I can keep each star’s direction, magnitude, color, and source ID."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "For this shot, I reused a cache of 130,441 stars from that catalog setup. Checking the IDs showed Hipparcos and Tycho-2 records in this cache. I kept those recorded directions instead of scattering new points. NASA’s supernova animation supplied the visual reference for the blue palette, star density, and brightness distribution."
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-003/catalog-network.jpg",
+              "width": 3470,
+              "height": 1410,
+              "alt": "The actual AsterLoom data network, including CATALOG_POINTS, SOURCE, PROJECT_AND_STYLE, and separate background branches.",
+              "caption": "A cropped Houdini screenshot of the original data network. The active catalog route enters SOURCE through input 3, then passes into PROJECT_AND_STYLE. The other source branches belong to the broader AsterLoom setup.",
+              "size": "wide"
+            },
+            {
+              "type": "heading",
+              "text": "From the sky data to a dome"
+            },
+            {
+              "type": "paragraph",
+              "text": "In AsterLoom, the DOME sphere provides the surrounding sky surface. CANONICAL_LATLONG_UV gives it spherical texture coordinates, and INWARD_SURFACE reverses the surface so it can be viewed from inside. PREVIEW_SURFACE switches between this dome and a flat atlas. LIVE_PREVIEW and LIVE_TEXTURE then display the generated sky texture."
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-003/dome-network.jpg",
+              "width": 2320,
+              "height": 1620,
+              "alt": "The original Houdini dome network showing DOME, CANONICAL_LATLONG_UV, INWARD_SURFACE, PREVIEW_SURFACE, and LIVE_TEXTURE.",
+              "caption": "The original dome and atlas preview branches. The node layout and connections are captured directly from the existing Houdini scene."
+            },
+            {
+              "type": "paragraph",
+              "text": "For the current fixed camera, I projected a patch of the catalog sky into a 1920 × 1080 image and placed it on a card behind the effect. This keeps the background inexpensive and consistent while I work on the foreground volume. A moving camera would need the dome or a newly generated projection."
+            },
+            {
+              "type": "heading",
+              "text": "Controlling the number of stars"
+            },
+            {
+              "type": "paragraph",
+              "text": "I first measured the small bright peaks in the NASA reference, masking out its central glow. The analysis found 4,018 peaks in the usable area; correcting for the masked area gave a target of about 4,210. This is an estimate of visual density in an animation frame."
+            },
+            {
+              "type": "list",
+              "items": [
+                "Project the catalog directions into the camera view and discard stars outside the frame.",
+                "Sort the remaining records by magnitude, keeping the brighter stars first.",
+                "Keep the first 4,210 records and retain their original source IDs.",
+                "Match the reference brightness distribution while preserving that magnitude ordering."
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "The selection happens in the plate-generation script. Reducing its target keeps a sparser set of bright stars; increasing it allows more of the available faint stars into the image. The Houdini background controller records the resulting count, so changing the selection means regenerating the plate."
+            },
+            {
+              "type": "heading",
+              "text": "Adding the blue background"
+            },
+            {
+              "type": "paragraph",
+              "text": "I built the blue color as a separate, broad gradient: darker at the edges and slightly brighter near the center. Keeping it separate lets me adjust the atmosphere without changing the star positions. I also softened the star colors toward white and blue and added small cores with subtle halos."
+            },
+            {
+              "type": "mediaRow",
+              "items": [
+                {
+                  "type": "image",
+                  "image": "blog/magic-crystal-overload/post-003/catalog-stars.jpg",
+                  "width": 1920,
+                  "height": 1080,
+                  "alt": "The selected catalog stars displayed against black, without the blue gradient.",
+                  "caption": "Selected stars, before adding the background color."
+                },
+                {
+                  "type": "image",
+                  "image": "blog/magic-crystal-overload/post-003/blue-gradient.jpg",
+                  "width": 1920,
+                  "height": 1080,
+                  "alt": "A smooth dark-blue gradient, slightly brighter in the middle and free of stars.",
+                  "caption": "The blue gradient on its own."
+                }
+              ]
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-003/reference-comparison.jpg",
+              "width": 1920,
+              "height": 600,
+              "alt": "NASA’s opening frame on the left and the AsterLoom-based star background on the right.",
+              "caption": "Left: the NASA animation reference. Right: my catalog-based background. I used the reference to judge color and density; the new star positions come from the catalog.",
+              "credit": "Reference: NASA’s Goddard Space Flight Center Conceptual Image Lab. Background study: Tao Luo.",
+              "sourceUrl": "https://svs.gsfc.nasa.gov/20413/"
+            },
+            {
+              "type": "heading",
+              "text": "Bringing it into the shot"
+            },
+            {
+              "type": "paragraph",
+              "text": "I converted the finished background to a linear-sRGB EXR for the Houdini scene. CAMERA_BACKPLATE makes the camera-sized grid, NASA_MATCHED_STARS applies the texture, and OUT_BACKGROUND sends it to the viewport. The plate file is referenced from CTRL_BACKGROUND; the catalog cache remains available alongside it."
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-003/shot-background-network.jpg",
+              "width": 1780,
+              "height": 680,
+              "alt": "The shot background network with CAMERA_BACKPLATE feeding NASA_MATCHED_STARS and OUT_BACKGROUND, beside ASTER_CATALOG_CACHE and CTRL_BACKGROUND.",
+              "caption": "The current shot uses this background-card chain. The NASA_MATCHED_STARS node name refers to the visual match to the reference; its texture contains the selected catalog stars and the blue gradient."
+            },
+            {
+              "type": "paragraph",
+              "text": "With the background established, I can judge the next volume test against a consistent field of stars. Post 004 will continue with the nebula shape, layers, and motion."
+            }
+          ]
         }
       ]
     }
