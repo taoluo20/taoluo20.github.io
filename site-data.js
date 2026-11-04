@@ -1218,6 +1218,10 @@ window.PORTFOLIO = {
               ]
             },
             {
+              "type": "heading",
+              "text": "Side-by-side comparison"
+            },
+            {
               "type": "video",
               "title": "NASA reference and v010 timing comparison",
               "src": "/assets/videos/blog/magic-crystal-overload/post-005/v010-vs-nasa.mp4",
