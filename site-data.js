@@ -1402,10 +1402,10 @@ window.PORTFOLIO = {
             {
               "type": "list",
               "items": [
-                "The highlights still need more fine-tuning.",
-                "Adjust the colors.",
-                "Only the blue layer has been developed so far. Next, continue the pink middle layer and the pink inner layer.",
-                "For a cleaner, drier version, try keeping the camera-facing half and reducing the density of the back half substantially, or fine-tune the haze further."
+                "Fine-tune the highlight that appears after the turbulent curls at the tips of the blue layer roll over.",
+                "Adjust the blue layers' colors to match the reference more closely.",
+                "Add one or two more blue layers and continue developing the pink middle and inner layers.",
+                "Keep the half facing the camera cleaner, with slightly lower density in the back half."
               ]
             },
             {
