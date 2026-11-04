@@ -255,7 +255,7 @@
     const media = block.type === 'youtube'
       ? `<iframe src="https://www.youtube.com/embed/${block.videoId}" title="${escape(block.title)}" width="1600" height="900" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen${hasCaption ? ` aria-describedby="${captionId}"` : ''}></iframe>`
       : block.type === 'video'
-      ? `<video controls playsinline preload="metadata" poster="${asset(block.poster)}" width="${block.width || 1920}" height="${block.height || 1080}" aria-label="${escape(block.title)}"${hasCaption ? ` aria-describedby="${captionId}"` : ''}><source src="${escape(block.src)}" type="video/mp4" /><a href="${escape(block.src)}">Open video</a></video>`
+      ? `<video controls playsinline preload="metadata" poster="${asset(block.poster)}" width="${block.width || 1920}" height="${block.height || 1080}" style="aspect-ratio: ${block.width || 1920} / ${block.height || 1080}" aria-label="${escape(block.title)}"${hasCaption ? ` aria-describedby="${captionId}"` : ''}><source src="${escape(block.src)}" type="video/mp4" /><a href="${escape(block.src)}">Open video</a></video>`
       : `<a class="journal-image-link" href="${asset(block.image)}" target="_blank" rel="noopener noreferrer" aria-label="${escape(`Open full-size image: ${block.alt}`)}" title="Open full-size image"><img src="${asset(block.image)}" alt="${escape(block.alt)}" width="${block.width || 1600}" height="${block.height || 900}" loading="lazy" decoding="async" /></a>`;
     return `<figure class="journal-figure${block.size === 'wide' ? ' journal-figure-wide' : ''}">${media}${caption}</figure>`;
   }

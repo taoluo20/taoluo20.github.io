@@ -574,24 +574,27 @@ window.PORTFOLIO = {
             },
             {
               "type": "heading",
-              "text": "Current Progress"
+              "text": "Side-by-side comparison"
             },
             {
               "type": "video",
-              "src": "/assets/videos/blog/magic-crystal-overload/post-002/pyrobakevolume1.mp4",
+              "src": "/assets/videos/blog/magic-crystal-overload/post-002/pyro-test-vs-nasa.mp4",
               "mimeType": "video/mp4",
-              "poster": "blog/magic-crystal-overload/post-002/pyrobakevolume1-poster.jpg",
+              "poster": "blog/magic-crystal-overload/post-002/pyro-test-vs-nasa-poster.jpg",
               "width": 1920,
-              "height": 1080,
-              "title": "Current Progress — Crystal Overload",
-              "label": "Current Progress viewport preview"
+              "height": 568,
+              "title": "NASA reference and Post 002 Pyro comparison",
+              "caption": "Left: the NASA 600% reference. Right: the Post 002 Pyro Bake Volume preview. The first five seconds are shown at their existing playback speeds, with frame and time labels.",
+              "credit": "Reference: NASA/CXC/A. Hobart; Pyro preview: Tao Luo.",
+              "sourceUrl": "https://svs.gsfc.nasa.gov/20413/",
+              "size": "wide"
             },
             {
               "type": "list",
               "items": [
-                "I used Pyro Bake Volume to adjust the smoke density, emission, and material.",
-                "The blue glow brings the preview closer to the crystal effect I have in mind.",
-                "The overall shape still feels quite round. Next, refine the layers and silhouette."
+                "The Pyro test has a denser, rounder silhouette than the more open, banded NASA reference.",
+                "The inner and outer layers still need clearer separation.",
+                "The comparison helps identify where to refine the contours and expanding edge."
               ]
             },
             {
