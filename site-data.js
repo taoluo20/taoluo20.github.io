@@ -462,6 +462,24 @@ window.PORTFOLIO = {
           "excerpt": "A step-by-step Houdini Pyro test: two source layers, noise, simulation, and the final Pyro Bake Volume preview.",
           "blocks": [
             {
+              "type": "heading",
+              "text": "Current Progress"
+            },
+            {
+              "type": "video",
+              "src": "/assets/videos/blog/magic-crystal-overload/post-002/pyrobakevolume1.mp4",
+              "mimeType": "video/mp4",
+              "poster": "blog/magic-crystal-overload/post-002/pyrobakevolume1-poster.jpg",
+              "width": 1920,
+              "height": 1080,
+              "title": "Current Progress — Crystal Overload",
+              "label": "Current Progress viewport preview"
+            },
+            {
+              "type": "paragraph",
+              "text": "For the current preview, I used Pyro Bake Volume to adjust the smoke density, emission, and material. The blue glow brings the test closer to the direction I imagined for the crystal, although the overall shape still feels quite round. I will use this version as a starting point for refining the layers and silhouette."
+            },
+            {
               "type": "image",
               "image": "blog/magic-crystal-overload/post-002/pyro-node-overview.jpg",
               "width": 1050,
