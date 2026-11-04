@@ -246,6 +246,7 @@
     if (block.type === 'heading') return `<h2>${escape(block.text)}</h2>`;
     if (block.type === 'paragraph') return `<p>${journalInline(block.children || block.text)}</p>`;
     if (block.type === 'list') return `<ul>${block.items.map(item => `<li>${journalInline(item)}</li>`).join('')}</ul>`;
+    if (block.type === 'table') return `<div class="journal-table-wrap"><table class="journal-table"><caption>${escape(block.caption)}</caption><thead><tr>${block.headers.map(header => `<th scope="col">${escape(header)}</th>`).join('')}</tr></thead><tbody>${block.rows.map(row => `<tr>${row.map(cell => `<td>${journalInline(cell)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
     if (!['image', 'video', 'youtube'].includes(block.type)) return '';
     if (block.type === 'youtube' && !/^[A-Za-z0-9_-]{11}$/.test(block.videoId)) return '';
     const captionId = `journal-media-${index}`;

@@ -57,7 +57,7 @@ for (const post of data.posts) {
       return block.items;
     });
     for (const block of blocks) {
-      assert.ok(['image', 'video', 'youtube', 'heading', 'paragraph', 'list'].includes(block.type), `Unsupported content block: ${block.type}`);
+      assert.ok(['image', 'video', 'youtube', 'heading', 'paragraph', 'list', 'table'].includes(block.type), `Unsupported content block: ${block.type}`);
       if (block.type === 'image') {
         assert.ok(fs.existsSync(path.join(root, 'assets/images', block.image)), `Missing article image: ${block.image}`);
         assert.ok(block.alt?.trim(), 'Article images need descriptive alt text');
@@ -75,6 +75,16 @@ for (const post of data.posts) {
         assert.equal(block.sourceUrl, `https://www.youtube.com/watch?v=${block.videoId}`, 'YouTube source must match the embedded video');
       }
       if (block.type === 'paragraph') checkJournalInline(block.children || block.text);
+      if (block.type === 'table') {
+        assert.ok(block.caption?.trim(), 'Article tables need a caption');
+        assert.ok(Array.isArray(block.headers) && block.headers.length > 0, 'Article tables need column headings');
+        assert.ok(block.headers.every(header => typeof header === 'string' && header.trim()), 'Table headings must not be empty');
+        assert.ok(Array.isArray(block.rows) && block.rows.length > 0, 'Article tables need rows');
+        for (const row of block.rows) {
+          assert.equal(row.length, block.headers.length, 'Table rows must match their headings');
+          row.forEach(checkJournalInline);
+        }
+      }
       if (block.type === 'list') {
         assert.ok(Array.isArray(block.items) && block.items.length > 0, 'Article lists must contain items');
         block.items.forEach(checkJournalInline);
