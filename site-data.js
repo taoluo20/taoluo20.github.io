@@ -745,15 +745,26 @@ window.PORTFOLIO = {
           "blocks": [
             {
               "type": "paragraph",
-              "text": "Alongside the nebula study, I have been developing the crystal itself. This post follows the process from the concept image and Tripo model to the material and geometry revisions in Houdini. The goal is a rough, imperfect mineral with a recognizable silhouette, layered internal detail, and a pale aqua translucency."
+              "text": "This post follows the crystal from the concept image and Tripo base model through the material and geometry revisions in Houdini."
+            },
+            {
+              "type": "list",
+              "items": [
+                "Preserve a recognizable, asymmetric mineral silhouette.",
+                "Build rough surfaces, layered internal detail, and pale aqua translucency."
+              ]
             },
             {
               "type": "heading",
-              "text": "1. Concept: an eroded, layered crystal"
+              "text": "Concept: an eroded, layered crystal"
             },
             {
-              "type": "paragraph",
-              "text": "I explored a pointed, asymmetric crystal with chipped shoulders, deep hollows, and a raised central ridge. The surface direction combines rough mineral fractures with flowing, Damascus-like layers. The selected concept is cloudy and only partly translucent, with brighter thin edges and pale inclusions inside."
+              "type": "list",
+              "items": [
+                "Explore a pointed, asymmetric form with chipped shoulders, deep hollows, and a raised central ridge.",
+                "Combine mineral fractures with flowing, Damascus-like layers.",
+                "Keep the crystal cloudy and partly translucent, with brighter thin edges and pale inclusions inside."
+              ]
             },
             {
               "type": "image",
@@ -765,11 +776,26 @@ window.PORTFOLIO = {
             },
             {
               "type": "heading",
-              "text": "2. Tripo: establishing the base model"
+              "text": "Tripo: establishing the base model"
             },
             {
-              "type": "paragraph",
-              "text": "The concept was taken into Tripo to generate the starting 3D model. The exported FBX established the overall volume and irregular outline, but the broad faces and cavities were softer than the image. Its Base Color and Normal maps were useful as an initial visual reference."
+              "type": "list",
+              "items": [
+                [
+                  {
+                    "text": "Use "
+                  },
+                  {
+                    "text": "Tripo",
+                    "href": "https://www.tripo3d.ai/"
+                  },
+                  {
+                    "text": ", an AI image-to-3D tool, to generate the starting model from the concept image."
+                  }
+                ],
+                "The exported FBX established the overall volume and irregular outline. Its broad faces and cavities were softer than the concept.",
+                "Use the supplied Base Color and Normal maps as an initial visual reference, then develop the material and geometry further in Houdini."
+              ]
             },
             {
               "type": "image",
@@ -781,16 +807,24 @@ window.PORTFOLIO = {
               "size": "wide"
             },
             {
-              "type": "paragraph",
-              "text": "The exported color map already contained highlights, shadows, and ice-like detail. For the Houdini look, I moved to a procedural material so I could control translucency and build layers that also exist inside the crystal. The model was prepared at a height of 2 m."
+              "type": "list",
+              "items": [
+                "The exported color map already included highlights, shadows, and ice-like detail.",
+                "Move to a procedural Houdini material to control translucency and build a pattern inside the crystal.",
+                "Prepare the model at a height of 2 m."
+              ]
             },
             {
               "type": "heading",
-              "text": "3. Houdini v001: surface and internal layers"
+              "text": "Houdini v001: surface and internal layers"
             },
             {
-              "type": "paragraph",
-              "text": "The first material pass combined a refractive surface with a separate internal volume. Both use the same three-dimensional layer pattern and rest coordinates. This gave the crystal depth and provided a way to carry the pattern through new cut surfaces when the crystal eventually breaks."
+              "type": "list",
+              "items": [
+                "Combine a refractive surface with a separate internal volume.",
+                "Use the same three-dimensional layer pattern and rest coordinates for both.",
+                "Check that the pattern continues through separated sections and newly exposed cut surfaces."
+              ]
             },
             {
               "type": "image",
@@ -802,11 +836,15 @@ window.PORTFOLIO = {
             },
             {
               "type": "heading",
-              "text": "4. Houdini v002: moving toward jade"
+              "text": "Houdini v002: moving toward jade"
             },
             {
-              "type": "paragraph",
-              "text": "The first pass felt too much like clear glass. In v002, I made the layers denser, reduced the direct transparency, and added cloudy white inclusions and shallow scattering. The result moves toward the soft, pale aqua character of jade while retaining some light through the thinner edges."
+              "type": "list",
+              "items": [
+                "Reduce the clear-glass appearance by making the layers denser and reducing direct transparency.",
+                "Add cloudy white inclusions and shallow scattering.",
+                "Keep the soft pale aqua character of jade while allowing light through thinner edges."
+              ]
             },
             {
               "type": "image",
@@ -819,11 +857,15 @@ window.PORTFOLIO = {
             },
             {
               "type": "heading",
-              "text": "5. Houdini v003: topology and shape study"
+              "text": "Houdini v003: topology and shape tests"
             },
             {
-              "type": "paragraph",
-              "text": "I tested a rebuilt topology followed by remeshing and stronger large facets. It clarified some of the central ridge and shoulder transitions, but I preferred the character of the original v002 shape. This study helped identify which changes to keep and which parts of the silhouette to preserve."
+              "type": "list",
+              "items": [
+                "Test rebuilt topology, remeshing, and stronger large facets.",
+                "Use the comparison to evaluate the central ridge and shoulder transitions.",
+                "Retain the character of the original v002 silhouette, which I preferred to the rebuilt version."
+              ]
             },
             {
               "type": "image",
@@ -831,20 +873,28 @@ window.PORTFOLIO = {
               "width": 1440,
               "height": 688,
               "alt": "Clay models compare the original v002 surface, the remeshed v003 surface, and a three-quarter view of v003.",
-              "caption": "Left to right: v002 original surface, v003 retopology and remesh study, and v003 from a three-quarter angle.",
+              "caption": "Left to right: v002 original surface, v003 retopology and remesh test, and v003 from a three-quarter angle.",
               "size": "wide"
             },
             {
               "type": "heading",
-              "text": "6. Houdini v004 and v005: sharper edges and shallow cuts"
+              "text": "Houdini v004 and v005: sharper edges and shallow cuts"
             },
             {
-              "type": "paragraph",
-              "text": "For v004, I returned to the original v002 form and strengthened its ridges, shoulder transitions, and tips. I kept the larger outline and existing hollows, then repaired thin overlaps introduced by the sharpening."
+              "type": "list",
+              "items": [
+                "Return to the original v002 form and strengthen selected ridges, shoulder transitions, and tips.",
+                "Preserve the larger outline and existing hollows.",
+                "Repair thin overlaps introduced by the sharpening."
+              ]
             },
             {
-              "type": "paragraph",
-              "text": "I saved a separate v005 version with irregular shallow cuts, similar to marks left by a hand plane. The cuts vary in length, width, and depth, creating small steps across the broad faces. An early pass was too regular, so I widened and softened the marks. These changes are in the geometry."
+              "type": "list",
+              "items": [
+                "Save a separate v005 with irregular shallow cuts, similar to marks left by a hand plane.",
+                "Vary their length, width, and depth to create small steps across the broad faces.",
+                "Widen and soften an early pass that looked too regular. These revisions are part of the geometry."
+              ]
             },
             {
               "type": "image",
@@ -875,14 +925,16 @@ window.PORTFOLIO = {
             },
             {
               "type": "heading",
-              "text": "Next step"
+              "text": "What I will improve next"
             },
             {
               "type": "list",
               "items": [
-                "Develop the surrounding energy effect from the clear silhouette established in the nebula visual test.",
-                "Try building that structure with Pyro, or overlaying a Pyro layer.",
-                "Keep the large contours and blue–pink separation readable."
+                "Refine the pale aqua translucency so the internal layers remain visible without making the crystal read as clear glass.",
+                "Balance the cloudy white inclusions and layer contrast, especially through the thinner edges.",
+                "Sharpen selected ridges and chipped edges while preserving the asymmetric silhouette and deep hollows.",
+                "Vary the spacing, depth, and scale of the shallow cuts to reduce repeated marks across the broad faces.",
+                "Check the three-dimensional layer pattern on newly exposed fracture surfaces under different lighting."
               ]
             },
             {
@@ -890,8 +942,12 @@ window.PORTFOLIO = {
               "text": "Process credit"
             },
             {
-              "type": "paragraph",
-              "text": "The concept image was generated with AI, and Tripo supplied the starting mesh and textures. The material, internal layer setup, geometry revisions, and comparison renders were developed in Houdini with AI assistance. The original Tripo review above was rendered separately in Blender to document the starting point."
+              "type": "list",
+              "items": [
+                "The concept image was generated with AI. Tripo supplied the starting mesh and textures.",
+                "The Houdini material, internal layers, geometry revisions, and comparison renders were developed with GPT assistance.",
+                "The original Tripo model was rendered separately in Blender to document the starting point."
+              ]
             }
           ]
         },
@@ -905,7 +961,7 @@ window.PORTFOLIO = {
           "blocks": [
             {
               "type": "paragraph",
-              "text": "This iteration develops the blue outer layer of the crystal's energy effect. I wanted to move from the round, smoky burst in Post 002 toward thinner, connected folds, while keeping the opening readable: a small bright point expands into a large sphere, the surface starts to break up, and the blue structure gradually becomes visible. The current result is v010."
+              "text": "This iteration develops the blue outer layer of the crystal's energy effect: a small bright point expands into a sphere, then opens into thin, connected folds. The current result is v010."
             },
             {
               "type": "video",
@@ -917,60 +973,177 @@ window.PORTFOLIO = {
               "caption": "v010: 140 frames at 24 fps, approximately 5.83 seconds. Houdini OpenGL volume preview with a separate lens-glow pass. The pink center and central light are temporary; the developed layer in this pass is the blue exterior."
             },
             {
-              "type": "heading",
-              "text": "What changed since Post 002"
-            },
-            {
               "type": "paragraph",
               "children": [
-                {"text": "In "},
-                {"text": "Post 002", "href": "/blog/magic-crystal-overload/post-002/"},
-                {"text": ", I combined two Pyro Burst Sources, simulated the bulk smoke, then adjusted its color and reduced density near the center with a Volume Wrangle. Pyro Bake Volume supplied the blue glow. That established expansion and an uneven silhouette, but the result still read as a fairly round cloud."}
+                {
+                  "text": "Clear nebula references: "
+                },
+                {
+                  "text": "https://www.youtube.com/watch?v=DTNYeaFd78w",
+                  "href": "https://www.youtube.com/watch?v=DTNYeaFd78w"
+                },
+                {
+                  "text": " / "
+                },
+                {
+                  "text": "https://www.youtube.com/watch?v=XBPK2kCuT0A",
+                  "href": "https://www.youtube.com/watch?v=XBPK2kCuT0A"
+                }
               ]
-            },
-            {
-              "type": "paragraph",
-              "text": "The new blue layer uses a different construction: a native Pyro simulation supplies the evolving velocity field, and 360,000 persistent particles sampled once on a sphere are transported through it with POP Advect by Volumes. Rasterizing those particles back into a volume produces the thin, connected folds. This makes the surface structure easier to separate from the bulk Pyro density. Color, density, emission, and thickness are adjusted after the particle motion has been cached."
-            },
-            {
-              "type": "heading",
-              "text": "From the tutorial to this approach"
-            },
-            {
-              "type": "paragraph",
-              "children": [
-                {"text": "Doxia Studio's "},
-                {"text": "Nebula Part 1", "href": "https://www.youtube.com/watch?v=DTNYeaFd78w"},
-                {"text": " and "},
-                {"text": "Part 2", "href": "https://www.youtube.com/watch?v=XBPK2kCuT0A"},
-                {"text": " provided the starting point for studying particle-to-volume construction and layered nebula shapes. What interested me was how connected particle structures could become delicate folds instead of a solid-looking cloud. I adapted that idea by using solved Pyro velocity to carry the spherical particle layer, then separating the motion from the appearance controls. The NASA reference from Post 001 guided the small-to-large expansion and the transition from a bright sphere into visible folds."}
-              ]
-            },
-            {
-              "type": "heading",
-              "text": "Main workflow"
             },
             {
               "type": "list",
               "items": [
-                "Build and cache the fluid motion: a spherical Pyro Source supplies density, expansion, and velocity to the native Pyro Solver. Buoyancy and temperature are disabled so the motion stays centered on the outward expansion.",
-                "Prepare the transport field: lightly blur the solved velocity with native Volume Blur nodes, then use it to move the persistent spherical particles in POP Advect by Volumes. Fixed IDs preserve continuity between frames. The later slowdown includes an explicit velocity multiplier.",
-                "Construct the blue volume: assign density, Cd, emission, and particle radius, then use Volume Rasterize Attributes and Gaussian VDB smoothing. Cache the appearance separately so color and thickness can be revised without re-solving the fluid.",
-                "Assemble the visible passes: the particle volume supplies the blue folds; a low-strength haze uses the solved Pyro density. Temporary flash and pink-center passes also use that density, with separate visibility controls.",
-                "Calibrate v010: retime the existing v009 Pyro and particle caches together, apply one opening-scale curve to all visible layers, then adjust the flash and reveal curves against reference frames. v010 reuses the fluid solve; its new work is the timing, opening scale, and visibility calibration."
+                "I only borrowed the idea of clear, readable particle structures from this reference.",
+                "My approach uses a spherical emitter, a Pyro solve, smoothed velocity for particle advection, and several separately controlled volume layers.",
+                [
+                  {
+                    "text": "The "
+                  },
+                  {
+                    "text": "NASA reference",
+                    "href": "https://svs.gsfc.nasa.gov/20413/"
+                  },
+                  {
+                    "text": " is used separately for the opening expansion and reveal sequence."
+                  }
+                ]
               ]
             },
             {
               "type": "heading",
-              "text": "v010: small sphere to expanding folds"
+              "text": "Emitter, Pyro, and velocity smoothing"
             },
             {
-              "type": "paragraph",
-              "text": "I split the reference into frames and compared the opening size, expansion, bright-shell transition, and later motion. The previous version started with a large white core and exposed the inner placeholder too soon. In v010, both the volume Retime and the particle Retime reference CTRL_TIMING/source_frame. The volume uses advected interpolation with the original velocity, while the particles interpolate by ID. A separate opening_scale curve starts at 0.031 and grows to 1 without making the body shrink back. The scale is applied after rasterization so the tiny opening retains its relative voxel detail."
+              "type": "list",
+              "items": [
+                "Build a spherical emitter that supplies density, divergence, and initial velocity to the native Pyro Solver. Keep buoyancy off and temperature at zero for outward expansion.",
+                "Cache the solved density and velocity as the shared base for the particle structure and the additional volume layers.",
+                "Smooth the solved velocity with Volume Blur before particle advection, keeping neighboring particles moving more coherently."
+              ]
             },
             {
-              "type": "paragraph",
-              "text": "The flash remains bright while the sphere grows, then loses intensity as the folds become visible. A soft camera-aligned mask reduces the central flash density during the reveal. This is an appearance control for the fixed camera. The fluid is already present in the source cache; the visible breakup time does not represent the solver starting at that moment. Lens glow is added separately after the viewport export, and still needs refinement."
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-005/pyro-source-velocity-network.png",
+              "width": 1228,
+              "height": 840,
+              "alt": "Native Pyro source, solver, cache, and smoothed velocity branch in Houdini.",
+              "caption": "The v009 source and flow setup carried into v010: spherical emitter, Pyro solve, cache, and CLEAN_VELOCITY before particle transport.",
+              "size": "wide"
+            },
+            {
+              "type": "heading",
+              "text": "Pyro-driven particles: building the clear blue folds"
+            },
+            {
+              "type": "video",
+              "title": "Blue particle-volume layer before lens glow",
+              "src": "/assets/videos/blog/magic-crystal-overload/post-005/v009-blue-folds-raw.mp4",
+              "poster": "blog/magic-crystal-overload/post-005/v009-blue-folds.jpg",
+              "width": 1280,
+              "height": 720,
+              "caption": "v009 blue layer alone, without lens glow or the additional haze and inner passes. The visible folds are volumes rasterized from Pyro-driven particles."
+            },
+            {
+              "type": "list",
+              "items": [
+                "Sample 360,000 points once on a sphere. Keep their IDs and rest positions fixed, and move them through the evolving velocity field with POP Advect by Volumes.",
+                "The flow stretches and folds the particle shell. An explicit late velocity multiplier provides additional control over the slowdown.",
+                "After the motion is cached, assign density, Cd, emission, and particle radius. A rest-space mask controls which parts are dense or porous without changing P or v.",
+                "Use Volume Rasterize Attributes to turn the points into continuous fields, then Gaussian VDB smoothing to reduce the granular appearance. The displayed blue folds are still volumes."
+              ]
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-005/particle-volume-network.png",
+              "width": 1228,
+              "height": 840,
+              "alt": "Particle advection, cache, appearance attributes, Volume Rasterize Attributes, and VDB Smooth nodes.",
+              "caption": "The blue-layer construction: cache the particle motion, assign appearance attributes, rasterize the points, then smooth the resulting fields.",
+              "size": "wide"
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-005/v009-blue-folds-frames.jpg",
+              "width": 1920,
+              "height": 1560,
+              "alt": "Twelve time-labeled frames show the blue particle-volume layer expanding and developing folds.",
+              "caption": "Selected v009 blue-layer frames, from the spherical opening to the expanding folds. Time labels make the evolution visible without playing the clip.",
+              "size": "wide"
+            },
+            {
+              "type": "heading",
+              "text": "Layer assembly: folds, haze, flash, and pink center"
+            },
+            {
+              "type": "video",
+              "title": "v009 volume layers assembled before the v010 opening changes",
+              "src": "/assets/videos/blog/magic-crystal-overload/post-005/v009-layer-assembly-raw.mp4",
+              "poster": "blog/magic-crystal-overload/post-005/v009-layer-assembly.jpg",
+              "width": 1280,
+              "height": 720,
+              "caption": "v009 assembled layers without lens glow. This shows the blue folds together with the solved-density haze and temporary inner passes, before the v010 opening changes."
+            },
+            {
+              "type": "list",
+              "items": [
+                "Blue folds: use the particle-to-volume branch for the clearer, thinner structure.",
+                "Blue haze: use the solved Pyro density directly, soften it, and keep its strength low to fill around the folds.",
+                "Flash: use the same solved density for the bright opening, with a separate gain and central reveal mask.",
+                "Pink center: use a smaller, softened version of that density as a temporary inner pass. The pink middle and inner layers still need further development.",
+                "These layers share the same source flow, with separate appearance controls. The sphere emitter, Pyro flow, velocity smoothing, and layered assembly form my approach for this effect."
+              ]
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-005/v009-layer-assembly-frames.jpg",
+              "width": 1920,
+              "height": 1560,
+              "alt": "Time-labeled v009 frames show blue folds combined with haze and the temporary pink center.",
+              "caption": "Selected v009 assembled frames show how the clear blue folds, diffuse volume, and temporary inner layers work together.",
+              "size": "wide"
+            },
+            {
+              "type": "heading",
+              "text": "v010: automated frame matching and opening adjustments"
+            },
+            {
+              "type": "video",
+              "title": "Opening comparison at four-times slower playback",
+              "src": "/assets/videos/blog/magic-crystal-overload/post-005/v010-opening-slow.mp4",
+              "poster": "blog/magic-crystal-overload/post-005/v010-opening-slow.jpg",
+              "width": 1920,
+              "height": 568,
+              "caption": "The opening comparison played four times slower to inspect the small bright point, sphere growth, and transition into visible folds."
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-005/v010-opening-every-frame.jpg",
+              "width": 1920,
+              "height": 2000,
+              "alt": "NASA and v010 opening frames are paired with frame numbers and actual times from zero to one second.",
+              "caption": "GPT-assisted scripts automated frame extraction and nearest-time matching. This sheet pairs the first 25 v010 frames with NASA reference frames; each image retains its actual frame number and time. Reference: NASA/CXC/A. Hobart; v010: Tao Luo.",
+              "size": "wide"
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-005/v010-opening-three-way.jpg",
+              "width": 1920,
+              "height": 612,
+              "alt": "NASA, v009, and v010 are compared at six labeled opening times from zero to two seconds.",
+              "caption": "Opening comparison: NASA / v009 / v010. These matched frames guided the smaller starting point, sphere growth, and later reveal. Reference: NASA/CXC/A. Hobart; v009 and v010: Tao Luo.",
+              "size": "wide"
+            },
+            {
+              "type": "list",
+              "items": [
+                "Use GPT-assisted scripts to automate frame-by-frame matching between the NASA reference and my preview: compare the opening size, expansion, bright-shell transition, and reveal at corresponding times.",
+                "Use the matched frames to make the starting point smaller, control sphere growth, and delay the temporary center reveal.",
+                "Retime the existing v009 Pyro and particle caches with the same CTRL_TIMING/source_frame curve. Volumes use advected interpolation with the original velocity; particles match by ID.",
+                "Grow opening_scale from 0.031 to 1 across all visible layers. Apply scale after rasterization to preserve relative voxel detail in the small opening.",
+                "Keep the flash bright while the sphere grows, then reduce it as the blue folds appear. A soft camera-aligned density mask reveals the temporary pink center.",
+                "v010 reuses the fluid solve. The new adjustments are automated frame matching, shared playback timing, opening scale, and layer visibility. Lens glow is added separately after export and still needs refinement."
+              ]
             },
             {
               "type": "video",
@@ -979,8 +1152,17 @@ window.PORTFOLIO = {
               "poster": "blog/magic-crystal-overload/post-005/v010-comparison.png",
               "width": 1920,
               "height": 568,
-              "caption": "Left: the NASA 600% reference used in Post 001. Right: v010. Each side is labeled with its actual frame and sample time; the reference was not accelerated again. The folds and internal detail remain different.",
-              "credit": "Reference: NASA/CXC/A. Hobart; v010 study: Tao Luo.",
+              "caption": "Left: the NASA 600% reference. Right: v010. Each side is labeled with its actual frame and sample time; the reference was not accelerated again. The folds and internal detail remain different.",
+              "credit": "Reference: NASA/CXC/A. Hobart; v010: Tao Luo.",
+              "size": "wide"
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-005/v010-development-three-way.jpg",
+              "width": 1920,
+              "height": 612,
+              "alt": "NASA, v009, and v010 are compared at labeled later times as folds and the pink center become visible.",
+              "caption": "Later-frame comparison: NASA / v009 / v010. The labels retain actual sample times; the folds and internal detail remain different. Reference: NASA/CXC/A. Hobart; v009 and v010: Tao Luo.",
               "size": "wide"
             },
             {
@@ -988,27 +1170,86 @@ window.PORTFOLIO = {
               "text": "Parameters: simulation and blue layer"
             },
             {
-              "type": "paragraph",
-              "text": "These are the active settings used by the source solve and the blue-layer construction, rather than every control left over from earlier experiments. PYRO_FLOW/null1 holds the source controls; NEBULA_BLUE/CTRL_BLUE holds the blue appearance controls. Distances below are in source-space units unless specified."
+              "type": "list",
+              "items": [
+                "PYRO_FLOW/null1 contains the source and fluid controls; NEBULA_BLUE/CTRL_BLUE contains the blue appearance controls.",
+                "The table lists the active settings carried into v010. Distances are in source-space units unless specified."
+              ]
             },
             {
               "type": "table",
               "caption": "Source motion and blue-volume settings carried into v010",
-              "headers": ["Parameter", "Setting", "Purpose"],
+              "headers": [
+                "Parameter",
+                "Setting",
+                "Purpose"
+              ],
               "rows": [
-                ["Pyro voxel size", "0.1", "Resolution of the original fluid solve; smaller values increase detail and simulation cost."],
-                ["Source radius / density", "1.5 / 0.3", "Set the size and density of the spherical fluid source."],
-                ["Expansion / decay", "8 / 1.4 s", "Divergence drives outward expansion; its source strength decays over time."],
-                ["Buoyancy / temperature", "Off / 0", "Keep the burst from developing a heat-driven upward plume."],
-                ["Turbulence / swirl size", "0.25 / 1.8", "Control the strength and broad scale of the fluid breakup."],
-                ["Velocity blur", "Radius 0.22, two passes", "Soften small velocity irregularities before particle transport."],
-                ["Particle count / POP substeps", "360,000 / 4-8", "Maintain a dense, continuous layer with persistent IDs during advection."],
-                ["Late velocity multiplier", "1 to 0.18 from 2.3 s", "Art-direct the later slowdown in the source particle motion."],
-                ["Volume voxel / smoothing", "0.055 / 2 voxels", "Resolve the particle layer and soften rasterization artifacts."],
-                ["particle_radius / late_radius", "0.065 / 0.12", "Control fold thickness and later softening; larger radii fill more gaps."],
-                ["density / emission", "0.3 / 11", "Base blue-layer density and emission controls, before time-dependent gains."],
-                ["fade_start / fade_end", "4 / 12 s", "Spread the blue-layer appearance fade beyond the end of this shot."],
-                ["diffuse_gain", "0.025", "Strength of the solved-density haze that fills around the thin folds."]
+                [
+                  "Pyro voxel size",
+                  "0.1",
+                  "Resolution of the original fluid solve; smaller values increase detail and simulation cost."
+                ],
+                [
+                  "Source radius / density",
+                  "1.5 / 0.3",
+                  "Set the size and density of the spherical fluid source."
+                ],
+                [
+                  "Expansion / decay",
+                  "8 / 1.4 s",
+                  "Divergence drives outward expansion; its source strength decays over time."
+                ],
+                [
+                  "Buoyancy / temperature",
+                  "Off / 0",
+                  "Keep the burst from developing a heat-driven upward plume."
+                ],
+                [
+                  "Turbulence / swirl size",
+                  "0.25 / 1.8",
+                  "Control the strength and broad scale of the fluid breakup."
+                ],
+                [
+                  "Velocity blur",
+                  "Radius 0.22, two passes",
+                  "Soften small velocity irregularities before particle transport."
+                ],
+                [
+                  "Particle count / POP substeps",
+                  "360,000 / 4-8",
+                  "Maintain a dense, continuous layer with persistent IDs during advection."
+                ],
+                [
+                  "Late velocity multiplier",
+                  "1 to 0.18 from 2.3 s",
+                  "Art-direct the later slowdown in the source particle motion."
+                ],
+                [
+                  "Volume voxel / smoothing",
+                  "0.055 / 2 voxels",
+                  "Resolve the particle layer and soften rasterization artifacts."
+                ],
+                [
+                  "particle_radius / late_radius",
+                  "0.065 / 0.12",
+                  "Control fold thickness and later softening; larger radii fill more gaps."
+                ],
+                [
+                  "density / emission",
+                  "0.3 / 11",
+                  "Base blue-layer density and emission controls, before time-dependent gains."
+                ],
+                [
+                  "fade_start / fade_end",
+                  "4 / 12 s",
+                  "Spread the blue-layer appearance fade beyond the end of this shot."
+                ],
+                [
+                  "diffuse_gain",
+                  "0.025",
+                  "Strength of the solved-density haze that fills around the thin folds."
+                ]
               ]
             },
             {
@@ -1016,26 +1257,64 @@ window.PORTFOLIO = {
               "text": "Parameters: timing and reveal"
             },
             {
-              "type": "paragraph",
-              "text": "The following controls live on NEBULA_BLUE/CTRL_TIMING. source_frame coordinates the two Retime nodes; opening_scale coordinates the visible layers. Changing source timing requires rebuilding the retimed caches. Changing only the final scale or reveal intensity requires a new preview export."
+              "type": "list",
+              "items": [
+                "NEBULA_BLUE/CTRL_TIMING/source_frame drives both Retime nodes; opening_scale drives all visible layers.",
+                "Changing source timing requires rebuilding the retimed caches. Changing only final scale or reveal intensity requires a new preview export."
+              ]
             },
             {
               "type": "table",
               "caption": "Editable shot controls in v010, at 24 fps",
-              "headers": ["Parameter", "Setting", "Purpose"],
+              "headers": [
+                "Parameter",
+                "Setting",
+                "Purpose"
+              ],
               "rows": [
-                ["source_frame", "Animated, source frames 1-140", "One forward-moving time map shared by Pyro fields and persistent particles."],
-                ["opening_scale", "0.031 to 1", "Grow the tiny opening into the full body while keeping world-space growth continuous."],
-                ["flash_gain / shell_gain", "Animated", "Balance the bright opening and the exposed blue shell independently."],
-                ["pink_gain", "Animated placeholder visibility", "Time the temporary center reveal; the final pink layers remain to be developed."],
-                ["reveal_start / reveal_end", "1.967 / 2.567 s", "Start and finish the soft camera-aligned reduction of central flash density."],
-                ["hole_inner / hole_outer", "0.2 / 2.2", "Set the soft inner and outer radii of the reveal mask."],
-                ["halo_radius_px / halo_gain", "Animated, post-process only", "Set the separate lens-glow spread and intensity; these do not alter the simulation."]
+                [
+                  "source_frame",
+                  "Animated, source frames 1-140",
+                  "One forward-moving time map shared by Pyro fields and persistent particles."
+                ],
+                [
+                  "opening_scale",
+                  "0.031 to 1",
+                  "Grow the tiny opening into the full body while keeping world-space growth continuous."
+                ],
+                [
+                  "flash_gain / shell_gain",
+                  "Animated",
+                  "Balance the bright opening and the exposed blue shell independently."
+                ],
+                [
+                  "pink_gain",
+                  "Animated placeholder visibility",
+                  "Time the temporary center reveal; the final pink layers remain to be developed."
+                ],
+                [
+                  "reveal_start / reveal_end",
+                  "1.967 / 2.567 s",
+                  "Start and finish the soft camera-aligned reduction of central flash density."
+                ],
+                [
+                  "hole_inner / hole_outer",
+                  "0.2 / 2.2",
+                  "Set the soft inner and outer radii of the reveal mask."
+                ],
+                [
+                  "halo_radius_px / halo_gain",
+                  "Animated, post-process only",
+                  "Set the separate lens-glow spread and intensity; these do not alter the simulation."
+                ]
               ]
             },
             {
-              "type": "paragraph",
-              "text": "Useful timing anchors are output 0.4 s to source 0.35 s, output 2.0 s to source 1.75 s, output 2.4 s to source 2.0 s, and output 4.0 s to source 3.85 s. Keeping these controls shared avoids a sliding mismatch between the blue folds, flash, and temporary inner layer."
+              "type": "list",
+              "items": [
+                "Example frame-matching anchors: output 0.4 s maps to source 0.35 s; output 2.0 s to source 1.75 s; output 2.4 s to source 2.0 s; output 4.0 s to source 3.85 s.",
+                "The same source-frame curve keeps the blue folds, haze, flash, and temporary pink center aligned."
+              ]
             },
             {
               "type": "heading",
@@ -1052,11 +1331,13 @@ window.PORTFOLIO = {
             },
             {
               "type": "heading",
-              "text": "Process credit"
+              "text": "AI credit"
             },
             {
-              "type": "paragraph",
-              "text": "Developed in Houdini with AI assistance for project inspection, implementation, and timing analysis, building on the Doxia Studio tutorial study. The blue-layer study and temporary inner passes are shown as work in progress. The crystal asset has not yet replaced the central light placeholder."
+              "type": "list",
+              "items": [
+                "GPT: frame by frame."
+              ]
             }
           ]
         }
