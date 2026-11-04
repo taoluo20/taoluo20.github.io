@@ -476,8 +476,12 @@ window.PORTFOLIO = {
               "label": "Current Progress viewport preview"
             },
             {
-              "type": "paragraph",
-              "text": "For the current preview, I used Pyro Bake Volume to adjust the smoke density, emission, and material. The blue glow brings the test closer to the direction I imagined for the crystal, although the overall shape still feels quite round. I will use this version as a starting point for refining the layers and silhouette."
+              "type": "list",
+              "items": [
+                "I used Pyro Bake Volume to adjust the smoke density, emission, and material.",
+                "The blue glow brings the preview closer to the crystal effect I have in mind.",
+                "The overall shape still feels quite round. Next, refine the layers and silhouette."
+              ]
             },
             {
               "type": "image",
@@ -487,8 +491,11 @@ window.PORTFOLIO = {
               "alt": "Full Houdini SOP network overview, from the two Pyro Burst Sources through the simulation and volume appearance nodes."
             },
             {
-              "type": "paragraph",
-              "text": "Following the reference breakdown in the first post, I started testing the main shape in Houdini. I wanted to see how an outward burst could develop an uneven edge and a softer interior before building the full crystal scene."
+              "type": "list",
+              "items": [
+                "I started testing the main shape in Houdini after breaking down the reference.",
+                "The goal is an outward burst with an uneven edge and a softer interior before building the full crystal scene."
+              ]
             },
             {
               "type": "heading",
@@ -517,8 +524,12 @@ window.PORTFOLIO = {
               ]
             },
             {
-              "type": "paragraph",
-              "text": "I started with two Pyro Burst Sources to explore the layered shape in the reference. Subtle noise varies the source density and velocity, helping the burst expand less uniformly. I want the two layers to feel connected while still leaving a readable difference between them."
+              "type": "list",
+              "items": [
+                "I started with two Pyro Burst Sources to explore the layered shape in the reference.",
+                "Subtle noise varies the source density and velocity, making the expansion less uniform.",
+                "The goal is to keep the two layers connected while leaving a readable difference between them."
+              ]
             },
             {
               "type": "heading",
@@ -535,8 +546,12 @@ window.PORTFOLIO = {
               "label": "Pyro Solver viewport flipbook"
             },
             {
-              "type": "paragraph",
-              "text": "At this stage, I am using the Pyro Solver preview to judge the overall expansion and the uneven edge of the burst. The result has the billowing movement I was looking for, but it still feels closer to colored smoke than the thinner, layered cloud in the reference. This gives me a starting point for the motion and a clearer idea of what to refine."
+              "type": "list",
+              "items": [
+                "I used the Pyro Solver preview to judge the overall expansion and the uneven edge of the burst.",
+                "The simulation has the billowing motion I wanted, but still looks closer to colored smoke than the thinner, layered reference.",
+                "This motion test helps identify which shapes and layers need refinement."
+              ]
             },
             {
               "type": "heading",
@@ -550,8 +565,12 @@ window.PORTFOLIO = {
               "alt": "The cached volume after its color and central density adjustment."
             },
             {
-              "type": "paragraph",
-              "text": "After caching the simulation, I used a Volume Wrangle to strengthen the color separation and reduce density near the center. The thinner core helps the outer layer stand out, bringing the shape closer to the more transparent cloud I noticed in the reference. I can adjust this appearance on the cached volume while keeping the simulated motion."
+              "type": "list",
+              "items": [
+                "After caching the simulation, I used a Volume Wrangle to strengthen the color separation and reduce density near the center.",
+                "The thinner core helps the outer layer stand out and makes the cloud more transparent.",
+                "I can adjust the appearance on the cached volume while keeping the simulated motion."
+              ]
             },
             {
               "type": "heading",
@@ -568,8 +587,12 @@ window.PORTFOLIO = {
               "label": "Current Progress viewport preview"
             },
             {
-              "type": "paragraph",
-              "text": "For the current preview, I used Pyro Bake Volume to adjust the smoke density, emission, and material. The blue glow brings the test closer to the direction I imagined for the crystal, although the overall shape still feels quite round. I will use this version as a starting point for refining the layers and silhouette."
+              "type": "list",
+              "items": [
+                "I used Pyro Bake Volume to adjust the smoke density, emission, and material.",
+                "The blue glow brings the preview closer to the crystal effect I have in mind.",
+                "The overall shape still feels quite round. Next, refine the layers and silhouette."
+              ]
             },
             {
               "type": "heading",
@@ -609,30 +632,42 @@ window.PORTFOLIO = {
             },
             {
               "type": "heading",
-              "text": "Starting from astronomical data"
+              "text": "My AsterLoom workflow"
             },
             {
-              "type": "paragraph",
-              "text": "AsterLoom is another personal project of mine, developed with AI assistance. I reused its star catalog and sky-dome workflow for this shot, and used AI assistance to adapt and document the setup."
-            },
-            {
-              "type": "paragraph",
-              "children": [
-                {
-                  "text": "My earlier AsterLoom sky experiments used "
-                },
-                {
-                  "text": "NASA’s Deep Star Maps 2020",
-                  "href": "https://svs.gsfc.nasa.gov/4851/"
-                },
-                {
-                  "text": " as an all-sky image source. These maps store the sky in a latitude–longitude projection that can wrap around a sphere. The later AsterLoom setup also works with editable catalog records, so I can keep each star’s direction, magnitude, color, and source ID."
-                }
+              "type": "list",
+              "items": [
+                "AsterLoom is my separate personal sky-authoring project, developed with AI assistance. It lets me work with editable star records in Houdini, style the sky, and prepare layered textures for Unreal.",
+                "The catalog workflow imports stars as individual SOP points. Each record keeps its sky direction, source ID, magnitude, color, and styling attributes.",
+                "Star Data controls select the source catalogs, magnitude range, sky region, and loaded point budget. Star Look controls adjust size, color, tint, cores, and halos.",
+                "For this shot, I reused the catalog and sky-dome workflow, with AI assistance for adaptation and documentation."
               ]
             },
             {
-              "type": "paragraph",
-              "text": "For this shot, I reused a cache of 130,441 stars from that catalog setup. Checking the IDs showed Hipparcos and Tycho-2 records in this cache. I kept those recorded directions instead of scattering new points. NASA’s supernova animation supplied the visual reference for the blue palette, star density, and brightness distribution."
+              "type": "list",
+              "items": [
+                [
+                  {
+                    "text": "My earlier AsterLoom sky experiments used "
+                  },
+                  {
+                    "text": "NASA’s Deep Star Maps 2020",
+                    "href": "https://svs.gsfc.nasa.gov/4851/"
+                  },
+                  {
+                    "text": " as an all-sky image source. These maps store the sky in a latitude–longitude projection that can wrap around a sphere. The later AsterLoom setup also works with editable catalog records, so I can keep each star’s direction, magnitude, color, and source ID."
+                  }
+                ]
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                "For this shot, I reused the styled cache of 130,441 stars: 83,337 Hipparcos records and 47,104 Tycho-2 records.",
+                "The recorded sky directions and source IDs remain intact through selection and projection.",
+                "The catalog data stays separate from artistic size, color, and emission controls, so I can change the look without changing the star layout.",
+                "I used the NASA supernova animation to guide the blue palette, visible star density, and brightness distribution."
+              ]
             },
             {
               "type": "image",
@@ -645,11 +680,37 @@ window.PORTFOLIO = {
             },
             {
               "type": "heading",
-              "text": "From the sky data to a dome"
+              "text": "Editable points on a sky dome"
             },
             {
-              "type": "paragraph",
-              "text": "In AsterLoom, the DOME sphere provides the surrounding sky surface. CANONICAL_LATLONG_UV gives it spherical texture coordinates, and INWARD_SURFACE reverses the surface so it can be viewed from inside. PREVIEW_SURFACE switches between this dome and a flat atlas. LIVE_PREVIEW and LIVE_TEXTURE then display the generated sky texture."
+              "type": "list",
+              "items": [
+                "Each catalog record sits on a sphere using its sky direction. The radius is a display scale; the dome represents directions around the observer.",
+                "The point view lets me inspect the distribution and edit star attributes before baking. Point size and color help show the stars clearly in the preview.",
+                "The camera sits at the center to view the surrounding sky. An exterior view makes the spherical arrangement of the points easier to see."
+              ]
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-003/catalog-point-dome.png",
+              "width": 1800,
+              "height": 1400,
+              "alt": "An exterior point-cloud visualization of the 130,441 cached AsterLoom catalog directions arranged on a spherical sky dome.",
+              "caption": "Point-only dome, plotted from the actual AsterLoom cache used for this shot. All 130,441 catalog directions are shown; the far side is dimmed to reveal the spherical shape. This is a data visualization before texture baking."
+            },
+            {
+              "type": "heading",
+              "text": "Previewing and layering the sky"
+            },
+            {
+              "type": "list",
+              "items": [
+                "AsterLoom bakes the styled stars into latitude–longitude sky textures for the dome and flat-atlas previews.",
+                "DOME provides the sky surface, CANONICAL_LATLONG_UV gives it spherical texture coordinates, and INWARD_SURFACE reverses it for viewing from inside.",
+                "PREVIEW_SURFACE switches between the dome and flat atlas. LIVE_PREVIEW and LIVE_TEXTURE display the generated sky texture.",
+                "The layered AsterLoom workflow separates bright, medium, and faint stars. Each band has its own visibility, gain, tint, core, and halo controls.",
+                "The local background gradient stays separate from the stellar layers. AsterLoom can publish the baked layers and editable points for Unreal; this shot uses a fixed camera plate in Houdini."
+              ]
             },
             {
               "type": "image",
@@ -668,16 +729,24 @@ window.PORTFOLIO = {
               "caption": "The original dome and atlas preview branches. The node layout and connections are captured directly from the existing Houdini scene."
             },
             {
-              "type": "paragraph",
-              "text": "For the current fixed camera, I projected a patch of the catalog sky into a 1920 × 1080 image and placed it on a card behind the effect. This keeps the background inexpensive and consistent while I work on the foreground volume. A moving camera would need the dome or a newly generated projection."
+              "type": "list",
+              "items": [
+                "For this fixed camera, I projected a patch of the catalog sky into a 1920 × 1080 plate and placed it on a card behind the effect.",
+                "The plate keeps the background inexpensive and consistent while I develop the foreground volume.",
+                "A changing view would need the surrounding dome or a newly generated projection."
+              ]
             },
             {
               "type": "heading",
               "text": "Controlling the number of stars"
             },
             {
-              "type": "paragraph",
-              "text": "I first measured the small bright peaks in the NASA reference, masking out its central glow. The analysis found 4,018 peaks in the usable area; correcting for the masked area gave a target of about 4,210. This is an estimate of visual density in an animation frame."
+              "type": "list",
+              "items": [
+                "I measured the small bright peaks in the NASA reference while masking out its central glow.",
+                "The analysis found 4,018 peaks in the usable area. Correcting for the masked area gave a target of about 4,210 visible stars.",
+                "This count estimates the visual density in the animation frame."
+              ]
             },
             {
               "type": "list",
@@ -689,16 +758,24 @@ window.PORTFOLIO = {
               ]
             },
             {
-              "type": "paragraph",
-              "text": "The selection happens in the plate-generation script. Reducing its target keeps a sparser set of bright stars; increasing it allows more of the available faint stars into the image. The Houdini background controller records the resulting count, so changing the selection means regenerating the plate."
+              "type": "list",
+              "items": [
+                "The plate-generation script controls the target count: a lower target keeps a sparser set of brighter stars; a higher target includes more faint stars.",
+                "The current selection contains 2,702 Hipparcos and 1,508 Tycho-2 stars, for 4,210 in total.",
+                "Changing the selection requires regenerating the plate. The Houdini background controller records the resulting count."
+              ]
             },
             {
               "type": "heading",
               "text": "Adding the blue background"
             },
             {
-              "type": "paragraph",
-              "text": "I built the blue color as a separate, broad gradient: darker at the edges and slightly brighter near the center. Keeping it separate lets me adjust the atmosphere without changing the star positions. I also softened the star colors toward white and blue and added small cores with subtle halos."
+              "type": "list",
+              "items": [
+                "I built the blue color as a separate, broad gradient: darker at the edges and slightly brighter near the center.",
+                "The atmosphere can be adjusted independently of the star positions.",
+                "I softened the star colors toward white and blue, with small cores and subtle halos."
+              ]
             },
             {
               "type": "mediaRow",
@@ -736,8 +813,12 @@ window.PORTFOLIO = {
               "text": "Bringing it into the shot"
             },
             {
-              "type": "paragraph",
-              "text": "I converted the finished background to a linear-sRGB EXR for the Houdini scene. CAMERA_BACKPLATE makes the camera-sized grid, NASA_MATCHED_STARS applies the texture, and OUT_BACKGROUND sends it to the viewport. The plate file is referenced from CTRL_BACKGROUND; the catalog cache remains available alongside it."
+              "type": "list",
+              "items": [
+                "I converted the finished background to a linear-sRGB EXR for the Houdini scene.",
+                "CAMERA_BACKPLATE supplies the camera-sized grid, NASA_MATCHED_STARS applies the texture, and OUT_BACKGROUND provides the viewport output.",
+                "The plate is referenced from CTRL_BACKGROUND, with the catalog cache retained alongside it."
+              ]
             },
             {
               "type": "image",
