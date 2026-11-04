@@ -816,7 +816,7 @@ window.PORTFOLIO = {
             },
             {
               "type": "heading",
-              "text": "Houdini v001: surface and internal layers"
+              "text": "Surface and internal layers"
             },
             {
               "type": "list",
@@ -836,7 +836,7 @@ window.PORTFOLIO = {
             },
             {
               "type": "heading",
-              "text": "Houdini v002: moving toward jade"
+              "text": "A cloudier, jade-like material"
             },
             {
               "type": "list",
@@ -857,7 +857,7 @@ window.PORTFOLIO = {
             },
             {
               "type": "heading",
-              "text": "Houdini v003: topology and shape tests"
+              "text": "Refining topology and shape"
             },
             {
               "type": "list",
@@ -878,7 +878,7 @@ window.PORTFOLIO = {
             },
             {
               "type": "heading",
-              "text": "Houdini v004 and v005: sharper edges and shallow cuts"
+              "text": "Sharper edges and shallow cuts"
             },
             {
               "type": "list",
@@ -1028,21 +1028,12 @@ window.PORTFOLIO = {
               "width": 1228,
               "height": 840,
               "alt": "Native Pyro source, solver, cache, and smoothed velocity branch in Houdini.",
-              "caption": "The v009 source and flow setup carried into v010: spherical emitter, Pyro solve, cache, and CLEAN_VELOCITY before particle transport.",
+              "caption": "Spherical emitter, Pyro solve, field cache, and CLEAN_VELOCITY before particle transport.",
               "size": "wide"
             },
             {
               "type": "heading",
               "text": "Pyro-driven particles: building the clear blue folds"
-            },
-            {
-              "type": "video",
-              "title": "Blue particle-volume layer before lens glow",
-              "src": "/assets/videos/blog/magic-crystal-overload/post-005/v009-blue-folds-raw.mp4",
-              "poster": "blog/magic-crystal-overload/post-005/v009-blue-folds.jpg",
-              "width": 1280,
-              "height": 720,
-              "caption": "v009 blue layer alone, without lens glow or the additional haze and inner passes. The visible folds are volumes rasterized from Pyro-driven particles."
             },
             {
               "type": "list",
@@ -1063,26 +1054,17 @@ window.PORTFOLIO = {
               "size": "wide"
             },
             {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/post-005/v009-blue-folds-frames.jpg",
-              "width": 1920,
-              "height": 1560,
-              "alt": "Twelve time-labeled frames show the blue particle-volume layer expanding and developing folds.",
-              "caption": "Selected v009 blue-layer frames, from the spherical opening to the expanding folds. Time labels make the evolution visible without playing the clip.",
-              "size": "wide"
-            },
-            {
               "type": "heading",
               "text": "Layer assembly: folds, haze, flash, and pink center"
             },
             {
               "type": "video",
-              "title": "v009 volume layers assembled before the v010 opening changes",
-              "src": "/assets/videos/blog/magic-crystal-overload/post-005/v009-layer-assembly-raw.mp4",
-              "poster": "blog/magic-crystal-overload/post-005/v009-layer-assembly.jpg",
+              "title": "Assembled volume layers without lens glow",
+              "src": "/assets/videos/blog/magic-crystal-overload/post-005/v010-layer-assembly-raw.mp4",
+              "poster": "blog/magic-crystal-overload/post-005/v010-raw-layers.jpg",
               "width": 1280,
               "height": 720,
-              "caption": "v009 assembled layers without lens glow. This shows the blue folds together with the solved-density haze and temporary inner passes, before the v010 opening changes."
+              "caption": "The current volume layers without the separate lens-glow pass: blue folds, solved-density haze, and the temporary inner layers."
             },
             {
               "type": "list",
@@ -1093,15 +1075,6 @@ window.PORTFOLIO = {
                 "Pink center: use a smaller, softened version of that density as a temporary inner pass. The pink middle and inner layers still need further development.",
                 "These layers share the same source flow, with separate appearance controls. The sphere emitter, Pyro flow, velocity smoothing, and layered assembly form my approach for this effect."
               ]
-            },
-            {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/post-005/v009-layer-assembly-frames.jpg",
-              "width": 1920,
-              "height": 1560,
-              "alt": "Time-labeled v009 frames show blue folds combined with haze and the temporary pink center.",
-              "caption": "Selected v009 assembled frames show how the clear blue folds, diffuse volume, and temporary inner layers work together.",
-              "size": "wide"
             },
             {
               "type": "heading",
@@ -1127,11 +1100,11 @@ window.PORTFOLIO = {
             },
             {
               "type": "image",
-              "image": "blog/magic-crystal-overload/post-005/v010-opening-version-pairs.jpg",
+              "image": "blog/magic-crystal-overload/post-005/v010-opening-reference-pairs.jpg",
               "width": 1900,
-              "height": 1974,
-              "alt": "Two columns of side-by-side opening pairs: NASA versus v010 in the left column and v009 versus v010 in the right column.",
-              "caption": "Opening comparisons at matched times. The left column contains NASA / v010 pairs; the right column contains v009 / v010 pairs. Read downward within each column. Reference: NASA/CXC/A. Hobart; v009 and v010: Tao Luo.",
+              "height": 1050,
+              "alt": "NASA and v010 opening frames arranged as side-by-side pairs down two columns.",
+              "caption": "Opening comparisons: NASA on the left and v010 on the right within each card. Read down each column. Reference: NASA/CXC/A. Hobart; v010: Tao Luo.",
               "size": "wide"
             },
             {
@@ -1139,7 +1112,7 @@ window.PORTFOLIO = {
               "items": [
                 "Use GPT-assisted scripts to automate frame-by-frame matching between the NASA reference and my preview: compare the opening size, expansion, bright-shell transition, and reveal at corresponding times.",
                 "Use the matched frames to make the starting point smaller, control sphere growth, and delay the temporary center reveal.",
-                "Retime the existing v009 Pyro and particle caches with the same CTRL_TIMING/source_frame curve. Volumes use advected interpolation with the original velocity; particles match by ID.",
+                "Retime the cached Pyro fields and particles with the same CTRL_TIMING/source_frame curve. Volumes use advected interpolation with the original velocity; particles match by ID.",
                 "Grow opening_scale from 0.031 to 1 across all visible layers. Apply scale after rasterization to preserve relative voxel detail in the small opening.",
                 "Keep the flash bright while the sphere grows, then reduce it as the blue folds appear. A soft camera-aligned density mask reveals the temporary pink center.",
                 "v010 reuses the fluid solve. The new adjustments are automated frame matching, shared playback timing, opening scale, and layer visibility. Lens glow is added separately after export and still needs refinement."
@@ -1158,11 +1131,11 @@ window.PORTFOLIO = {
             },
             {
               "type": "image",
-              "image": "blog/magic-crystal-overload/post-005/v010-development-frame-pairs.jpg",
+              "image": "blog/magic-crystal-overload/post-005/v010-development-reference-pairs.jpg",
               "width": 1900,
-              "height": 1974,
-              "alt": "Two columns of later-time image pairs: NASA versus v010 and v009 versus v010, with each pair side by side.",
-              "caption": "Later comparisons at matched times. Each card contains two images side by side: NASA / v010 in the left column, and v009 / v010 in the right column. Actual sample times remain labeled. Reference: NASA/CXC/A. Hobart; v009 and v010: Tao Luo.",
+              "height": 1050,
+              "alt": "Later NASA and v010 frames arranged as side-by-side pairs down two columns.",
+              "caption": "Later comparisons: NASA on the left and v010 on the right within each card. Actual sample times remain labeled. Reference: NASA/CXC/A. Hobart; v010: Tao Luo.",
               "size": "wide"
             },
             {
@@ -1331,12 +1304,50 @@ window.PORTFOLIO = {
             },
             {
               "type": "heading",
-              "text": "AI credit"
+              "text": "Credit"
             },
             {
-              "type": "list",
-              "items": [
-                "GPT: frame by frame."
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "Frame-by-frame comparison was automated with "
+                },
+                {
+                  "text": "GPT",
+                  "href": "https://chatgpt.com/"
+                },
+                {
+                  "text": "."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "Video references: "
+                },
+                {
+                  "text": "Doxia Studio — Nebula Part 1",
+                  "href": "https://www.youtube.com/watch?v=DTNYeaFd78w"
+                },
+                {
+                  "text": " / "
+                },
+                {
+                  "text": "Part 2",
+                  "href": "https://www.youtube.com/watch?v=XBPK2kCuT0A"
+                },
+                {
+                  "text": "; "
+                },
+                {
+                  "text": "NASA/CXC",
+                  "href": "https://svs.gsfc.nasa.gov/20413/"
+                },
+                {
+                  "text": "."
+                }
               ]
             }
           ]
