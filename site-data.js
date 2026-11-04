@@ -1310,11 +1310,18 @@ window.PORTFOLIO = {
               "type": "paragraph",
               "children": [
                 {
-                  "text": "Frame-by-frame comparison was automated with "
+                  "text": "Frame-by-frame comparison was automated using "
                 },
                 {
                   "text": "GPT",
                   "href": "https://chatgpt.com/"
+                },
+                {
+                  "text": " with "
+                },
+                {
+                  "text": "Codex",
+                  "href": "https://openai.com/codex/"
                 },
                 {
                   "text": "."
