@@ -1118,20 +1118,20 @@ window.PORTFOLIO = {
             },
             {
               "type": "image",
-              "image": "blog/magic-crystal-overload/post-005/v010-opening-every-frame.jpg",
-              "width": 1920,
-              "height": 2000,
-              "alt": "NASA and v010 opening frames are paired with frame numbers and actual times from zero to one second.",
-              "caption": "GPT-assisted scripts automated frame extraction and nearest-time matching. This sheet pairs the first 25 v010 frames with NASA reference frames; each image retains its actual frame number and time. Reference: NASA/CXC/A. Hobart; v010: Tao Luo.",
+              "image": "blog/magic-crystal-overload/post-005/v010-opening-frame-pairs.jpg",
+              "width": 1974,
+              "height": 2169,
+              "alt": "Twenty-five opening comparison cards, each with NASA on the left and v010 on the right, arranged down three columns.",
+              "caption": "Frame-by-frame opening comparison. Each card places NASA on the left and v010 on the right. Read down the first column, then continue in the next. Labels retain the actual frame numbers and sample times. Reference: NASA/CXC/A. Hobart; v010: Tao Luo.",
               "size": "wide"
             },
             {
               "type": "image",
-              "image": "blog/magic-crystal-overload/post-005/v010-opening-three-way.jpg",
-              "width": 1920,
-              "height": 612,
-              "alt": "NASA, v009, and v010 are compared at six labeled opening times from zero to two seconds.",
-              "caption": "Opening comparison: NASA / v009 / v010. These matched frames guided the smaller starting point, sphere growth, and later reveal. Reference: NASA/CXC/A. Hobart; v009 and v010: Tao Luo.",
+              "image": "blog/magic-crystal-overload/post-005/v010-opening-version-pairs.jpg",
+              "width": 1900,
+              "height": 1974,
+              "alt": "Two columns of side-by-side opening pairs: NASA versus v010 in the left column and v009 versus v010 in the right column.",
+              "caption": "Opening comparisons at matched times. The left column contains NASA / v010 pairs; the right column contains v009 / v010 pairs. Read downward within each column. Reference: NASA/CXC/A. Hobart; v009 and v010: Tao Luo.",
               "size": "wide"
             },
             {
@@ -1158,11 +1158,11 @@ window.PORTFOLIO = {
             },
             {
               "type": "image",
-              "image": "blog/magic-crystal-overload/post-005/v010-development-three-way.jpg",
-              "width": 1920,
-              "height": 612,
-              "alt": "NASA, v009, and v010 are compared at labeled later times as folds and the pink center become visible.",
-              "caption": "Later-frame comparison: NASA / v009 / v010. The labels retain actual sample times; the folds and internal detail remain different. Reference: NASA/CXC/A. Hobart; v009 and v010: Tao Luo.",
+              "image": "blog/magic-crystal-overload/post-005/v010-development-frame-pairs.jpg",
+              "width": 1900,
+              "height": 1974,
+              "alt": "Two columns of later-time image pairs: NASA versus v010 and v009 versus v010, with each pair side by side.",
+              "caption": "Later comparisons at matched times. Each card contains two images side by side: NASA / v010 in the left column, and v009 / v010 in the right column. Actual sample times remain labeled. Reference: NASA/CXC/A. Hobart; v009 and v010: Tao Luo.",
               "size": "wide"
             },
             {
