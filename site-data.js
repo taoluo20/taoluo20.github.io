@@ -1839,10 +1839,18 @@ window.PORTFOLIO = {
           "id": "post-007",
           "title": "Tower & Terrain: Stone Material and Environment Workflow",
           "publishedAt": "2026-11-08",
-          "image": "blog/magic-crystal-overload/post-007/tower-terrain-wide.jpg",
+          "image": "blog/magic-crystal-overload/post-007/tower-terrain-wide-seam-repair.jpg",
           "imageAlt": "Gray stone tower with a spiral stair and crystal, surrounded by eroded terrain and scattered rocks.",
-          "excerpt": "From a layered Gaea landscape to a photo-based gray masonry material, applied and checked on the tower in Houdini and Karma.",
+          "excerpt": "From a layered Gaea landscape to photo-based gray masonry, with a corrected tiling pass checked on the tower in Houdini and Karma.",
           "blocks": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "Updated November 9, 2026: Rebuilt the gray masonry tile to remove the square patch outline, then rerendered the tower."
+                }
+              ]
+            },
             {
               "type": "list",
               "items": [
@@ -1852,7 +1860,7 @@ window.PORTFOLIO = {
             },
             {
               "type": "image",
-              "image": "blog/magic-crystal-overload/post-007/tower-terrain-wide.jpg",
+              "image": "blog/magic-crystal-overload/post-007/tower-terrain-wide-seam-repair.jpg",
               "width": 1600,
               "height": 900,
               "alt": "The complete tower and its surrounding terrain.",
@@ -1913,14 +1921,14 @@ window.PORTFOLIO = {
               "type": "list",
               "items": [
                 "Choose irregular coursed gray masonry and take a centered square crop from the full-resolution photograph. Preserve its original color.",
-                "Run Image to Material in Substance 3D Sampler, followed by Equalize and Make It Tile. Inspect the material as a repeat as well as a single tile.",
-                "Recover the exported SBS graph in Substance 3D Designer after the Sampler bitmap export was interrupted. Compute and export the complete channel set, then prepare 4K maps for the tower.",
-                "The Designer outputs are 8K pixels, but the source crop is 4912 pixels square; the larger output does not represent additional captured detail."
+                "Convert the photograph with Image to Material in Substance 3D Sampler. Open the exported SBS in Designer and retrieve the channels from before Equalize and Make It Tile.",
+                "The first pass closed the outer edges but left a square transition inside the tile. Rebuild the overlap in both directions, following existing mortar and matching neighboring stone faces.",
+                "Use the same seam for base color, height, roughness, normal and ambient occlusion. Check a half-tile offset and a 2 \u00d7 2 repeat before exporting the 4K maps."
               ]
             },
             {
               "type": "image",
-              "image": "blog/magic-crystal-overload/post-007/stone-channels.jpg",
+              "image": "blog/magic-crystal-overload/post-007/stone-channels-seam-repair.jpg",
               "width": 1560,
               "height": 1160,
               "alt": "The gray stone base color, height, roughness, normal, occlusion and metallic maps.",
@@ -1934,14 +1942,14 @@ window.PORTFOLIO = {
               "type": "list",
               "items": [
                 "Use the height map to extract candidate stone regions, then export IDs, vector silhouettes, and transparent stone elements.",
-                "The gray material produces 73 candidate regions. Some regions split or merge stones, so these remain editable extraction studies.",
+                "The revised gray material produces 33 candidate regions. Some regions split or merge stones, so these remain editable extraction studies.",
                 "Generate flat and curved mesh samples with real vertex relief. Match the curved sample to the tower radius and keep the UVs attached to the same material.",
                 "The production tower uses a continuous shaft with material displacement. The segmented candidates are retained separately for further modeling."
               ]
             },
             {
               "type": "image",
-              "image": "blog/magic-crystal-overload/post-007/stone-extraction.jpg",
+              "image": "blog/magic-crystal-overload/post-007/stone-extraction-seam-repair.jpg",
               "width": 1400,
               "height": 760,
               "alt": "Unnumbered candidate stone regions and the repeated gray masonry material.",
@@ -1963,11 +1971,19 @@ window.PORTFOLIO = {
             },
             {
               "type": "image",
-              "image": "blog/magic-crystal-overload/post-007/stone-detail.jpg",
+              "image": "blog/magic-crystal-overload/post-007/stone-detail-seam-repair.jpg",
               "width": 1600,
               "height": 1000,
               "alt": "Close view of the photographic gray masonry on the curved tower wall.",
               "caption": "Actual tower surface under the environment lighting, using height displacement and the exported roughness map."
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-007/stone-seam-comparison.jpg",
+              "width": 1600,
+              "height": 560,
+              "alt": "The same tower close-up with the original square patch blend and with the repaired overlap.",
+              "caption": "The camera, lighting and displacement settings are the same. The corrected texture follows the stone courses across the overlap."
             },
             {
               "type": "heading",
@@ -1984,7 +2000,7 @@ window.PORTFOLIO = {
             },
             {
               "type": "image",
-              "image": "blog/magic-crystal-overload/post-007/tower-environment.jpg",
+              "image": "blog/magic-crystal-overload/post-007/tower-environment-seam-repair.jpg",
               "width": 1280,
               "height": 1600,
               "alt": "Full-height gray tower, spiral stair, crown crystal and approach path.",
@@ -2015,8 +2031,8 @@ window.PORTFOLIO = {
                   "text": " and "
                 },
                 {
-                  "text": "Equalize documentation",
-                  "href": "https://experienceleague.adobe.com/en/docs/substance-3d-sampler/using/filters/adjustments/equalize"
+                  "text": "Make It Tile documentation",
+                  "href": "https://experienceleague.adobe.com/en/docs/substance-3d-sampler/using/filters/tools/make-it-tile"
                 },
                 {
                   "text": "."
