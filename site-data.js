@@ -1834,6 +1834,247 @@ window.PORTFOLIO = {
               ]
             }
           ]
+        },
+        {
+          "id": "post-007",
+          "title": "Tower & Terrain: Stone Material and Environment Workflow",
+          "publishedAt": "2026-11-08",
+          "image": "blog/magic-crystal-overload/post-007/tower-terrain-wide.jpg",
+          "imageAlt": "Gray stone tower with a spiral stair and crystal, surrounded by eroded terrain and scattered rocks.",
+          "excerpt": "From a layered Gaea landscape to a photo-based gray masonry material, applied and checked on the tower in Houdini and Karma.",
+          "blocks": [
+            {
+              "type": "list",
+              "items": [
+                "Develop the tower and its surrounding terrain together, with a gray masonry direction closer to the original stone tower.",
+                "Apply the material to the actual tower, remove the stair handrails, and retain the ground rocks, pebbles, and sparse grass."
+              ]
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-007/tower-terrain-wide.jpg",
+              "width": 1600,
+              "height": 900,
+              "alt": "The complete tower and its surrounding terrain.",
+              "caption": "Current tower and terrain assembly rendered in Karma. The ground stones remain in the scene."
+            },
+            {
+              "type": "heading",
+              "text": "Shaping the terrain in Gaea"
+            },
+            {
+              "type": "list",
+              "items": [
+                "Start with Ridge for the large landforms, then use Stratify to establish horizontal rock structure.",
+                "Pass the terrain through Erosion2 and Thermal2 to develop drainage, worn slopes, and accumulated material. SatMap provides a terrain color reference.",
+                "Build at 2048 square resolution for a 500-meter-wide terrain with a 45-meter height range. Export height, flow, deposits, and color as separate outputs."
+              ]
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-007/terrain-channels.jpg",
+              "width": 1400,
+              "height": 1520,
+              "alt": "Separate height, flow, deposit and terrain color outputs.",
+              "caption": "The Gaea outputs used in the handoff. Grayscale channels have display contrast adjusted for inspection."
+            },
+            {
+              "type": "heading",
+              "text": "Grounding the tower in Houdini"
+            },
+            {
+              "type": "list",
+              "items": [
+                "Import the heightfield and erosion masks, align the terrain datum with the tower, and flatten the immediate foundation area.",
+                "Project an approach path onto the surface and combine slope, soil, and path masks for the terrain shading. Add smaller-scale surface breakup near the tower.",
+                "Keep the larger limestone rocks, talus pebbles, and sparse grass. Human-scale figures help judge the relationship between the stairs, tower, and landscape."
+              ]
+            },
+            {
+              "type": "heading",
+              "text": "Turning a stone photograph into a material"
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "Stone source: "
+                },
+                {
+                  "text": "Adobe Stock image 332221305",
+                  "href": "https://stock.adobe.com/images/332221305"
+                },
+                {
+                  "text": "."
+                }
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                "Choose irregular coursed gray masonry and take a centered square crop from the full-resolution photograph. Preserve its original color.",
+                "Run Image to Material in Substance 3D Sampler, followed by Equalize and Make It Tile. Inspect the material as a repeat as well as a single tile.",
+                "Recover the exported SBS graph in Substance 3D Designer after the Sampler bitmap export was interrupted. Compute and export the complete channel set, then prepare 4K maps for the tower.",
+                "The Designer outputs are 8K pixels, but the source crop is 4912 pixels square; the larger output does not represent additional captured detail."
+              ]
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-007/stone-channels.jpg",
+              "width": 1560,
+              "height": 1160,
+              "alt": "The gray stone base color, height, roughness, normal, occlusion and metallic maps.",
+              "caption": "The exported stone channels. Height, roughness, and occlusion are contrast-adjusted here for readability; the metallic map is black."
+            },
+            {
+              "type": "heading",
+              "text": "Extracting stone shapes and testing relief"
+            },
+            {
+              "type": "list",
+              "items": [
+                "Use the height map to extract candidate stone regions, then export IDs, vector silhouettes, and transparent stone elements.",
+                "The gray material produces 73 candidate regions. Some regions split or merge stones, so these remain editable extraction studies.",
+                "Generate flat and curved mesh samples with real vertex relief. Match the curved sample to the tower radius and keep the UVs attached to the same material.",
+                "The production tower uses a continuous shaft with material displacement. The segmented candidates are retained separately for further modeling."
+              ]
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-007/stone-extraction.jpg",
+              "width": 1400,
+              "height": 760,
+              "alt": "Unnumbered candidate stone regions and the repeated gray masonry material.",
+              "caption": "Height-driven extraction and a repeat check. The colored regions are candidates, not finalized individual stone meshes."
+            },
+            {
+              "type": "heading",
+              "text": "Applying the material to the tower"
+            },
+            {
+              "type": "list",
+              "items": [
+                "Preserve the hollow shaft, slit windows, spiral stairs, corbels, base, and crown. Replace the old small-block wall surface so its mortar grid does not compete with the photographed joints.",
+                "Create cylindrical vertex UVs after the window cuts. Ten tiles around the shaft give a material tile about 3.72 meters wide, with the vertical scale linked to the tower dimensions.",
+                "Read base color as sRGB and the numerical maps as raw data. Convert the Sampler normal from DirectX to OpenGL while retaining 16-bit precision.",
+                "Use a centered height map with a displacement scale of 0.06 meters. Add enough shaft subdivisions to avoid long displacement artifacts around the window cuts.",
+                "Keep fine normal strength at zero for this render pass while evaluating the height relief. Match the dressed stone palette on the stairs, base, and crown to the gray wall material."
+              ]
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-007/stone-detail.jpg",
+              "width": 1600,
+              "height": 1000,
+              "alt": "Close view of the photographic gray masonry on the curved tower wall.",
+              "caption": "Actual tower surface under the environment lighting, using height displacement and the exported roughness map."
+            },
+            {
+              "type": "heading",
+              "text": "Checking the assembled result"
+            },
+            {
+              "type": "list",
+              "items": [
+                "Render a complete tower view, an environment view, and a material close-up in Karma. The tower is 42 meters high with a nominal 6-meter radius.",
+                "Check the window edges, masonry scale, stair silhouette, and contact with the ground. The handrails are absent while the ground stone scattering remains.",
+                "Package the editable Houdini scene, terrain source and builds, material graph and maps, geometry caches, and USD exports. Reload the scene and verify that the exported USD dependencies resolve inside the delivery folder.",
+                "This is the current environment and material study. Further work can reduce recognizable texture repetition and refine the landscape detail for the final shot."
+              ]
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-007/tower-environment.jpg",
+              "width": 1280,
+              "height": 1600,
+              "alt": "Full-height gray tower, spiral stair, crown crystal and approach path.",
+              "caption": "The full-height tower with the updated material, open stair silhouette, retained rocks, and human-scale reference."
+            },
+            {
+              "type": "heading",
+              "text": "Credit"
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "Stone photography: "
+                },
+                {
+                  "text": "Adobe Stock image 332221305",
+                  "href": "https://stock.adobe.com/images/332221305"
+                },
+                {
+                  "text": ". Material workflow references: "
+                },
+                {
+                  "text": "Adobe Sampler Quick Actions",
+                  "href": "https://experienceleague.adobe.com/en/docs/substance-3d-sampler/using/features-and-workflows/quick-actions"
+                },
+                {
+                  "text": " and "
+                },
+                {
+                  "text": "Equalize documentation",
+                  "href": "https://experienceleague.adobe.com/en/docs/substance-3d-sampler/using/filters/adjustments/equalize"
+                },
+                {
+                  "text": "."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "Terrain references: "
+                },
+                {
+                  "text": "QuadSpinner Gaea node documentation",
+                  "href": "https://docs.gaea.app/reference/node-map.html"
+                },
+                {
+                  "text": " and "
+                },
+                {
+                  "text": "Gaea simulations",
+                  "href": "https://docs.gaea.app/using/using-gaea/simulations/index.html"
+                },
+                {
+                  "text": ". Shading reference: "
+                },
+                {
+                  "text": "SideFX MaterialX displacement",
+                  "href": "https://www.sidefx.com/docs/houdini/nodes/vop/mtlxdisplacement.html"
+                },
+                {
+                  "text": "."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "The tower adaptation, material processing, terrain integration, validation, and documentation were developed with assistance from "
+                },
+                {
+                  "text": "GPT",
+                  "href": "https://chatgpt.com/"
+                },
+                {
+                  "text": " and "
+                },
+                {
+                  "text": "Codex",
+                  "href": "https://openai.com/codex/"
+                },
+                {
+                  "text": "."
+                }
+              ]
+            }
+          ]
         }
       ]
     }
