@@ -1469,7 +1469,6 @@ window.PORTFOLIO = {
           "id": "post-006",
           "title": "Procedural Crystal: Modeling & Shader Development",
           "publishedAt": "2026-11-07",
-          "showWeekday": true,
           "image": "blog/magic-crystal-overload/post-006/crystal-detail.png",
           "imageAlt": "Close view of a faceted crystal with thin violet light ribbons inside.",
           "excerpt": "From a procedural single-crystal model to fractures, MaterialX shading, cloudy inclusions, and internal emission studies.",
