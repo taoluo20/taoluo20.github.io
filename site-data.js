@@ -1464,6 +1464,377 @@ window.PORTFOLIO = {
               ]
             }
           ]
+        },
+        {
+          "id": "post-006",
+          "title": "Procedural Crystal: Modeling & Shader Development",
+          "publishedAt": "2026-11-07",
+          "showWeekday": true,
+          "image": "blog/magic-crystal-overload/post-006/crystal-detail.png",
+          "imageAlt": "Close view of a faceted crystal with thin violet light ribbons inside.",
+          "excerpt": "From a procedural single-crystal model to fractures, MaterialX shading, cloudy inclusions, and internal emission studies.",
+          "blocks": [
+            {
+              "type": "list",
+              "items": [
+                "Alongside the earlier irregular crystal study, I developed a separate procedural single crystal to study the complete modeling and shader workflow.",
+                "The latest look-development tests compare a glowing full interior, separated cloudy clumps, and thin internal ribbons. The final appearance is still being selected."
+              ]
+            },
+            {
+              "type": "video",
+              "src": "/assets/videos/blog/magic-crystal-overload/post-006/internal-emission-study.mp4",
+              "poster": "blog/magic-crystal-overload/post-006/emission-preview.png",
+              "width": 960,
+              "height": 1120,
+              "title": "Internal crystal emission increasing across six appearance studies",
+              "caption": "Six synchronized Karma previews, each rendered over 53 frames at 24 fps, approximately 2.21 seconds. Internal emission increases from 0.2 to 16. Camera and exposure stay fixed; the interior shapes are static. Individual renders are 320 by 432 pixels."
+            },
+            {
+              "type": "heading",
+              "text": "Building the single-crystal shape"
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "Modeling reference: "
+                },
+                {
+                  "text": "Jorge Lega - Creating Quartz in Houdini procedural session | Mardini 2026",
+                  "href": "https://www.youtube.com/watch?v=ZlRlNOWI85c"
+                },
+                {
+                  "text": ". The basic shape starts around 02:40; the internal-detail section begins around 45:49."
+                }
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                "Start with a capped polygon Tube and intersect it with an Octahedron using a Boolean SOP. The intersection creates the pointed ends while retaining the long flat side faces.",
+                "Expose the radius, height, tip slope, profile rotation, and number of sides so the silhouette remains editable.",
+                "Keep faceted vertex normals to preserve the hard edges. This study follows the tutorial's stylized five-sided profile."
+              ]
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-006/model-views.png",
+              "width": 1280,
+              "height": 542,
+              "alt": "Front, three-quarter and top views of the unshaded procedural crystal.",
+              "caption": "The procedural base shape, before fractures, surface displacement, and internal details."
+            },
+            {
+              "type": "heading",
+              "text": "Fractures and shading masks"
+            },
+            {
+              "type": "list",
+              "items": [
+                "Use four noisy cutting surfaces with Boolean Fracture, then smooth and remesh each piece through VDBs. Keep the pieces assembled to create internal fracture detail within the original silhouette.",
+                "Build separate point masks for crack roughness, cloudy regions, and base displacement. These masks connect the geometry stage to the shader.",
+                "Place Divide Bricker before the fracture operation, and cache the finished surface, interior density, and inclusion geometry separately."
+              ]
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-006/tutorial-material.png",
+              "width": 1280,
+              "height": 802,
+              "alt": "The gray procedural shape beside the transparent crystal with fracture and inclusion details.",
+              "caption": "From the simple base shape to the completed tutorial material study on one isolated crystal."
+            },
+            {
+              "type": "heading",
+              "text": "Connecting the surface shader"
+            },
+            {
+              "type": "list",
+              "items": [
+                "Build the main crystal with MaterialX Standard Surface: transmission 1, IOR 1.5, and a small clear-facet roughness floor of 0.025.",
+                "Read the crack and cloudy-region masks from SOP attributes to vary specular roughness. Surface fractal noise also modulates specular weight.",
+                "Multiply the displacement mask by noise, then feed it into MaterialX Displacement. Keep displacement strength independent from the main silhouette controls.",
+                "Follow the later completed tutorial setup with exterior emission and dispersion set to zero. The later glow tests add emission inside the crystal."
+              ]
+            },
+            {
+              "type": "heading",
+              "text": "Cloudy volume and glass inclusions"
+            },
+            {
+              "type": "list",
+              "items": [
+                "Create a density field contained by the crystal and break it up with two layers of noise. A Karma Volume material provides the cloudy internal scattering.",
+                "Scatter 1,800 tiny packed glass inclusions inside that density field and assign a separate transmitting glass material.",
+                "Keep the outer refractive surface, cloudy volume, and inclusion geometry as separate parts so their contribution can be adjusted independently."
+              ]
+            },
+            {
+              "type": "heading",
+              "text": "Checking the lighting"
+            },
+            {
+              "type": "list",
+              "items": [
+                "Compare narrow strip lights, a broad neutral studio rig, and an HDR environment while keeping the crystal and material fixed.",
+                "The original strip-lit result was dark. Broader illumination makes the transmitted light, internal cracks, and cloudy regions easier to evaluate.",
+                "Use the same camera, geometry, displacement, display transform, and exposure for each comparison within this set."
+              ]
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-006/lighting-comparison.png",
+              "width": 1280,
+              "height": 642,
+              "alt": "The same crystal under strip lights, neutral studio lights and an HDR environment.",
+              "caption": "Lighting comparison with internal emission off. The material and model are fixed across these three renders."
+            },
+            {
+              "type": "heading",
+              "text": "Comparing a second shader approach"
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "Additional shader reference: "
+                },
+                {
+                  "text": "Entagma - Modeling and Rendering a Quartz Crystal in Houdini 16",
+                  "href": "https://entagma.com/modeling-and-rendering-a-quartz-crystal-in-houdini-16/"
+                },
+                {
+                  "text": "."
+                }
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                "Study the reference's Mantra Classic Shader and reconstruct its main features in native MaterialX nodes for Karma: IOR 1.458, horizontal striation bump, short-range subsurface scattering, and dispersion.",
+                "Use two Standard Surface closures with a clamped noise-driven mix to approximate the combination of transmission and cloudy scattering. Anchor the noise in object coordinates.",
+                "Compare the two shader options under matching studio and HDR lighting. Keep the same mesh, displacement, internal volume, and inclusions so the outer shader is the changing variable.",
+                "This is a tuned adaptation between renderers; the noise mix and scattering response are approximate. The following night and interior-shape studies continue with the Jorge-based material."
+              ]
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-006/shader-comparison.png",
+              "width": 1280,
+              "height": 1404,
+              "alt": "Jorge-based and Entagma-adapted shaders compared under matching studio and HDR lighting.",
+              "caption": "Top row: studio lighting. Bottom row: HDR lighting. Left: Jorge-based study. Right: Entagma adaptation. Internal emission is off."
+            },
+            {
+              "type": "heading",
+              "text": "Testing internal emission at night"
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "Night environment: "
+                },
+                {
+                  "text": "Moonless Golf by Greg Zaal / Poly Haven",
+                  "href": "https://polyhaven.com/a/moonless_golf"
+                },
+                {
+                  "text": " (CC0)."
+                }
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                "Use the night HDRI by itself and test internal emission strengths of 0, 0.5, 2, and 8. Keep the environment exposure at -3 EV throughout this comparison.",
+                "Drive the internal light with density multiplied by emission strength and color. Keep the exterior surface's emission at zero.",
+                "Compare blue and violet palettes, then use density-driven color ramps so the color follows the cloudy internal detail."
+              ]
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-006/night-emission.png",
+              "width": 1280,
+              "height": 528,
+              "alt": "Four nighttime renders showing internal emission off and increasing strengths.",
+              "caption": "Emission off, then 0.5, 2, and 8. The same night environment and display exposure are used throughout."
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-006/night-palettes.png",
+              "width": 1280,
+              "height": 1284,
+              "alt": "Deep blue, blue, violet and density-driven ramp variations in the crystal.",
+              "caption": "Palette studies at emission strength 8. Different linear RGB values also change the emitted energy."
+            },
+            {
+              "type": "heading",
+              "text": "Separating the glow from the cloudy interior"
+            },
+            {
+              "type": "list",
+              "items": [
+                "Keep the original interior volume for absorption and scattering, then add an independent Glow volume for emission. This separates the amount of fog from the shape of the light source.",
+                "The fully glowing interior tends to fill the crystal with color. Test lower color value, reduced fog density, and lower shell roughness to reveal more internal structure.",
+                "Replace the full glow with noisy clumps, using a shell-distance mask to keep the emission away from the outer surface. Smooth the clumps to soften their edges."
+              ]
+            },
+            {
+              "type": "heading",
+              "text": "Building thin internal ribbons"
+            },
+            {
+              "type": "list",
+              "items": [
+                "First test thin bands from noise isosurfaces, both raw and smoothed. These create gaps but still read differently from directed strands.",
+                "Build three guiding curves with noise bending and twisted flat cross-sections, then rasterize them into a separate emission volume.",
+                "Keep the ribbons inside the crystal with a clearance mask and a light Gaussian smoothing pass. Inspect close-ups to check how the ribbons read through the refractive shell and cloudy interior.",
+                "Use separate density compensation for the thin structures to keep them visible. Equal emission-strength settings do not mean equal total light when the emitting volume changes."
+              ]
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-006/interior-structures.png",
+              "width": 1280,
+              "height": 1284,
+              "alt": "Full emission, clearer emission, smoothed clumps, noise bands and curve-guided ribbons.",
+              "caption": "Interior structure development. The crystal shell and inclusions are shared; the full, clump, and ribbon fields occupy different volumes and emit different total amounts of light."
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-006/interior-closeup.png",
+              "width": 1280,
+              "height": 642,
+              "alt": "Close views comparing the clearer full interior, internal clumps and thin ribbons.",
+              "caption": "Closer inspection through the same outer crystal: full interior, smoothed clumps, and curve-guided ribbons."
+            },
+            {
+              "type": "heading",
+              "text": "Balancing strength, color and fog"
+            },
+            {
+              "type": "list",
+              "items": [
+                "Adjust emission strength, linear color value, internal fog, and shell roughness as separate controls, while remembering that strength and color value both multiply emitted energy.",
+                "Compare ribbon strengths of 2, 8, and 16, then test lower and higher color values and fog densities. The sheets retain a shared exposure and display transform.",
+                "Continue lowering the full-interior value in both violet and a muted beige palette. The pale palette approaches white as emission increases.",
+                "Use a source-integral-matched ribbon test to separate changes in structure from changes in total emitted energy. Matching the source integral still does not guarantee equal perceived brightness through the glass."
+              ]
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-006/emission-controls.png",
+              "width": 1280,
+              "height": 1284,
+              "alt": "Ribbon renders compare emission strength, linear color value and internal fog.",
+              "caption": "Top row: increasing emission strength. Bottom row: lower color value, higher color value, and denser internal fog. These are separate parameter tests."
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-006/palette-and-value.png",
+              "width": 1280,
+              "height": 1284,
+              "alt": "Lower-value violet and muted beige full interiors compared with thin internal ribbons.",
+              "caption": "Violet, violet-ramp, and muted beige studies. Labels state the linear color-value multiplier."
+            },
+            {
+              "type": "heading",
+              "text": "Checking light on the ground"
+            },
+            {
+              "type": "list",
+              "items": [
+                "Use a neutral gray diffuse ground with zero self-emission. The internal Glow volume participates in scene lighting through VolumeLightAPI.",
+                "Compare emission off, the native diffuse-light multiplier of 1, and an artistic multiplier of 10 to make the surrounding light easier to read.",
+                "There is no added point light in these tests. Glass caustics are disabled; the ground comparison is an artistic illumination study."
+              ]
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-006/ground-illumination.png",
+              "width": 1280,
+              "height": 642,
+              "alt": "The ground with emission off, diffuse-light gain one and diffuse-light gain ten.",
+              "caption": "The last two images use the same ribbon glow and vary only its diffuse-light contribution to the environment."
+            },
+            {
+              "type": "heading",
+              "text": "Current progress"
+            },
+            {
+              "type": "list",
+              "items": [
+                "The single-crystal modeling, surface shader, cloudy volume, inclusions, and alternative glow structures are editable in Houdini.",
+                "The opening video compares six weak-to-strong emission tests with fixed camera and exposure. It uses actual frame-by-frame renders; the internal structures do not move.",
+                "This is still an appearance study. A final glow shape and palette have not been locked, and these tests do not yet include traveling lightning or the crystal overload animation."
+              ]
+            },
+            {
+              "type": "heading",
+              "text": "Credit"
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "Modeling, internal detail, and the completed crystal shader are based on "
+                },
+                {
+                  "text": "Jorge Lega's Creating Quartz in Houdini procedural session | Mardini 2026",
+                  "href": "https://www.youtube.com/watch?v=ZlRlNOWI85c"
+                },
+                {
+                  "text": ". The alternative shader is adapted from "
+                },
+                {
+                  "text": "Entagma's Modeling and Rendering a Quartz Crystal in Houdini 16",
+                  "href": "https://entagma.com/modeling-and-rendering-a-quartz-crystal-in-houdini-16/"
+                },
+                {
+                  "text": "."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "Night HDRI: "
+                },
+                {
+                  "text": "Moonless Golf",
+                  "href": "https://polyhaven.com/a/moonless_golf"
+                },
+                {
+                  "text": " by Greg Zaal / Poly Haven, CC0. The HDR comparison also uses the environment supplied with the Entagma reference project."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "The single-crystal adaptation, look-development comparisons, internal glow structures, scripting, and documentation were developed with assistance from "
+                },
+                {
+                  "text": "GPT",
+                  "href": "https://chatgpt.com/"
+                },
+                {
+                  "text": " and "
+                },
+                {
+                  "text": "Codex",
+                  "href": "https://openai.com/codex/"
+                },
+                {
+                  "text": "."
+                }
+              ]
+            }
+          ]
         }
       ]
     }

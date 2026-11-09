@@ -210,7 +210,7 @@
 
   function journalDate(entry) {
     if (!entry?.publishedAt) return '';
-    const label = new Intl.DateTimeFormat('en-US', { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(`${entry.publishedAt}T00:00:00Z`));
+    const label = new Intl.DateTimeFormat('en-US', { dateStyle: entry.showWeekday ? 'full' : 'long', timeZone: 'UTC' }).format(new Date(`${entry.publishedAt}T00:00:00Z`));
     return `<time class="journal-date" datetime="${escape(entry.publishedAt)}">${escape(label)}</time>`;
   }
 
