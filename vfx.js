@@ -12,7 +12,7 @@
   const duration = seconds => `${String(Math.floor(seconds / 60)).padStart(2, '0')}:${String(Math.floor(seconds % 60)).padStart(2, '0')}`;
 
   function tools(project) {
-    return `<ul class="vfx-software" aria-label="Software and tools">${project.software.map(id => `<li><span class="vfx-software-icon" tabindex="0" role="img" aria-label="${software[id]}"><img src="/assets/software/${id}.${id === 'realityscan' ? 'png' : 'svg'}" alt="" width="32" height="32" /><span class="vfx-tooltip">${software[id]}</span></span></li>`).join('')}</ul>`;
+    return `<ul class="vfx-software" aria-label="Software and tools">${project.software.map(id => `<li><span class="vfx-software-icon" tabindex="0" role="img" aria-label="${software[id]}"><img src="/assets/software/${id}.${id === 'realityscan' ? 'png' : 'svg'}?v=20261110-mono" alt="" width="32" height="32" /><span class="vfx-tooltip">${software[id]}</span></span></li>`).join('')}</ul>`;
   }
 
   function card(project, index) {
@@ -42,7 +42,7 @@
     return `<article class="vfx-project" data-project-content="${project.id}"><a class="vfx-back meta" href="/vfx/">${back} ALL PROJECTS</a>
       <header class="vfx-project-heading"><h1>${escape(project.title)}</h1><span class="meta">${escape(project.type)}</span></header>
       <figure class="vfx-project-media" style="--media-ratio:${project.width}/${project.height}">${media}</figure>
-      <div class="vfx-project-info"><p>${escape(project.description)}</p><div class="vfx-toolkit"><span class="meta">SOFTWARE & TOOLS</span>${tools(project)}</div></div>
+      <div class="vfx-project-info">${tools(project)}</div>
       <nav class="vfx-project-nav" aria-label="More VFX projects"><a href="/vfx/${previous.id}/" rel="prev">${back}<span><span class="meta">PREVIOUS</span><span>${escape(previous.title)}</span></span></a><a href="/vfx/${next.id}/" rel="next"><span><span class="meta">NEXT</span><span>${escape(next.title)}</span></span>${arrow}</a></nav>
     </article>`;
   }
