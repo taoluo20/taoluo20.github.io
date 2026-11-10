@@ -1841,13 +1841,13 @@ window.PORTFOLIO = {
           "publishedAt": "2026-11-08",
           "image": "blog/magic-crystal-overload/post-007/tower-terrain-wide-coursed-v003.jpg",
           "imageAlt": "Coursed gray stone tower with spiral stairs, a crown crystal and surrounding eroded terrain.",
-          "excerpt": "A Gaea landscape and gray stone tower, refined with smaller irregular courses, chipped edges and layered surface noise.",
+          "excerpt": "Building a Gaea landscape and a gray stone tower, with smaller irregular courses, chipped edges, shallow pits and layered surface detail.",
           "blocks": [
             {
               "type": "paragraph",
               "children": [
                 {
-                  "text": "Updated November 9, 2026: Returned to the earlier irregular coursed-stone tower, reduced the block dimensions by about 20 percent, and enriched the stone surface. Both tower journals now show this version."
+                  "text": "This study follows the tower and terrain from the Gaea landscape and stone-surface sampling to the final coursed masonry. The selected earlier tower is refined with blocks about 20 percent smaller, chipped edges, shallow pits and layered surface noise."
                 }
               ]
             },
@@ -1930,6 +1930,14 @@ window.PORTFOLIO = {
             },
             {
               "type": "image",
+              "image": "blog/magic-crystal-overload/post-007/tower-scale-comparison-v003.jpg",
+              "width": 1280,
+              "height": 848,
+              "alt": "Selected earlier coursed tower beside the smaller-stone revision.",
+              "caption": "The selected earlier layout and the updated tower from the same scene camera. The revised stone dimensions increase the number of visible courses."
+            },
+            {
+              "type": "image",
               "image": "blog/magic-crystal-overload/post-007/stone-channels-v003.jpg",
               "width": 1440,
               "height": 1096,
@@ -1943,9 +1951,10 @@ window.PORTFOLIO = {
             {
               "type": "list",
               "items": [
-                "Use displacement for the main block profile, shallow pits and chipped edges. Keep the mortar and window returns protected from the exterior surface noise.",
-                "Add a four-octave object-space MaterialX fractal for medium stone relief, plus a separate three-octave mineral-grain bump layer. The object-space detail continues across the cylindrical UV cut.",
-                "Retain the isolated stone-face normal map for fine surface variation. Expose relief amplitude, grain strength and both noise frequencies on the Houdini material node."
+                "Main form: the block profiles and mortar depth remain in the height map, with a centered 0.18-meter encoding.",
+                "Edge wear: a stone-distance mask localizes chips to the borders, with additional shallow pits on the faces. Generated edge cuts reach about 1.35 centimeters and face pits reach 9 millimeters.",
+                "Medium relief: a masked four-octave MaterialX fractal displaces the stone faces, with a 0.01-meter amplitude control and a separate spatial frequency.",
+                "Fine grain: a three-octave object-space fractal drives bump with a 0.0018-meter amplitude control, layered over the isolated stone-face normal map. Roughness retains independent surface variation."
               ]
             },
             {
@@ -1957,6 +1966,14 @@ window.PORTFOLIO = {
               "caption": "Actual tower wall under the existing environment lighting, with the new surface detail enabled."
             },
             {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-007/stone-surface-comparison-v003.jpg",
+              "width": 1800,
+              "height": 611,
+              "alt": "The same small-stone wall with map shading and with the procedural surface layers.",
+              "caption": "Matched camera, lighting, maps and stone dimensions. The right-hand view adds medium fractal relief and mineral-grain bump."
+            },
+            {
               "type": "heading",
               "text": "Applying and checking the material"
             },
@@ -1965,7 +1982,9 @@ window.PORTFOLIO = {
               "items": [
                 "Wrap the generated maps once around the shaft. Read base color as sRGB and height, normal, roughness and masks as raw data.",
                 "Use a centered 0.18-meter height encoding and keep the small surface layers separate from the large stone profile.",
-                "Render the full tower, terrain view and wall close-up at 64 samples. Reopen the USD layers and the separately saved Houdini scene to check dependencies, materials and live surface controls."
+                "Render the full tower, terrain view and wall close-up at 64 samples. Reopen the USD layers and the separately saved Houdini scene to check dependencies, materials and live surface controls.",
+                "Fade the procedural detail near mortar joints. Use a separate material on the hollow interior and window returns so the exterior displacement stays off those faces.",
+                "The production shaft is a continuous mesh with displacement. The atlas regions are not separate modeled blocks, and this revision is not a full-tower high-to-low bake."
               ]
             },
             {
@@ -1974,7 +1993,7 @@ window.PORTFOLIO = {
               "width": 1280,
               "height": 1600,
               "alt": "Full-height tower with smaller irregular gray stone courses and an external spiral stair.",
-              "caption": "Current tower version, shared with Post 008. The original tower proportions and environment cameras are retained."
+              "caption": "Final tower with the refined coursed stone surface, original proportions, external spiral stairs and existing environment camera."
             },
             {
               "type": "heading",
@@ -2060,177 +2079,9 @@ window.PORTFOLIO = {
                 }
               ]
             }
-          ]
-        },
-        {
-          "id": "post-008",
-          "title": "Tower Material Update: Smaller Coursed Stones",
-          "publishedAt": "2026-11-09",
-          "image": "blog/magic-crystal-overload/post-008/tower-environment-coursed-v003.jpg",
-          "imageAlt": "The gray tower with smaller irregular coursed stones, spiral stairs and a crown crystal.",
-          "excerpt": "Returning to the earlier coursed masonry, reducing block size, and adding chipped edges, shallow pits and multiscale rock-surface detail.",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "children": [
-                {
-                  "text": "The earlier coursed-stone tower is the selected direction for this revision. Its staggered, mostly horizontal stonework is retained, with smaller blocks and a richer surface. Post 007 and this article now use the same updated tower."
-                }
-              ]
-            },
-            {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/post-008/tower-environment-coursed-v003.jpg",
-              "width": 1280,
-              "height": 1600,
-              "alt": "The updated coursed-stone tower in the terrain.",
-              "caption": "The current full-height tower, rendered with the existing camera and environment lighting."
-            },
-            {
-              "type": "heading",
-              "text": "Reduce the stone dimensions"
-            },
-            {
-              "type": "list",
-              "items": [
-                "Reduce nominal stone width from 1.22 to 0.98 meters and nominal course height from 0.58 to 0.46 meters, approximately 20 percent in each direction.",
-                "Regenerate the complete cylindrical layout: 3,433 stone regions across 91 nominal courses on the 42-meter shaft. Preserve the slight course waviness, varied widths, clipped corners and occasional stones spanning two courses.",
-                "Keep the gray mineral palette and broad color changes independent of the row layout. The source wall photograph supplies sampled surface characteristics, not a repeated wall arrangement."
-              ]
-            },
-            {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/post-008/tower-scale-comparison-v003.jpg",
-              "width": 1280,
-              "height": 848,
-              "alt": "Selected earlier coursed tower beside the smaller-stone revision.",
-              "caption": "The selected earlier layout and the updated tower from the same scene camera. The revised stone dimensions increase the number of visible courses."
-            },
-            {
-              "type": "heading",
-              "text": "Separate the surface scales"
-            },
-            {
-              "type": "list",
-              "items": [
-                "Main form: the block profiles and mortar depth remain in the height map, with a centered 0.18-meter encoding.",
-                "Edge wear: a stone-distance mask localizes chips to the borders, with additional shallow pits on the faces. Generated edge cuts reach about 1.35 centimeters and face pits reach 9 millimeters.",
-                "Medium relief: a masked four-octave MaterialX fractal displaces the stone faces, with a 0.01-meter amplitude control and a separate spatial frequency.",
-                "Fine grain: a three-octave object-space fractal drives bump with a 0.0018-meter amplitude control, layered over the isolated stone-face normal map. Roughness retains independent surface variation."
-              ]
-            },
-            {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/post-008/stone-channels-v003.jpg",
-              "width": 1440,
-              "height": 1096,
-              "alt": "Current material channels and the edge-chip and pit field.",
-              "caption": "The procedural atlas wraps once around the shaft. The object-space noise adds finer detail at render time."
-            },
-            {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/post-008/stone-surface-comparison-v003.jpg",
-              "width": 1800,
-              "height": 611,
-              "alt": "The same small-stone wall with map shading and with the procedural surface layers.",
-              "caption": "Matched camera, lighting, maps and stone dimensions. The right-hand view adds medium fractal relief and mineral-grain bump."
-            },
-            {
-              "type": "heading",
-              "text": "Keep the joints and openings controlled"
-            },
-            {
-              "type": "list",
-              "items": [
-                "Fade the procedural surface noise near mortar joints so the block boundaries stay readable.",
-                "Assign the hollow interior and window returns a separate material without the exterior relief. Keep the stairs, dressed crown, crystal, terrain and ground scattering in the assembly.",
-                "Use native editable MaterialX nodes in Houdini. Medium-relief amplitude, grain amplitude, source-normal strength and both noise frequencies are exposed on the material node."
-              ]
-            },
-            {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/post-008/stone-detail-coursed-v003.jpg",
-              "width": 1800,
-              "height": 1125,
-              "alt": "The detailed smaller-stone surface on the tower wall.",
-              "caption": "Final close-up: irregular coursed stones, chipped borders, shallow cavities and mineral grain."
-            },
-            {
-              "type": "heading",
-              "text": "Check the assembled result"
-            },
-            {
-              "type": "list",
-              "items": [
-                "Render the full tower, wall close-up and wide landscape in Karma XPU at 64 samples, and compare the surface with the procedural layers disabled.",
-                "Reopen the USD layers with resolved texture assets, Y-up and one meter per unit. Save and reload the Houdini scene, and verify that changing a surface control updates the authored shader.",
-                "The production shaft remains a continuous mesh with displacement. The individual regions in the atlas are not separate modeled blocks and this revision is not a full-tower high-to-low bake."
-              ]
-            },
-            {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/post-008/tower-terrain-wide-coursed-v003.jpg",
-              "width": 1600,
-              "height": 900,
-              "alt": "The updated coursed-stone tower in the wide landscape view.",
-              "caption": "The same revised tower used in Post 007, with the existing terrain, approach path and ground scattering."
-            },
-            {
-              "type": "heading",
-              "text": "References and credit"
-            },
-            {
-              "type": "paragraph",
-              "children": [
-                {
-                  "text": "Stone surface source: "
-                },
-                {
-                  "text": "Adobe Stock image 332221305",
-                  "href": "https://stock.adobe.com/images/332221305"
-                },
-                {
-                  "text": ". The photograph supplies isolated surface characteristics; the full wall arrangement is generated separately."
-                }
-              ]
-            },
-            {
-              "type": "paragraph",
-              "children": [
-                {
-                  "text": "Geometry reference: Daniel Keating, "
-                },
-                {
-                  "text": "Houdini Broken Brick Wall Tutorial",
-                  "href": "https://www.youtube.com/watch?v=D6PUt64BypQ"
-                },
-                {
-                  "text": ". The current block layout and tower adaptation are project-specific implementations."
-                }
-              ]
-            },
-            {
-              "type": "paragraph",
-              "children": [
-                {
-                  "text": "The material generation, tower integration, checks and journal were developed with assistance from "
-                },
-                {
-                  "text": "GPT",
-                  "href": "https://chatgpt.com/"
-                },
-                {
-                  "text": " and "
-                },
-                {
-                  "text": "Codex",
-                  "href": "https://openai.com/codex/"
-                },
-                {
-                  "text": "."
-                }
-              ]
-            }
+          ],
+          "aliases": [
+            "post-008"
           ]
         }
       ]
