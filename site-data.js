@@ -1839,32 +1839,25 @@ window.PORTFOLIO = {
           "id": "post-007",
           "title": "Tower & Terrain: Stone Material and Environment Workflow",
           "publishedAt": "2026-11-08",
-          "image": "blog/magic-crystal-overload/post-007/tower-terrain-wide-seam-repair.jpg",
-          "imageAlt": "Gray stone tower with a spiral stair and crystal, surrounded by eroded terrain and scattered rocks.",
-          "excerpt": "From a layered Gaea landscape to photo-based gray masonry, with a corrected tiling pass checked on the tower in Houdini and Karma.",
+          "image": "blog/magic-crystal-overload/post-007/tower-terrain-wide-coursed-v003.jpg",
+          "imageAlt": "Coursed gray stone tower with spiral stairs, a crown crystal and surrounding eroded terrain.",
+          "excerpt": "A Gaea landscape and gray stone tower, refined with smaller irregular courses, chipped edges and layered surface noise.",
           "blocks": [
             {
               "type": "paragraph",
               "children": [
                 {
-                  "text": "Updated November 9, 2026: Rebuilt the gray masonry tile to remove the square patch outline, then rerendered the tower."
+                  "text": "Updated November 9, 2026: Returned to the earlier irregular coursed-stone tower, reduced the block dimensions by about 20 percent, and enriched the stone surface. Both tower journals now show this version."
                 }
               ]
             },
             {
-              "type": "list",
-              "items": [
-                "Develop the tower and its surrounding terrain together, with a gray masonry direction closer to the original stone tower.",
-                "Apply the material to the actual tower, remove the stair handrails, and retain the ground rocks, pebbles, and sparse grass."
-              ]
-            },
-            {
               "type": "image",
-              "image": "blog/magic-crystal-overload/post-007/tower-terrain-wide-seam-repair.jpg",
+              "image": "blog/magic-crystal-overload/post-007/tower-terrain-wide-coursed-v003.jpg",
               "width": 1600,
               "height": 900,
-              "alt": "The complete tower and its surrounding terrain.",
-              "caption": "Current tower and terrain assembly rendered in Karma. The ground stones remain in the scene."
+              "alt": "The updated tower in the Gaea terrain.",
+              "caption": "Current assembly rendered in Karma XPU, with the spiral stairs, crown crystal, scattered ground stones and sparse grass."
             },
             {
               "type": "heading",
@@ -1873,9 +1866,8 @@ window.PORTFOLIO = {
             {
               "type": "list",
               "items": [
-                "Start with Ridge for the large landforms, then use Stratify to establish horizontal rock structure.",
-                "Pass the terrain through Erosion2 and Thermal2 to develop drainage, worn slopes, and accumulated material. SatMap provides a terrain color reference.",
-                "Build at 2048 square resolution for a 500-meter-wide terrain with a 45-meter height range. Export height, flow, deposits, and color as separate outputs."
+                "Start with Ridge and Stratify, then use Erosion2 and Thermal2 to develop drainage, worn slopes and accumulated material.",
+                "Build the 500-meter terrain at 2048 square resolution with a 45-meter height range. Export height, flow, deposits and color separately."
               ]
             },
             {
@@ -1883,8 +1875,8 @@ window.PORTFOLIO = {
               "image": "blog/magic-crystal-overload/post-007/terrain-channels.jpg",
               "width": 1400,
               "height": 1520,
-              "alt": "Separate height, flow, deposit and terrain color outputs.",
-              "caption": "The Gaea outputs used in the handoff. Grayscale channels have display contrast adjusted for inspection."
+              "alt": "Separate terrain height, flow, deposits and color outputs.",
+              "caption": "Gaea source channels. Grayscale channels are contrast-adjusted for inspection."
             },
             {
               "type": "heading",
@@ -1893,20 +1885,19 @@ window.PORTFOLIO = {
             {
               "type": "list",
               "items": [
-                "Import the heightfield and erosion masks, align the terrain datum with the tower, and flatten the immediate foundation area.",
-                "Project an approach path onto the surface and combine slope, soil, and path masks for the terrain shading. Add smaller-scale surface breakup near the tower.",
-                "Keep the larger limestone rocks, talus pebbles, and sparse grass. Human-scale figures help judge the relationship between the stairs, tower, and landscape."
+                "Align the imported terrain datum, flatten the immediate foundation area and project the approach path onto the ground.",
+                "Use slope, soil and path masks for terrain shading. Retain the ground rocks, pebbles, sparse grass and human-scale references."
               ]
             },
             {
               "type": "heading",
-              "text": "Turning a stone photograph into a material"
+              "text": "Sampling a gray stone surface"
             },
             {
               "type": "paragraph",
               "children": [
                 {
-                  "text": "Stone source: "
+                  "text": "Stone surface source: "
                 },
                 {
                   "text": "Adobe Stock image 332221305",
@@ -1920,91 +1911,70 @@ window.PORTFOLIO = {
             {
               "type": "list",
               "items": [
-                "Choose irregular coursed gray masonry and take a centered square crop from the full-resolution photograph. Preserve its original color.",
-                "Convert the photograph with Image to Material in Substance 3D Sampler. Open the exported SBS in Designer and retrieve the channels from before Equalize and Make It Tile.",
-                "The first pass closed the outer edges but left a square transition inside the tile. Rebuild the overlap in both directions, following existing mortar and matching neighboring stone faces.",
-                "Use the same seam for base color, height, roughness, normal and ambient occlusion. Check a half-tile offset and a 2 \u00d7 2 repeat before exporting the 4K maps."
+                "Convert the photograph into material channels with Substance 3D Sampler and inspect the outputs in Designer.",
+                "Extract six stone-edge profile samples and an isolated stone-face patch. Use these characteristics to guide the generated blocks, color palette, fine relief and roughness.",
+                "Build the masonry arrangement independently across the whole cylinder. The final wall does not repeat the complete source photograph."
               ]
             },
             {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/post-007/stone-channels-seam-repair.jpg",
-              "width": 1560,
-              "height": 1160,
-              "alt": "The gray stone base color, height, roughness, normal, occlusion and metallic maps.",
-              "caption": "The exported stone channels. Height, roughness, and occlusion are contrast-adjusted here for readability; the metallic map is black."
-            },
-            {
               "type": "heading",
-              "text": "Extracting stone shapes and testing relief"
+              "text": "Smaller irregular courses"
             },
             {
               "type": "list",
               "items": [
-                "Use the height map to extract candidate stone regions, then export IDs, vector silhouettes, and transparent stone elements.",
-                "The revised gray material produces 33 candidate regions. Some regions split or merge stones, so these remain editable extraction studies.",
-                "Generate flat and curved mesh samples with real vertex relief. Match the curved sample to the tower radius and keep the UVs attached to the same material.",
-                "The production tower uses a continuous shaft with material displacement. The segmented candidates are retained separately for further modeling."
+                "Keep the earlier coursed layout: staggered vertical joints, gently uneven bed lines, clipped corners and occasional double-height stones.",
+                "The 42-meter shaft uses 91 nominal courses and 3,433 generated stone regions. Nominal course height is 0.46 meters and stone width is 0.98 meters, compared with 0.58 and 1.22 meters in the selected earlier version.",
+                "Keep the gray value and cool-to-warm drift independent of course number. Regenerate the layout at the smaller dimensions rather than repeating a reduced wall tile."
               ]
             },
             {
               "type": "image",
-              "image": "blog/magic-crystal-overload/post-007/stone-extraction-seam-repair.jpg",
-              "width": 1400,
-              "height": 760,
-              "alt": "Unnumbered candidate stone regions and the repeated gray masonry material.",
-              "caption": "Height-driven extraction and a repeat check. The colored regions are candidates, not finalized individual stone meshes."
+              "image": "blog/magic-crystal-overload/post-007/stone-channels-v003.jpg",
+              "width": 1440,
+              "height": 1096,
+              "alt": "Separate color, shape, face relief, roughness, normal and erosion maps.",
+              "caption": "The current 6144 by 6943 cylindrical maps. Shape, fine relief, roughness and wear masks are contrast-adjusted here."
             },
             {
               "type": "heading",
-              "text": "Applying the material to the tower"
+              "text": "Adding stone surface detail"
             },
             {
               "type": "list",
               "items": [
-                "Preserve the hollow shaft, slit windows, spiral stairs, corbels, base, and crown. Replace the old small-block wall surface so its mortar grid does not compete with the photographed joints.",
-                "Create cylindrical vertex UVs after the window cuts. Ten tiles around the shaft give a material tile about 3.72 meters wide, with the vertical scale linked to the tower dimensions.",
-                "Read base color as sRGB and the numerical maps as raw data. Convert the Sampler normal from DirectX to OpenGL while retaining 16-bit precision.",
-                "Use a centered height map with a displacement scale of 0.06 meters. Add enough shaft subdivisions to avoid long displacement artifacts around the window cuts.",
-                "Keep fine normal strength at zero for this render pass while evaluating the height relief. Match the dressed stone palette on the stairs, base, and crown to the gray wall material."
+                "Use displacement for the main block profile, shallow pits and chipped edges. Keep the mortar and window returns protected from the exterior surface noise.",
+                "Add a four-octave object-space MaterialX fractal for medium stone relief, plus a separate three-octave mineral-grain bump layer. The object-space detail continues across the cylindrical UV cut.",
+                "Retain the isolated stone-face normal map for fine surface variation. Expose relief amplitude, grain strength and both noise frequencies on the Houdini material node."
               ]
             },
             {
               "type": "image",
-              "image": "blog/magic-crystal-overload/post-007/stone-detail-seam-repair.jpg",
-              "width": 1600,
-              "height": 1000,
-              "alt": "Close view of the photographic gray masonry on the curved tower wall.",
-              "caption": "Actual tower surface under the environment lighting, using height displacement and the exported roughness map."
-            },
-            {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/post-007/stone-seam-comparison.jpg",
-              "width": 1600,
-              "height": 560,
-              "alt": "The same tower close-up with the original square patch blend and with the repaired overlap.",
-              "caption": "The camera, lighting and displacement settings are the same. The corrected texture follows the stone courses across the overlap."
+              "image": "blog/magic-crystal-overload/post-007/stone-detail-coursed-v003.jpg",
+              "width": 1800,
+              "height": 1125,
+              "alt": "Close view of the smaller coursed stones with pitting, grain and chipped edges.",
+              "caption": "Actual tower wall under the existing environment lighting, with the new surface detail enabled."
             },
             {
               "type": "heading",
-              "text": "Checking the assembled result"
+              "text": "Applying and checking the material"
             },
             {
               "type": "list",
               "items": [
-                "Render a complete tower view, an environment view, and a material close-up in Karma. The tower is 42 meters high with a nominal 6-meter radius.",
-                "Check the window edges, masonry scale, stair silhouette, and contact with the ground. The handrails are absent while the ground stone scattering remains.",
-                "Package the editable Houdini scene, terrain source and builds, material graph and maps, geometry caches, and USD exports. Reload the scene and verify that the exported USD dependencies resolve inside the delivery folder.",
-                "This is the current environment and material study. Further work can reduce recognizable texture repetition and refine the landscape detail for the final shot."
+                "Wrap the generated maps once around the shaft. Read base color as sRGB and height, normal, roughness and masks as raw data.",
+                "Use a centered 0.18-meter height encoding and keep the small surface layers separate from the large stone profile.",
+                "Render the full tower, terrain view and wall close-up at 64 samples. Reopen the USD layers and the separately saved Houdini scene to check dependencies, materials and live surface controls."
               ]
             },
             {
               "type": "image",
-              "image": "blog/magic-crystal-overload/post-007/tower-environment-seam-repair.jpg",
+              "image": "blog/magic-crystal-overload/post-007/tower-environment-coursed-v003.jpg",
               "width": 1280,
               "height": 1600,
-              "alt": "Full-height gray tower, spiral stair, crown crystal and approach path.",
-              "caption": "The full-height tower with the updated material, open stair silhouette, retained rocks, and human-scale reference."
+              "alt": "Full-height tower with smaller irregular gray stone courses and an external spiral stair.",
+              "caption": "Current tower version, shared with Post 008. The original tower proportions and environment cameras are retained."
             },
             {
               "type": "heading",
@@ -2094,125 +2064,116 @@ window.PORTFOLIO = {
         },
         {
           "id": "post-008",
-          "title": "Tower Material Update: Breaking the Repeat",
+          "title": "Tower Material Update: Smaller Coursed Stones",
           "publishedAt": "2026-11-09",
-          "image": "blog/magic-crystal-overload/post-008/tower-environment.jpg",
-          "imageAlt": "The tower with irregular gray masonry, spiral stairs, arrow windows and retained terrain.",
-          "excerpt": "Replacing the repeated stone photograph with a unique full-tower layout, irregular blocks and separate color, shape and surface detail.",
+          "image": "blog/magic-crystal-overload/post-008/tower-environment-coursed-v003.jpg",
+          "imageAlt": "The gray tower with smaller irregular coursed stones, spiral stairs and a crown crystal.",
+          "excerpt": "Returning to the earlier coursed masonry, reducing block size, and adding chipped edges, shallow pits and multiscale rock-surface detail.",
           "blocks": [
             {
               "type": "paragraph",
               "children": [
                 {
-                  "text": "The previous tower material had a recognizable group of stones repeating around the shaft and up its height. This update replaces that wall-scale photograph with one complete cylindrical masonry layout."
+                  "text": "The earlier coursed-stone tower is the selected direction for this revision. Its staggered, mostly horizontal stonework is retained, with smaller blocks and a richer surface. Post 007 and this article now use the same updated tower."
                 }
               ]
             },
             {
               "type": "image",
-              "image": "blog/magic-crystal-overload/post-008/tower-before-after.jpg",
+              "image": "blog/magic-crystal-overload/post-008/tower-environment-coursed-v003.jpg",
               "width": 1280,
-              "height": 852,
-              "alt": "The previous and updated tower from the same camera.",
-              "caption": "Matched tower camera and lighting. The new material changes the stone layout across the full height."
+              "height": 1600,
+              "alt": "The updated coursed-stone tower in the terrain.",
+              "caption": "The current full-height tower, rendered with the existing camera and environment lighting."
             },
             {
               "type": "heading",
-              "text": "A layout sized to the tower"
+              "text": "Reduce the stone dimensions"
             },
             {
               "type": "list",
               "items": [
-                "Generate the layout for a 42-meter shaft with a 5.915-meter wall radius, rather than scaling one small wall tile.",
-                "The new atlas contains 1,541 stone regions across 55 nominal layout rows. Local shifts, variable widths, sloping joints and clipped corners break up long horizontal runs.",
-                "Include neighbors across both sides of the cylindrical cut so stone shapes continue around the tower. The 4608 by 5207 image wraps once around the shaft.",
-                "Align 90 arch wedges with the 18 existing arrow windows. Give the interior and window returns a separate material assignment so exterior displacement stays off those faces."
+                "Reduce nominal stone width from 1.22 to 0.98 meters and nominal course height from 0.58 to 0.46 meters, approximately 20 percent in each direction.",
+                "Regenerate the complete cylindrical layout: 3,433 stone regions across 91 nominal courses on the 42-meter shaft. Preserve the slight course waviness, varied widths, clipped corners and occasional stones spanning two courses.",
+                "Keep the gray mineral palette and broad color changes independent of the row layout. The source wall photograph supplies sampled surface characteristics, not a repeated wall arrangement."
               ]
             },
             {
               "type": "image",
-              "image": "blog/magic-crystal-overload/post-008/layout-before-after.jpg",
-              "width": 1420,
-              "height": 844,
-              "alt": "Repeated photographic layout beside the unique full-height masonry albedo.",
-              "caption": "Unwrapped layouts at the tower proportions. The new color field covers one circumference and the complete height."
+              "image": "blog/magic-crystal-overload/post-008/tower-scale-comparison-v003.jpg",
+              "width": 1280,
+              "height": 848,
+              "alt": "Selected earlier coursed tower beside the smaller-stone revision.",
+              "caption": "The selected earlier layout and the updated tower from the same scene camera. The revised stone dimensions increase the number of visible courses."
             },
             {
               "type": "heading",
-              "text": "Separate color, shape and grain"
+              "text": "Separate the surface scales"
             },
             {
-              "type": "paragraph",
-              "children": [
-                {
-                  "text": "The gray value and cool-to-warm shifts are independent of the layout rows. Individual stones receive additional variation, while broad color zones cross several stones. Fine grain uses different synthesized phases derived from an isolated stone surface, without repeating the original wall photograph."
-                }
+              "type": "list",
+              "items": [
+                "Main form: the block profiles and mortar depth remain in the height map, with a centered 0.18-meter encoding.",
+                "Edge wear: a stone-distance mask localizes chips to the borders, with additional shallow pits on the faces. Generated edge cuts reach about 1.35 centimeters and face pits reach 9 millimeters.",
+                "Medium relief: a masked four-octave MaterialX fractal displaces the stone faces, with a 0.01-meter amplitude control and a separate spatial frequency.",
+                "Fine grain: a three-octave object-space fractal drives bump with a 0.0018-meter amplitude control, layered over the isolated stone-face normal map. Roughness retains independent surface variation."
               ]
             },
             {
               "type": "image",
-              "image": "blog/magic-crystal-overload/post-008/material-channels.jpg",
+              "image": "blog/magic-crystal-overload/post-008/stone-channels-v003.jpg",
               "width": 1440,
-              "height": 1104,
-              "alt": "Base color, large-form height, fine relief, roughness, tangent normal and stone IDs.",
-              "caption": "Shape height, fine relief and roughness are contrast-adjusted for inspection. IDs show the individual stone regions."
+              "height": 1096,
+              "alt": "Current material channels and the edge-chip and pit field.",
+              "caption": "The procedural atlas wraps once around the shaft. The object-space noise adds finer detail at render time."
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-008/stone-surface-comparison-v003.jpg",
+              "width": 1800,
+              "height": 611,
+              "alt": "The same small-stone wall with map shading and with the procedural surface layers.",
+              "caption": "Matched camera, lighting, maps and stone dimensions. The right-hand view adds medium fractal relief and mineral-grain bump."
+            },
+            {
+              "type": "heading",
+              "text": "Keep the joints and openings controlled"
             },
             {
               "type": "list",
               "items": [
-                "Keep the large stone profile in displacement and the fine relief in a separate tangent-space normal map.",
-                "Read base color as sRGB and surface data as raw values. The centered height encoding spans 0.24 meters; the generated relief ranges from about -2.6 to +9.4 centimeters.",
-                "Retain the existing stairs, dressed crown, quartz, terrain, ground rocks and sparse grass while replacing the shaft surface."
+                "Fade the procedural surface noise near mortar joints so the block boundaries stay readable.",
+                "Assign the hollow interior and window returns a separate material without the exterior relief. Keep the stairs, dressed crown, crystal, terrain and ground scattering in the assembly.",
+                "Use native editable MaterialX nodes in Houdini. Medium-relief amplitude, grain amplitude, source-normal strength and both noise frequencies are exposed on the material node."
               ]
             },
             {
               "type": "image",
-              "image": "blog/magic-crystal-overload/post-008/detail-before-after.jpg",
-              "width": 1600,
-              "height": 552,
-              "alt": "Old and new material in an identical tower-wall close-up.",
-              "caption": "The camera and lighting match. The recurring dark stone group is replaced by different block outlines, tones and surface grain."
+              "image": "blog/magic-crystal-overload/post-008/stone-detail-coursed-v003.jpg",
+              "width": 1800,
+              "height": 1125,
+              "alt": "The detailed smaller-stone surface on the tower wall.",
+              "caption": "Final close-up: irregular coursed stones, chipped borders, shallow cavities and mineral grain."
             },
             {
               "type": "heading",
-              "text": "Window patch and production surface"
-            },
-            {
-              "type": "paragraph",
-              "children": [
-                {
-                  "text": "The earlier v002 curved-window study tested separate modeled stones, a low shell and a cage, with verified high-to-low projection. It provided the block-shape and surface direction for this update. The complete tower uses a newly generated procedural atlas and displacement; it is not a full-tower high-to-low bake."
-                }
-              ]
-            },
-            {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/post-008/window-patch-study.jpg",
-              "width": 1906,
-              "height": 1533,
-              "alt": "The separate v002 window patch with its high model, clay view and baked low model.",
-              "caption": "Independent curved-window study: previous material, modeled stones, clay and baked low mesh. These are study views, not crops of the complete tower."
-            },
-            {
-              "type": "heading",
-              "text": "Checking the assembled tower"
+              "text": "Check the assembled result"
             },
             {
               "type": "list",
               "items": [
-                "Render the complete tower, wide terrain view and wall close-up in Karma XPU using the existing scene cameras and lighting.",
-                "Reopen all four USD layers and verify the material assets, meter scale, Y-up stage and window-return assignment. Reload the separately saved Houdini scene and check the published layer for errors.",
-                "At the previous tile period, the new albedo luminance correlations are -0.23 around the tower and -0.11 vertically. This checks the removed photo repeat, rather than claiming the absence of all pattern.",
-                "The block outline is still deliberately constructed, and the landscape remains a look-development environment. Future close shots may benefit from modeled stone edges and additional weathering."
+                "Render the full tower, wall close-up and wide landscape in Karma XPU at 64 samples, and compare the surface with the procedural layers disabled.",
+                "Reopen the USD layers with resolved texture assets, Y-up and one meter per unit. Save and reload the Houdini scene, and verify that changing a surface control updates the authored shader.",
+                "The production shaft remains a continuous mesh with displacement. The individual regions in the atlas are not separate modeled blocks and this revision is not a full-tower high-to-low bake."
               ]
             },
             {
               "type": "image",
-              "image": "blog/magic-crystal-overload/post-008/tower-terrain-wide.jpg",
+              "image": "blog/magic-crystal-overload/post-008/tower-terrain-wide-coursed-v003.jpg",
               "width": 1600,
               "height": 900,
-              "alt": "The updated gray stone tower in the existing wide terrain scene.",
-              "caption": "Updated tower material in the existing terrain assembly, with the ground stone scattering retained."
+              "alt": "The updated coursed-stone tower in the wide landscape view.",
+              "caption": "The same revised tower used in Post 007, with the existing terrain, approach path and ground scattering."
             },
             {
               "type": "heading",
