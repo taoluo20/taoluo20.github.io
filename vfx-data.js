@@ -58,9 +58,9 @@ window.PORTFOLIO.projects = [
   {
     id: 'scholars-attic', title: "The Scholar's Attic", type: 'Environment / Modeling',
     image: 'vfx/scholars-attic.webp', video: '/assets/videos/vfx/scholars-attic.mp4', preview: '/assets/videos/vfx/scholars-attic-preview.mp4',
-    width: 1920, height: 1080, duration: 38.875, software: ['maya'], tags: ['Maya'],
+    width: 1920, height: 1080, duration: 38.875, software: ['maya', 'painter'], tags: ['Maya', 'Substance 3D Painter'],
     alt: 'A cutaway timber attic with a curtained bed, ladder, study desk, and warm sunlight.',
     summary: 'A small world beneath the rafters.',
-    description: 'A cutaway attic interior modeled and rendered entirely in Maya, with exposed timber, built-in furniture, and small props arranged around warm daylight.'
+    description: 'A cutaway attic interior built with Maya and Substance 3D Painter, with exposed timber, built-in furniture, and small props arranged around warm daylight.'
   }
 ];
