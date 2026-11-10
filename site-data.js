@@ -2083,6 +2083,229 @@ window.PORTFOLIO = {
           "aliases": [
             "post-008"
           ]
+        },
+        {
+          "id": "tower-environment-progress",
+          "title": "Tower and Environment: Timber Access, Wind Grass, and Stone Paving",
+          "publishedAt": "2026-11-10",
+          "image": "blog/magic-crystal-overload/tower-environment-progress/tower-and-meadow.jpg",
+          "imageAlt": "A full-height stone tower with a winding timber staircase amid a green meadow and scattered boulders.",
+          "excerpt": "The tower now sits in a dense wind-driven meadow, with a timber route up the shaft and a circular limestone floor at the crown.",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "This update continues the "
+                },
+                {
+                  "text": "earlier tower and terrain study",
+                  "href": "/blog/magic-crystal-overload/post-007/"
+                },
+                {
+                  "text": ". I kept its coursed-stone shaft and focused on the route through the scene, from the approach path to the roof."
+                }
+              ]
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/tower-environment-progress/tower-and-meadow.jpg",
+              "width": 1120,
+              "height": 1400,
+              "alt": "A full-height stone tower with a winding timber staircase amid a green meadow and scattered boulders.",
+              "caption": "The November 10 tower assembly in Karma XPU. The approach path, tiered rock scatter, timber stair and suspended crown crystal read together at environment scale."
+            },
+            {
+              "type": "heading",
+              "text": "Seat the tower in the terrain"
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "I kept the broad Gaea landforms and refined the grade at the tower and along its approach. Boulder, slab and small-chip scatters give the landscape different sizes of stone. Placement masks leave the approach and the immediate foundation clear, while the slope controls help seat rocks in the surface."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "text": "Use two scales of moving grass"
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/tower-environment-progress/grass-at-the-approach.jpg",
+              "width": 1080,
+              "height": 684,
+              "alt": "Soft grass blades and patches of short turf along the path at the tower entrance.",
+              "caption": "Two layers of grass at the approach: short cover fills the meadow, with longer blades in the foreground."
+            },
+            {
+              "type": "video",
+              "src": "/assets/videos/blog/magic-crystal-overload/tower-environment-progress/grass-wind-test.mp4",
+              "poster": "blog/magic-crystal-overload/tower-environment-progress/grass-at-the-approach.jpg",
+              "width": 720,
+              "height": 454,
+              "title": "Wind moving the short turf and taller blades along the tower approach",
+              "caption": "Forty rendered frames at 24 fps. The short turf prototypes and the longer blades both respond to the wind field."
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "A dense short turf layer covers the meadow where the ground masks allow it. Taller blades add foreground variation. The roots stay seated while the tips bend and follow the wind; changes in blade shape and timing help the meadow move in patches."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "text": "Make the climb and arrival read as construction"
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/tower-environment-progress/timber-stair-and-crown.jpg",
+              "width": 1152,
+              "height": 864,
+              "alt": "Timber boards and support members meeting a stone opening between two staggered parapet walls.",
+              "caption": "Crown entrance study: the upper treads extend past their supports and meet the open landing. The parapet stops at two full masonry ends."
+            },
+            {
+              "type": "list",
+              "items": [
+                "The exterior spiral stair uses wooden treads, piles, braces and stringers.",
+                "The crown entrance keeps a 1.95-meter clear opening. Whole merlons and a staggered low wall replace the clipped stone fragments beside the landing.",
+                "The central platform is now limestone paving. The stones have staggered joints, eased edges and circular cut pieces. The paving was also exported with non-overlapping UVs for separate texturing."
+              ]
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/tower-environment-progress/circular-stone-paving.jpg",
+              "width": 1248,
+              "height": 980,
+              "alt": "The crystal tip above a round, staggered stone-brick floor with a standing scale figure.",
+              "caption": "Current crown: 112 pavers cut to a 5.78-meter circle. The center pedestal is gone, and the crystal is suspended above the paving."
+            },
+            {
+              "type": "heading",
+              "text": "Keep a lighter scene for camera work"
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/tower-environment-progress/layout-proxy.jpg",
+              "width": 844,
+              "height": 1056,
+              "alt": "A flat-colored proxy view of the tower and surrounding landforms.",
+              "caption": "The v005 layout proxy is an earlier, geometry-only checkpoint with basic colors and seven saved cameras."
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "The separate layout proxy has about 157,000 polygon faces, basic display colors, and seven reference cameras. I use it for block placement and camera work before returning to the detailed Houdini scene."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "quartz-micro-detail",
+          "title": "Quartz Micro Detail: Growth Bands, Fractures, and Inclusions",
+          "publishedAt": "2026-11-10",
+          "image": "blog/magic-crystal-overload/quartz-micro-detail/layered-quartz-macro.jpg",
+          "imageAlt": "A close crop of quartz with wide crystalline facets, broken mid-size fissures and fine etched lines.",
+          "excerpt": "A close-up study of the 6.5-meter crystal, layering broad growth features, interrupted fractures, fine etching and several sizes of internal inclusions.",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "This is a close-up pass for the 6.5-meter crown crystal. I used the existing 1.8-meter figure to judge whether the surface marks would still read at shot distance, then built a range of scales across the surface and inside the volume."
+                }
+              ]
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/quartz-micro-detail/human-scale-check.jpg",
+              "width": 1260,
+              "height": 1050,
+              "alt": "An early quartz detail crop beside the head and torso of a scale figure.",
+              "caption": "An earlier close-up places the surface next to the 1.8-meter scale figure. The image is a scale study from v006, before the later layering and lift."
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/quartz-micro-detail/layered-quartz-macro.jpg",
+              "width": 1280,
+              "height": 1060,
+              "alt": "A close crop of quartz with wide crystalline facets, broken mid-size fissures and fine etched lines.",
+              "caption": "v009 macro: larger growth terraces, interrupted intermediate fractures and fine surface marks coexist across the same facets."
+            },
+            {
+              "type": "heading",
+              "text": "Build the surface from large to small"
+            },
+            {
+              "type": "list",
+              "items": [
+                "Large: retain the original faceted shell and add shallow, broad growth terraces in selected zones.",
+                "Middle: break up the growth lines and add larger, interrupted healed-looking fissures. Keep smooth patches between them.",
+                "Fine: layer narrower striations, hairline etching, small pits and mineral grain. Most of this relief shows up at grazing angles."
+              ]
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/quartz-micro-detail/earlier-fine-pass.jpg",
+              "width": 1280,
+              "height": 1060,
+              "alt": "The earlier quartz macro, with mostly fine etched marks on large transparent facets.",
+              "caption": "v008 study: the marks became smaller, but the intermediate scales were less evident. The following pass restored a wider range of sizes."
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "The v008 and v009 macro views use the same camera. The lighting accents and the floor visible in refraction also changed, so the frames show the progression of the look rather than a controlled shader comparison."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "text": "Give the interior more than one scale"
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "The interior is a separate 4.5-millimeter VDB field. Wider folded growth zones sit behind thinner, interrupted laminae and fine filament detail. Mineral grains are scattered in three size ranges and concentrated in the denser regions. Open areas between the layers preserve clear sight lines."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "text": "Check the height in the assembled scene"
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/quartz-micro-detail/suspended-over-stone.jpg",
+              "width": 1248,
+              "height": 980,
+              "alt": "The raised lower crystal tip floating over the stone floor beside a scale figure.",
+              "caption": "v010 placement check: the tip sits about 1.34 meters above the new stone paving."
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "For v010 I raised the shell, inclusion volume and mineral grains together by another 0.4 meters. The geometry and look remain the same as the v009 macro. See the "
+                },
+                {
+                  "text": "tower and environment progress",
+                  "href": "/blog/magic-crystal-overload/tower-environment-progress/"
+                },
+                {
+                  "text": " for the stone floor and the rest of the route up the tower."
+                }
+              ]
+            }
+          ]
         }
       ]
     }
