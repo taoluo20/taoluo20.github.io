@@ -6,6 +6,7 @@ const { createHash } = require('node:crypto');
 const root = __dirname;
 const context = { window: {} };
 vm.runInNewContext(fs.readFileSync(path.join(root, 'site-data.js'), 'utf8'), context);
+vm.runInNewContext(fs.readFileSync(path.join(root, 'vfx-data.js'), 'utf8'), context);
 vm.runInNewContext(fs.readFileSync(path.join(root, 'photography-data.js'), 'utf8'), context);
 const data = context.window.PORTFOLIO;
 assert.equal(data.name, 'Tao Luo');
@@ -24,6 +25,21 @@ for (const entry of [...data.projects, ...data.photographs, ...data.posts]) {
   for (const image of [entry.image, entry.secondary].filter(Boolean)) assert.ok(fs.existsSync(path.join(root, 'assets/images', image)), `Missing image: ${image}`);
 }
 const journalIds = new Set();
+const projectIds = new Set();
+for (const project of data.projects) {
+  assert.match(project.id, /^[a-z0-9-]+$/, 'Invalid VFX project id');
+  assert.ok(!projectIds.has(project.id), `Duplicate VFX project: ${project.id}`);
+  projectIds.add(project.id);
+  assert.ok(project.width > 0 && project.height > 0 && project.alt && project.description, `Incomplete VFX project: ${project.id}`);
+  assert.ok(fs.existsSync(path.join(root, 'vfx', project.id, 'index.html')), `Missing VFX page: ${project.id}`);
+  for (const media of [project.video, project.preview].filter(Boolean)) {
+    assert.match(media, /^\/assets\/videos\/vfx\/[a-z0-9-]+\.mp4$/, 'VFX videos must use local assets');
+    assert.ok(fs.existsSync(path.join(root, media)), `Missing VFX video: ${media}`);
+  }
+  if (project.video) assert.ok(project.preview, `Missing hover preview: ${project.id}`);
+  if (project.fullImage) assert.ok(fs.existsSync(path.join(root, 'assets/images', project.fullImage)), `Missing full-size image: ${project.id}`);
+  for (const id of project.software) assert.ok(fs.existsSync(path.join(root, 'assets/software', `${id}.${id === 'realityscan' ? 'png' : 'svg'}`)), `Missing software icon: ${id}`);
+}
 const checkJournalLink = href => {
   assert.match(href, /^(https:\/\/|\/(?!\/))/, `Invalid article link: ${href}`);
   if (href.startsWith('https://')) assert.equal(new URL(href).protocol, 'https:');

@@ -17,6 +17,7 @@ function generatePages() {
   const context = { window: {} };
   const siteData = fs.readFileSync(path.join(root, 'site-data.js'), 'utf8');
   vm.runInNewContext(siteData, context);
+  vm.runInNewContext(fs.readFileSync(path.join(root, 'vfx-data.js'), 'utf8'), context);
   vm.runInNewContext(fs.readFileSync(path.join(root, 'photography-data.js'), 'utf8'), context);
   const data = context.window.PORTFOLIO;
   const templateFile = path.join(root, 'index.html');
@@ -38,7 +39,7 @@ function generatePages() {
     routes.set(route, title + ' — Tao Luo');
   };
   for (const [section, title] of [['demo', 'Demo'], ['vfx', 'VFX'], ['photography', 'Photography'], ['about', 'About me'], ['blog', 'Blog'], ['contact', 'Contact']]) add(`/${section}/`, title);
-  for (const project of data.projects) add(`/vfx/${slug(project.id)}/`, data.release === 'wip' ? 'VFX' : project.title);
+  for (const project of data.projects) add(`/vfx/${slug(project.id)}/`, project.title);
   for (const photo of data.photographs) add(`/photography/${slug(photo.id)}/`, photo.title);
   for (const project of data.posts) {
     const base = `/blog/${slug(project.id)}/`;

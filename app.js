@@ -133,14 +133,7 @@
   function vfxPage(category) {
     const navigation = vfxNavigation(category);
     if (category === 'photogrammetry') return navigation + photogrammetryPage();
-    if (data.release === 'wip') return navigation + workInProgressPage('vfx');
-    const filtered = data.projects.filter(project => activeFilter === 'all' || project.category === activeFilter);
-    const filters = [['all', 'All work'], ['simulation', 'FX & simulation'], ['procedural', 'Procedural'], ['lookdev', 'Look development']];
-    return `${navigation}<section class="page-shell"><div class="page-intro">${eyebrow('SELECTED PROJECTS')}<div class="page-topline"><h1 class="page-heading">VFX & beyond.</h1><span class="meta preview-caption">${String(data.projects.length).padStart(2, '0')} PROJECTS</span></div><p class="page-subtitle">Effects, environments, and the systems behind them.<br>A closer look at the work, from first idea to final frame.</p></div>
-      <div class="filter-bar" aria-label="Filter projects">${filters.map(([value, label]) => `<button class="filter-button" data-filter="${value}" aria-pressed="${activeFilter === value}">${label}</button>`).join('')}<span class="filter-status meta">${filtered.length} PROJECTS</span></div>
-      <div class="work-grid" id="vfx-grid">${filtered.map((project, index) => card(project, index)).join('')}</div>
-      <div class="section-bottom"><span class="preview-caption meta">FIRST LOOK · PROJECTS & IMAGERY ARE PLACEHOLDERS</span><a class="text-link" href="/contact/">GET IN TOUCH ${arrow}</a></div>
-    </section>`;
+    return navigation + window.Vfx.render();
   }
 
   function photogrammetryPage() {
@@ -170,6 +163,7 @@
   }
 
   function projectPage(project, isOverlay = false) {
+    if (project.software) return window.Vfx.project(project);
     const next = data.projects[(data.projects.indexOf(project) + 1) % data.projects.length];
     return `<article class="project-page" data-project-content="${project.id}">
       ${isOverlay ? '' : `<a class="project-back meta" href="/vfx/">${backArrow} ALL VFX PROJECTS</a>`}
@@ -299,6 +293,7 @@
   }
 
   function resetHover() {
+    window.Vfx.cleanup();
     hoverTimers.forEach(timer => clearTimeout(timer));
     hoverTimers.clear();
     document.querySelectorAll('.work-card.is-expanded,.work-card.is-waiting').forEach(card => card.classList.remove('is-expanded', 'is-waiting'));
@@ -353,7 +348,7 @@
       const category = vfxCategory(routeUrl.searchParams.get('category'));
       content = vfxPage(category);
       title = category === 'photogrammetry' ? 'Photogrammetry - VFX' : 'VFX';
-    } else if (data.release === 'wip' && section !== 'blog' && section !== 'photography' && section !== 'contact') {
+    } else if (data.release === 'wip' && section !== 'blog' && section !== 'photography' && section !== 'contact' && section !== 'vfx') {
       content = workInProgressPage(section);
       title = { demo: 'Demo', vfx: 'VFX', photography: 'Photography', about: 'About me', contact: 'Contact' }[section] || '';
     } else if (section === 'photography' && id) {
@@ -391,6 +386,7 @@
     document.title = section ? `${title ? title + ' — ' : ''}Tao Luo` : 'Tao Luo';
     setNavigation(section);
     bindCardHover();
+    if (section === 'vfx' && validPath) window.Vfx.bind(main);
     if (section === 'photography' && validPath) window.Photography.bind(main, id, navigate);
     if (!preserveScroll) window.scrollTo({ top: 0, behavior: 'instant' });
   }
