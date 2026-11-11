@@ -2044,15 +2044,6 @@ window.PORTFOLIO = {
               "text": "Join the extension to the preserved center in Houdini"
             },
             {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/tower-environment-progress/houdini-boundary-nodes.png",
-              "width": 1250,
-              "height": 835,
-              "alt": "The actual Houdini SOP network joining imported Gaea fields to the preserved core and caching the outer terrain.",
-              "caption": "Houdini node editor screenshot: the grid collar, Gaea height and masks, protected center, boundary blend, normal and color matching, and separate outer-terrain cache.",
-              "size": "wide"
-            },
-            {
               "type": "table",
               "caption": "Boundary and surface nodes",
               "headers": [
@@ -2089,15 +2080,6 @@ window.PORTFOLIO = {
             {
               "type": "heading",
               "text": "Extend the rocks without replacing the existing scatter"
-            },
-            {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/tower-environment-progress/houdini-rock-scatter-nodes.png",
-              "width": 1920,
-              "height": 960,
-              "alt": "The actual Houdini boulder, slab and chip scatter branches with exclusions, spacing checks, seating and packed-copy cache output.",
-              "caption": "Houdini node editor screenshot of the three rock-size branches. The original approach, rock footprints and model library feed the new placement and packed-copy outputs.",
-              "size": "wide"
             },
             {
               "type": "paragraph",
@@ -2292,6 +2274,134 @@ window.PORTFOLIO = {
             }
           ],
           "number": 9
+        },
+        {
+          "id": "supernova-background-color",
+          "number": 10,
+          "title": "Supernova: Background and Color Refinement",
+          "publishedAt": "2026-11-11",
+          "image": "blog/magic-crystal-overload/supernova-background-color/supernova-refined.jpg",
+          "imageAlt": "Cyan and blue supernova folds surrounding a pink center against a deep blue star field.",
+          "excerpt": "Refining the star background and the transition from cyan to deeper blue and purple while retaining the established flow and timing.",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "This update continues the "
+                },
+                {
+                  "text": "earlier blue-layer study",
+                  "href": "/blog/magic-crystal-overload/post-005/"
+                },
+                {
+                  "text": ". I refined the background and the color progression, keeping the established Pyro-driven particle motion and shared timing. The aim is a clearer separation between the cyan folds, the deeper blue body and the surrounding star field."
+                }
+              ]
+            },
+            {
+              "type": "video",
+              "src": "/assets/videos/blog/magic-crystal-overload/supernova-background-color/supernova-refined.mp4",
+              "poster": "blog/magic-crystal-overload/supernova-background-color/supernova-refined.jpg",
+              "width": 1920,
+              "height": 1080,
+              "title": "Supernova with the refined background and color progression",
+              "caption": "Current look: 350 output frames at 60 fps, approximately 5.83 seconds. Rendered at 1920 × 1080 in Karma XPU with 256 samples and a separate camera-glow pass.",
+              "size": "wide"
+            },
+            {
+              "type": "heading",
+              "text": "Give the background a deeper blue base"
+            },
+            {
+              "type": "paragraph",
+              "text": "The star positions and existing catalog layout stay consistent. I added a restrained dark-blue base to the background plate, concentrated in its darker areas. This keeps the space around the effect from falling to flat black while preserving the small stars and the contrast around the expanding volume."
+            },
+            {
+              "type": "heading",
+              "text": "Separate cyan, blue and purple over time"
+            },
+            {
+              "type": "paragraph",
+              "text": "The early shell keeps its pale cyan color. Around 2.6–3.2 seconds, the blue body becomes deeper while the brighter cyan folds remain readable. Through the later part of the shot, the color shifts toward blue and purple and the volume becomes more transparent, allowing more of the background to show through."
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/supernova-background-color/late-blue-purple.jpg",
+              "width": 1920,
+              "height": 1080,
+              "alt": "Late supernova frame with deeper blue outer folds, a purple interior and stars visible around and through the thinner volume.",
+              "caption": "Late frame at about 5.67 seconds: the deeper blue and purple balance and reduced opacity reveal more of the star field.",
+              "size": "wide"
+            },
+            {
+              "type": "heading",
+              "text": "Houdini workflow"
+            },
+            {
+              "type": "paragraph",
+              "text": "The existing simulation supplies the motion. Cached particles retain their IDs and rest positions; the appearance branch assigns density, color and emission before building the volume fields. The final Solaris layer applies the revised color balance and reads the graded background plate."
+            },
+            {
+              "type": "table",
+              "caption": "Nodes used in the current workflow",
+              "headers": [
+                "Nodes",
+                "Role"
+              ],
+              "rows": [
+                [
+                  "Sphere, Scatter and POP Advect by Volumes",
+                  "The original blue layer starts from points sampled once on a sphere, then follows the cached Pyro velocity. This pass reuses that flow."
+                ],
+                [
+                  "File Cache and Retime",
+                  "Read the established particle motion and evaluate it on the output timeline while preserving the shared source timing."
+                ],
+                [
+                  "Attribute Wrangle",
+                  "Use rest-space masks and time controls to assign density, Cd, emission and particle radius without editing the particle positions."
+                ],
+                [
+                  "Volume Rasterize Attributes and VDB Smooth",
+                  "Convert the particle attributes into continuous volume fields and soften their granular appearance."
+                ],
+                [
+                  "Grid and UV Quick Shade",
+                  "Preview the star backplate in SOPs. The final render uses the graded plate referenced by the Solaris scene."
+                ],
+                [
+                  "Sublayer and MaterialX color multiplication",
+                  "Load the assembled USD scene and apply the deeper blue balance, with time-varying color and opacity controls for the later frames."
+                ]
+              ]
+            },
+            {
+              "type": "heading",
+              "text": "Compare with the earlier look"
+            },
+            {
+              "type": "video",
+              "src": "/assets/videos/blog/magic-crystal-overload/supernova-background-color/original-and-refined.mp4",
+              "poster": "blog/magic-crystal-overload/supernova-background-color/original-and-refined-poster.jpg",
+              "width": 3840,
+              "height": 1080,
+              "title": "Earlier and refined supernova looks at corresponding sample times",
+              "caption": "Left: the earlier 1280 × 720 OpenGL volume preview at 24 fps with separate lens glow. Right: the refined 1920 × 1080 Karma XPU render at 60 fps and 256 samples. Each side shows its source sample time. The comparison includes changes in renderer and sampling as well as the background and color work.",
+              "size": "wide"
+            },
+            {
+              "type": "heading",
+              "text": "Next"
+            },
+            {
+              "type": "list",
+              "items": [
+                "Develop the pink layer.",
+                "Refine the highlights."
+              ]
+            }
+          ]
         }
       ]
     }
