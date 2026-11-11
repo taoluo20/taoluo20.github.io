@@ -2095,14 +2095,7 @@ window.PORTFOLIO = {
                   "href": "https://www.sidefx.com/tutorials/magic-market-procedural-rocks/"
                 },
                 {
-                  "text": " informed the order of silhouette construction, mesh cleanup and weathering detail. "
-                },
-                {
-                  "text": "Sergio Neza — Scattering Randomized Geometry Over Terrain",
-                  "href": "https://www.sidefx.com/tutorials/scattering-randomized-geometry-over-terrain/"
-                },
-                {
-                  "text": " informed the named-prototype, Attribute from Pieces and Copy to Points workflow. I adapted these ideas to the limestone variants, terrain masks, approach clearances and spacing controls used around the tower."
+                  "text": " informed the order of silhouette construction, mesh cleanup and weathering detail."
                 }
               ]
             },
