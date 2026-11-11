@@ -1656,11 +1656,11 @@ window.PORTFOLIO = {
             },
             {
               "type": "image",
-              "image": "blog/magic-crystal-overload/post-007/gaea-terrain-workflow.png",
-              "width": 1600,
-              "height": 1000,
-              "alt": "Gaea node flow from Ridge through Stratify, Erosion2 and Thermal2, with separate height, flow, deposits and color exports.",
-              "caption": "The original Gaea graph. HEIGHT comes from Thermal2; FLOW and DEPOSITS come directly from Erosion2. SatMap makes a separate color reference.",
+              "image": "blog/magic-crystal-overload/post-007/gaea-node-network.png",
+              "width": 1792,
+              "height": 1068,
+              "alt": "The actual original Gaea node graph, showing the terrain chain and separate height, color, flow and deposits exports.",
+              "caption": "Gaea node editor screenshot: Ridge -> Stratify -> Erosion2 -> Thermal2. The right-hand list shows the authored node names; height, color and erosion masks remain separate outputs.",
               "size": "wide"
             },
             {
@@ -1996,11 +1996,11 @@ window.PORTFOLIO = {
             },
             {
               "type": "image",
-              "image": "blog/magic-crystal-overload/tower-environment-progress/gaea-outer-landscape-workflow.png",
-              "width": 1600,
-              "height": 800,
-              "alt": "The active outer Gaea chain: Ridge to Erosion2 to Thermal2, with height and two erosion mask exports.",
-              "caption": "The Gaea graph used by the saved outer landscape. The final outputs are the successful 1024 by 1024 build, approximately 1.76 meters per sample across the domain.",
+              "image": "blog/magic-crystal-overload/tower-environment-progress/gaea-outer-node-network.png",
+              "width": 1792,
+              "height": 1068,
+              "alt": "The actual Gaea graph for the complete outer landscape; Ridge directly feeds Erosion2, with Stratify on a separate branch.",
+              "caption": "Gaea node editor screenshot of the outer terrain. Ridge feeds Erosion2 directly; Stratify is visible as a study branch. Thermal2 supplies HEIGHT, while Erosion2 supplies FLOW and DEPOSITS.",
               "size": "wide"
             },
             {
@@ -2045,11 +2045,11 @@ window.PORTFOLIO = {
             },
             {
               "type": "image",
-              "image": "blog/magic-crystal-overload/tower-environment-progress/houdini-complete-landscape-nodes.png",
-              "width": 1600,
-              "height": 1320,
-              "alt": "Houdini workflow combining the protected refined core, an outer grid collar and Gaea fields before terrain and rock cache outputs.",
-              "caption": "A simplified map of the authored SOP and Solaris networks. The terrain extension and added rock instances join the existing tower and meadow at the final assembly.",
+              "image": "blog/magic-crystal-overload/tower-environment-progress/houdini-boundary-nodes.png",
+              "width": 1250,
+              "height": 835,
+              "alt": "The actual Houdini SOP network joining imported Gaea fields to the preserved core and caching the outer terrain.",
+              "caption": "Houdini node editor screenshot: the grid collar, Gaea height and masks, protected center, boundary blend, normal and color matching, and separate outer-terrain cache.",
               "size": "wide"
             },
             {
@@ -2089,6 +2089,15 @@ window.PORTFOLIO = {
             {
               "type": "heading",
               "text": "Extend the rocks without replacing the existing scatter"
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/tower-environment-progress/houdini-rock-scatter-nodes.png",
+              "width": 1920,
+              "height": 960,
+              "alt": "The actual Houdini boulder, slab and chip scatter branches with exclusions, spacing checks, seating and packed-copy cache output.",
+              "caption": "Houdini node editor screenshot of the three rock-size branches. The original approach, rock footprints and model library feed the new placement and packed-copy outputs.",
+              "size": "wide"
             },
             {
               "type": "paragraph",
@@ -2253,120 +2262,6 @@ window.PORTFOLIO = {
                   "text": "The interior is a separate 4.5-millimeter VDB field. Wider folded growth zones sit behind thinner, interrupted laminae and fine filament detail. Mineral grains are scattered in three size ranges and concentrated in the denser regions. Open areas between the layers preserve clear sight lines."
                 }
               ]
-            },
-            {
-              "type": "heading",
-              "text": "Geometry nodes: shell, veils and mineral grains"
-            },
-            {
-              "type": "paragraph",
-              "text": "The existing watertight faceted shell is the geometric source. I keep its large silhouette and derive the interior detail in a separate SOP network. The inclusion volume and the small faceted grains are distinct outputs, which makes their density and material response easier to tune independently."
-            },
-            {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/quartz-micro-detail/quartz-geometry-nodes.png",
-              "width": 1600,
-              "height": 1340,
-              "alt": "Houdini geometry graph: a watertight crystal drives VDB masks, layered inclusion density, a cached volume and scattered faceted grains.",
-              "caption": "Geometry flow for the macro study. The cached density drives both the interior volume and the placement of small mineral meshes.",
-              "size": "wide"
-            },
-            {
-              "type": "table",
-              "caption": "Geometry nodes and controls",
-              "headers": [
-                "Nodes",
-                "Role and settings"
-              ],
-              "rows": [
-                [
-                  "ORIGINAL_WATERTIGHT_CRYSTAL",
-                  "File SOP reads the original shell mesh. The same source asset is referenced in Solaris for the visible exterior."
-                ],
-                [
-                  "SHELL_DISTANCE_AND_SOLID_MASK",
-                  "VDB from Polygons makes a surface SDF and density grid. The 4.5-millimeter voxel control is expressed in world meters and compensated for the asset scale."
-                ],
-                [
-                  "FOG_GRID_ONLY / SIGNED_SHELL_ONLY",
-                  "Two Blast nodes separate density from the signed distance field."
-                ],
-                [
-                  "LAYERED_INCLUSION_DENSITY",
-                  "Volume Wrangle combines broad folded growth zones, interrupted thin laminae, filaments and low haze. The SDF keeps the field at least 34 millimeters away from the shell."
-                ],
-                [
-                  "SAVE_INCLUSION_CACHE -> READ_MICRO_VEIL_CACHE",
-                  "ROP Geometry writes the VDB; File reads the baked density for repeated grain and shading work. Rebuild the cache after changing field controls."
-                ],
-                [
-                  "SAMPLE_MINERAL_GRAINS_IN_VEILS -> SMALL_FACETED_INCLUSIONS",
-                  "Scatter supplies 4,950 candidates. A wrangle rejects density below 0.37 and sets pscale, scale and orient. Target radius ranges are 0.56-1.95, 1.5-4.2 and 4-8.3 millimeters, with the largest grains restricted to denser zones."
-                ],
-                [
-                  "TINY_FACETED_INCLUSION -> PLACE_FACETED_MINERAL_GRAINS",
-                  "A Platonic primitive supplies the grain shape; Copy to Points places it on the filtered candidates and outputs a separate mineral mesh."
-                ]
-              ]
-            },
-            {
-              "type": "heading",
-              "text": "Shader nodes: broad growth, fine relief and clear windows"
-            },
-            {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/quartz-micro-detail/quartz-materialx-nodes.png",
-              "width": 1600,
-              "height": 1390,
-              "alt": "MaterialX graph showing meter-scaled coordinates, broad growth, interrupted Worley fractures, fine bump, roughness and three bound materials.",
-              "caption": "The macro shader is organized by scale. Surface relief goes through MaterialX Bump; the shell, inclusion volume and mineral grains have separate material bindings.",
-              "size": "wide"
-            },
-            {
-              "type": "table",
-              "caption": "MaterialX and Karma material flow",
-              "headers": [
-                "Nodes",
-                "Effect on the render"
-              ],
-              "rows": [
-                [
-                  "CRYSTAL_ASSET_POSITION -> POSITION_IN_METERS",
-                  "Object-space Position multiplied by the asset scale makes the procedural frequencies and relief controls consistent with meter-sized geometry."
-                ],
-                [
-                  "BROAD_GROWTH_TERRACES / INTERRUPTED_MIDDLE_GROWTH",
-                  "Fractal 3D fields pass through Range and Multiply nodes. Unequal facet-zone masks leave clear windows between the marks."
-                ],
-                [
-                  "MID_SCALE_HEALED_FRACTURES -> MID_FRACTURE_EDGE",
-                  "Extract the two nearest Worley distances and subtract F1 from F2. A Range node isolates narrow boundaries, then a separate fractal mask interrupts them."
-                ],
-                [
-                  "IRREGULAR_PRISM_GROWTH_LINES / ETCH_NETWORK / MICRO_PITS / FINE_MINERAL_GRAIN",
-                  "Higher-frequency fractal and Worley fields add striations, hairline etching, pits and grain beneath the larger scales."
-                ],
-                [
-                  "MULTI_SCALE_QUARTZ_RELIEF -> QUARTZ_MICRO_RELIEF",
-                  "Add the relief fields and feed the height into MaterialX Bump, then into the surface normal. These marks change shading; they do not displace the shell silhouette."
-                ],
-                [
-                  "QUARTZ_ALL_SCALES_ROUGHNESS -> QUARTZ_CLOSEUP",
-                  "Combine polished facet roughness with growth and fracture masks. MaterialX Standard Surface uses transmission 0.97 and specular IOR 1.54 for the transparent shell."
-                ],
-                [
-                  "INCLUSION_VDB_DENSITY -> VOLUME_MICROVEILS",
-                  "The density attribute drives separate absorption, cool scattering and a low internal readability term in Karma Volume."
-                ],
-                [
-                  "INCLUSION_GRAIN -> BIND_CLOSEUP_QUARTZ_LOOK",
-                  "A separate MaterialX Standard Surface shades the grain mesh. Assign Material binds the shell, volume and grains to their own scene primitives."
-                ]
-              ]
-            },
-            {
-              "type": "paragraph",
-              "text": "I judge the three scales together: the broad terraces must read from the camera, the broken intermediate marks must remain uneven, and the fine bump should appear mainly at grazing angles. Clear facet areas and low-density gaps keep the interior from becoming a continuous white fill."
             },
             {
               "type": "heading",
