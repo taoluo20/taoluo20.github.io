@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1320" viewBox="0 0 1600 1320"><rect width="1600" height="1320" fill="#101820"/>
+<text x="56" y="79" font-family="Segoe UI,Arial,sans-serif" font-size="43" font-weight="700" fill="#f0f4f5">Houdini: extend the landscape around the core</text>
+<text x="58" y="129" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#b6c6d0">Preserve the refined center, build a matching outer collar, then add packed rock instances</text>
+<rect x="70" y="195" width="420" height="160" rx="14" fill="#1b2834" stroke="#a9d6ad" stroke-width="2"/>
+<text x="89" y="235" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#a9d6ad">PROTECTED REFINED CORE</text>
+<text x="89" y="274" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">Object Merge</text>
+<text x="89" y="304" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">Existing terrain, N and Cd</text>
+<rect x="590" y="195" width="420" height="160" rx="14" fill="#1b2834" stroke="#78d5df" stroke-width="2"/>
+<text x="609" y="235" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#78d5df">BOUNDARY MATCHED SIDE</text>
+<text x="609" y="274" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">Grid -&gt; Wrangle -&gt; Copy</text>
+<text x="609" y="304" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">Four sides, fused corners</text>
+<rect x="1110" y="195" width="420" height="160" rx="14" fill="#1b2834" stroke="#e7c58b" stroke-width="2"/>
+<text x="1129" y="235" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#e7c58b">GAEA OUTER FIELDS</text>
+<text x="1129" y="274" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">HeightField File x 3</text>
+<text x="1129" y="304" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">Height / flow / deposits</text>
+<rect x="590" y="490" width="420" height="165" rx="14" fill="#1b2834" stroke="#78d5df" stroke-width="2"/>
+<text x="609" y="530" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#78d5df">BLEND TO BOUNDARY</text>
+<text x="609" y="569" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">Attribute Wrangle</text>
+<text x="609" y="599" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">180 m outer transition</text>
+<polyline fill="none" stroke="#b6c6d0" stroke-width="3" points="800.0,355 800.0,490"/>
+<polygon fill="#b6c6d0" points="800.0,490 794.345448056554,478.2941876694152 805.654551943446,478.2941876694152"/>
+<polyline fill="none" stroke="#a9d6ad" stroke-width="3" points="280,355 280,435 700,435 700,490"/>
+<polygon fill="#a9d6ad" points="700,490 694.345448056554,478.2941876694152 705.654551943446,478.2941876694152"/>
+<polyline fill="none" stroke="#e7c58b" stroke-width="3" points="1320,355 1320,435 900,435 900,490"/>
+<polygon fill="#e7c58b" points="900,490 894.345448056554,478.2941876694152 905.654551943446,478.2941876694152"/>
+<rect x="70" y="790" width="420" height="160" rx="14" fill="#1b2834" stroke="#78d5df" stroke-width="2"/>
+<text x="89" y="830" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#78d5df">OUTER SURFACE</text>
+<text x="89" y="869" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">Normals + boundary Cd</text>
+<text x="89" y="899" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">File Cache -&gt; terrain output</text>
+<rect x="590" y="790" width="420" height="160" rx="14" fill="#1b2834" stroke="#78d5df" stroke-width="2"/>
+<text x="609" y="830" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#78d5df">ROCK PLACEMENT</text>
+<text x="609" y="869" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">Scatter / variants / scale</text>
+<text x="609" y="899" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">Exclusions / spacing / seat</text>
+<rect x="1110" y="790" width="420" height="160" rx="14" fill="#1b2834" stroke="#78d5df" stroke-width="2"/>
+<text x="1129" y="830" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#78d5df">PACKED ROCK OUTPUT</text>
+<text x="1129" y="869" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">Copy to Points + File Cache</text>
+<text x="1129" y="899" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">SOP Import -&gt; USD instances</text>
+<polyline fill="none" stroke="#b6c6d0" stroke-width="3" points="700,655 700,714 280,714 280,790"/>
+<polygon fill="#b6c6d0" points="280,790 274.345448056554,778.2941876694152 285.654551943446,778.2941876694152"/>
+<polyline fill="none" stroke="#b6c6d0" stroke-width="3" points="800.0,655 800.0,790"/>
+<polygon fill="#b6c6d0" points="800.0,790 794.345448056554,778.2941876694152 805.654551943446,778.2941876694152"/>
+<polyline fill="none" stroke="#b6c6d0" stroke-width="3" points="1010,870.0 1110,870.0"/>
+<polygon fill="#b6c6d0" points="1110,870.0 1098.2941876694151,875.654551943446 1098.2941876694151,864.345448056554"/>
+<rect x="590" y="1085" width="420" height="150" rx="14" fill="#1b2834" stroke="#a9d6ad" stroke-width="2"/>
+<text x="609" y="1125" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#a9d6ad">COMPLETE ENVIRONMENT</text>
+<text x="609" y="1164" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">SOP Import + material binds</text>
+<text x="609" y="1194" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">Existing tower and meadow</text>
+<polyline fill="none" stroke="#b6c6d0" stroke-width="3" points="280,950 280,1025 700,1025 700,1085"/>
+<polygon fill="#b6c6d0" points="700,1085 694.345448056554,1073.2941876694151 705.654551943446,1073.2941876694151"/>
+<polyline fill="none" stroke="#b6c6d0" stroke-width="3" points="1320,950 1320,1025 900,1025 900,1085"/>
+<polygon fill="#b6c6d0" points="900,1085 894.345448056554,1073.2941876694151 905.654551943446,1073.2941876694151"/>
+<path d="M56 1242 H1544" stroke="#364956"/>
+<text x="58" y="1283" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">The core remains unchanged. New rock candidates are checked against the original approach and rock footprints.</text>
+</svg>

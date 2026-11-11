@@ -199,7 +199,7 @@
     return `<nav class="blog-subnav" aria-label="Blog categories"><span class="blog-subnav-label meta">JOURNAL</span><div class="blog-category-links">${['personal', 'scad'].map(key => `<a href="/blog/?category=${key}" ${category === key ? 'aria-current="page"' : ''}>${key === 'scad' ? 'SCAD' : 'Personal'}</a>`).join('')}</div></nav>`;
   }
 
-  const journalPostNumber = (post, entry) => `post #${String(post.entries.indexOf(entry) + 1).padStart(3, '0')}`;
+  const journalPostNumber = (post, entry) => `post #${String(entry.number ?? post.entries.indexOf(entry) + 1).padStart(3, '0')}`;
   const journalPostTitle = (post, entry) => `${post.title} — ${journalPostNumber(post, entry)}${entry.title ? `: ${entry.title}` : ''}`;
 
   function journalDate(entry) {

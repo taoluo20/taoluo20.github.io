@@ -57,7 +57,12 @@ for (const post of data.posts) {
   journalIds.add(post.id);
   assert.ok(post.entries?.length, `Journal has no entries: ${post.id}`);
   const entryIds = new Set();
+  const entryNumbers = new Set();
   for (const entry of post.entries) {
+    const number = entry.number ?? post.entries.indexOf(entry) + 1;
+    assert.ok(Number.isSafeInteger(number) && number > 0, `Invalid post number: ${entry.id}`);
+    assert.ok(!entryNumbers.has(number), `Duplicate post number: ${number}`);
+    entryNumbers.add(number);
     assert.ok(!entryIds.has(entry.id), `Duplicate entry: ${post.id}/${entry.id}`);
     entryIds.add(entry.id);
     assert.ok(Array.isArray(entry.blocks), `Post blocks must be an array: ${entry.id}`);

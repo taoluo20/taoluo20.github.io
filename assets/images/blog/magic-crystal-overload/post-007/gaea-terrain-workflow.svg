@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000"><rect width="1600" height="1000" fill="#101820"/>
+<text x="56" y="79" font-family="Segoe UI,Arial,sans-serif" font-size="43" font-weight="700" fill="#f0f4f5">Gaea: the original tower terrain</text>
+<text x="58" y="129" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#b6c6d0">500 m domain  /  2048 x 2048 build  /  separate height, erosion masks and color</text>
+<rect x="50" y="205" width="340" height="160" rx="14" fill="#1b2834" stroke="#78d5df" stroke-width="2"/>
+<text x="69" y="245" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#78d5df">Ridge</text>
+<text x="69" y="284" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">Low limestone landforms</text>
+<text x="69" y="314" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">Seed 42807</text>
+<rect x="435" y="205" width="340" height="160" rx="14" fill="#1b2834" stroke="#78d5df" stroke-width="2"/>
+<text x="454" y="245" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#78d5df">Stratify</text>
+<text x="454" y="284" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">Limestone bedding</text>
+<text x="454" y="314" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">Break up the ridge profile</text>
+<rect x="820" y="205" width="340" height="160" rx="14" fill="#1b2834" stroke="#78d5df" stroke-width="2"/>
+<text x="839" y="245" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#78d5df">Erosion2</text>
+<text x="839" y="284" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">Rain weathering</text>
+<text x="839" y="314" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">Duration 12 / Strength 0.32</text>
+<rect x="1205" y="205" width="340" height="160" rx="14" fill="#1b2834" stroke="#78d5df" stroke-width="2"/>
+<text x="1224" y="245" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#78d5df">Thermal2</text>
+<text x="1224" y="284" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">Talus softening</text>
+<text x="1224" y="314" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">Duration 6 / Strength 0.20</text>
+<polyline fill="none" stroke="#b6c6d0" stroke-width="3" points="390,285.0 435,285.0"/>
+<polygon fill="#b6c6d0" points="435,285.0 423.2941876694152,290.654551943446 423.2941876694152,279.345448056554"/>
+<polyline fill="none" stroke="#b6c6d0" stroke-width="3" points="775,285.0 820,285.0"/>
+<polygon fill="#b6c6d0" points="820,285.0 808.2941876694152,290.654551943446 808.2941876694152,279.345448056554"/>
+<polyline fill="none" stroke="#b6c6d0" stroke-width="3" points="1160,285.0 1205,285.0"/>
+<polygon fill="#b6c6d0" points="1205,285.0 1193.2941876694151,290.654551943446 1193.2941876694151,279.345448056554"/>
+<rect x="820" y="520" width="340" height="160" rx="14" fill="#1b2834" stroke="#a9d6ad" stroke-width="2"/>
+<text x="839" y="560" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#a9d6ad">FLOW + DEPOSITS</text>
+<text x="839" y="599" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">Export from Erosion2</text>
+<text x="839" y="629" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">Keep separate scalar masks</text>
+<rect x="1205" y="520" width="340" height="160" rx="14" fill="#1b2834" stroke="#a9d6ad" stroke-width="2"/>
+<text x="1224" y="560" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#a9d6ad">HEIGHT</text>
+<text x="1224" y="599" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">Export from Thermal2</text>
+<text x="1224" y="629" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">Houdini height input</text>
+<rect x="435" y="520" width="340" height="160" rx="14" fill="#1b2834" stroke="#e7c58b" stroke-width="2"/>
+<text x="454" y="560" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#e7c58b">SatMap</text>
+<text x="454" y="599" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">Color from Thermal2</text>
+<text x="454" y="629" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">Limestone palette</text>
+<rect x="435" y="770" width="340" height="145" rx="14" fill="#1b2834" stroke="#a9d6ad" stroke-width="2"/>
+<text x="454" y="810" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#a9d6ad">COLOR</text>
+<text x="454" y="849" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">Separate color export</text>
+<text x="454" y="879" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">Inspection / look reference</text>
+<polyline fill="none" stroke="#b6c6d0" stroke-width="3" points="990.0,365 990.0,520"/>
+<polygon fill="#b6c6d0" points="990.0,520 984.345448056554,508.2941876694152 995.654551943446,508.2941876694152"/>
+<polyline fill="none" stroke="#b6c6d0" stroke-width="3" points="1375.0,365 1375.0,520"/>
+<polygon fill="#b6c6d0" points="1375.0,520 1369.345448056554,508.2941876694152 1380.654551943446,508.2941876694152"/>
+<polyline fill="none" stroke="#b6c6d0" stroke-width="3" points="1375,365 1375,438 605,438 605,520"/>
+<polygon fill="#b6c6d0" points="605,520 599.345448056554,508.2941876694152 610.654551943446,508.2941876694152"/>
+<polyline fill="none" stroke="#b6c6d0" stroke-width="3" points="605.0,680 605.0,770"/>
+<polygon fill="#b6c6d0" points="605.0,770 599.345448056554,758.2941876694152 610.654551943446,758.2941876694152"/>
+<path d="M56 922 H1544" stroke="#364956"/>
+<text x="58" y="963" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">Height and masks remain independent when the terrain is graded and shaded in Houdini.</text>
+</svg>

@@ -236,7 +236,7 @@ window.PORTFOLIO = {
       image: 'blog/magic-crystal-overload/post-001/nasa-supernova-still.jpg',
       imageAlt: 'A blue and violet supernova cloud expanding against dark space.',
       excerpt: 'A project journal exploring a magical crystal explosion, Pyro, volume, light, and timing.',
-      // One card is a project; entries become numbered post cards in reading order.
+      // Explicit entry numbers keep existing post references stable when an entry is removed.
       entries: [
         {
           "id": "post-001",
@@ -451,7 +451,8 @@ window.PORTFOLIO = {
               "type": "paragraph",
               "text": "My next step is to get the broad shape working first: an outward burst with an uneven outline and a readable separation between the outer volume and the center. I will use that blockout to judge the motion before pushing smaller details, lighting, and the crystal scene."
             }
-          ]
+          ],
+          "number": 1
         },
         {
           "id": "post-002",
@@ -611,7 +612,8 @@ window.PORTFOLIO = {
                 "Refine the shapes using the references and tutorial videos while keeping the effect controllable."
               ]
             }
-          ]
+          ],
+          "number": 2
         },
         {
           "id": "post-003",
@@ -833,246 +835,31 @@ window.PORTFOLIO = {
             },
             {
               "type": "paragraph",
-              "text": "With the background established, I can judge the next volume test against a consistent field of stars. The crystal development follows in Post 004, and the nebula shape, layers, and motion continue in Post 005."
+              "text": "With the background established, I can judge the next volume test against a consistent field of stars. The nebula shape, layers and motion continue in Post 005; crystal modeling and shader development continue in Post 006."
             }
-          ]
-        },
-        {
-          "id": "post-004",
-          "title": "Crystal Development",
-          "publishedAt": "2026-11-01",
-          "image": "blog/magic-crystal-overload/post-004/jade-surface-comparison.jpg",
-          "imageAlt": "Two pale aqua crystal renders compare the sharpened and hand-planed surface versions.",
-          "excerpt": "From an AI-assisted concept and Tripo base mesh to layered materials, sharper edges, and irregular carved surfaces in Houdini.",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "This post follows the crystal from the concept image and Tripo base model through the material and geometry revisions in Houdini."
-            },
-            {
-              "type": "list",
-              "items": [
-                "Preserve a recognizable, asymmetric mineral silhouette.",
-                "Build rough surfaces, layered internal detail, and pale aqua translucency."
-              ]
-            },
-            {
-              "type": "heading",
-              "text": "Concept: an eroded, layered crystal"
-            },
-            {
-              "type": "list",
-              "items": [
-                "Explore a pointed, asymmetric form with chipped shoulders, deep hollows, and a raised central ridge.",
-                "Combine mineral fractures with flowing, Damascus-like layers.",
-                "Keep the crystal cloudy and partly translucent, with brighter thin edges and pale inclusions inside."
-              ]
-            },
-            {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/post-004/crystal-concept.jpg",
-              "width": 940,
-              "height": 1672,
-              "alt": "The selected pale aqua crystal concept, with an asymmetric pointed silhouette, deep pits, chipped edges, and flowing mineral layers.",
-              "caption": "Selected AI-generated concept reference: rough mineral surfaces, layered texture, and a clear asymmetric outline."
-            },
-            {
-              "type": "heading",
-              "text": "Tripo: establishing the base model"
-            },
-            {
-              "type": "list",
-              "items": [
-                [
-                  {
-                    "text": "Use "
-                  },
-                  {
-                    "text": "Tripo",
-                    "href": "https://www.tripo3d.ai/"
-                  },
-                  {
-                    "text": ", an AI image-to-3D tool, to generate the starting model from the concept image."
-                  }
-                ],
-                "The exported FBX established the overall volume and irregular outline. Its broad faces and cavities were softer than the concept.",
-                "Use the supplied Base Color and Normal maps as an initial visual reference, then develop the material and geometry further in Houdini."
-              ]
-            },
-            {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/post-004/tripo-source-model.jpg",
-              "width": 2160,
-              "height": 1030,
-              "alt": "Three views of the original Tripo mesh: front with exported textures, a textured three-quarter view, and a neutral clay front view.",
-              "caption": "Original Tripo FBX, shown with its exported textures and as a clay model. These review images were rendered in Blender for this post; the source geometry has not been reshaped.",
-              "size": "wide"
-            },
-            {
-              "type": "list",
-              "items": [
-                "The exported color map already included highlights, shadows, and ice-like detail.",
-                "Move to a procedural Houdini material to control translucency and build a pattern inside the crystal.",
-                "Prepare the model at a height of 2 m."
-              ]
-            },
-            {
-              "type": "heading",
-              "text": "Surface and internal layers"
-            },
-            {
-              "type": "list",
-              "items": [
-                "Combine a refractive surface with a separate internal volume.",
-                "Use the same three-dimensional layer pattern and rest coordinates for both.",
-                "Check that the pattern continues through separated sections and newly exposed cut surfaces."
-              ]
-            },
-            {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/post-004/initial-layered-shader.jpg",
-              "width": 1080,
-              "height": 768,
-              "alt": "The v001 transparent crystal beside a sectioned view showing the internal layered material.",
-              "caption": "v001 material review: intact crystal on the left, separated sections on the right. This is a static continuity check, not the finished fracture animation."
-            },
-            {
-              "type": "heading",
-              "text": "A cloudier, jade-like material"
-            },
-            {
-              "type": "list",
-              "items": [
-                "Reduce the clear-glass appearance by making the layers denser and reducing direct transparency.",
-                "Add cloudy white inclusions and shallow scattering.",
-                "Keep the soft pale aqua character of jade while allowing light through thinner edges."
-              ]
-            },
-            {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/post-004/material-evolution.jpg",
-              "width": 1440,
-              "height": 768,
-              "alt": "A comparison of the concept image, the clearer v001 crystal, and the cloudier jade-like v002 material.",
-              "caption": "Left to right: concept reference, v001 clear material, and v002 cloudy mineral material.",
-              "size": "wide"
-            },
-            {
-              "type": "heading",
-              "text": "Refining topology and shape"
-            },
-            {
-              "type": "list",
-              "items": [
-                "Test rebuilt topology, remeshing, and stronger large facets.",
-                "Use the comparison to evaluate the central ridge and shoulder transitions.",
-                "Retain the character of the original v002 silhouette, which I preferred to the rebuilt version."
-              ]
-            },
-            {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/post-004/retopology-study.jpg",
-              "width": 1440,
-              "height": 688,
-              "alt": "Clay models compare the original v002 surface, the remeshed v003 surface, and a three-quarter view of v003.",
-              "caption": "Left to right: v002 original surface, v003 retopology and remesh test, and v003 from a three-quarter angle.",
-              "size": "wide"
-            },
-            {
-              "type": "heading",
-              "text": "Sharper edges and shallow cuts"
-            },
-            {
-              "type": "list",
-              "items": [
-                "Return to the original v002 form and strengthen selected ridges, shoulder transitions, and tips.",
-                "Preserve the larger outline and existing hollows.",
-                "Repair thin overlaps introduced by the sharpening."
-              ]
-            },
-            {
-              "type": "list",
-              "items": [
-                "Save a separate v005 with irregular shallow cuts, similar to marks left by a hand plane.",
-                "Vary their length, width, and depth to create small steps across the broad faces.",
-                "Widen and soften an early pass that looked too regular. These revisions are part of the geometry."
-              ]
-            },
-            {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/post-004/surface-development.jpg",
-              "width": 1620,
-              "height": 776,
-              "alt": "Three clay crystals show the original v002 form, sharpened v004 edges, and irregular shallow cuts in v005.",
-              "caption": "Left to right: v002 original form, v004 sharper edges, and v005 with shallow planed surfaces.",
-              "size": "wide"
-            },
-            {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/post-004/jade-surface-comparison.jpg",
-              "width": 1200,
-              "height": 856,
-              "alt": "The sharpened v004 crystal and the planed v005 crystal rendered with the pale aqua mineral material.",
-              "caption": "The two surface options with the same jade-like material: v004 on the left and v005 on the right.",
-              "size": "wide"
-            },
-            {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/post-004/planed-multiview.jpg",
-              "width": 1440,
-              "height": 696,
-              "alt": "Front, three-quarter, and back clay views of the v005 crystal reveal its thickness and irregular surface cuts.",
-              "caption": "v005 geometry review from the front, three-quarter angle, and back.",
-              "size": "wide"
-            },
-            {
-              "type": "heading",
-              "text": "What I will improve next"
-            },
-            {
-              "type": "list",
-              "items": [
-                "Refine the pale aqua translucency so the internal layers remain visible without making the crystal read as clear glass.",
-                "Balance the cloudy white inclusions and layer contrast, especially through the thinner edges.",
-                "Sharpen selected ridges and chipped edges while preserving the asymmetric silhouette and deep hollows.",
-                "Vary the spacing, depth, and scale of the shallow cuts to reduce repeated marks across the broad faces.",
-                "Check the three-dimensional layer pattern on newly exposed fracture surfaces under different lighting."
-              ]
-            },
-            {
-              "type": "heading",
-              "text": "Process credit"
-            },
-            {
-              "type": "list",
-              "items": [
-                "The concept image was generated with AI. Tripo supplied the starting mesh and textures.",
-                "The Houdini material, internal layers, geometry revisions, and comparison renders were developed with GPT assistance.",
-                "The original Tripo model was rendered separately in Blender to document the starting point."
-              ]
-            }
-          ]
+          ],
+          "number": 3
         },
         {
           "id": "post-005",
           "title": "Pyro-Driven Nebula: Blue Layer & Timing",
           "publishedAt": "2026-11-04",
           "image": "blog/magic-crystal-overload/post-005/v010-blue-layer.png",
-          "imageAlt": "The v010 blue nebula folds expand around a temporary pink center against the star background.",
+          "imageAlt": "The blue nebula folds expand around a temporary pink center against the star background.",
           "excerpt": "Developing the blue outer layer with Pyro-driven particles, then matching the opening expansion and reveal through shared timing controls.",
           "blocks": [
             {
               "type": "paragraph",
-              "text": "This iteration develops the blue outer layer of the crystal's energy effect: a small bright point expands into a sphere, then opens into thin, connected folds. The current result is v010."
+              "text": "This iteration develops the blue outer layer of the crystal's energy effect: a small bright point expands into a sphere, then opens into thin, connected folds."
             },
             {
               "type": "video",
-              "title": "v010 blue-layer development and opening timing",
+              "title": "Blue-layer development and opening timing",
               "src": "/assets/videos/blog/magic-crystal-overload/post-005/v010-final-glow.mp4",
               "poster": "blog/magic-crystal-overload/post-005/v010-blue-layer.png",
               "width": 1280,
               "height": 720,
-              "caption": "v010: 140 frames at 24 fps, approximately 5.83 seconds. Houdini OpenGL volume preview with a separate lens-glow pass. The pink center and central light are temporary; the developed layer in this pass is the blue exterior."
+              "caption": "140 frames at 24 fps, approximately 5.83 seconds. Houdini OpenGL volume preview with a separate lens-glow pass. The pink center and central light are temporary; the developed layer in this pass is the blue exterior."
             },
             {
               "type": "paragraph",
@@ -1180,33 +967,33 @@ window.PORTFOLIO = {
             },
             {
               "type": "heading",
-              "text": "v010: automated frame matching and opening adjustments"
+              "text": "Automated frame matching and opening adjustments"
             },
             {
               "type": "video",
               "title": "Opening comparison at four-times slower playback",
-              "src": "/assets/videos/blog/magic-crystal-overload/post-005/v010-opening-slow.mp4",
-              "poster": "blog/magic-crystal-overload/post-005/v010-opening-slow.jpg",
+              "src": "/assets/videos/blog/magic-crystal-overload/post-005/opening-slow.mp4",
+              "poster": "blog/magic-crystal-overload/post-005/opening-comparison-poster.jpg",
               "width": 1920,
               "height": 568,
               "caption": "The opening comparison played four times slower to inspect the small bright point, sphere growth, and transition into visible folds."
             },
             {
               "type": "image",
-              "image": "blog/magic-crystal-overload/post-005/v010-opening-frame-pairs.jpg",
+              "image": "blog/magic-crystal-overload/post-005/opening-frame-pairs.jpg",
               "width": 1974,
               "height": 2169,
-              "alt": "Twenty-five opening comparison cards, each with NASA on the left and v010 on the right, arranged down three columns.",
-              "caption": "Frame-by-frame opening comparison. Each card places NASA on the left and v010 on the right. Read down the first column, then continue in the next. Labels retain the actual frame numbers and sample times. Reference: NASA/CXC/A. Hobart; v010: Tao Luo.",
+              "alt": "Twenty-five opening comparison cards, each with NASA on the left and the blue-layer preview on the right, arranged down three columns.",
+              "caption": "Twenty-five opening samples across the first 2.4 seconds of the reference. Each card places NASA on the left and the blue-layer study on the right. Read down the first column, then continue in the next. Labels retain the actual frame numbers and sample times. Reference: NASA/CXC/A. Hobart; study: Tao Luo.",
               "size": "wide"
             },
             {
               "type": "image",
-              "image": "blog/magic-crystal-overload/post-005/v010-opening-reference-pairs.jpg",
+              "image": "blog/magic-crystal-overload/post-005/opening-reference-pairs.jpg",
               "width": 1900,
               "height": 1050,
-              "alt": "NASA and v010 opening frames arranged as side-by-side pairs down two columns.",
-              "caption": "Opening comparisons: NASA on the left and v010 on the right within each card. Read down each column. Reference: NASA/CXC/A. Hobart; v010: Tao Luo.",
+              "alt": "NASA and the blue-layer preview opening frames arranged as side-by-side pairs down two columns.",
+              "caption": "Opening comparisons: NASA on the left and the blue-layer preview on the right within each card. Read down each column. Reference: NASA/CXC/A. Hobart; study: Tao Luo.",
               "size": "wide"
             },
             {
@@ -1217,7 +1004,7 @@ window.PORTFOLIO = {
                 "Retime the cached Pyro fields and particles with the same CTRL_TIMING/source_frame curve. Volumes use advected interpolation with the original velocity; particles match by ID.",
                 "Grow opening_scale from 0.031 to 1 across all visible layers. Apply scale after rasterization to preserve relative voxel detail in the small opening.",
                 "Keep the flash bright while the sphere grows, then reduce it as the blue folds appear. A soft camera-aligned density mask reveals the temporary pink center.",
-                "v010 reuses the fluid solve. The new adjustments are automated frame matching, shared playback timing, opening scale, and layer visibility. Lens glow is added separately after export and still needs refinement."
+                "This pass reuses the fluid solve. The new adjustments are automated frame matching, shared playback timing, opening scale, and layer visibility. Lens glow is added separately after export and still needs refinement."
               ]
             },
             {
@@ -1226,22 +1013,22 @@ window.PORTFOLIO = {
             },
             {
               "type": "video",
-              "title": "NASA reference and v010 timing comparison",
-              "src": "/assets/videos/blog/magic-crystal-overload/post-005/v010-vs-nasa.mp4",
-              "poster": "blog/magic-crystal-overload/post-005/v010-comparison.png",
+              "title": "NASA reference and blue-layer timing comparison",
+              "src": "/assets/videos/blog/magic-crystal-overload/post-005/blue-layer-vs-nasa.mp4",
+              "poster": "blog/magic-crystal-overload/post-005/timing-comparison-poster.png",
               "width": 1920,
               "height": 568,
-              "caption": "Left: the NASA 600% reference. Right: v010. Each side is labeled with its actual frame and sample time; the reference was not accelerated again. The folds and internal detail remain different.",
-              "credit": "Reference: NASA/CXC/A. Hobart; v010: Tao Luo.",
+              "caption": "Left: the NASA 600% reference. Right: the blue-layer preview. Each side is labeled with its actual frame and sample time; the reference was not accelerated again. The folds and internal detail remain different.",
+              "credit": "Reference: NASA/CXC/A. Hobart; study: Tao Luo.",
               "size": "wide"
             },
             {
               "type": "image",
-              "image": "blog/magic-crystal-overload/post-005/v010-development-reference-pairs.jpg",
+              "image": "blog/magic-crystal-overload/post-005/development-reference-pairs.jpg",
               "width": 1900,
               "height": 1050,
-              "alt": "Later NASA and v010 frames arranged as side-by-side pairs down two columns.",
-              "caption": "Later comparisons: NASA on the left and v010 on the right within each card. Actual sample times remain labeled. Reference: NASA/CXC/A. Hobart; v010: Tao Luo.",
+              "alt": "Later NASA and the blue-layer preview frames arranged as side-by-side pairs down two columns.",
+              "caption": "Later comparisons: NASA on the left and the blue-layer preview on the right within each card. Actual sample times remain labeled. Reference: NASA/CXC/A. Hobart; study: Tao Luo.",
               "size": "wide"
             },
             {
@@ -1252,12 +1039,12 @@ window.PORTFOLIO = {
               "type": "list",
               "items": [
                 "PYRO_FLOW/null1 contains the source and fluid controls; NEBULA_BLUE/CTRL_BLUE contains the blue appearance controls.",
-                "The table lists the active settings carried into v010. Distances are in source-space units unless specified."
+                "The table lists the active settings used for this blue-layer study. Distances are in source-space units unless specified."
               ]
             },
             {
               "type": "table",
-              "caption": "Source motion and blue-volume settings carried into v010",
+              "caption": "Source motion and blue-volume settings used for this blue-layer study",
               "headers": [
                 "Parameter",
                 "Setting",
@@ -1344,7 +1131,7 @@ window.PORTFOLIO = {
             },
             {
               "type": "table",
-              "caption": "Editable shot controls in v010, at 24 fps",
+              "caption": "Editable shot controls in, at 24 fps",
               "headers": [
                 "Parameter",
                 "Setting",
@@ -1397,15 +1184,13 @@ window.PORTFOLIO = {
             },
             {
               "type": "heading",
-              "text": "What I will do next:"
+              "text": "Next: pink layer and highlights"
             },
             {
               "type": "list",
               "items": [
-                "Fine-tune the highlight that appears after the turbulent curls at the tips of the blue layer roll over.",
-                "Adjust the blue layers' colors to match the reference more closely.",
-                "Add one or two more blue layers and continue developing the pink middle and inner layers.",
-                "Keep the half facing the camera cleaner, with slightly lower density in the back half."
+                "Develop the pink layer.",
+                "Refine the highlights."
               ]
             },
             {
@@ -1463,7 +1248,8 @@ window.PORTFOLIO = {
                 }
               ]
             }
-          ]
+          ],
+          "number": 5
         },
         {
           "id": "post-006",
@@ -1833,7 +1619,8 @@ window.PORTFOLIO = {
                 }
               ]
             }
-          ]
+          ],
+          "number": 6
         },
         {
           "id": "post-007",
@@ -1864,10 +1651,52 @@ window.PORTFOLIO = {
               "text": "Shaping the terrain in Gaea"
             },
             {
-              "type": "list",
-              "items": [
-                "Start with Ridge and Stratify, then use Erosion2 and Thermal2 to develop drainage, worn slopes and accumulated material.",
-                "Build the 500-meter terrain at 2048 square resolution with a 45-meter height range. Export height, flow, deposits and color separately."
+              "type": "paragraph",
+              "text": "The starting landscape is a 500-meter square Gaea project with a 45-meter vertical setting and a 2048 by 2048 build. I keep landform, erosion masks and color as separate outputs so the foundation and approach can be adjusted later in Houdini."
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/post-007/gaea-terrain-workflow.png",
+              "width": 1600,
+              "height": 1000,
+              "alt": "Gaea node flow from Ridge through Stratify, Erosion2 and Thermal2, with separate height, flow, deposits and color exports.",
+              "caption": "The original Gaea graph. HEIGHT comes from Thermal2; FLOW and DEPOSITS come directly from Erosion2. SatMap makes a separate color reference.",
+              "size": "wide"
+            },
+            {
+              "type": "table",
+              "caption": "Gaea nodes and their role in the original terrain",
+              "headers": [
+                "Node",
+                "Input and output",
+                "Working setting / purpose"
+              ],
+              "rows": [
+                [
+                  "Ridge",
+                  "Procedural source -> Stratify",
+                  "Seed 42807. Establish the broad limestone ridges before weathering."
+                ],
+                [
+                  "Stratify",
+                  "Ridge -> Erosion2",
+                  "Add bedding to the ridge profile before the erosion solve."
+                ],
+                [
+                  "Erosion2",
+                  "Stratify -> Thermal2; Flow and Deposits -> exports",
+                  "Duration 12, Strength 0.32. Develop drainage and sediment patterns."
+                ],
+                [
+                  "Thermal2",
+                  "Erosion2 -> HEIGHT and SatMap",
+                  "Duration 6, Strength 0.20. Soften the weathered slopes and talus."
+                ],
+                [
+                  "SatMap",
+                  "Thermal2 -> COLOR",
+                  "Keep the limestone palette separate from the height and scalar masks."
+                ]
               ]
             },
             {
@@ -1883,10 +1712,41 @@ window.PORTFOLIO = {
               "text": "Grounding the tower in Houdini"
             },
             {
-              "type": "list",
-              "items": [
-                "Align the imported terrain datum, flatten the immediate foundation area and project the approach path onto the ground.",
-                "Use slope, soil and path masks for terrain shading. Retain the ground rocks, pebbles, sparse grass and human-scale references."
+              "type": "paragraph",
+              "text": "HeightField File imports the height at a 500-meter horizontal size. The saved scene uses a height gain of 500 and a datum offset of about -10.9085 meters; these are the verified import settings for this export, rather than a direct copy of Gaea's vertical project setting. I check the tower base and the scale figure after import."
+            },
+            {
+              "type": "table",
+              "caption": "Houdini terrain import and grading",
+              "headers": [
+                "Node group",
+                "What it does"
+              ],
+              "rows": [
+                [
+                  "GAEA_HEIGHT_500m -> TERRAIN_DATUM",
+                  "Read HEIGHT into the height layer, set the physical footprint, then offset the terrain to the tower datum."
+                ],
+                [
+                  "FOUNDATION_FOOTPRINT -> FOUNDATION_MASK -> FOUNDATION_LEVEL",
+                  "Mask the 10-meter-radius foundation footprint, blur the transition by 2.5 meters and flatten the masked ground to -0.015 meters."
+                ],
+                [
+                  "APPROACH_PATH_GUIDE -> PATH_SMOOTH_GUIDE -> GRADED_PATH_RIBBON",
+                  "Resample the approach at 0.45-meter spacing and sweep a 2.6-meter-wide ribbon."
+                ],
+                [
+                  "GRADE_APPROACH_INTO_TERRAIN",
+                  "HeightField Project fits the approach ribbon into the foundation-adjusted height field."
+                ],
+                [
+                  "GAEA_FLOW_MASK -> GAEA_DEPOSIT_MASK",
+                  "Read the erosion outputs as separate scalar layers, not as display color."
+                ],
+                [
+                  "TERRAIN_RENDER_MESH -> TERRAIN_NORMALS -> OUT_TERRAIN",
+                  "Convert the graded field to a render mesh; use slope and path distance for the limestone, soil and approach colors. Keep foundation and approach exclusions for ground placement."
+                ]
               ]
             },
             {
@@ -2082,50 +1942,165 @@ window.PORTFOLIO = {
           ],
           "aliases": [
             "post-008"
-          ]
+          ],
+          "number": 7
         },
         {
           "id": "tower-environment-progress",
-          "title": "Tower and Environment: Timber Access, Wind Grass, and Stone Paving",
+          "title": "Complete Tower Landscape: Gaea Terrain and Houdini Assembly",
           "publishedAt": "2026-11-10",
-          "image": "blog/magic-crystal-overload/tower-environment-progress/tower-and-meadow.jpg",
-          "imageAlt": "A full-height stone tower with a winding timber staircase amid a green meadow and scattered boulders.",
-          "excerpt": "The tower now sits in a dense wind-driven meadow, with a timber route up the shaft and a circular limestone floor at the crown.",
+          "image": "blog/magic-crystal-overload/tower-environment-progress/complete-tower-landscape.png",
+          "imageAlt": "The full stone tower and timber stair inside the latest broad meadow landscape, with limestone outcrops and scattered rocks.",
+          "excerpt": "Extending the Gaea landscape to 1.8 kilometers while preserving the detailed tower, approach, moving meadow and existing rock placements.",
           "blocks": [
             {
               "type": "paragraph",
               "children": [
                 {
-                  "text": "This update continues the "
+                  "text": "This update expands the "
                 },
                 {
                   "text": "earlier tower and terrain study",
                   "href": "/blog/magic-crystal-overload/post-007/"
                 },
                 {
-                  "text": ". I kept its coursed-stone shaft and focused on the route through the scene, from the approach path to the roof."
+                  "text": " into the complete landscape. The domain is now 1800 by 1800 meters. I keep the original detailed center, tower foundation, approach, grass and 1,987 rock placements, then build the surrounding terrain as a separate surface."
                 }
               ]
             },
             {
               "type": "image",
-              "image": "blog/magic-crystal-overload/tower-environment-progress/tower-and-meadow.jpg",
-              "width": 1120,
-              "height": 1400,
-              "alt": "A full-height stone tower with a winding timber staircase amid a green meadow and scattered boulders.",
-              "caption": "The November 10 tower assembly in Karma XPU. The approach path, tiered rock scatter, timber stair and suspended crown crystal read together at environment scale."
+              "image": "blog/magic-crystal-overload/tower-environment-progress/complete-tower-landscape.png",
+              "width": 1280,
+              "height": 854,
+              "alt": "The full stone tower and timber stair inside the latest broad meadow landscape, with limestone outcrops and scattered rocks.",
+              "caption": "Latest complete environment, rendered in Karma XPU at frame 81, 48 samples with OIDN. The detailed center is retained inside the larger landscape.",
+              "size": "wide"
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/tower-environment-progress/complete-landscape-overview.png",
+              "width": 1280,
+              "height": 854,
+              "alt": "A high oblique view of the complete square landscape with the detailed limestone core and tower at its center.",
+              "caption": "Full-domain overview: the 1.8-kilometer square surface surrounds the original roughly 500-meter square center.",
+              "size": "wide"
             },
             {
               "type": "heading",
-              "text": "Seat the tower in the terrain"
+              "text": "Build the outer landforms in Gaea"
             },
             {
               "type": "paragraph",
-              "children": [
-                {
-                  "text": "I kept the broad Gaea landforms and refined the grade at the tower and along its approach. Boulder, slab and small-chip scatters give the landscape different sizes of stone. Placement masks leave the approach and the immediate foundation clear, while the slope controls help seat rocks in the surface."
-                }
+              "text": "I use a separate Gaea project for the outer landforms, with an 1800-meter width and a 160-meter vertical project setting. Its active height chain is Ridge -> Erosion2 -> Thermal2. Stratify remains outside that chain. This gives the extension softer large forms around the more detailed limestone center."
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/tower-environment-progress/gaea-outer-landscape-workflow.png",
+              "width": 1600,
+              "height": 800,
+              "alt": "The active outer Gaea chain: Ridge to Erosion2 to Thermal2, with height and two erosion mask exports.",
+              "caption": "The Gaea graph used by the saved outer landscape. The final outputs are the successful 1024 by 1024 build, approximately 1.76 meters per sample across the domain.",
+              "size": "wide"
+            },
+            {
+              "type": "table",
+              "caption": "Outer Gaea build and handoff",
+              "headers": [
+                "Stage",
+                "Setting",
+                "Why it is separate"
+              ],
+              "rows": [
+                [
+                  "Ridge",
+                  "Seed 67021",
+                  "Create the broad surrounding limestone landforms."
+                ],
+                [
+                  "Erosion2",
+                  "Duration 18 / Strength 0.36; input directly from Ridge",
+                  "Weather the new landforms; export Flow and Deposits independently."
+                ],
+                [
+                  "Thermal2",
+                  "Duration 7 / Strength 0.23",
+                  "Soften slopes before exporting HEIGHT."
+                ],
+                [
+                  "Final build",
+                  "1024 x 1024; HEIGHT, FLOW and DEPOSITS EXRs",
+                  "These are the files used by the complete scene. The attempted 2K Thermal2 build did not finish successfully."
+                ],
+                [
+                  "Houdini import",
+                  "Three HeightField File nodes",
+                  "Read height plus outer_flow and outer_deposits layers. Keep the existing meadow material and world-space shading."
+                ]
               ]
+            },
+            {
+              "type": "heading",
+              "text": "Join the extension to the preserved center in Houdini"
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/tower-environment-progress/houdini-complete-landscape-nodes.png",
+              "width": 1600,
+              "height": 1320,
+              "alt": "Houdini workflow combining the protected refined core, an outer grid collar and Gaea fields before terrain and rock cache outputs.",
+              "caption": "A simplified map of the authored SOP and Solaris networks. The terrain extension and added rock instances join the existing tower and meadow at the final assembly.",
+              "size": "wide"
+            },
+            {
+              "type": "table",
+              "caption": "Boundary and surface nodes",
+              "headers": [
+                "Nodes",
+                "Operation"
+              ],
+              "rows": [
+                [
+                  "PROTECTED_REFINED_CORE -> CORE_PLANAR_LOOKUP",
+                  "Object Merge reads the actual refined center. A flattened lookup copy is used for sampling while the original surface stays unchanged."
+                ],
+                [
+                  "BOUNDARY_MATCHED_SIDE -> SQUARE_COLLAR_COORDINATES",
+                  "Build an outer grid side with 1536 samples along the core boundary and 181 rows away from it."
+                ],
+                [
+                  "FOUR_OUTER_SIDES -> JOIN_OUTER_CORNERS",
+                  "Copy the side around the center and fuse the outer collar corners."
+                ],
+                [
+                  "BLEND_GAEA_TO_UNCHANGED_BOUNDARY",
+                  "Blend toward the outer Gaea height over 180 meters outside the original boundary. Filter narrow boundary detail across the first 42 meters to avoid stretching it into long ribs."
+                ],
+                [
+                  "OUTER_SURFACE_NORMALS -> MATCH_MEADOW_SURFACE_AND_SCATTER_MASKS",
+                  "Rebuild outer normals, sample the real core color and normals at the join, and prepare world-space meadow and placement attributes."
+                ],
+                [
+                  "CACHE_OUTER_TERRAIN -> OUT_OUTER_TERRAIN",
+                  "Cache the extension separately so the preserved center can be checked against the original."
+                ]
+              ]
+            },
+            {
+              "type": "heading",
+              "text": "Extend the rocks without replacing the existing scatter"
+            },
+            {
+              "type": "paragraph",
+              "text": "The extension adds 12,566 rocks: 2,144 boulders, 4,195 slabs and 6,227 chips. Of those, 9,442 sit outside the original square. The existing ten rock models are reused as packed copies and USD instances."
+            },
+            {
+              "type": "paragraph",
+              "text": "Each size group runs through Scatter, Attribute from Pieces, scale and yaw randomization, approach exclusions, spacing checks and a seating wrangle. Existing rock footprints remain blockers; larger new rocks are also considered before the smaller groups are accepted. Copy to Points assembles the packed results, File Cache stores them, and SOP Import brings the terrain and rock instances into Solaris for material binding."
+            },
+            {
+              "type": "paragraph",
+              "text": "The saved-scene validation compares the original ground positions, normals and colors and the original rock transforms against their source hashes. Across 6,140 boundary samples, the maximum positional discrepancy is 0.000236 meters. The complete USD also resolves all ten rock prototypes and its referenced assets."
             },
             {
               "type": "heading",
@@ -2194,7 +2169,7 @@ window.PORTFOLIO = {
               "width": 844,
               "height": 1056,
               "alt": "A flat-colored proxy view of the tower and surrounding landforms.",
-              "caption": "The v005 layout proxy is an earlier, geometry-only checkpoint with basic colors and seven saved cameras."
+              "caption": "The earlier layout proxy is an earlier, geometry-only checkpoint with basic colors and seven saved cameras."
             },
             {
               "type": "paragraph",
@@ -2204,7 +2179,8 @@ window.PORTFOLIO = {
                 }
               ]
             }
-          ]
+          ],
+          "number": 8
         },
         {
           "id": "quartz-micro-detail",
@@ -2228,7 +2204,7 @@ window.PORTFOLIO = {
               "width": 1260,
               "height": 1050,
               "alt": "An early quartz detail crop beside the head and torso of a scale figure.",
-              "caption": "An earlier close-up places the surface next to the 1.8-meter scale figure. The image is a scale study from v006, before the later layering and lift."
+              "caption": "An earlier close-up places the surface next to the 1.8-meter scale figure, before the later layering and lift."
             },
             {
               "type": "image",
@@ -2236,7 +2212,7 @@ window.PORTFOLIO = {
               "width": 1280,
               "height": 1060,
               "alt": "A close crop of quartz with wide crystalline facets, broken mid-size fissures and fine etched lines.",
-              "caption": "v009 macro: larger growth terraces, interrupted intermediate fractures and fine surface marks coexist across the same facets."
+              "caption": "Layered macro: larger growth terraces, interrupted intermediate fractures and fine surface marks coexist across the same facets."
             },
             {
               "type": "heading",
@@ -2256,13 +2232,13 @@ window.PORTFOLIO = {
               "width": 1280,
               "height": 1060,
               "alt": "The earlier quartz macro, with mostly fine etched marks on large transparent facets.",
-              "caption": "v008 study: the marks became smaller, but the intermediate scales were less evident. The following pass restored a wider range of sizes."
+              "caption": "Earlier fine-detail study: the marks became smaller, but the intermediate scales were less evident. The following pass restored a wider range of sizes."
             },
             {
               "type": "paragraph",
               "children": [
                 {
-                  "text": "The v008 and v009 macro views use the same camera. The lighting accents and the floor visible in refraction also changed, so the frames show the progression of the look rather than a controlled shader comparison."
+                  "text": "The earlier and layered macro views use the same camera. The lighting accents and the floor visible in refraction also changed, so the frames show the progression of the look rather than a controlled shader comparison."
                 }
               ]
             },
@@ -2280,6 +2256,120 @@ window.PORTFOLIO = {
             },
             {
               "type": "heading",
+              "text": "Geometry nodes: shell, veils and mineral grains"
+            },
+            {
+              "type": "paragraph",
+              "text": "The existing watertight faceted shell is the geometric source. I keep its large silhouette and derive the interior detail in a separate SOP network. The inclusion volume and the small faceted grains are distinct outputs, which makes their density and material response easier to tune independently."
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/quartz-micro-detail/quartz-geometry-nodes.png",
+              "width": 1600,
+              "height": 1340,
+              "alt": "Houdini geometry graph: a watertight crystal drives VDB masks, layered inclusion density, a cached volume and scattered faceted grains.",
+              "caption": "Geometry flow for the macro study. The cached density drives both the interior volume and the placement of small mineral meshes.",
+              "size": "wide"
+            },
+            {
+              "type": "table",
+              "caption": "Geometry nodes and controls",
+              "headers": [
+                "Nodes",
+                "Role and settings"
+              ],
+              "rows": [
+                [
+                  "ORIGINAL_WATERTIGHT_CRYSTAL",
+                  "File SOP reads the original shell mesh. The same source asset is referenced in Solaris for the visible exterior."
+                ],
+                [
+                  "SHELL_DISTANCE_AND_SOLID_MASK",
+                  "VDB from Polygons makes a surface SDF and density grid. The 4.5-millimeter voxel control is expressed in world meters and compensated for the asset scale."
+                ],
+                [
+                  "FOG_GRID_ONLY / SIGNED_SHELL_ONLY",
+                  "Two Blast nodes separate density from the signed distance field."
+                ],
+                [
+                  "LAYERED_INCLUSION_DENSITY",
+                  "Volume Wrangle combines broad folded growth zones, interrupted thin laminae, filaments and low haze. The SDF keeps the field at least 34 millimeters away from the shell."
+                ],
+                [
+                  "SAVE_INCLUSION_CACHE -> READ_MICRO_VEIL_CACHE",
+                  "ROP Geometry writes the VDB; File reads the baked density for repeated grain and shading work. Rebuild the cache after changing field controls."
+                ],
+                [
+                  "SAMPLE_MINERAL_GRAINS_IN_VEILS -> SMALL_FACETED_INCLUSIONS",
+                  "Scatter supplies 4,950 candidates. A wrangle rejects density below 0.37 and sets pscale, scale and orient. Target radius ranges are 0.56-1.95, 1.5-4.2 and 4-8.3 millimeters, with the largest grains restricted to denser zones."
+                ],
+                [
+                  "TINY_FACETED_INCLUSION -> PLACE_FACETED_MINERAL_GRAINS",
+                  "A Platonic primitive supplies the grain shape; Copy to Points places it on the filtered candidates and outputs a separate mineral mesh."
+                ]
+              ]
+            },
+            {
+              "type": "heading",
+              "text": "Shader nodes: broad growth, fine relief and clear windows"
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/quartz-micro-detail/quartz-materialx-nodes.png",
+              "width": 1600,
+              "height": 1390,
+              "alt": "MaterialX graph showing meter-scaled coordinates, broad growth, interrupted Worley fractures, fine bump, roughness and three bound materials.",
+              "caption": "The macro shader is organized by scale. Surface relief goes through MaterialX Bump; the shell, inclusion volume and mineral grains have separate material bindings.",
+              "size": "wide"
+            },
+            {
+              "type": "table",
+              "caption": "MaterialX and Karma material flow",
+              "headers": [
+                "Nodes",
+                "Effect on the render"
+              ],
+              "rows": [
+                [
+                  "CRYSTAL_ASSET_POSITION -> POSITION_IN_METERS",
+                  "Object-space Position multiplied by the asset scale makes the procedural frequencies and relief controls consistent with meter-sized geometry."
+                ],
+                [
+                  "BROAD_GROWTH_TERRACES / INTERRUPTED_MIDDLE_GROWTH",
+                  "Fractal 3D fields pass through Range and Multiply nodes. Unequal facet-zone masks leave clear windows between the marks."
+                ],
+                [
+                  "MID_SCALE_HEALED_FRACTURES -> MID_FRACTURE_EDGE",
+                  "Extract the two nearest Worley distances and subtract F1 from F2. A Range node isolates narrow boundaries, then a separate fractal mask interrupts them."
+                ],
+                [
+                  "IRREGULAR_PRISM_GROWTH_LINES / ETCH_NETWORK / MICRO_PITS / FINE_MINERAL_GRAIN",
+                  "Higher-frequency fractal and Worley fields add striations, hairline etching, pits and grain beneath the larger scales."
+                ],
+                [
+                  "MULTI_SCALE_QUARTZ_RELIEF -> QUARTZ_MICRO_RELIEF",
+                  "Add the relief fields and feed the height into MaterialX Bump, then into the surface normal. These marks change shading; they do not displace the shell silhouette."
+                ],
+                [
+                  "QUARTZ_ALL_SCALES_ROUGHNESS -> QUARTZ_CLOSEUP",
+                  "Combine polished facet roughness with growth and fracture masks. MaterialX Standard Surface uses transmission 0.97 and specular IOR 1.54 for the transparent shell."
+                ],
+                [
+                  "INCLUSION_VDB_DENSITY -> VOLUME_MICROVEILS",
+                  "The density attribute drives separate absorption, cool scattering and a low internal readability term in Karma Volume."
+                ],
+                [
+                  "INCLUSION_GRAIN -> BIND_CLOSEUP_QUARTZ_LOOK",
+                  "A separate MaterialX Standard Surface shades the grain mesh. Assign Material binds the shell, volume and grains to their own scene primitives."
+                ]
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "I judge the three scales together: the broad terraces must read from the camera, the broken intermediate marks must remain uneven, and the fine bump should appear mainly at grazing angles. Clear facet areas and low-density gaps keep the interior from becoming a continuous white fill."
+            },
+            {
+              "type": "heading",
               "text": "Check the height in the assembled scene"
             },
             {
@@ -2288,13 +2378,13 @@ window.PORTFOLIO = {
               "width": 1248,
               "height": 980,
               "alt": "The raised lower crystal tip floating over the stone floor beside a scale figure.",
-              "caption": "v010 placement check: the tip sits about 1.34 meters above the new stone paving."
+              "caption": "Raised placement check: the tip sits about 1.34 meters above the new stone paving."
             },
             {
               "type": "paragraph",
               "children": [
                 {
-                  "text": "For v010 I raised the shell, inclusion volume and mineral grains together by another 0.4 meters. The geometry and look remain the same as the v009 macro. See the "
+                  "text": "I raised the shell, inclusion volume and mineral grains together by another 0.4 meters, keeping the preceding macro geometry and look. See the "
                 },
                 {
                   "text": "tower and environment progress",
@@ -2305,7 +2395,8 @@ window.PORTFOLIO = {
                 }
               ]
             }
-          ]
+          ],
+          "number": 9
         }
       ]
     }

@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1340" viewBox="0 0 1600 1340"><rect width="1600" height="1340" fill="#101820"/>
+<text x="56" y="79" font-family="Segoe UI,Arial,sans-serif" font-size="43" font-weight="700" fill="#f0f4f5">Houdini: quartz interior geometry</text>
+<text x="58" y="129" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#b6c6d0">One watertight shell drives a separate inclusion volume and faceted mineral grains</text>
+<rect x="70" y="190" width="420" height="150" rx="14" fill="#1b2834" stroke="#78d5df" stroke-width="2"/>
+<text x="89" y="230" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#78d5df">ORIGINAL WATERTIGHT</text>
+<text x="89" y="262" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#78d5df">CRYSTAL</text>
+<text x="89" y="301" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">File SOP / existing shell</text>
+<rect x="590" y="190" width="420" height="150" rx="14" fill="#1b2834" stroke="#78d5df" stroke-width="2"/>
+<text x="609" y="230" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#78d5df">SHELL DISTANCE</text>
+<text x="609" y="262" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#78d5df">AND SOLID MASK</text>
+<text x="609" y="301" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">VDB from Polygons</text>
+<rect x="1110" y="190" width="420" height="150" rx="14" fill="#1b2834" stroke="#78d5df" stroke-width="2"/>
+<text x="1129" y="230" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#78d5df">FOG + SIGNED SHELL</text>
+<text x="1129" y="269" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">Blast / separate grids</text>
+<text x="1129" y="299" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">Density + surface SDF</text>
+<polyline fill="none" stroke="#b6c6d0" stroke-width="3" points="490,265.0 590,265.0"/>
+<polygon fill="#b6c6d0" points="590,265.0 578.2941876694152,270.654551943446 578.2941876694152,259.345448056554"/>
+<polyline fill="none" stroke="#b6c6d0" stroke-width="3" points="1010,265.0 1110,265.0"/>
+<polygon fill="#b6c6d0" points="1110,265.0 1098.2941876694151,270.654551943446 1098.2941876694151,259.345448056554"/>
+<rect x="1110" y="475" width="420" height="175" rx="14" fill="#1b2834" stroke="#78d5df" stroke-width="2"/>
+<text x="1129" y="515" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#78d5df">LAYERED INCLUSION</text>
+<text x="1129" y="547" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#78d5df">DENSITY</text>
+<text x="1129" y="586" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">Volume Wrangle</text>
+<text x="1129" y="616" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">Growth zones / veils / gaps</text>
+<rect x="590" y="475" width="420" height="175" rx="14" fill="#1b2834" stroke="#a9d6ad" stroke-width="2"/>
+<text x="609" y="515" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#a9d6ad">INCLUSION CACHE</text>
+<text x="609" y="554" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">ROP Geometry -&gt; File</text>
+<text x="609" y="584" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">4.5 mm world-space voxels</text>
+<rect x="70" y="475" width="420" height="175" rx="14" fill="#1b2834" stroke="#a9d6ad" stroke-width="2"/>
+<text x="89" y="515" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#a9d6ad">INCLUSION VDB OUTPUT</text>
+<text x="89" y="554" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">Read in Solaris</text>
+<text x="89" y="584" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">Separate volume material</text>
+<polyline fill="none" stroke="#b6c6d0" stroke-width="3" points="1320.0,340 1320.0,475"/>
+<polygon fill="#b6c6d0" points="1320.0,475 1314.345448056554,463.2941876694152 1325.654551943446,463.2941876694152"/>
+<polyline fill="none" stroke="#b6c6d0" stroke-width="3" points="1110,562.5 1010,562.5"/>
+<polygon fill="#b6c6d0" points="1010,562.5 1021.7058123305848,556.845448056554 1021.7058123305848,568.154551943446"/>
+<polyline fill="none" stroke="#b6c6d0" stroke-width="3" points="590,562.5 490,562.5"/>
+<polygon fill="#b6c6d0" points="490,562.5 501.7058123305848,556.845448056554 501.7058123305848,568.154551943446"/>
+<rect x="590" y="805" width="420" height="160" rx="14" fill="#1b2834" stroke="#78d5df" stroke-width="2"/>
+<text x="609" y="845" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#78d5df">SAMPLE MINERAL GRAINS</text>
+<text x="609" y="884" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">Scatter -&gt; Attribute Wrangle</text>
+<text x="609" y="914" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">Density filter / three sizes</text>
+<rect x="70" y="805" width="420" height="160" rx="14" fill="#1b2834" stroke="#e7c58b" stroke-width="2"/>
+<text x="89" y="845" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#e7c58b">TINY FACETED INCLUSION</text>
+<text x="89" y="884" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">Platonic primitive</text>
+<text x="89" y="914" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">Grain prototype</text>
+<rect x="590" y="1080" width="420" height="165" rx="14" fill="#1b2834" stroke="#a9d6ad" stroke-width="2"/>
+<text x="609" y="1120" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#a9d6ad">PLACE FACETED</text>
+<text x="609" y="1152" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#a9d6ad">MINERAL GRAINS</text>
+<text x="609" y="1191" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">Copy to Points -&gt; mesh output</text>
+<polyline fill="none" stroke="#b6c6d0" stroke-width="3" points="800.0,650 800.0,805"/>
+<polygon fill="#b6c6d0" points="800.0,805 794.345448056554,793.2941876694152 805.654551943446,793.2941876694152"/>
+<polyline fill="none" stroke="#b6c6d0" stroke-width="3" points="800.0,965 800.0,1080"/>
+<polygon fill="#b6c6d0" points="800.0,1080 794.345448056554,1068.2941876694151 805.654551943446,1068.2941876694151"/>
+<polyline fill="none" stroke="#e7c58b" stroke-width="3" points="280,965 280,1020 700,1020 700,1080"/>
+<polygon fill="#e7c58b" points="700,1080 694.345448056554,1068.2941876694151 705.654551943446,1068.2941876694151"/>
+<path d="M56 1262 H1544" stroke="#364956"/>
+<text x="58" y="1303" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#b6c6d0">Shell, density field and grain meshes receive separate materials, then share the same final placement transform.</text>
+</svg>
