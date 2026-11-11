@@ -586,7 +586,7 @@ window.PORTFOLIO = {
               "height": 568,
               "title": "NASA reference and Post 002 Pyro comparison",
               "caption": "Left: the NASA 600% reference. Right: the Post 002 Pyro Bake Volume preview. The first five seconds are shown at their existing playback speeds, with frame and time labels.",
-              "credit": "Reference: NASA/CXC/A. Hobart; Pyro preview: Tao Luo.",
+              "credit": "Reference: NASA's Goddard Space Flight Center Conceptual Image Lab; Pyro preview: Tao Luo.",
               "sourceUrl": "https://svs.gsfc.nasa.gov/20413/",
               "size": "wide"
             },
@@ -984,7 +984,7 @@ window.PORTFOLIO = {
               "width": 1974,
               "height": 2169,
               "alt": "Twenty-five opening comparison cards, each with NASA on the left and the blue-layer preview on the right, arranged down three columns.",
-              "caption": "Twenty-five opening samples across the first 2.4 seconds of the reference. Each card places NASA on the left and the blue-layer study on the right. Read down the first column, then continue in the next. Labels retain the actual frame numbers and sample times. Reference: NASA/CXC/A. Hobart; study: Tao Luo.",
+              "caption": "Twenty-five opening samples across the first 2.4 seconds of the reference. Each card places NASA on the left and the blue-layer study on the right. Read down the first column, then continue in the next. Labels retain the actual frame numbers and sample times. Reference: NASA's Goddard Space Flight Center Conceptual Image Lab; study: Tao Luo.",
               "size": "wide"
             },
             {
@@ -993,7 +993,7 @@ window.PORTFOLIO = {
               "width": 1900,
               "height": 1050,
               "alt": "NASA and the blue-layer preview opening frames arranged as side-by-side pairs down two columns.",
-              "caption": "Opening comparisons: NASA on the left and the blue-layer preview on the right within each card. Read down each column. Reference: NASA/CXC/A. Hobart; study: Tao Luo.",
+              "caption": "Opening comparisons: NASA on the left and the blue-layer preview on the right within each card. Read down each column. Reference: NASA's Goddard Space Flight Center Conceptual Image Lab; study: Tao Luo.",
               "size": "wide"
             },
             {
@@ -1019,7 +1019,7 @@ window.PORTFOLIO = {
               "width": 1920,
               "height": 568,
               "caption": "Left: the NASA 600% reference. Right: the blue-layer preview. Each side is labeled with its actual frame and sample time; the reference was not accelerated again. The folds and internal detail remain different.",
-              "credit": "Reference: NASA/CXC/A. Hobart; study: Tao Luo.",
+              "credit": "Reference: NASA's Goddard Space Flight Center Conceptual Image Lab; study: Tao Luo.",
               "size": "wide"
             },
             {
@@ -1028,7 +1028,7 @@ window.PORTFOLIO = {
               "width": 1900,
               "height": 1050,
               "alt": "Later NASA and the blue-layer preview frames arranged as side-by-side pairs down two columns.",
-              "caption": "Later comparisons: NASA on the left and the blue-layer preview on the right within each card. Actual sample times remain labeled. Reference: NASA/CXC/A. Hobart; study: Tao Luo.",
+              "caption": "Later comparisons: NASA on the left and the blue-layer preview on the right within each card. Actual sample times remain labeled. Reference: NASA's Goddard Space Flight Center Conceptual Image Lab; study: Tao Luo.",
               "size": "wide"
             },
             {
@@ -1240,7 +1240,7 @@ window.PORTFOLIO = {
                   "text": "; "
                 },
                 {
-                  "text": "NASA/CXC",
+                  "text": "NASA SVS",
                   "href": "https://svs.gsfc.nasa.gov/20413/"
                 },
                 {
@@ -1546,18 +1546,6 @@ window.PORTFOLIO = {
             },
             {
               "type": "heading",
-              "text": "Current progress"
-            },
-            {
-              "type": "list",
-              "items": [
-                "The single-crystal modeling, surface shader, cloudy volume, inclusions, and alternative glow structures are editable in Houdini.",
-                "The opening video compares six weak-to-strong emission tests with fixed camera and exposure. It uses actual frame-by-frame renders; the internal structures do not move.",
-                "This is still an appearance study. A final glow shape and palette have not been locked, and these tests do not yet include traveling lightning or the crystal overload animation."
-              ]
-            },
-            {
-              "type": "heading",
               "text": "Credit"
             },
             {
@@ -1656,7 +1644,7 @@ window.PORTFOLIO = {
             },
             {
               "type": "image",
-              "image": "blog/magic-crystal-overload/post-007/gaea-node-network.png",
+              "image": "blog/magic-crystal-overload/post-007/gaea-terrain-workflow.png",
               "width": 1792,
               "height": 1068,
               "alt": "The actual original Gaea node graph, showing the terrain chain and separate height, color, flow and deposits exports.",
@@ -1996,7 +1984,7 @@ window.PORTFOLIO = {
             },
             {
               "type": "image",
-              "image": "blog/magic-crystal-overload/tower-environment-progress/gaea-outer-node-network.png",
+              "image": "blog/magic-crystal-overload/tower-environment-progress/gaea-outer-terrain-workflow.png",
               "width": 1792,
               "height": 1068,
               "alt": "The actual Gaea graph for the complete outer landscape; Ridge directly feeds Erosion2, with Stratify on a separate branch.",
@@ -2040,12 +2028,27 @@ window.PORTFOLIO = {
               ]
             },
             {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "Terrain tool reference: "
+                },
+                {
+                  "text": "QuadSpinner — Gaea node documentation",
+                  "href": "https://docs.gaea.app/reference/node-map.html"
+                },
+                {
+                  "text": ". This project combines the Ridge, Erosion2 and Thermal2 stages with the preserved center and the boundary blend described below."
+                }
+              ]
+            },
+            {
               "type": "heading",
               "text": "Join the extension to the preserved center in Houdini"
             },
             {
               "type": "image",
-              "image": "blog/magic-crystal-overload/tower-environment-progress/houdini-boundary-nodes.png",
+              "image": "blog/magic-crystal-overload/tower-environment-progress/houdini-terrain-boundary.png",
               "width": 1250,
               "height": 835,
               "alt": "The actual Houdini SOP network joining imported Gaea fields to the preserved core and caching the outer terrain.",
@@ -2092,9 +2095,9 @@ window.PORTFOLIO = {
             },
             {
               "type": "image",
-              "image": "blog/magic-crystal-overload/tower-environment-progress/houdini-rock-scatter-nodes.png",
+              "image": "blog/magic-crystal-overload/tower-environment-progress/houdini-rock-placement.png",
               "width": 1920,
-              "height": 960,
+              "height": 985,
               "alt": "The actual Houdini boulder, slab and chip scatter branches with exclusions, spacing checks, seating and packed-copy cache output.",
               "caption": "Houdini node editor screenshot of the three rock-size branches. The original approach, rock footprints and model library feed the new placement and packed-copy outputs.",
               "size": "wide"
@@ -2110,6 +2113,28 @@ window.PORTFOLIO = {
             {
               "type": "paragraph",
               "text": "The saved-scene validation compares the original ground positions, normals and colors and the original rock transforms against their source hashes. Across 6,140 boundary samples, the maximum positional discrepancy is 0.000236 meters. The complete USD also resolves all ten rock prototypes and its referenced assets."
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "Procedural rock references: "
+                },
+                {
+                  "text": "Moeen Sayed / SideFX — Magic Market: Procedural Rocks",
+                  "href": "https://www.sidefx.com/tutorials/magic-market-procedural-rocks/"
+                },
+                {
+                  "text": " informed the order of silhouette construction, mesh cleanup and weathering detail. "
+                },
+                {
+                  "text": "Sergio Neza — Scattering Randomized Geometry Over Terrain",
+                  "href": "https://www.sidefx.com/tutorials/scattering-randomized-geometry-over-terrain/"
+                },
+                {
+                  "text": " informed the named-prototype, Attribute from Pieces and Copy to Points workflow. I adapted these ideas to the limestone variants, terrain masks, approach clearances and spacing controls used around the tower."
+                }
+              ]
             },
             {
               "type": "heading",
@@ -2137,6 +2162,43 @@ window.PORTFOLIO = {
               "children": [
                 {
                   "text": "A dense short turf layer covers the meadow where the ground masks allow it. Taller blades add foreground variation. The roots stay seated while the tips bend and follow the wind; changes in blade shape and timing help the meadow move in patches."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "Procedural grass and wind references: "
+                },
+                {
+                  "text": "Chetal Gazdar — Houdini Tutorial | Grass Field using VOPs",
+                  "href": "https://www.youtube.com/watch?v=0_j6vkHciBQ"
+                },
+                {
+                  "text": " for attribute- and noise-driven grass, and "
+                },
+                {
+                  "text": "Linus Rosenqvist — Houdini hair/grass: Using CHOPs and noise instead of sim",
+                  "href": "https://www.youtube.com/watch?v=FIg5JDSls5c"
+                },
+                {
+                  "text": " for the approach to procedural wind motion. The tower scene uses its own world-space gust field, root-to-tip bending, terrain placement masks and shelter controls."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "Additional grass simulation reference: "
+                },
+                {
+                  "text": "CLmograph — Vellum Grass Simulation",
+                  "href": "https://www.sidefx.com/tutorials/vellum-grass-simulation/"
+                },
+                {
+                  "text": ". I reviewed this as a collision-simulation comparison while developing the procedural wind setup."
                 }
               ]
             },
@@ -2407,6 +2469,36 @@ window.PORTFOLIO = {
               "title": "Earlier and refined supernova looks at corresponding sample times",
               "caption": "Left: the earlier 1280 × 720 OpenGL volume preview at 24 fps with separate lens glow. Right: the refined 1920 × 1080 Karma XPU render at 60 fps and 256 samples. Each side shows its source sample time. The comparison includes changes in renderer and sampling as well as the background and color work.",
               "size": "wide"
+            },
+            {
+              "type": "heading",
+              "text": "Side by side with the NASA reference"
+            },
+            {
+              "type": "video",
+              "src": "/assets/videos/blog/magic-crystal-overload/supernova-background-color/nasa-and-refined.mp4",
+              "poster": "blog/magic-crystal-overload/supernova-background-color/nasa-and-refined-poster.jpg",
+              "width": 3840,
+              "height": 1080,
+              "title": "NASA supernova reference beside the refined Houdini render",
+              "caption": "Left: the NASA reference at 600% playback, sampled at its native 30 fps. Right: the refined Karma XPU render at 60 fps and 256 samples. The reference is not accelerated again; each source frame is held for two output frames. Labels show the actual sample times. The comparison helps evaluate the background, color progression and transparency.",
+              "credit": "Reference: NASA's Goddard Space Flight Center Conceptual Image Lab. Houdini study and comparison: Tao Luo.",
+              "size": "wide"
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "Reference: "
+                },
+                {
+                  "text": "Supernova explosion animation, with & without pulsar",
+                  "href": "https://svs.gsfc.nasa.gov/20413/"
+                },
+                {
+                  "text": ", NASA's Goddard Space Flight Center Conceptual Image Lab; animation by Jonathan North. The same 600% timing reference is used in the earlier study."
+                }
+              ]
             },
             {
               "type": "heading",
