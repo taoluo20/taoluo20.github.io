@@ -1942,21 +1942,6 @@ window.PORTFOLIO = {
           "excerpt": "Extending the Gaea landscape to 1.8 kilometers while preserving the detailed tower, approach, moving meadow and existing rock placements.",
           "blocks": [
             {
-              "type": "paragraph",
-              "children": [
-                {
-                  "text": "This update expands the "
-                },
-                {
-                  "text": "earlier tower and terrain study",
-                  "href": "/blog/magic-crystal-overload/post-007/"
-                },
-                {
-                  "text": " into the complete landscape. The domain is now 1800 by 1800 meters. I keep the original detailed center, tower foundation, approach, grass and 1,987 rock placements, then build the surrounding terrain as a separate surface."
-                }
-              ]
-            },
-            {
               "type": "image",
               "image": "blog/magic-crystal-overload/tower-environment-progress/complete-tower-landscape.png",
               "width": 1280,
@@ -2025,21 +2010,6 @@ window.PORTFOLIO = {
                   "Three HeightField File nodes",
                   "Read height plus outer_flow and outer_deposits layers. Keep the existing meadow material and world-space shading."
                 ]
-              ]
-            },
-            {
-              "type": "paragraph",
-              "children": [
-                {
-                  "text": "Terrain tool reference: "
-                },
-                {
-                  "text": "QuadSpinner — Gaea node documentation",
-                  "href": "https://docs.gaea.app/reference/node-map.html"
-                },
-                {
-                  "text": ". This project combines the Ridge, Erosion2 and Thermal2 stages with the preserved center and the boundary blend described below."
-                }
               ]
             },
             {
