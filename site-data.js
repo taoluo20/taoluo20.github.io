@@ -2044,6 +2044,15 @@ window.PORTFOLIO = {
               "text": "Join the extension to the preserved center in Houdini"
             },
             {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/tower-environment-progress/houdini-boundary-nodes.png",
+              "width": 1250,
+              "height": 835,
+              "alt": "The actual Houdini SOP network joining imported Gaea fields to the preserved core and caching the outer terrain.",
+              "caption": "Houdini node editor screenshot: the grid collar, Gaea height and masks, protected center, boundary blend, normal and color matching, and separate outer-terrain cache.",
+              "size": "wide"
+            },
+            {
               "type": "table",
               "caption": "Boundary and surface nodes",
               "headers": [
@@ -2080,6 +2089,15 @@ window.PORTFOLIO = {
             {
               "type": "heading",
               "text": "Extend the rocks without replacing the existing scatter"
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/tower-environment-progress/houdini-rock-scatter-nodes.png",
+              "width": 1920,
+              "height": 960,
+              "alt": "The actual Houdini boulder, slab and chip scatter branches with exclusions, spacing checks, seating and packed-copy cache output.",
+              "caption": "Houdini node editor screenshot of the three rock-size branches. The original approach, rock footprints and model library feed the new placement and packed-copy outputs.",
+              "size": "wide"
             },
             {
               "type": "paragraph",
