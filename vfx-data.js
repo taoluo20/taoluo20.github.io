@@ -17,8 +17,8 @@ window.PORTFOLIO.projects = [
   },
   {
     id: 'porcelain-fracture', title: 'Porcelain Fracture', type: 'FX / Rigid Bodies',
-    image: 'vfx/porcelain-fracture.webp', video: '/assets/videos/vfx/porcelain-fracture.mp4', preview: '/assets/videos/vfx/porcelain-fracture-preview.mp4',
-    width: 1920, height: 1080, duration: 2.04, software: ['houdini', 'blender'], tags: ['Houdini', 'Blender'],
+    image: 'vfx/porcelain-fracture-clean.webp', video: '/assets/videos/vfx/porcelain-fracture-clean.mp4', preview: '/assets/videos/vfx/porcelain-fracture-clean-preview.mp4',
+    width: 1920, height: 1080, duration: 2, software: ['houdini', 'blender'], tags: ['Houdini', 'Blender'],
     alt: 'A blue-and-white porcelain vase on a wooden tabletop.',
     summary: 'A porcelain vase, captured at the moment of impact.',
     description: 'A ceramic vase fracture study made with Houdini and Blender, following the impact, separation, and settling of blue-and-white porcelain fragments.'
