@@ -25,11 +25,11 @@ window.PORTFOLIO.projects = [
   },
   {
     id: 'petal-dissolve', title: 'Petal Dissolve', type: 'FX / Particles',
-    image: 'vfx/petal-dissolve.webp', video: '/assets/videos/vfx/petal-dissolve.mp4', preview: '/assets/videos/vfx/petal-dissolve-preview.mp4',
+    image: 'vfx/petal-dissolve-david.webp', video: '/assets/videos/vfx/petal-dissolve-david.mp4', preview: '/assets/videos/vfx/petal-dissolve-david-preview.mp4',
     width: 1920, height: 1080, duration: 4, software: ['houdini'], tags: ['Houdini'],
-    alt: 'A character dissolving into red petals carried across a gray studio.',
-    summary: 'A figure carried away in petals.',
-    description: 'A Houdini particle effect in which a character breaks apart into red petals, carried by a flowing wind through the frame.'
+    alt: 'A classical bust of David dissolving into red petals across a gray studio.',
+    summary: 'A classical portrait carried away in petals.',
+    description: 'A Houdini study of a classical David bust dissolving into red petals. Scattered openings spread across the sculpture as a flowing wind carries the petals through a gray studio.'
   },
   {
     id: 'snowy-pine-forest', title: 'Snowy Pine Forest', type: 'Environment / Procedural',
