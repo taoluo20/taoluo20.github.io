@@ -2328,21 +2328,6 @@ window.PORTFOLIO = {
           "excerpt": "Refining the star background and the transition from cyan to deeper blue and purple while retaining the established flow and timing.",
           "blocks": [
             {
-              "type": "paragraph",
-              "children": [
-                {
-                  "text": "This update continues the "
-                },
-                {
-                  "text": "earlier blue-layer study",
-                  "href": "/blog/magic-crystal-overload/post-005/"
-                },
-                {
-                  "text": ". I refined the background and the color progression, keeping the established Pyro-driven particle motion and shared timing. The aim is a clearer separation between the cyan folds, the deeper blue body and the surrounding star field."
-                }
-              ]
-            },
-            {
               "type": "video",
               "src": "/assets/videos/blog/magic-crystal-overload/supernova-background-color/supernova-refined.mp4",
               "poster": "blog/magic-crystal-overload/supernova-background-color/supernova-refined.jpg",
