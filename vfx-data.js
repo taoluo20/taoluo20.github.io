@@ -25,7 +25,7 @@ window.PORTFOLIO.projects = [
   },
   {
     id: 'petal-dissolve', title: 'Petal Dissolve', type: 'FX / Particles',
-    image: 'vfx/petal-dissolve-david.webp', video: '/assets/videos/vfx/petal-dissolve-david.mp4', preview: '/assets/videos/vfx/petal-dissolve-david-preview.mp4',
+    image: 'vfx/petal-dissolve-david-anim00.webp', video: '/assets/videos/vfx/petal-dissolve-david-anim00.mp4', preview: '/assets/videos/vfx/petal-dissolve-david-anim00-preview.mp4',
     width: 1920, height: 1080, duration: 4, software: ['houdini'], tags: ['Houdini'],
     alt: 'A classical bust of David dissolving into red petals across a gray studio.',
     summary: 'A classical portrait carried away in petals.',
