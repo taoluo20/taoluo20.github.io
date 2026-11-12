@@ -5,14 +5,14 @@
   const arrow = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg>';
   const back = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m7-7-7 7 7 7"/></svg>';
   const software = {
-    blender: 'Blender', houdini: 'Houdini', unrealengine: 'Unreal Engine',
-    maya: 'Autodesk Maya', painter: 'Substance 3D Painter', fab: 'Fab', realityscan: 'RealityScan'
+    blender: 'Blender', houdini: 'Houdini', karma: 'Karma Render', unrealengine: 'Unreal Engine',
+    maya: 'Autodesk Maya', arnold: 'Arnold', painter: 'Substance 3D Painter', fab: 'Fab', realityscan: 'RealityScan'
   };
   const disposers = [];
   const duration = seconds => `${String(Math.floor(seconds / 60)).padStart(2, '0')}:${String(Math.floor(seconds % 60)).padStart(2, '0')}`;
 
   function tools(project) {
-    return `<ul class="vfx-software" aria-label="Software and tools">${project.software.map(id => `<li><span class="vfx-software-icon" tabindex="0" role="img" aria-label="${software[id]}"><img src="/assets/software/${id}.${id === 'realityscan' ? 'png' : 'svg'}?v=20261110-mono" alt="" width="32" height="32" /><span class="vfx-tooltip">${software[id]}</span></span></li>`).join('')}</ul>`;
+    return `<ul class="vfx-software" aria-label="Software and tools">${project.software.map(id => `<li><span class="vfx-software-icon" tabindex="0" role="img" aria-label="${software[id]}"><img src="/assets/software/${id}.${id === 'realityscan' ? 'png' : 'svg'}?v=20261112-renderers" alt="" width="32" height="32" /><span class="vfx-tooltip">${software[id]}</span></span></li>`).join('')}</ul>`;
   }
 
   function card(project, index) {

@@ -18,7 +18,7 @@ window.PORTFOLIO.projects = [
   {
     id: 'porcelain-fracture', title: 'Porcelain Fracture', type: 'FX / Rigid Bodies',
     image: 'vfx/porcelain-fracture-clean.webp', video: '/assets/videos/vfx/porcelain-fracture-clean.mp4', preview: '/assets/videos/vfx/porcelain-fracture-clean-preview.mp4',
-    width: 1920, height: 1080, duration: 2, software: ['houdini', 'blender'], tags: ['Houdini', 'Blender'],
+    width: 1920, height: 1080, duration: 2, software: ['houdini', 'karma', 'blender'], tags: ['Houdini', 'Karma Render', 'Blender'],
     alt: 'A blue-and-white porcelain vase on a wooden tabletop.',
     summary: 'A porcelain vase, captured at the moment of impact.',
     description: 'A ceramic vase fracture study made with Houdini and Blender, following the impact, separation, and settling of blue-and-white porcelain fragments.'
@@ -26,7 +26,7 @@ window.PORTFOLIO.projects = [
   {
     id: 'petal-dissolve', title: 'Petal Dissolve', type: 'FX / Particles',
     image: 'vfx/petal-dissolve-david-continuous-fall.webp', video: '/assets/videos/vfx/petal-dissolve-david-continuous-fall-1080p.mp4', preview: '/assets/videos/vfx/petal-dissolve-david-continuous-fall-1080p-preview.mp4',
-    width: 1920, height: 1080, duration: 6, software: ['houdini'], tags: ['Houdini'],
+    width: 1920, height: 1080, duration: 6, software: ['houdini', 'karma'], tags: ['Houdini', 'Karma Render'],
     alt: 'A classical bust of David dissolving into red petals across a gray studio.',
     summary: 'A classical portrait carried away in petals.',
     description: 'A Houdini study of a classical David bust dissolving into red petals. Scattered openings spread across the sculpture as a flowing wind carries the petals through a gray studio.'
@@ -34,7 +34,7 @@ window.PORTFOLIO.projects = [
   {
     id: 'snowy-pine-forest', title: 'Snowy Pine Forest', type: 'Environment / Procedural',
     image: 'vfx/snowy-pine-forest.webp', fullImage: 'vfx/snowy-pine-forest.png',
-    width: 2338, height: 1304, software: ['houdini'], tags: ['Houdini'],
+    width: 2338, height: 1304, software: ['houdini', 'karma'], tags: ['Houdini', 'Karma Render'],
     alt: 'Snow-covered pine trees in a winter forest.',
     summary: 'A quiet forest under snow.',
     description: 'A winter forest environment created in Houdini, studying the branching structure of pine trees, snow accumulation, and the atmosphere of a cold woodland.'
@@ -58,7 +58,7 @@ window.PORTFOLIO.projects = [
   {
     id: 'scholars-attic', title: "The Scholar's Attic", type: 'Environment / Modeling',
     image: 'vfx/scholars-attic.webp', video: '/assets/videos/vfx/scholars-attic.mp4', preview: '/assets/videos/vfx/scholars-attic-preview.mp4',
-    width: 1920, height: 1080, duration: 38.875, software: ['maya', 'painter'], tags: ['Maya', 'Substance 3D Painter'],
+    width: 1920, height: 1080, duration: 38.875, software: ['maya', 'arnold', 'painter'], tags: ['Maya', 'Arnold', 'Substance 3D Painter'],
     alt: 'A cutaway timber attic with a curtained bed, ladder, study desk, and warm sunlight.',
     summary: 'A small world beneath the rafters.',
     description: 'A cutaway attic interior built with Maya and Substance 3D Painter, with exposed timber, built-in furniture, and small props arranged around warm daylight.'
