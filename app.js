@@ -33,6 +33,11 @@
   };
   const getRoute = () => cleanRoute(location.pathname + location.search);
   const getProject = id => data.projects.find(project => project.id === id);
+  // A static-site gate for casual access; public assets remain directly accessible.
+  const vfxPasswordHash = '022f69d27708c8e55820eaa3d9bcdcec4b9039673d9a50109035e6f1e8ffe797';
+  const vfxSessionKey = 'tao-vfx-access';
+  let vfxUnlocked = false;
+  try { vfxUnlocked = sessionStorage.getItem(vfxSessionKey) === vfxPasswordHash; } catch {}
 
   function migrateLegacyRoute() {
     if (location.hash.startsWith('#/')) {
@@ -124,6 +129,54 @@
 
   function vfxCategory(value) {
     return String(value || '').toLowerCase() === 'photogrammetry' ? 'photogrammetry' : 'general';
+  }
+
+  function vfxAccessPage() {
+    return `<section class="vfx-access-page" aria-labelledby="vfx-access-title"><div class="vfx-access-copy">
+      ${eyebrow('VFX / PRIVATE ACCESS')}
+      <h1 id="vfx-access-title">Protected work<span class="wip-period" aria-hidden="true">.</span></h1>
+      <p class="vfx-access-note">Enter the password to view this section.</p>
+      <form id="vfx-access-form" method="post" aria-label="Unlock VFX">
+        <label class="meta" for="vfx-password">PASSWORD</label>
+        <input id="vfx-password" name="password" type="password" autocomplete="current-password" required aria-describedby="vfx-access-status" />
+        <p id="vfx-access-status" class="vfx-access-status" role="status" aria-live="polite" aria-atomic="true"></p>
+        <button class="vfx-unlock-button" type="submit">UNLOCK VFX ${arrow}</button>
+      </form>
+    </div></section>`;
+  }
+
+  async function unlockVfx(form) {
+    if (form.getAttribute('aria-busy') === 'true' || !form.reportValidity()) return;
+    const input = form.querySelector('#vfx-password');
+    const status = form.querySelector('#vfx-access-status');
+    const button = form.querySelector('button[type="submit"]');
+    const requestedRoute = renderedRoute;
+    input.removeAttribute('aria-invalid');
+    status.textContent = '';
+    form.setAttribute('aria-busy', 'true');
+    button.disabled = true;
+    try {
+      const bytes = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(input.value));
+      const hash = Array.from(new Uint8Array(bytes), byte => byte.toString(16).padStart(2, '0')).join('');
+      if (!form.isConnected || renderedRoute !== requestedRoute) return;
+      if (hash !== vfxPasswordHash) {
+        input.setAttribute('aria-invalid', 'true');
+        status.textContent = 'Incorrect password. Please try again.';
+        input.focus();
+        input.select();
+        return;
+      }
+      vfxUnlocked = true;
+      try { sessionStorage.setItem(vfxSessionKey, vfxPasswordHash); } catch {}
+      input.value = '';
+      renderRoute(requestedRoute);
+      main.focus({ preventScroll: true });
+    } catch {
+      if (form.isConnected) status.textContent = 'Unable to unlock this section. Please try a current browser using HTTPS.';
+    } finally {
+      form.removeAttribute('aria-busy');
+      button.disabled = false;
+    }
   }
 
   function vfxNavigation(category) {
@@ -344,6 +397,9 @@
     let content;
     if (!validPath) {
       content = null;
+    } else if (section === 'vfx' && !vfxUnlocked) {
+      content = vfxAccessPage();
+      title = 'VFX — Private access';
     } else if (section === 'vfx' && !id) {
       const category = vfxCategory(routeUrl.searchParams.get('category'));
       content = vfxPage(category);
@@ -386,7 +442,7 @@
     document.title = section ? `${title ? title + ' — ' : ''}Tao Luo` : 'Tao Luo';
     setNavigation(section);
     bindCardHover();
-    if (section === 'vfx' && validPath) window.Vfx.bind(main);
+    if (section === 'vfx' && validPath && vfxUnlocked) window.Vfx.bind(main);
     if (section === 'photography' && validPath) window.Photography.bind(main, id, navigate);
     if (!preserveScroll) window.scrollTo({ top: 0, behavior: 'instant' });
   }
@@ -416,6 +472,7 @@
     if (overlay.open || closing) return;
     const project = getProject(id);
     if (!project) return;
+    if (!vfxUnlocked) { navigate(`/vfx/${id}/`); return; }
     const sourceSurface = sourceCard?.querySelector('.card-surface');
     const sourceImage = sourceSurface?.querySelector('img');
     const origin = sourceSurface?.getBoundingClientRect();
@@ -525,6 +582,11 @@
   });
 
   document.addEventListener('submit', event => {
+    if (event.target.id === 'vfx-access-form') {
+      event.preventDefault();
+      unlockVfx(event.target);
+      return;
+    }
     if (event.target.id !== 'contact-form') return;
     event.preventDefault();
     const form = event.target;

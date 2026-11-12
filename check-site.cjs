@@ -12,7 +12,7 @@ const data = context.window.PORTFOLIO;
 assert.equal(data.name, 'Tao Luo');
 assert.ok(['wip', 'full'].includes(data.release), 'release must be wip or full');
 assert.equal(data.socials.length, 5);
-for (const file of ['index.html', 'styles.css', 'blog.css', 'accents.css', 'footer.css', 'contact.css', 'photogrammetry.css', 'app.js', 'site-info.json', 'generate-pages.cjs', 'generated-pages.json', '.nojekyll', 'assets/social-icons.svg']) assert.ok(fs.existsSync(path.join(root, file)), `Missing ${file}`);
+for (const file of ['index.html', 'styles.css', 'blog.css', 'accents.css', 'footer.css', 'contact.css', 'photogrammetry.css', 'vfx-access.css', 'app.js', 'site-info.json', 'generate-pages.cjs', 'generated-pages.json', '.nojekyll', 'assets/social-icons.svg']) assert.ok(fs.existsSync(path.join(root, file)), `Missing ${file}`);
 const contentVersion = createHash('sha256').update(fs.readFileSync(path.join(root, 'site-data.js'), 'utf8').replace(/\r\n/g, '\n')).digest('hex').slice(0, 12);
 const generatedPages = JSON.parse(fs.readFileSync(path.join(root, 'generated-pages.json'), 'utf8'));
 for (const file of ['index.html', ...generatedPages]) {
