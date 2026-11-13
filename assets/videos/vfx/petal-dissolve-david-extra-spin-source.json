@@ -1,0 +1,20 @@
+{
+  "project": "Petal Dissolve",
+  "sculpture": "Head of David / Davids hoved, after Michelangelo Buonarroti",
+  "collection": "SMK – National Gallery of Denmark, Royal Cast Collection",
+  "accessionNumber": "KAS2232",
+  "originalDates": "1501–1504",
+  "castDate": "1890",
+  "source": "https://open.smk.dk/artwork/image/KAS2232",
+  "sourceApi": "https://api.smk.dk/api/v1/art?object_number=KAS2232",
+  "scan": "https://api.smk.dk/api/v1/download-3d/ht24wq097_smk55-kas2232-head-of-david.stl",
+  "rights": "Public Domain Mark 1.0",
+  "rightsUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+  "scanSha256": "ba9f6b5e67981f340bae43a5b2b284a35b5f108cc9c6d654e43309e9e08d0e66",
+  "petals": "Artist's original E2 petal asset and ANIM particle and studio-lighting setup.",
+  "effectAndRender": "Tao Luo, Houdini / Karma",
+  "renderDate": "2026-11-12",
+  "videoSha256": "ad6535a8df4ce17303aa4db4d2d61cd6a1991207d13c560538577f3a3b7bbd2e",
+  "videoSpecification": "1920 x 1080, 24 fps, 144 frames, 6 seconds",
+  "revision": "Asynchronous anisotropic dissolve with continuously eroding falling islands, immediate detachment release, gravity increasing from 0.3g to 0.8g, island angular speed 2 degrees per second, original base erosion, last-second directional petal opacity, and dark/original Labs petals 1:2."
+}
