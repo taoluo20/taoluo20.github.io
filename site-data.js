@@ -2504,8 +2504,8 @@ window.PORTFOLIO = {
             },
             {
               "type": "video",
-              "src": "/assets/videos/blog/magic-crystal-overload/supernova-background-color/current-final-reference.mp4",
-              "poster": "blog/magic-crystal-overload/supernova-background-color/current-final-reference-poster.jpg",
+              "src": "/assets/videos/blog/magic-crystal-overload/supernova-background-color/final-side-by-side.mp4",
+              "poster": "blog/magic-crystal-overload/supernova-background-color/final-side-by-side-poster.jpg",
               "width": 1920,
               "height": 568,
               "title": "Current final beside the NASA timing reference",
