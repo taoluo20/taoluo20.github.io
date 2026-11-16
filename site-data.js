@@ -2378,11 +2378,11 @@ window.PORTFOLIO = {
         {
           "id": "supernova-background-color",
           "number": 9,
-          "title": "Supernova: Current Final, Highlights and Purple Layer",
+          "title": "Supernova: Current Final and Houdini Workflow",
           "publishedAt": "2026-11-15",
           "image": "blog/magic-crystal-overload/supernova-background-color/final-3-1s.jpg",
           "imageAlt": "The current final supernova with cyan folded highlights, a pink core and purple detail against the star background.",
-          "excerpt": "The current final shot, followed by the changes from the previous published look: two highlight branches, a separate purple particle volume and continued late motion.",
+          "excerpt": "The current final shot, followed by the changes in structure, motion and timing and an overview of the Houdini construction.",
           "blocks": [
             {
               "type": "video",
@@ -2440,16 +2440,6 @@ window.PORTFOLIO = {
               "text": "Blue shell and shared motion"
             },
             {
-              "type": "video",
-              "src": "/assets/videos/blog/magic-crystal-overload/supernova-background-color/isolated-blue.mp4",
-              "poster": "blog/magic-crystal-overload/supernova-background-color/isolated-blue-poster.jpg",
-              "width": 960,
-              "height": 540,
-              "title": "Blue shell in isolation",
-              "caption": "Blue shell only, against black. 960 × 540, 16 samples; the timing and material match the final. Each layer preview uses the same glow and display transform.",
-              "size": "wide"
-            },
-            {
               "type": "paragraph",
               "text": "The Pyro simulation supplies velocity for 360,000 points scattered once on a sphere. POP Advect by Volumes carries the stable points through that field, and Retime evaluates the cache on the shot timeline. The appearance wrangle uses rest-space masks to assign density, Cd, emission and particle radius before Volume Rasterize Attributes builds the blue VDB."
             },
@@ -2471,31 +2461,12 @@ window.PORTFOLIO = {
               "text": "Two highlight branches with separate timing"
             },
             {
-              "type": "video",
-              "src": "/assets/videos/blog/magic-crystal-overload/supernova-background-color/isolated-highlights.mp4",
-              "poster": "blog/magic-crystal-overload/supernova-background-color/isolated-highlights-poster.jpg",
-              "width": 960,
-              "height": 540,
-              "title": "Broad luminous folds and folded membrane in isolation",
-              "caption": "Both highlight branches isolated from the final. The broad folds and narrower cyan membrane share the underlying movement but have separate emission envelopes.",
-              "size": "wide"
-            },
-            {
               "type": "paragraph",
               "text": "The broad branch starts at BASE_SMOOTH. BROAD_FOLDS slightly widens the emission; SELECT_LUMINOUS_FOLDS constrains it to supported density, suppresses overly dense regions and applies a directional preference. HIGHLIGHT_ONLY retains the emission field before the world-space transform."
             },
             {
               "type": "paragraph",
               "text": "The narrower branch starts from a Torus. FOLDED_MEMBRANE shapes the ring into thin folds, waves and local gaps. FLOW_REST takes the blue cloud at 2.45 seconds, and Point Deform uses that reference and the current particles to carry the membrane with the flow. A fixed 180,000-point surface sample is transferred by Attribute Interpolate, keeping its sampling stable through the deformation."
-            },
-            {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/supernova-background-color/folded-highlight-nodes.png",
-              "width": 1250,
-              "height": 1480,
-              "alt": "The Torus, folded membrane, Point Deform, stable scatter, Attribute Interpolate and VDB rasterization nodes in Houdini.",
-              "caption": "Folded membrane branch: RING_SOURCE → FOLDED_MEMBRANE → FOLLOW_CLOUD → CARRY_SAMPLES → HIGHLIGHT_ATTRIBUTES → RING_FIELDS → RING_CACHE.",
-              "size": "wide"
             },
             {
               "type": "table",
@@ -2522,37 +2493,6 @@ window.PORTFOLIO = {
                   "0.035-meter raster voxels for the narrow membrane. Its material is emissive, with no added absorption or scattering."
                 ]
               ]
-            },
-            {
-              "type": "heading",
-              "text": "Purple layer: stable filaments and slow expansion"
-            },
-            {
-              "type": "video",
-              "src": "/assets/videos/blog/magic-crystal-overload/supernova-background-color/isolated-purple.mp4",
-              "poster": "blog/magic-crystal-overload/supernova-background-color/isolated-purple-poster.jpg",
-              "width": 960,
-              "height": 540,
-              "title": "Purple particle volume in isolation",
-              "caption": "The separate purple layer only. Fixed filament detail expands slowly while its reveal and emission change with the final shot timing.",
-              "size": "wide"
-            },
-            {
-              "type": "paragraph",
-              "text": "SOURCE_VOLUME defines an ellipsoidal region. STATIC_FILAMENT_DENSITY uses fixed spatial noise, ridge-like filaments and holes to control where 1.5 million points are scattered. STATIC_PARTICLE_DETAIL adds small static variation. The points are rasterized once into density and emission, then cached as a rest VDB."
-            },
-            {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/supernova-background-color/purple-layer-nodes.png",
-              "width": 1060,
-              "height": 1485,
-              "alt": "The actual Houdini source, stable scatter, particle detail, volume rasterization, rest cache and expansion nodes for the purple layer.",
-              "caption": "Native purple layer: a single stable particle distribution becomes a cached filament volume; SLOW_EXPANSION_ONLY changes its transform over time.",
-              "size": "wide"
-            },
-            {
-              "type": "paragraph",
-              "text": "The purple branch has independent timing. It begins to appear at 2.05 seconds and is fully revealed at 2.65 seconds. Its scale follows 0.9 + 0.047 × max(0, t − 2.05), with emission compensated by the inverse cube of the scale. The fixed rest field provides the texture; the slow transform expansion provides the motion. This layer is independent of the Pyro advection."
             },
             {
               "type": "heading",
