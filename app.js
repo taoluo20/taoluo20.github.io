@@ -384,6 +384,7 @@
       history.replaceState(history.state, '', route);
     }
     window.Photography.cleanup();
+    window.Showcase.cleanup();
     if (webInfoDialog.open) webInfoDialog.close();
     if (photoOverlay.open) photoOverlay.close();
     resetHover();
@@ -391,14 +392,21 @@
     const segments = routeUrl.pathname.split('/').filter(Boolean);
     const [section = '', id, entryId] = segments;
     const validPath = (!section || siteSections.has(section)) &&
-      (section === 'blog' ? segments.length <= 3 : section === 'vfx' ? segments.length <= 2 && (!id || getProject(id)) : section === 'photography' ? segments.length <= 2 && (!id || window.Photography.getPhoto(id)) : segments.length <= 1);
+      (section === 'blog' ? segments.length <= 3 : section === 'demo' ? segments.length <= 2 && (!id || window.Showcase.category(id)) : section === 'vfx' ? segments.length <= 2 && (!id || getProject(id)) : section === 'photography' ? segments.length <= 2 && (!id || window.Photography.getPhoto(id)) : segments.length <= 1);
     main.classList.toggle('blog-main', section === 'blog');
     main.classList.toggle('vfx-main', section === 'vfx' && !id);
     main.classList.toggle('photography-main', section === 'photography');
+    main.classList.toggle('reel-home-main', !section && validPath);
+    main.classList.toggle('reel-demo-main', section === 'demo' && validPath);
     let title = '';
     let content;
     if (!validPath) {
       content = null;
+    } else if (!section) {
+      content = window.Showcase.home();
+    } else if (section === 'demo') {
+      content = id ? window.Showcase.reel(id) : window.Showcase.index();
+      title = id ? `${window.Showcase.category(id).title} - Demo` : 'Demo';
     } else if (section === 'vfx' && !vfxUnlocked) {
       content = vfxAccessPage();
       title = 'VFX — Private access';
@@ -444,6 +452,7 @@
     document.title = section ? `${title ? title + ' — ' : ''}Tao Luo` : 'Tao Luo';
     setNavigation(section);
     bindCardHover();
+    window.Showcase.bind(main);
     if (section === 'vfx' && validPath && vfxUnlocked) window.Vfx.bind(main);
     if (section === 'photography' && validPath) window.Photography.bind(main, id, navigate);
     if (!preserveScroll) window.scrollTo({ top: 0, behavior: 'instant' });

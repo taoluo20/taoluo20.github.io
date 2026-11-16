@@ -1,0 +1,12 @@
+{
+  "excludedProjects": ["supernova", "magic-crystal-overload"],
+  "clips": [
+    { "id": "orbital-debris", "start": 0.8 },
+    { "id": "star-trails", "start": 7 },
+    { "id": "porcelain-fracture", "start": 0 },
+    { "id": "petal-dissolve", "start": 0.75 },
+    { "id": "bloody-night-at-the-wand-shop", "start": 14.5 },
+    { "id": "quiet-corner", "start": 0.5 },
+    { "id": "scholars-attic", "start": 7.5 }
+  ]
+}

@@ -7,8 +7,36 @@ const root = __dirname;
 const context = { window: {} };
 vm.runInNewContext(fs.readFileSync(path.join(root, 'site-data.js'), 'utf8'), context);
 vm.runInNewContext(fs.readFileSync(path.join(root, 'vfx-data.js'), 'utf8'), context);
+vm.runInNewContext(fs.readFileSync(path.join(root, 'reel-data.js'), 'utf8'), context);
 vm.runInNewContext(fs.readFileSync(path.join(root, 'photography-data.js'), 'utf8'), context);
 const data = context.window.PORTFOLIO;
+const reelEdit = JSON.parse(fs.readFileSync(path.join(root, 'reel-edit.json'), 'utf8'));
+const reelProjects = new Map(data.projects.filter(project => project.video && !reelEdit.excludedProjects.includes(project.id)).map(project => [project.id, project]));
+const vfxDataHash = createHash('sha256').update(fs.readFileSync(path.join(root, 'vfx-data.js'), 'utf8').replace(/\r\n/g, '\n')).digest('hex');
+assert.equal(data.reels.sourceDataHash, vfxDataHash, 'Reels must use the current VFX gallery data');
+assert.equal(data.reels.clips.length, reelProjects.size, 'Use each eligible VFX gallery video exactly once');
+assert.equal(new Set(data.reels.clips.map(clip => clip.projectId)).size, reelProjects.size, 'Duplicate reel source');
+let reelDuration = 0;
+for (const clip of data.reels.clips) {
+  const project = reelProjects.get(clip.projectId);
+  assert.ok(project, `Reel project is outside the VFX gallery: ${clip.projectId}`);
+  assert.equal(clip.source, project.video, 'Use the published full video, not a journal clip or hover preview');
+  assert.equal(clip.projectUrl, `/vfx/${project.id}/`);
+  assert.ok(Math.abs(clip.fullDuration - project.duration) < 0.001, 'Keep the complete original in the Demo reel');
+  assert.equal(clip.duration, Math.min(3, clip.fullDuration), 'Short videos must be included in full');
+  assert.ok(clip.start >= 0 && clip.start + clip.duration <= clip.fullDuration + 0.01, 'Highlight is outside the source video');
+  assert.ok(Math.abs(clip.offset - reelDuration) < 0.001, 'Chapter offsets must be continuous');
+  assert.ok(fs.existsSync(path.join(root, clip.src.slice(1))), `Missing highlight: ${clip.src}`);
+  assert.ok(fs.existsSync(path.join(root, 'assets/images', clip.poster)), `Missing highlight poster: ${clip.poster}`);
+  reelDuration += clip.fullDuration;
+}
+for (const reel of data.reels.categories) {
+  const file = path.join(root, reel.src.slice(1));
+  assert.ok(fs.existsSync(file), `Missing reel: ${reel.src}`);
+  assert.ok(fs.statSync(file).size < 95 * 1024 * 1024, 'Reel must fit static hosting');
+  assert.ok(Math.abs(reel.duration - reelDuration) < 0.001, 'Demo must retain all original durations');
+  assert.ok(fs.existsSync(path.join(root, 'demo', reel.id, 'index.html')), `Missing reel route: ${reel.id}`);
+}
 assert.equal(data.name, 'Tao Luo');
 assert.ok(['wip', 'full'].includes(data.release), 'release must be wip or full');
 assert.equal(data.socials.length, 5);

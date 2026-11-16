@@ -13,5 +13,5 @@ for (const file of ['index.html', 'styles.css', 'blog.css', 'accents.css', 'foot
   fs.copyFileSync(path.join(__dirname, file), target);
 }
 fs.cpSync(path.join(__dirname, 'assets'), path.join(output, 'assets'), { recursive: true, filter: file => !file.endsWith('contact-sheet.png') });
-for (const file of ['vfx.css', 'vfx.js', 'vfx-data.js']) fs.copyFileSync(path.join(__dirname, file), path.join(output, file));
+for (const file of ['vfx.css', 'vfx.js', 'vfx-data.js', 'showcase.css', 'showcase.js', 'reel-data.js']) fs.copyFileSync(path.join(__dirname, file), path.join(output, file));
 console.log('Static website ready in dist/.');
