@@ -236,7 +236,7 @@ window.PORTFOLIO = {
       image: 'blog/magic-crystal-overload/post-001/nasa-supernova-still.jpg',
       imageAlt: 'A blue and violet supernova cloud expanding against dark space.',
       excerpt: 'A project journal exploring a magical crystal explosion, Pyro, volume, light, and timing.',
-      // Explicit entry numbers keep existing post references stable when an entry is removed.
+      // Display numbers follow the journal sequence; article URLs retain their existing IDs.
       entries: [
         {
           "id": "post-001",
@@ -835,7 +835,7 @@ window.PORTFOLIO = {
             },
             {
               "type": "paragraph",
-              "text": "With the background established, I can judge the next volume test against a consistent field of stars. The nebula shape, layers and motion continue in Post 005; crystal modeling and shader development continue in Post 006."
+              "text": "With the background established, I can judge the next volume test against a consistent field of stars. The nebula shape, layers and motion continue in Post 004; crystal modeling and shader development continue in Post 005."
             }
           ],
           "number": 3
@@ -1249,7 +1249,7 @@ window.PORTFOLIO = {
               ]
             }
           ],
-          "number": 5
+          "number": 4
         },
         {
           "id": "post-006",
@@ -1608,7 +1608,7 @@ window.PORTFOLIO = {
               ]
             }
           ],
-          "number": 6
+          "number": 5
         },
         {
           "id": "post-007",
@@ -1931,23 +1931,23 @@ window.PORTFOLIO = {
           "aliases": [
             "post-008"
           ],
-          "number": 7
+          "number": 6
         },
         {
           "id": "tower-environment-progress",
           "title": "Complete Tower Landscape: Gaea Terrain and Houdini Assembly",
           "publishedAt": "2026-11-10",
-          "image": "blog/magic-crystal-overload/tower-environment-progress/complete-tower-landscape.png",
-          "imageAlt": "The full stone tower and timber stair inside the latest broad meadow landscape, with limestone outcrops and scattered rocks.",
+          "image": "blog/magic-crystal-overload/tower-environment-progress/tower-side-shadow-final.jpg",
+          "imageAlt": "The complete stone tower in the meadow landscape, with its sun shadow falling diagonally to the left side.",
           "excerpt": "Extending the Gaea landscape to 1.8 kilometers while preserving the detailed tower, approach, moving meadow and existing rock placements.",
           "blocks": [
             {
               "type": "image",
-              "image": "blog/magic-crystal-overload/tower-environment-progress/complete-tower-landscape.png",
-              "width": 1280,
-              "height": 854,
-              "alt": "The full stone tower and timber stair inside the latest broad meadow landscape, with limestone outcrops and scattered rocks.",
-              "caption": "Latest complete environment, rendered in Karma XPU at frame 81, 48 samples with OIDN. The detailed center is retained inside the larger landscape.",
+              "image": "blog/magic-crystal-overload/tower-environment-progress/tower-side-shadow-final.jpg",
+              "width": 1920,
+              "height": 1280,
+              "alt": "The complete stone tower in the meadow landscape, with its sun shadow falling diagonally to the left side.",
+              "caption": "Complete 1.8-kilometer landscape. The daylight rig is rotated so the tower casts its shadow diagonally to the side. Karma XPU, frame 81, 96 samples.",
               "size": "wide"
             },
             {
@@ -2214,223 +2214,362 @@ window.PORTFOLIO = {
               ]
             }
           ],
-          "number": 8
+          "number": 7
         },
         {
           "id": "quartz-micro-detail",
-          "title": "Quartz Micro Detail: Growth Bands, Fractures, and Inclusions",
+          "title": "Quartz for the Close Shot: Surface Scales and Internal Inclusions",
           "publishedAt": "2026-11-10",
           "image": "blog/magic-crystal-overload/quartz-micro-detail/layered-quartz-macro.jpg",
-          "imageAlt": "A close crop of quartz with wide crystalline facets, broken mid-size fissures and fine etched lines.",
-          "excerpt": "A close-up study of the 6.5-meter crystal, layering broad growth features, interrupted fractures, fine etching and several sizes of internal inclusions.",
+          "imageAlt": "A close shot of transparent quartz with broad growth relief, broken fractures and fine mineral detail.",
+          "excerpt": "Preparing the roughly four-meter crystal for a close shot with large, middle and fine surface detail, plus layered inclusions confined by the shell distance field.",
           "blocks": [
             {
               "type": "paragraph",
-              "children": [
-                {
-                  "text": "This is a close-up pass for the 6.5-meter crown crystal. I used the existing 1.8-meter figure to judge whether the surface marks would still read at shot distance, then built a range of scales across the surface and inside the volume."
-                }
-              ]
-            },
-            {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/quartz-micro-detail/human-scale-check.jpg",
-              "width": 1260,
-              "height": 1050,
-              "alt": "An early quartz detail crop beside the head and torso of a scale figure.",
-              "caption": "An earlier close-up places the surface next to the 1.8-meter scale figure, before the later layering and lift."
+              "text": "I prepared this material for a close shot of the roughly four-meter crystal. A large transparent object can look like a small piece of glass enlarged in the frame if every mark has the same size. I arranged large, middle and small details across the facets and inside the crystal so the surface has a readable scale while the clearer areas still transmit the background."
             },
             {
               "type": "image",
               "image": "blog/magic-crystal-overload/quartz-micro-detail/layered-quartz-macro.jpg",
               "width": 1280,
               "height": 1060,
-              "alt": "A close crop of quartz with wide crystalline facets, broken mid-size fissures and fine etched lines.",
-              "caption": "Layered macro: larger growth terraces, interrupted intermediate fractures and fine surface marks coexist across the same facets."
+              "alt": "Broad growth terraces, interrupted fissures and fine etching across transparent quartz facets.",
+              "caption": "Current close-shot look: broad growth zones, middle-scale fractures and finer surface marks share the same facets.",
+              "size": "wide"
             },
             {
               "type": "heading",
-              "text": "Build the surface from large to small"
+              "text": "Arrange the detail from large to small"
             },
             {
               "type": "list",
               "items": [
-                "Large: retain the original faceted shell and add shallow, broad growth terraces in selected zones.",
-                "Middle: break up the growth lines and add larger, interrupted healed-looking fissures. Keep smooth patches between them.",
-                "Fine: layer narrower striations, hairline etching, small pits and mineral grain. Most of this relief shows up at grazing angles."
-              ]
-            },
-            {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/quartz-micro-detail/earlier-fine-pass.jpg",
-              "width": 1280,
-              "height": 1060,
-              "alt": "The earlier quartz macro, with mostly fine etched marks on large transparent facets.",
-              "caption": "Earlier fine-detail study: the marks became smaller, but the intermediate scales were less evident. The following pass restored a wider range of sizes."
-            },
-            {
-              "type": "paragraph",
-              "children": [
-                {
-                  "text": "The earlier and layered macro views use the same camera. The lighting accents and the floor visible in refraction also changed, so the frames show the progression of the look rather than a controlled shader comparison."
-                }
+                "Large: keep the faceted silhouette and add shallow, broad growth terraces. Leave clear windows between the more active regions.",
+                "Middle: add interrupted growth traces and healed-looking fractures so the facets have structure between the silhouette and the micro detail.",
+                "Fine: use narrow growth ridges, hairline etch rims, small pits and mineral grain. Their restrained bump and roughness changes catch grazing light."
               ]
             },
             {
               "type": "heading",
-              "text": "Give the interior more than one scale"
+              "text": "Surface shader: Fractal3D, Worley and local masks"
             },
             {
               "type": "paragraph",
-              "children": [
-                {
-                  "text": "The interior is a separate 4.5-millimeter VDB field. Wider folded growth zones sit behind thinner, interrupted laminae and fine filament detail. Mineral grains are scattered in three size ranges and concentrated in the denser regions. Open areas between the layers preserve clear sight lines."
-                }
-              ]
-            },
-            {
-              "type": "heading",
-              "text": "Check the height in the assembled scene"
+              "text": "The MaterialX graph starts with CRYSTAL_ASSET_POSITION and POSITION_IN_METERS. Scaling this object-space position separately for each noise gives the growth bands a direction and keeps their relative sizes consistent. MtlX Fractal3D makes the broad terraces, broken middle growth and local coverage masks. MtlX Worley Noise 3D supplies the cellular distances used for fractures, etch rims and pits."
             },
             {
               "type": "image",
-              "image": "blog/magic-crystal-overload/quartz-micro-detail/suspended-over-stone.jpg",
-              "width": 1248,
-              "height": 980,
-              "alt": "The raised lower crystal tip floating over the stone floor beside a scale figure.",
-              "caption": "Raised placement check: the tip sits about 1.34 meters above the new stone paving."
-            },
-            {
-              "type": "paragraph",
-              "children": [
-                {
-                  "text": "I raised the shell, inclusion volume and mineral grains together by another 0.4 meters, keeping the preceding macro geometry and look. See the "
-                },
-                {
-                  "text": "tower and environment progress",
-                  "href": "/blog/magic-crystal-overload/tower-environment-progress/"
-                },
-                {
-                  "text": " for the stone floor and the rest of the route up the tower."
-                }
-              ]
-            }
-          ],
-          "number": 9
-        },
-        {
-          "id": "supernova-background-color",
-          "number": 10,
-          "title": "Supernova: Background and Color Refinement",
-          "publishedAt": "2026-11-11",
-          "image": "blog/magic-crystal-overload/supernova-background-color/supernova-refined.jpg",
-          "imageAlt": "Cyan and blue supernova folds surrounding a pink center against a deep blue star field.",
-          "excerpt": "Refining the star background and the transition from cyan to deeper blue and purple while retaining the established flow and timing.",
-          "blocks": [
-            {
-              "type": "video",
-              "src": "/assets/videos/blog/magic-crystal-overload/supernova-background-color/supernova-refined.mp4",
-              "poster": "blog/magic-crystal-overload/supernova-background-color/supernova-refined.jpg",
+              "image": "blog/magic-crystal-overload/quartz-micro-detail/quartz-shader-overview.png",
               "width": 1920,
-              "height": 1080,
-              "title": "Supernova with the refined background and color progression",
-              "caption": "Current look: 350 output frames at 60 fps, approximately 5.83 seconds. Rendered at 1920 × 1080 in Karma XPU with 256 samples and a separate camera-glow pass.",
+              "height": 1590,
+              "alt": "The complete quartz MaterialX shader in Houdini, including surface growth, fractures, fine detail and the internal volume material.",
+              "caption": "Complete native shader overview: the growth, fracture, fine-detail, bump and roughness branches feed the quartz surface; the inclusion-density branch feeds its separate volume material.",
               "size": "wide"
-            },
-            {
-              "type": "heading",
-              "text": "Give the background a deeper blue base"
-            },
-            {
-              "type": "paragraph",
-              "text": "The star positions and existing catalog layout stay consistent. I added a restrained dark-blue base to the background plate, concentrated in its darker areas. This keeps the space around the effect from falling to flat black while preserving the small stars and the contrast around the expanding volume."
-            },
-            {
-              "type": "heading",
-              "text": "Separate cyan, blue and purple over time"
-            },
-            {
-              "type": "paragraph",
-              "text": "The early shell keeps its pale cyan color. Around 2.6–3.2 seconds, the blue body becomes deeper while the brighter cyan folds remain readable. Through the later part of the shot, the color shifts toward blue and purple and the volume becomes more transparent, allowing more of the background to show through."
-            },
-            {
-              "type": "image",
-              "image": "blog/magic-crystal-overload/supernova-background-color/late-blue-purple.jpg",
-              "width": 1920,
-              "height": 1080,
-              "alt": "Late supernova frame with deeper blue outer folds, a purple interior and stars visible around and through the thinner volume.",
-              "caption": "Late frame at about 5.67 seconds: the deeper blue and purple balance and reduced opacity reveal more of the star field.",
-              "size": "wide"
-            },
-            {
-              "type": "heading",
-              "text": "Houdini workflow"
-            },
-            {
-              "type": "paragraph",
-              "text": "The existing simulation supplies the motion. Cached particles retain their IDs and rest positions; the appearance branch assigns density, color and emission before building the volume fields. The final Solaris layer applies the revised color balance and reads the graded background plate."
             },
             {
               "type": "table",
-              "caption": "Nodes used in the current workflow",
+              "caption": "Noise layers in the close-shot shader",
               "headers": [
-                "Nodes",
-                "Role"
+                "Detail",
+                "Nodes and construction"
               ],
               "rows": [
                 [
-                  "Sphere, Scatter and POP Advect by Volumes",
-                  "The original blue layer starts from points sampled once on a sphere, then follows the cached Pyro velocity. This pass reuses that flow."
+                  "Broad growth terraces",
+                  "BROAD_GROWTH_TERRACES uses MtlX Fractal3D at position frequencies (4.1, 13.5, 4.1), with three octaves. A Range remaps it to shallow relief, then a facet mask limits coverage."
                 ],
                 [
-                  "File Cache and Retime",
-                  "Read the established particle motion and evaluate it on the output timeline while preserving the shared source timing."
+                  "Middle growth traces",
+                  "INTERRUPTED_MIDDLE_GROWTH uses Fractal3D at (8.2, 67, 8.2). Range and Multiply break the narrow directional traces into patches."
                 ],
                 [
-                  "Attribute Wrangle",
-                  "Use rest-space masks and time controls to assign density, Cd, emission and particle radius without editing the particle positions."
+                  "Healed-looking fractures",
+                  "MID_SCALE_HEALED_FRACTURES uses Worley at (19, 25, 19). Extract and Subtract form the difference between neighboring cell distances; Range narrows it to edges. A second Fractal3D mask interrupts the edges."
                 ],
                 [
-                  "Volume Rasterize Attributes and VDB Smooth",
-                  "Convert the particle attributes into continuous volume fields and soften their granular appearance."
+                  "Fine etch rims and pits",
+                  "Higher-frequency Worley fields create the etch network and localized pit centers. Coverage masks prevent either pattern from filling every facet."
                 ],
                 [
-                  "Grid and UV Quick Shade",
-                  "Preview the star backplate in SOPs. The final render uses the graded plate referenced by the Solaris scene."
+                  "Fine mineral grain",
+                  "FINE_MINERAL_GRAIN uses a two-octave Fractal3D field at (382, 465, 382), with a small relief amplitude."
                 ],
                 [
-                  "Sublayer and MaterialX color multiplication",
-                  "Load the assembled USD scene and apply the deeper blue balance, with time-varying color and opacity controls for the later frames."
+                  "Bump and roughness",
+                  "The relief branches add into MULTI_SCALE_QUARTZ_RELIEF and QUARTZ_MICRO_RELIEF. Growth and fracture masks also vary roughness, so the more worked areas scatter the specular highlight differently."
+                ]
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "The important balance is coverage. PRESERVE_CLEAR_FACET_WINDOWS uses a lower-frequency Fractal3D mask to keep smooth, transparent areas between the growth and fracture marks. The combined relief enters the normal input through MtlX Bump; the transmitting quartz surface keeps its separate shading controls."
+            },
+            {
+              "type": "heading",
+              "text": "Keep the inclusion volume inside the shell"
+            },
+            {
+              "type": "paragraph",
+              "text": "The interior is built separately from the surface shader. ORIGINAL_WATERTIGHT_CRYSTAL feeds VDB From Polygons, which produces both a signed distance field named surface and a fog field. FOG_GRID_ONLY supplies the volume grid; SIGNED_SHELL_ONLY supplies the boundary to the second input of LAYERED_INCLUSION_DENSITY."
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/quartz-micro-detail/sdf-inclusion-nodes.png",
+              "width": 2130,
+              "height": 1490,
+              "alt": "Houdini SOP network for the crystal shell distance field, layered inclusion density, caches and mineral grain instances.",
+              "caption": "Actual inclusion construction: shell to SDF and fog, masked layered density, then a separate mineral-grain branch. This is a documentation layout of the original connected nodes.",
+              "size": "wide"
+            },
+            {
+              "type": "paragraph",
+              "text": "The Volume Wrangle samples the signed distance at each voxel and converts the distance to meters. A smooth mask keeps density zero at the shell and outside it, with a 0.034-meter inner gap and a 0.023-meter transition. This confines the inclusions to the crystal and separates them from the refracting outer surface."
+            },
+            {
+              "type": "paragraph",
+              "text": "Inside that boundary, oriented growth zones provide broader folded layers. Thinner micro-veils add a second scale. Several differently scaled VEX snoise fields warp the layers and break them into pockets, striations and filaments. A small background haze joins them, while open areas preserve clear sight lines. The cached inclusion field uses approximately 4.5-millimeter world-space voxels."
+            },
+            {
+              "type": "table",
+              "caption": "Interior layers and shading",
+              "headers": [
+                "Part",
+                "Construction"
+              ],
+              "rows": [
+                [
+                  "Boundary",
+                  "SHELL_DISTANCE_AND_SOLID_MASK → SIGNED_SHELL_ONLY. The negative surface SDF becomes inward distance; a smooth interior mask confines the density."
+                ],
+                [
+                  "Layered density",
+                  "LAYERED_INCLUSION_DENSITY combines broad growth zones, thinner tilted veils and stable snoise breakup, then multiplies the result by the boundary mask."
+                ],
+                [
+                  "Mineral grains",
+                  "SAMPLE_MINERAL_GRAINS_IN_VEILS and SMALL_FACETED_INCLUSIONS retain points in denser regions and assign three size ranges. Copy to Points places the small faceted prototype."
+                ],
+                [
+                  "Volume material",
+                  "INCLUSION_VDB_DENSITY reads the density field. Separate multipliers feed absorption, cool mineral scattering and restrained emission into the Karma Volume material."
                 ]
               ]
             },
             {
               "type": "heading",
-              "text": "Compare with the earlier look"
+              "text": "Check the material at shot scale"
             },
             {
-              "type": "video",
-              "src": "/assets/videos/blog/magic-crystal-overload/supernova-background-color/original-and-refined.mp4",
-              "poster": "blog/magic-crystal-overload/supernova-background-color/original-and-refined-poster.jpg",
-              "width": 3840,
-              "height": 1080,
-              "title": "Earlier and refined supernova looks at corresponding sample times",
-              "caption": "Left: the earlier 1280 × 720 OpenGL volume preview at 24 fps with separate lens glow. Right: the refined 1920 × 1080 Karma XPU render at 60 fps and 256 samples. Each side shows its source sample time. The comparison includes changes in renderer and sampling as well as the background and color work.",
+              "type": "image",
+              "image": "blog/magic-crystal-overload/quartz-micro-detail/human-scale-check.jpg",
+              "width": 1260,
+              "height": 1050,
+              "alt": "An earlier quartz detail check beside a human scale figure.",
+              "caption": "Earlier scale check beside the 1.8-meter figure. The close-shot pass restores a wider range of detail sizes.",
               "size": "wide"
             },
             {
+              "type": "paragraph",
+              "text": "I judge the large marks first, then the middle fractures, then the fine grain. Keeping clear areas between them lets refraction and the layered interior remain visible instead of turning the whole crystal uniformly cloudy."
+            }
+          ],
+          "number": 8
+        },
+        {
+          "id": "supernova-background-color",
+          "number": 9,
+          "title": "Supernova: Current Final, Highlights and Purple Layer",
+          "publishedAt": "2026-11-15",
+          "image": "blog/magic-crystal-overload/supernova-background-color/final-3-1s.jpg",
+          "imageAlt": "The current final supernova with cyan folded highlights, a pink core and purple detail against the star background.",
+          "excerpt": "The current final shot, followed by the changes from the previous published look: two highlight branches, a separate purple particle volume and continued late motion.",
+          "blocks": [
+            {
+              "type": "video",
+              "src": "/assets/videos/blog/magic-crystal-overload/supernova-background-color/current-final-1080p.mp4",
+              "poster": "blog/magic-crystal-overload/supernova-background-color/current-final-1080p-poster.jpg",
+              "width": 1920,
+              "height": 1080,
+              "title": "Supernova — current final shot",
+              "caption": "Current final: 1920 × 1080, 175 frames at 30 fps, 5.83 seconds. Karma XPU at 32 samples, followed by the approved glow and display transform.",
+              "size": "wide"
+            },
+            {
+              "type": "paragraph",
+              "text": "This is the current final for this project. The finished shot combines the blue particle-driven shell, the pink center, the opening flash, a subtle blue haze, two independently controlled highlight branches, a separate purple particle volume, the central bright point and the star background."
+            },
+            {
+              "type": "mediaRow",
+              "items": [
+                {
+                  "type": "image",
+                  "image": "blog/magic-crystal-overload/supernova-background-color/final-2-9s.jpg",
+                  "width": 1920,
+                  "height": 1080,
+                  "alt": "Final supernova at 2.9 seconds.",
+                  "caption": "2.9 seconds: the folding highlight builds around the central region.",
+                  "size": "wide"
+                },
+                {
+                  "type": "image",
+                  "image": "blog/magic-crystal-overload/supernova-background-color/final-3-1s.jpg",
+                  "width": 1920,
+                  "height": 1080,
+                  "alt": "Final supernova at 3.1 seconds.",
+                  "caption": "3.1 seconds: the cyan highlights and purple structure remain visible together.",
+                  "size": "wide"
+                }
+              ]
+            },
+            {
               "type": "heading",
-              "text": "Side by side with the NASA reference"
+              "text": "What changed from the previous published look"
+            },
+            {
+              "type": "list",
+              "items": [
+                "Added broad luminous folds constrained by the existing blue density, plus a narrower folded membrane that follows the moving particle cloud.",
+                "Added a separate purple layer built from a stable particle volume, with its own reveal, emission and slow expansion.",
+                "Separated the highlight reveal, peak and release controls so the bright structure can curl through the middle of the shot, then fade away from the deeper blue body.",
+                "Kept motion through the end by continuing the cached blue particles outward with a gradual procedural motion pass.",
+                "Assembled the final layers and star plate in USD, then rendered a continuous 1080p movie and higher-resolution stills."
+              ]
+            },
+            {
+              "type": "heading",
+              "text": "Blue shell and shared motion"
             },
             {
               "type": "video",
-              "src": "/assets/videos/blog/magic-crystal-overload/supernova-background-color/nasa-and-refined.mp4",
-              "poster": "blog/magic-crystal-overload/supernova-background-color/nasa-and-refined-poster.jpg",
-              "width": 3840,
-              "height": 1080,
-              "title": "NASA supernova reference beside the refined Houdini render",
-              "caption": "Left: the NASA reference at 600% playback, sampled at its native 30 fps. Right: the refined Karma XPU render at 60 fps and 256 samples. The reference is not accelerated again; each source frame is held for two output frames. Labels show the actual sample times. The comparison helps evaluate the background, color progression and transparency.",
-              "credit": "Reference: NASA's Goddard Space Flight Center Conceptual Image Lab. Houdini study and comparison: Tao Luo.",
+              "src": "/assets/videos/blog/magic-crystal-overload/supernova-background-color/isolated-blue.mp4",
+              "poster": "blog/magic-crystal-overload/supernova-background-color/isolated-blue-poster.jpg",
+              "width": 960,
+              "height": 540,
+              "title": "Blue shell in isolation",
+              "caption": "Blue shell only, against black. 960 × 540, 16 samples; the timing and material match the final. Each layer preview uses the same glow and display transform.",
+              "size": "wide"
+            },
+            {
+              "type": "paragraph",
+              "text": "The Pyro simulation supplies velocity for 360,000 points scattered once on a sphere. POP Advect by Volumes carries the stable points through that field, and Retime evaluates the cache on the shot timeline. The appearance wrangle uses rest-space masks to assign density, Cd, emission and particle radius before Volume Rasterize Attributes builds the blue VDB."
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/supernova-background-color/blue-and-highlight-nodes.png",
+              "width": 2090,
+              "height": 1520,
+              "alt": "The real Houdini blue-particle network and its broad and folded highlight branches.",
+              "caption": "Native construction: cached Pyro-driven particles feed the blue shell and broad luminous folds; the separate membrane follows the same moving cloud.",
+              "size": "wide"
+            },
+            {
+              "type": "paragraph",
+              "text": "CONTINUOUS_MOTION gradually enters from 3.4 to 4.2 seconds. It integrates continued outward travel with the cached velocity and stable rest/id variation, so the late structure keeps spreading after the original motion slows. This is a downstream procedural motion pass on the particles."
+            },
+            {
+              "type": "heading",
+              "text": "Two highlight branches with separate timing"
+            },
+            {
+              "type": "video",
+              "src": "/assets/videos/blog/magic-crystal-overload/supernova-background-color/isolated-highlights.mp4",
+              "poster": "blog/magic-crystal-overload/supernova-background-color/isolated-highlights-poster.jpg",
+              "width": 960,
+              "height": 540,
+              "title": "Broad luminous folds and folded membrane in isolation",
+              "caption": "Both highlight branches isolated from the final. The broad folds and narrower cyan membrane share the underlying movement but have separate emission envelopes.",
+              "size": "wide"
+            },
+            {
+              "type": "paragraph",
+              "text": "The broad branch starts at BASE_SMOOTH. BROAD_FOLDS slightly widens the emission; SELECT_LUMINOUS_FOLDS constrains it to supported density, suppresses overly dense regions and applies a directional preference. HIGHLIGHT_ONLY retains the emission field before the world-space transform."
+            },
+            {
+              "type": "paragraph",
+              "text": "The narrower branch starts from a Torus. FOLDED_MEMBRANE shapes the ring into thin folds, waves and local gaps. FLOW_REST takes the blue cloud at 2.45 seconds, and Point Deform uses that reference and the current particles to carry the membrane with the flow. A fixed 180,000-point surface sample is transferred by Attribute Interpolate, keeping its sampling stable through the deformation."
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/supernova-background-color/folded-highlight-nodes.png",
+              "width": 1250,
+              "height": 1480,
+              "alt": "The Torus, folded membrane, Point Deform, stable scatter, Attribute Interpolate and VDB rasterization nodes in Houdini.",
+              "caption": "Folded membrane branch: RING_SOURCE → FOLDED_MEMBRANE → FOLLOW_CLOUD → CARRY_SAMPLES → HIGHLIGHT_ATTRIBUTES → RING_FIELDS → RING_CACHE.",
+              "size": "wide"
+            },
+            {
+              "type": "table",
+              "caption": "Timing the highlight",
+              "headers": [
+                "Control",
+                "Current setting"
+              ],
+              "rows": [
+                [
+                  "Reveal",
+                  "Begins at 2.30 seconds; fully visible at 2.85 seconds."
+                ],
+                [
+                  "Peak",
+                  "Strengthens from 2.55 to 2.95 seconds; peak multiplier 1.55 on a base gain of 1.9."
+                ],
+                [
+                  "Release",
+                  "Peak releases from 3.35 to 4.10 seconds; final fade runs from 3.70 to 4.90 seconds."
+                ],
+                [
+                  "Volume",
+                  "0.035-meter raster voxels for the narrow membrane. Its material is emissive, with no added absorption or scattering."
+                ]
+              ]
+            },
+            {
+              "type": "heading",
+              "text": "Purple layer: stable filaments and slow expansion"
+            },
+            {
+              "type": "video",
+              "src": "/assets/videos/blog/magic-crystal-overload/supernova-background-color/isolated-purple.mp4",
+              "poster": "blog/magic-crystal-overload/supernova-background-color/isolated-purple-poster.jpg",
+              "width": 960,
+              "height": 540,
+              "title": "Purple particle volume in isolation",
+              "caption": "The separate purple layer only. Fixed filament detail expands slowly while its reveal and emission change with the final shot timing.",
+              "size": "wide"
+            },
+            {
+              "type": "paragraph",
+              "text": "SOURCE_VOLUME defines an ellipsoidal region. STATIC_FILAMENT_DENSITY uses fixed spatial noise, ridge-like filaments and holes to control where 1.5 million points are scattered. STATIC_PARTICLE_DETAIL adds small static variation. The points are rasterized once into density and emission, then cached as a rest VDB."
+            },
+            {
+              "type": "image",
+              "image": "blog/magic-crystal-overload/supernova-background-color/purple-layer-nodes.png",
+              "width": 1060,
+              "height": 1485,
+              "alt": "The actual Houdini source, stable scatter, particle detail, volume rasterization, rest cache and expansion nodes for the purple layer.",
+              "caption": "Native purple layer: a single stable particle distribution becomes a cached filament volume; SLOW_EXPANSION_ONLY changes its transform over time.",
+              "size": "wide"
+            },
+            {
+              "type": "paragraph",
+              "text": "The purple branch has independent timing. It begins to appear at 2.05 seconds and is fully revealed at 2.65 seconds. Its scale follows 0.9 + 0.047 × max(0, t − 2.05), with emission compensated by the inverse cube of the scale. The fixed rest field provides the texture; the slow transform expansion provides the motion. This layer is independent of the Pyro advection."
+            },
+            {
+              "type": "heading",
+              "text": "Final assembly and reference"
+            },
+            {
+              "type": "paragraph",
+              "text": "The USD scene assembles the cached layers, their MaterialX shading, the shot camera and the star plate. Karma XPU produces linear EXRs. The finishing pass applies the established multiscale glow and blue halo, then the display transform; the movie is encoded with BT.709 color tags. The stills at 2.9 and 3.1 seconds were rendered at 3840 × 2160 and 64 samples, then resized here for the article."
+            },
+            {
+              "type": "video",
+              "src": "/assets/videos/blog/magic-crystal-overload/supernova-background-color/current-final-reference.mp4",
+              "poster": "blog/magic-crystal-overload/supernova-background-color/current-final-reference-poster.jpg",
+              "width": 1920,
+              "height": 568,
+              "title": "Current final beside the NASA timing reference",
+              "caption": "The current final beside the existing NASA timing reference. This comparison follows the same 175-frame, 30 fps output as the finished movie.",
               "size": "wide"
             },
             {
@@ -2444,19 +2583,8 @@ window.PORTFOLIO = {
                   "href": "https://svs.gsfc.nasa.gov/20413/"
                 },
                 {
-                  "text": ", NASA's Goddard Space Flight Center Conceptual Image Lab; animation by Jonathan North. The same 600% timing reference is used in the earlier study."
+                  "text": ", NASA’s Goddard Space Flight Center Conceptual Image Lab; animation by Jonathan North. Houdini study and final assembly: Tao Luo."
                 }
-              ]
-            },
-            {
-              "type": "heading",
-              "text": "Next"
-            },
-            {
-              "type": "list",
-              "items": [
-                "Develop the pink layer.",
-                "Refine the highlights."
               ]
             }
           ]
