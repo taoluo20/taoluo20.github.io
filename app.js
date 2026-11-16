@@ -33,11 +33,13 @@
   };
   const getRoute = () => cleanRoute(location.pathname + location.search);
   const getProject = id => data.projects.find(project => project.id === id);
+  // Keep VFX public for grading until the owner requests password protection again.
+  const vfxPasswordRequired = false;
   // A static-site gate for casual access; public assets remain directly accessible.
   const vfxPasswordHash = '022f69d27708c8e55820eaa3d9bcdcec4b9039673d9a50109035e6f1e8ffe797';
   const vfxSessionKey = 'tao-vfx-access';
-  let vfxUnlocked = false;
-  try { vfxUnlocked = sessionStorage.getItem(vfxSessionKey) === vfxPasswordHash; } catch {}
+  let vfxUnlocked = !vfxPasswordRequired;
+  try { vfxUnlocked ||= sessionStorage.getItem(vfxSessionKey) === vfxPasswordHash; } catch {}
 
   function migrateLegacyRoute() {
     if (location.hash.startsWith('#/')) {
