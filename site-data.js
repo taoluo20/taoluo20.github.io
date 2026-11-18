@@ -2523,7 +2523,7 @@ window.PORTFOLIO = {
                   "href": "https://svs.gsfc.nasa.gov/20413/"
                 },
                 {
-                  "text": ", NASA’s Goddard Space Flight Center Conceptual Image Lab; animation by Jonathan North. Houdini study and final assembly: Tao Luo."
+                  "text": ", NASA’s Goddard Space Flight Center Conceptual Image Lab; animation by Jonathan North."
                 }
               ]
             }
